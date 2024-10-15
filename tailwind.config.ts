@@ -15,6 +15,13 @@ const config: Config = {
                     DEFAULT: "#F7EB25",
                     light: "#FEFDE9",
                 },
+                level: {
+                    1: "#70F915",
+                    2: "#CAF9AB",
+                    3: "#FBD08F",
+                    4: "#FF8282",
+                    5: "#F91515",
+                },
             },
         },
     },
