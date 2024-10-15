@@ -5,7 +5,7 @@ import Sidebar from "@/components/Sidebar";
 function page() {
     return (
         <div>
-            <Sidebar />
+            <Sidebar expand={true} />
         </div>
     );
 }
