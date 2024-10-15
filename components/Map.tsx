@@ -25,9 +25,9 @@ const MapComponent = () => {
               zoom={defaultMapZoom}
               options={defaultMapOptions}>
                 <HeatmapLayer 
-                  data={heatmapData.map(point => point.location)}
+                  data={heatmapData}
                   options={{
-                    radius: 20,
+                    radius: 30,
                     opacity: 0.7,
                     gradient: heatmapGradient
                   }}
