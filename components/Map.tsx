@@ -4,9 +4,11 @@ we need to make this component client rendered as well else error occurs
 */
 'use client'
 
+import { heatmapData } from "@/constants/heatmap-data";
+import { heatmapGradient } from "@/constants/heatmap-gradients";
 import { defaultMapCenter, defaultMapZoom, defaultMapOptions } from "@/constants/map-properties";
 //Map component Component from library
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, HeatmapLayer } from "@react-google-maps/api";
 
 //Map's styling
 export const defaultMapContainerStyle = {
@@ -22,6 +24,14 @@ const MapComponent = () => {
               center={defaultMapCenter}
               zoom={defaultMapZoom}
               options={defaultMapOptions}>
+                <HeatmapLayer 
+                  data={heatmapData.map(point => point.location)}
+                  options={{
+                    radius: 20,
+                    opacity: 0.7,
+                    gradient: heatmapGradient
+                  }}
+                />
           </GoogleMap>
         </div>
     )

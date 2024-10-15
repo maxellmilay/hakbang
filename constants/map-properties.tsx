@@ -1,6 +1,6 @@
 export const defaultMapCenter = {
-    lat: 10.296597,
-    lng: 123.898820
+    lat: 37.782,  // Latitude for center of the heatmap
+    lng: -122.443 // Longitude for center of the heatmap
 }
 
 export const defaultMapZoom = 18
