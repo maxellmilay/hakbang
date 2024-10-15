@@ -107,7 +107,7 @@ function Sidebar(props: PropsInterface) {
                 <div className="bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
 
                 <div className="h-[60px]"></div>
-                <button className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-200 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]">
+                <button className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]">
                     <Icon
                         icon="material-symbols:add-location-outline"
                         className="w-6 h-6"
@@ -138,6 +138,7 @@ function Sidebar(props: PropsInterface) {
                         </div>
                     ))}
                 </div>
+                <button className="text-slate-600">View all annotations</button>
             </nav>
         </div>
     );

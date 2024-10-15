@@ -14,6 +14,7 @@ const config: Config = {
                 primary: {
                     DEFAULT: "#F7EB25",
                     light: "#FEFDE9",
+                    dark: "#AFA71A",
                 },
                 level: {
                     1: "#70F915",
