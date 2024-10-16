@@ -9,7 +9,7 @@ export const colonGeoJSONData: FeatureCollection = {
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [123.89673085361744, 10.295505057551836],
+          [123.896611,10.295464],
           [123.89688010758546, 10.29556602120602]
         ]
       }
