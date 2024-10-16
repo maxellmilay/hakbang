@@ -43,6 +43,7 @@ const AppLayer = () => {
         setShowAnnotationForm(false);
         setIsPickingLocation(false);
         setExpandSidebar(true);
+        setSelectedAnnotationId(1);
     };
 
     const closeAnnotationDetails = () => {
