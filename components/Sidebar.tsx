@@ -101,14 +101,15 @@ function Sidebar(props: PropsInterface) {
                 <div className="bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
 
                 <div className="h-[60px] min-h-[60px]"></div>
-                <button className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]">
+                <button
+                    onClick={pickLocation}
+                    className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
+                >
                     <Icon
                         icon="material-symbols:add-location-outline"
                         className="w-6 h-6"
                     />
-                    <p onClick={pickLocation} className="font-medium">
-                        Add annotation
-                    </p>
+                    <p className="font-medium">Add annotation</p>
                 </button>
                 <div className="flex flex-col gap-6 overflow-y-auto">
                     {data.map((set, index) => (
