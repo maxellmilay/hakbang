@@ -22,3 +22,8 @@ export const defaultMapOptions = {
     //     strictBounds: true,   // Set to true to prevent moving the map outside the bounds
     // },
 };
+
+export const defaultMapContainerStyle = {
+    width: '100vw',
+    height: '100vh',
+};

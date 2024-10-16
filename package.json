@@ -2,6 +2,7 @@
   "name": "lakbai",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,11 +12,13 @@
   "dependencies": {
     "@iconify/react": "^5.0.2",
     "@react-google-maps/api": "^2.20.3",
+    "@turf/turf": "^7.1.0",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
