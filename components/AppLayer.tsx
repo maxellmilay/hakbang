@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import Sidebar from "@/components/Sidebar";
 import AnnotationForm from "@/components/AnnotationForm";
 import SearchBar from "@/components/SearchBar";
+import AnnotationDetails from "./AnnotationDetails";
 
 const AppLayer = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -58,6 +59,7 @@ const AppLayer = () => {
 
     return (
         <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100]`}>
+            <AnnotationDetails />
             <div className="pointer-events-auto">
                 <Sidebar
                     expand={expandSidebar}
@@ -67,7 +69,7 @@ const AppLayer = () => {
             </div>
             <SearchBar isMobile={isMobile} />
             {!isPickingLocation ? (
-                <div className="absolute z-50 right-0 bottom-0 p-4 pointer-events-auto">
+                <div className="absolute z-40 right-0 bottom-0 p-4 pointer-events-auto">
                     <button
                         onClick={pickLocation}
                         className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
@@ -79,7 +81,7 @@ const AppLayer = () => {
                     </button>
                 </div>
             ) : (
-                <div className="flex p-4 gap-3 absolute z-50 bottom-0 w-full justify-between items-center pointer-events-auto">
+                <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
                     {pickedCoordinates ? (
                         <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
                             {pickedCoordinates[0]}, {pickedCoordinates[1]}
