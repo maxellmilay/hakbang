@@ -91,7 +91,9 @@ const AppLayer = () => {
                     />
                 )}
             </div>
-            <SearchBar isMobile={isMobile} />
+            {selectedAnnotationId === null && isMobile && (
+                <SearchBar isMobile={isMobile} />
+            )}
             {!isPickingLocation ? (
                 <div className="absolute z-40 right-0 bottom-0 p-4 pointer-events-auto">
                     <button
