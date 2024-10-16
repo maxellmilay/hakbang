@@ -59,7 +59,6 @@ const AppLayer = () => {
 
     return (
         <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100]`}>
-            <AnnotationDetails />
             <div className="pointer-events-auto">
                 <Sidebar
                     expand={expandSidebar}
@@ -126,6 +125,7 @@ const AppLayer = () => {
                     setPickedCoordinates={setPickedCoordinates}
                 />
             )}
+            <AnnotationDetails />
         </div>
     );
 };
