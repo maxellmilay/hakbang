@@ -3,7 +3,7 @@ import { MapComponent } from "@/components/Map";
 import { colonGeoJSONData } from "@/data/colon";
 import { MapProvider } from "@/providers/map-provider";
 
-export default function Home() {
+const Home = () => {
 
   return (
     <>
@@ -14,3 +14,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { defaultMapCenter, defaultMapZoom, defaultMapOptions, defaultMapContainerStyle } from '@/constants/map-properties';
-import { GoogleMap } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 import { FeatureCollection } from 'geojson';
 
 interface PropsInterface {
@@ -14,6 +14,33 @@ const MapComponent = (props: PropsInterface) => {
 
   const mapRef = useRef<google.maps.Map | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+  const [selectedPosition, setSelectedPosition] = useState({
+    lat: 37.7749, // default latitude (San Francisco)
+    lng: -122.4194, // default longitude
+  });
+
+  const onMapClick = (e: google.maps.MapMouseEvent) => {
+    if (e.latLng) {
+      console.log('CLICK', {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+      })
+      setSelectedPosition({
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+      });
+    }
+  };
+
+  const onMarkerDragEnd = (e: google.maps.MapMouseEvent) => {
+    if (e.latLng) {
+      setSelectedPosition({
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+      });
+    }
+  };
 
   useEffect(() => {
     if (isMapLoaded && mapRef.current && geojsonData) {
@@ -95,7 +122,14 @@ const MapComponent = (props: PropsInterface) => {
           mapRef.current = map;
           setIsMapLoaded(true);
         }}
-      />
+        onClick={onMapClick}
+      >
+        <Marker
+          position={selectedPosition}
+          draggable={true}
+          onDragEnd={onMarkerDragEnd}
+        />
+      </GoogleMap>
     </div>
   );
 };
