@@ -57,7 +57,7 @@ const AppLayer = () => {
     }, []);
 
     return (
-        <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}>
+        <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100]`}>
             <div className="pointer-events-auto">
                 <Sidebar
                     expand={expandSidebar}
@@ -65,9 +65,7 @@ const AppLayer = () => {
                     pickLocation={pickLocation}
                 />
             </div>
-            <div className="absolute right-0 top-0 p-4 w-[500px] pointer-events-auto">
-                <SearchBar />
-            </div>
+            <SearchBar isMobile={isMobile} />
             {!isPickingLocation ? (
                 <div className="absolute right-0 bottom-0 p-4 pointer-events-auto">
                     <button
@@ -81,7 +79,7 @@ const AppLayer = () => {
                     </button>
                 </div>
             ) : (
-                <div className="flex p-4 absolute bottom-0 w-full justify-between items-center pointer-events-auto">
+                <div className="flex p-4 gap-3 absolute z-50 bottom-0 w-full justify-between items-center pointer-events-auto">
                     {pickedCoordinates ? (
                         <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
                             {pickedCoordinates[0]}, {pickedCoordinates[1]}
@@ -90,7 +88,9 @@ const AppLayer = () => {
                         <div></div>
                     )}
                     <div className="p-2 border-4 rounded-md border-black bg-primary">
-                        <h1 className="text-3xl font-bold">Pick a location</h1>
+                        <h1 className="sm:text-3xl text-xl font-bold">
+                            Pick a location
+                        </h1>
                     </div>
                     <div className="flex gap-3">
                         <button
@@ -126,6 +126,6 @@ const AppLayer = () => {
             )}
         </div>
     );
-}
+};
 
 export default AppLayer;

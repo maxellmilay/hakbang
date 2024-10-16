@@ -78,7 +78,7 @@ function Sidebar(props: PropsInterface) {
 
     return (
         <div>
-            <div className="z-10 top-[26px] left-[26px] absolute flex gap-6 p-3 items-center">
+            <div className="z-20 top-[26px] left-[26px] absolute flex gap-6 p-3 items-center">
                 <button onClick={() => setExpandSidebar(!expand)}>
                     <Icon
                         icon="material-symbols:view-sidebar-outline"
@@ -92,9 +92,9 @@ function Sidebar(props: PropsInterface) {
                     </div>
                 </div>
             </div>
-            <div className="absolute h-lvh p-4">
+            <div className="absolute h-lvh p-4 z-10">
                 <nav
-                    className={`z-0 bg-white w-[320px] h-full rounded-md border-2 border-black p-3 flex flex-col gap-2 transition-transform duration-300 ease-in-out ${
+                    className={`bg-white w-[320px] h-full rounded-md border-2 border-black p-3 flex flex-col gap-2 transition-transform duration-300 ease-in-out ${
                         expand
                             ? "translate-x-0"
                             : "-translate-x-[calc(100%+1rem)]"
