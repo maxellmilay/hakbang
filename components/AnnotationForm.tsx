@@ -171,6 +171,12 @@ function AnnotationForm(props: PropsInterface) {
                             ))}
                         </div>
                     </div>
+                    <TextField
+                        id="outlined-multiline-flexible"
+                        label="Comments"
+                        multiline
+                        maxRows={4}
+                    />
                 </div>
                 <div className="w-full flex justify-end gap-2 px-6 py-4">
                     <button

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Sidebar from "@/components/Sidebar";
 import AnnotationForm from "@/components/AnnotationForm";
@@ -21,7 +22,7 @@ const AppLayer = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedAnnotationId, setSelectedAnnotationId] = useState<
         number | null
-    >(1);
+    >(null);
     const pickLocation = () => {
         setIsPickingLocation(true);
         setExpandSidebar(false);
@@ -42,6 +43,13 @@ const AppLayer = () => {
         setShowAnnotationForm(false);
         setIsPickingLocation(false);
         setExpandSidebar(true);
+    };
+
+    const closeAnnotationDetails = () => {
+        setSelectedAnnotationId(null);
+        if (!isMobile) {
+            setExpandSidebar(true);
+        }
     };
 
     useEffect(() => {
@@ -73,11 +81,14 @@ const AppLayer = () => {
     return (
         <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100]`}>
             <div className="pointer-events-auto">
-                <Sidebar
-                    expand={expandSidebar}
-                    setExpandSidebar={setExpandSidebar}
-                    pickLocation={pickLocation}
-                />
+                {selectedAnnotationId === null && (
+                    <Sidebar
+                        expand={expandSidebar}
+                        setExpandSidebar={setExpandSidebar}
+                        pickLocation={pickLocation}
+                        setSelectedAnnotationId={setSelectedAnnotationId}
+                    />
+                )}
             </div>
             <SearchBar isMobile={isMobile} />
             {!isPickingLocation ? (
@@ -138,9 +149,22 @@ const AppLayer = () => {
                     setPickedCoordinates={setPickedCoordinates}
                 />
             )}
-            {selectedAnnotationId && (
-                <AnnotationDetails id={selectedAnnotationId} />
-            )}
+            <AnimatePresence>
+                {selectedAnnotationId && (
+                    <motion.div
+                        key={selectedAnnotationId}
+                        initial={{ opacity: 0, x: -100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <AnnotationDetails
+                            id={selectedAnnotationId}
+                            closeAnnotationDetails={closeAnnotationDetails}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

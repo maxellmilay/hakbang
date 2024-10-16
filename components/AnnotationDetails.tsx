@@ -1,13 +1,15 @@
 import React from "react";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 
 interface PropsInterface {
     id: number;
+    closeAnnotationDetails: () => void;
 }
 
 function AnnotationDetails(props: PropsInterface) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id } = props;
+    const { id, closeAnnotationDetails } = props;
     const data = {
         name: "T Padilla St, Gaisano Saversmart",
         anotator: "John Doe",
@@ -57,6 +59,7 @@ function AnnotationDetails(props: PropsInterface) {
                 <div className="flex justify-between items-start p-2">
                     <h1 className="font-semibold text-2xl">{data.name}</h1>
                     <button
+                        onClick={closeAnnotationDetails}
                         className="bg-primary rounded-md border-2 border-black
                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                     >
@@ -66,46 +69,81 @@ function AnnotationDetails(props: PropsInterface) {
                         />
                     </button>
                 </div>
-                <div className="flex flex-col">
-                    <p className="text-slate-400 px-3">
-                        Annotated by:{" "}
-                        <span className="font-semibold">{data.anotator}</span>
-                    </p>
-                    <p className="text-slate-400 px-3">
-                        ( {data.coordinates[0]}, {data.coordinates[1]} ) |
-                        Width: {data.sidewalkWidth} inches
-                    </p>
-                </div>
-                <div className="flex px-3 gap-3 font-semibold text-lg items-center">
-                    <div
-                        className={`w-6 h-6 rounded-md border-2 border-black
-                            bg-level-${data.level}`}
-                    ></div>
-                    {data.walkability}
-                </div>
-                <div className="flex flex-col gap-2 px-3">
-                    <p className="text-lg font-semibold">
-                        Accessibility features
-                    </p>
-                    {data.accessibility.map((accessibility, index) => (
+                <div className="flex flex-col overflow-y-auto custom-scrollbar gap-2 grow">
+                    <div className="flex flex-col">
+                        <p className="text-slate-400 px-3">
+                            Annotated by:{" "}
+                            <span className="font-semibold">
+                                {data.anotator}
+                            </span>
+                        </p>
+                        <p className="text-slate-400 px-3">
+                            ( {data.coordinates[0]}, {data.coordinates[1]} ) |
+                            Width: {data.sidewalkWidth} inches
+                        </p>
+                    </div>
+                    <div className="flex px-3 gap-3 font-semibold text-lg items-center">
                         <div
-                            key={index}
-                            className="flex items-center gap-2 pl-2"
-                        >
-                            <Icon
-                                icon={
-                                    accessibility.checked
-                                        ? "material-symbols:check-circle-outline"
-                                        : "mdi:close-circle-outline"
-                                }
-                                className={`w-6 h-6
+                            className={`w-6 h-6 rounded-md border-2 border-black
+                            bg-level-${data.level}`}
+                        ></div>
+                        {data.walkability}
+                    </div>
+                    <div className="flex flex-col gap-1 p-3">
+                        <p className="text-lg font-semibold">
+                            Accessibility features
+                        </p>
+                        {data.accessibility.map((accessibility, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center gap-2 pl-2"
+                            >
+                                <Icon
+                                    icon={
+                                        accessibility.checked
+                                            ? "material-symbols:check-circle-outline"
+                                            : "mdi:close-circle-outline"
+                                    }
+                                    className={`w-6 h-6
                                     ${
                                         accessibility.checked
                                             ? "text-green-500"
                                             : "text-red-500"
                                     }`}
+                                />
+                                <p>{accessibility.label}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex flex-col gap-1 p-3">
+                        <p className="text-lg font-semibold">Obstructions</p>
+                        <ul className="list-disc list-inside pl-2">
+                            {data.obstructions.map((obstruction, index) => (
+                                <li key={index}>{obstruction}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="flex flex-col gap-1 p-3">
+                        <p className="text-lg font-semibold">Comments</p>
+                        <p>{data.comments}</p>
+                    </div>
+                </div>
+                <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
+                    {data.imagesUrls.map((imageUrl, index) => (
+                        <div
+                            key={index}
+                            className="flex-shrink-0 w-[150px] h-[200px] relative"
+                        >
+                            <Image
+                                src={imageUrl}
+                                alt={`annotation image ${index + 1}`}
+                                fill
+                                sizes="150px"
+                                style={{
+                                    objectFit: "cover",
+                                }}
+                                className="rounded-md"
                             />
-                            <p>{accessibility.label}</p>
                         </div>
                     ))}
                 </div>

@@ -6,28 +6,38 @@ interface PropsInterface {
     expand: boolean;
     pickLocation: () => void;
     setExpandSidebar: (expand: boolean) => void;
+    setSelectedAnnotationId: (id: number | null) => void;
 }
 
 function Sidebar(props: PropsInterface) {
-    const { expand = true, setExpandSidebar, pickLocation } = props;
+    const {
+        expand = true,
+        setExpandSidebar,
+        pickLocation,
+        setSelectedAnnotationId,
+    } = props;
 
     const data = [
         {
             date: "Today",
             annotations: [
                 {
+                    id: 1,
                     level: 4,
                     name: "T Padilla St, Gaisano Saversmart",
                 },
                 {
+                    id: 2,
                     level: 5,
                     name: "Lopez Jaena St, Upper Malibu",
                 },
                 {
+                    id: 3,
                     level: 2,
                     name: "Hernan Cortes St, Jullie's Bakeshop & Restaurant",
                 },
                 {
+                    id: 4,
                     level: 3,
                     name: "T Padilla St, Gaisano Saversmart side bridge",
                 },
@@ -37,38 +47,47 @@ function Sidebar(props: PropsInterface) {
             date: "October 13, 2024",
             annotations: [
                 {
+                    id: 5,
                     level: 1,
                     name: "T Padilla St corner Lopez Jaena St",
                 },
                 {
+                    id: 6,
                     level: 3,
                     name: "Mabolo St, Mabolo Church",
                 },
                 {
+                    id: 7,
                     level: 2,
                     name: "Banilad Rd, Gaisano Country Mall",
                 },
                 {
+                    id: 8,
                     level: 4,
                     name: "Mango Ave, Robinsons Cybergate",
                 },
                 {
+                    id: 9,
                     level: 5,
                     name: "Colon St, Metro Colon",
                 },
                 {
+                    id: 10,
                     level: 3,
                     name: "Osmeña Blvd, Fuente Osmeña Circle",
                 },
                 {
+                    id: 11,
                     level: 2,
                     name: "Ayala Center Cebu, The Terraces",
                 },
                 {
+                    id: 12,
                     level: 5,
                     name: "Colon St, Metro Colon",
                 },
                 {
+                    id: 13,
                     level: 3,
                     name: "Osmeña Blvd, Fuente Osmeña Circle",
                 },
@@ -114,7 +133,7 @@ function Sidebar(props: PropsInterface) {
                         />
                         <p className="font-medium">Add annotation</p>
                     </button>
-                    <div className="flex flex-col gap-6 overflow-y-auto">
+                    <div className="flex flex-col gap-6 overflow-y-auto custom-scrollbar">
                         {data.map((set, index) => (
                             <div key={index} className="flex flex-col gap-2">
                                 <div className="p-2">
@@ -124,6 +143,11 @@ function Sidebar(props: PropsInterface) {
                                 </div>
                                 {set.annotations.map((annotation, index) => (
                                     <button
+                                        onClick={() =>
+                                            setSelectedAnnotationId(
+                                                annotation.id
+                                            )
+                                        }
                                         key={index}
                                         className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary"
                                     >
