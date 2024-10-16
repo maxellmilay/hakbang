@@ -7,6 +7,7 @@ interface PropsInterface {
     pickLocation: () => void;
     setExpandSidebar: (expand: boolean) => void;
     setSelectedAnnotationId: (id: number | null) => void;
+    isPickingLocation: boolean
 }
 
 function Sidebar(props: PropsInterface) {
@@ -15,6 +16,7 @@ function Sidebar(props: PropsInterface) {
         setExpandSidebar,
         pickLocation,
         setSelectedAnnotationId,
+        isPickingLocation
     } = props;
 
     const data = [
@@ -95,10 +97,17 @@ function Sidebar(props: PropsInterface) {
         },
     ];
 
+    const toggleSidebar = () => {
+        if (isPickingLocation){
+            return
+        }
+        setExpandSidebar(!expand)
+    }
+
     return (
         <div>
             <div className="z-20 top-[26px] left-[26px] absolute flex gap-6 p-3 items-center">
-                <button onClick={() => setExpandSidebar(!expand)}>
+                <button onClick={toggleSidebar} className={`${isPickingLocation && 'pointer-events-none'}`}>
                     <Icon
                         icon="material-symbols:view-sidebar-outline"
                         className="w-8 h-8"
