@@ -29,6 +29,14 @@ function Page() {
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const saveAnnotation = (data: any) => {
+        console.log(data);
+        setShowAnnotationForm(false);
+        setIsPickingLocation(false);
+        setExpandSidebar(true);
+    };
+
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
@@ -102,7 +110,13 @@ function Page() {
                     </div>
                 </div>
             )}
-            {showAnnotationForm && <AnnotationForm />}
+            {showAnnotationForm && (
+                <AnnotationForm
+                    pickedCoordinates={pickedCoordinates}
+                    setShowAnnotationForm={setShowAnnotationForm}
+                    saveAnnotation={saveAnnotation}
+                />
+            )}
         </div>
     );
 }
