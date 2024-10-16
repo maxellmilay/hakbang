@@ -25,26 +25,53 @@ const MapComponent = (props: PropsInterface) => {
 
       // Style the GeoJSON lines based on their 'weight' property
       dataLayer.setStyle((feature) => {
-        const weight = feature.getProperty('weight'); // Get the custom weight property
+        const weight = feature.getProperty('weight');
 
-        const strokeWeight = typeof weight === 'number' ? weight : 0; // Default weight
-
+        const strokeWeight = typeof weight === 'number' ? weight : 0;
         let strokeColor = '#8f9691'; // Default to grey
 
         if (strokeWeight > 15) {
-          strokeColor = '#FF0000'; // Change to blue for heavier weights
+          strokeColor = '#FF0000'; // Change to red for heavier weights
         } else if (strokeWeight <= 15 && strokeWeight > 5) {
           strokeColor = '#00FF00'; // Green for mid-range weights
         }
 
-        console.log("WEIGHT", strokeWeight, "COLOR", strokeColor)
-
         return {
           strokeColor: strokeColor,
-          strokeWeight: 10, // You can adjust the stroke thickness based on weight
+          strokeWeight: 10,
           strokeOpacity: 1.0,
         };
       });
+
+      dataLayer.addListener('click', (event: google.maps.Data.MouseEvent) => {
+        const feature = event.feature;
+        const geometry = feature.getGeometry();
+    
+        // Check if geometry exists
+        if (geometry) {
+            if (geometry.getType() === 'LineString') {
+                // Cast geometry to LineString
+                const lineString = geometry as google.maps.Data.LineString;
+                const coordinates = lineString.getArray().map((latLng: google.maps.LatLng) => ({
+                    lat: latLng.lat(),
+                    lng: latLng.lng()
+                }));
+                console.log('LineString coordinates:', coordinates);
+            } else if (geometry.getType() === 'Point') {
+                // Cast geometry to Point
+                const point = geometry as google.maps.Data.Point;
+                const latLng = point.get();
+                console.log('Point coordinates:', { lat: latLng.lat(), lng: latLng.lng() });
+            } else {
+                console.log('Other geometry type:', geometry.getType());
+            }
+        } else {
+            console.log('No geometry found for this feature.');
+        }
+    });
+    
+    
+    
 
       // Optionally, fit the map to the bounds of the GeoJSON
       const bounds = new google.maps.LatLngBounds();
