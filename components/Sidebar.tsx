@@ -125,7 +125,7 @@ function Sidebar(props: PropsInterface) {
                             {set.annotations.map((annotation, index) => (
                                 <button
                                     key={index}
-                                    className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary transition-all duration-200 ease-in-out"
+                                    className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary"
                                 >
                                     <div
                                         className={`rounded-md w-6 h-6 border-2 border-black bg-level-${annotation.level}`}
