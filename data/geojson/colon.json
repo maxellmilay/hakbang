@@ -1,6 +1,4 @@
-import { FeatureCollection } from "geojson";
-
-export const colonGeoJSONData: FeatureCollection = {
+{
   "type": "FeatureCollection",
   "features": [
     {

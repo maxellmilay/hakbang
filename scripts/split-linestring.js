@@ -1,66 +1,104 @@
-// Import the required functions from turf.js
 import { lineString, length, along } from '@turf/turf';
 import fs from 'fs';
 
-// Function to generate a random weight between 5 and 20
-function getRandomWeight() {
+const getRandomWeight = () => {
   return Math.floor(Math.random() * (20 - 5 + 1)) + 5;
 }
 
-// Function to split LineString into equal parts and assign random weights
-function splitLineStringIntoEqualParts(startCoord, endCoord, parts) {
-  // Create a GeoJSON LineString with the input coordinates
-  const lineStringFeature = lineString([startCoord, endCoord]);
-  
-  // Use turf.js to calculate the length of the line
-  const totalLength = length(lineStringFeature, { units: 'kilometers' });
-  const segmentLength = totalLength / parts;
-
+const splitLineStringIntoEqualPartsByLength = (coordinates, segmentLength) => {
   const newFeatures = [];
-  let currentDistance = 0;
 
-  // Split the line into equal segments
-  for (let i = 0; i < parts; i++) {
-    const startPoint = along(lineStringFeature, currentDistance, { units: 'kilometers' });
-    const endPoint = along(lineStringFeature, currentDistance + segmentLength, { units: 'kilometers' });
+  coordinates.forEach(({ start, end }) => {
+    const lineStringFeature = lineString([start, end]);
+    const totalLength = length(lineStringFeature, { units: 'kilometers' });
+    
+    let currentDistance = 0;
 
-    // Create new LineString segment with a random weight
-    const segment = {
-      "type": "Feature",
-      "properties": {
-        "weight": getRandomWeight()  // Assign a random weight between 5 and 20
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [startPoint.geometry.coordinates, endPoint.geometry.coordinates]
+    // Create segments of fixed length until the total length is reached
+    while (currentDistance < totalLength) {
+      const startPoint = along(lineStringFeature, currentDistance, { units: 'kilometers' });
+      let endPointDistance = currentDistance + segmentLength;
+
+      // Ensure the last segment ends at the final point if it exceeds total length
+      if (endPointDistance > totalLength) {
+        endPointDistance = totalLength;
       }
-    };
 
-    newFeatures.push(segment);
-    currentDistance += segmentLength;
-  }
+      const endPoint = along(lineStringFeature, endPointDistance, { units: 'kilometers' });
 
-  // Return new GeoJSON FeatureCollection with the split segments
+      const segment = {
+        "type": "Feature",
+        "properties": {
+          "weight": getRandomWeight()
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [startPoint.geometry.coordinates, endPoint.geometry.coordinates]
+        }
+      };
+
+      newFeatures.push(segment);
+      currentDistance = endPointDistance;
+    }
+  });
+
   return {
     "type": "FeatureCollection",
     "features": newFeatures
   };
 }
 
-// Example Usage:
-const startCoord = [
-  123.896783,
-  10.295484
-];
-const endCoord = [
-  123.89769997786605,
-  10.295012883867143
-];
-const parts = 10;  // Number of parts to split into
+const coordinates = [
+  // triangle block
+  {
+    start: [123.89665561184698,10.29545915060376],
+    end: [123.89791893229744,10.29600278893757]
+  },
+  {
+    start: [123.89791893229744,10.29600278893757],
+    end: [123.8980329261816,10.295902506210316]
+  },
+  {
+    start: [123.8980329261816,10.295902506210316],
+    end: [123.89774420304177,10.29498398365206]
+  },
+  {
+    start: [123.89774420304177,10.29498398365206],
+    end: [123.89665561184698,10.29545915060376]
+  },
+  // gaisano block
+  {
+    start: [123.89654941684468,10.295559140009777],
+    end: [123.89791197903206,10.296130487852418]
+  },
+  {
+    start: [123.89791197903206,10.296130487852418],
+    end: [123.89813326127289,10.296274314287167]
+  },
+  {
+    start: [123.89813326127289,10.296274314287167],
+    end: [123.89749016224854,10.297568206596972]
+  },
+  {
+    start: [123.89749016224854,10.297568206596972],
+    end: [123.89739367820847,10.297666652439753]
+  },
+  {
+    start: [123.89739367820847,10.297666652439753],
+    end: [123.89608667777658,10.297260973969658]
+  },
+  {
+    start: [123.89608667777658,10.297260973969658],
+    end: [123.89654941684468,10.295559140009777]
+  },
+]
 
-const splitGeoJSON = splitLineStringIntoEqualParts(startCoord, endCoord, parts);
+// The fixed length for each segment in kilometers
+const segmentLength = 0.0075;
+
+const splitGeoJSON = splitLineStringIntoEqualPartsByLength(coordinates, segmentLength);
 
 // Write the result to a JSON file
-fs.writeFileSync('data/geojson/splitLineString.json', JSON.stringify(splitGeoJSON, null, 2), 'utf8');
+fs.writeFileSync('data/geojson/colon.json', JSON.stringify(splitGeoJSON, null, 2), 'utf8');
 
-console.log('GeoJSON has been written to splitLineString.json');
+console.log('GeoJSON has been written to colon.json');
