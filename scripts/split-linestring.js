@@ -61,6 +61,6 @@ const parts = 10;  // Number of parts to split into
 const splitGeoJSON = splitLineStringIntoEqualParts(startCoord, endCoord, parts);
 
 // Write the result to a JSON file
-fs.writeFileSync('splitLineString.json', JSON.stringify(splitGeoJSON, null, 2), 'utf8');
+fs.writeFileSync('data/geojson/splitLineString.json', JSON.stringify(splitGeoJSON, null, 2), 'utf8');
 
 console.log('GeoJSON has been written to splitLineString.json');
