@@ -18,6 +18,10 @@ const AppLayer = () => {
     const [pickedCoordinates, setPickedCoordinates] = useState<
         [number, number] | null
     >([10.298684, 123.898283]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [selectedAnnotationId, setSelectedAnnotationId] = useState<
+        number | null
+    >(1);
 
     const pickLocation = () => {
         setIsPickingLocation(true);
@@ -125,7 +129,9 @@ const AppLayer = () => {
                     setPickedCoordinates={setPickedCoordinates}
                 />
             )}
-            <AnnotationDetails />
+            {selectedAnnotationId && (
+                <AnnotationDetails id={selectedAnnotationId} />
+            )}
         </div>
     );
 };
