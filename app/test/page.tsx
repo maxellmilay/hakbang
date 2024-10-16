@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 
 import Sidebar from "@/components/Sidebar";
 import AnnotationForm from "@/components/AnnotationForm";
+import SearchBar from "@/components/SearchBar";
 
 function Page() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -52,6 +53,9 @@ function Page() {
                 setExpandSidebar={setExpandSidebar}
                 pickLocation={pickLocation}
             />
+            <div className="absolute right-0 top-0 p-4 w-[500px]">
+                <SearchBar />
+            </div>
             {!isPickingLocation ? (
                 <div className="absolute right-0 bottom-0 p-4">
                     <button
