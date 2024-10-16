@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
@@ -32,49 +33,40 @@ function AnnotationForm(props: PropsInterface) {
         "Poor",
     ];
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0);
+    const [images, setImages] = useState<string[]>([]);
 
     const [accessibilityFeatures, setAccessibilityFeatures] = useState([
-        {
-            checked: false,
-            label: "Ramp",
-        },
-        {
-            checked: false,
-            label: "Tactile paving",
-        },
-        {
-            checked: false,
-            label: "Audible signals",
-        },
-        {
-            checked: false,
-            label: "Braille signs",
-        },
-        {
-            checked: false,
-            label: "Wide doorways",
-        },
-        {
-            checked: false,
-            label: "Elevators",
-        },
-        {
-            checked: false,
-            label: "Accessible toilets",
-        },
-        {
-            checked: false,
-            label: "Handrails",
-        },
-        {
-            checked: false,
-            label: "Lowered counters",
-        },
-        {
-            checked: false,
-            label: "Accessible parking",
-        },
+        { checked: false, label: "Ramp" },
+        { checked: false, label: "Tactile paving" },
+        { checked: false, label: "Audible signals" },
+        { checked: false, label: "Braille signs" },
+        { checked: false, label: "Wide doorways" },
+        { checked: false, label: "Elevators" },
+        { checked: false, label: "Accessible toilets" },
+        { checked: false, label: "Handrails" },
+        { checked: false, label: "Lowered counters" },
+        { checked: false, label: "Accessible parking" },
     ]);
+
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files) {
+            Array.from(files).forEach((file) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setImages((prevImages) => [
+                        ...prevImages,
+                        reader.result as string,
+                    ]);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    };
+
+    const removeImage = (index: number) => {
+        setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+    };
 
     const save = () => {
         const data = "hello world";
@@ -177,6 +169,48 @@ function AnnotationForm(props: PropsInterface) {
                         multiline
                         maxRows={4}
                     />
+                    <p className="text-slate-600">Images</p>
+                    <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
+                        {images.map((image, index) => (
+                            <div
+                                key={index}
+                                className="flex-shrink-0 w-[150px] h-[200px] relative group"
+                            >
+                                <Image
+                                    src={image}
+                                    alt={`annotation image ${index + 1}`}
+                                    fill
+                                    sizes="150px"
+                                    style={{
+                                        objectFit: "cover",
+                                    }}
+                                    className="rounded-md"
+                                />
+                                <button
+                                    onClick={() => removeImage(index)}
+                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                >
+                                    <Icon
+                                        icon="material-symbols:close"
+                                        className="w-4 h-4"
+                                    />
+                                </button>
+                            </div>
+                        ))}
+                        <label className="flex-shrink-0 w-[150px] h-[200px] border-dashed border-2 border-sky-500 rounded-md relative flex items-center justify-center cursor-pointer">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                className="hidden"
+                                multiple
+                            />
+                            <Icon
+                                icon="material-symbols:add"
+                                className="w-6 h-6 text-sky-500"
+                            />
+                        </label>
+                    </div>
                 </div>
                 <div className="w-full flex justify-end gap-2 px-6 py-4">
                     <button
