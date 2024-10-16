@@ -27,8 +27,8 @@ function AnnotationForm(props: PropsInterface) {
     const walkabiltyChoices = [
         "Excellent",
         "Very Good",
-        "Fair",
         "Good",
+        "Fair",
         "Poor",
     ];
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0);

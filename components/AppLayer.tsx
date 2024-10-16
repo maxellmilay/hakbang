@@ -22,10 +22,10 @@ const AppLayer = () => {
     const [selectedAnnotationId, setSelectedAnnotationId] = useState<
         number | null
     >(1);
-
     const pickLocation = () => {
         setIsPickingLocation(true);
         setExpandSidebar(false);
+        setSelectedAnnotationId(null);
         console.log("here", isPickingLocation);
     };
 
@@ -60,6 +60,15 @@ const AppLayer = () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        if (selectedAnnotationId) {
+            setExpandSidebar(false);
+            setIsPickingLocation(false);
+            setShowAnnotationForm(false);
+            setPickedCoordinates(null);
+        }
+    }, [selectedAnnotationId]);
 
     return (
         <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100]`}>
