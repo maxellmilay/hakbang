@@ -23,6 +23,7 @@ const AppLayer = () => {
     const [selectedAnnotationId, setSelectedAnnotationId] = useState<
         number | null
     >(null);
+
     const pickLocation = () => {
         setIsPickingLocation(true);
         setExpandSidebar(false);
@@ -80,7 +81,7 @@ const AppLayer = () => {
     }, [selectedAnnotationId]);
 
     return (
-        <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100]`}>
+        <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}>
             <div className="pointer-events-auto">
                 {selectedAnnotationId === null && (
                     <Sidebar
@@ -88,6 +89,7 @@ const AppLayer = () => {
                         setExpandSidebar={setExpandSidebar}
                         pickLocation={pickLocation}
                         setSelectedAnnotationId={setSelectedAnnotationId}
+                        isPickingLocation={isPickingLocation}
                     />
                 )}
             </div>
@@ -95,7 +97,7 @@ const AppLayer = () => {
                 <SearchBar isMobile={isMobile} />
             )}
             {!isPickingLocation ? (
-                <div className="absolute z-40 right-0 bottom-0 p-4 pointer-events-auto">
+                <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto">
                     <button
                         onClick={pickLocation}
                         className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
@@ -119,7 +121,7 @@ const AppLayer = () => {
                             </h1>
                         </div>
                     )}
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 mr-12">
                         <button
                             onClick={cancelPickLocation}
                             className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
