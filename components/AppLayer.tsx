@@ -14,9 +14,9 @@ const AppLayer = () => {
     const [isPickingLocation, setIsPickingLocation] = useState(false);
     const [showAnnotationForm, setShowAnnotationForm] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [pickedCoordinates, setPickedCoordinates] = useState([
-        10.298684, 123.898283,
-    ]);
+    const [pickedCoordinates, setPickedCoordinates] = useState<
+        [number, number] | null
+    >([10.298684, 123.898283]);
 
     const pickLocation = () => {
         setIsPickingLocation(true);
@@ -85,13 +85,12 @@ const AppLayer = () => {
                             {pickedCoordinates[0]}, {pickedCoordinates[1]}
                         </div>
                     ) : (
-                        <div></div>
+                        <div className="p-2 border-4 rounded-md border-black bg-primary">
+                            <h1 className="sm:text-3xl text-xl font-bold">
+                                Pick a location
+                            </h1>
+                        </div>
                     )}
-                    <div className="p-2 border-4 rounded-md border-black bg-primary">
-                        <h1 className="sm:text-3xl text-xl font-bold">
-                            Pick a location
-                        </h1>
-                    </div>
                     <div className="flex gap-3">
                         <button
                             onClick={cancelPickLocation}
@@ -117,11 +116,12 @@ const AppLayer = () => {
                     </div>
                 </div>
             )}
-            {showAnnotationForm && (
+            {showAnnotationForm && pickedCoordinates && (
                 <AnnotationForm
                     pickedCoordinates={pickedCoordinates}
                     setShowAnnotationForm={setShowAnnotationForm}
                     saveAnnotation={saveAnnotation}
+                    setPickedCoordinates={setPickedCoordinates}
                 />
             )}
         </div>

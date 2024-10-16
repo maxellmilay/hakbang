@@ -12,10 +12,18 @@ interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     saveAnnotation: (data: any) => void;
+    setPickedCoordinates: React.Dispatch<
+        React.SetStateAction<[number, number] | null>
+    >;
 }
 
 function AnnotationForm(props: PropsInterface) {
-    const { pickedCoordinates, setShowAnnotationForm, saveAnnotation } = props;
+    const {
+        pickedCoordinates,
+        setShowAnnotationForm,
+        saveAnnotation,
+        setPickedCoordinates,
+    } = props;
     const walkabiltyChoices = [
         "Poor",
         "Fair",
@@ -166,7 +174,10 @@ function AnnotationForm(props: PropsInterface) {
                 </div>
                 <div className="w-full flex justify-end gap-2 px-6 py-4">
                     <button
-                        onClick={() => setShowAnnotationForm(false)}
+                        onClick={() => {
+                            setPickedCoordinates(null);
+                            setShowAnnotationForm(false);
+                        }}
                         className="flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-white
                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                     >
