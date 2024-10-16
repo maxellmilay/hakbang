@@ -1,12 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 
 import Sidebar from "@/components/Sidebar";
 import AnnotationForm from "@/components/AnnotationForm";
 
 function Page() {
-    const [expandSidebar, setExpandSidebar] = useState(true);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const isMobile = screenWidth < 768;
+    const [expandSidebar, setExpandSidebar] = useState(!isMobile);
     const [isPickingLocation, setIsPickingLocation] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [showAnnotationForm, setShowAnnotationForm] = useState(false);
@@ -17,8 +19,23 @@ function Page() {
     };
     const cancelPickLocation = () => {
         setIsPickingLocation(false);
-        setExpandSidebar(true);
+        if (!isMobile) {
+            setExpandSidebar(true);
+        }
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
         <div>
             <Sidebar
