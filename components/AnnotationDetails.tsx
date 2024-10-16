@@ -54,7 +54,7 @@ function AnnotationDetails(props: PropsInterface) {
         ],
     };
     return (
-        <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit">
+        <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
             <div className="flex flex-col p-3 gap-2 bg-white border border-black rounded-md shadow-2xl h-full w-full sm:w-[470px]">
                 <div className="flex justify-between items-start p-2">
                     <h1 className="font-semibold text-2xl">{data.name}</h1>
