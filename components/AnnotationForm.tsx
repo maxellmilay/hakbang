@@ -25,11 +25,11 @@ function AnnotationForm(props: PropsInterface) {
         setPickedCoordinates,
     } = props;
     const walkabiltyChoices = [
-        "Poor",
+        "Excellent",
+        "Very Good",
         "Fair",
         "Good",
-        "Very Good",
-        "Excellent",
+        "Poor",
     ];
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0);
 

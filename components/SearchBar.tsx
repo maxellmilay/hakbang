@@ -20,11 +20,6 @@ function SearchBar(props: PropsInterface) {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            console.log(
-                fullSearchBarRef.current,
-                !fullSearchBarRef.current?.contains(event.target as Node),
-                isMobile
-            );
             if (
                 fullSearchBarRef.current &&
                 !fullSearchBarRef.current?.contains(event.target as Node) &&
