@@ -60,7 +60,6 @@ function SearchBar(props: PropsInterface) {
                             alt="profile picture"
                             className="w-6 h-6 rounded-full"
                         />
-                        {/* <ChevronDown className="ml-1 w-4 h-4" /> */}
                     </Menu.Button>
                     <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="px-1 py-1">
