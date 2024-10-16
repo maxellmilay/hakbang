@@ -85,6 +85,9 @@ function Page() {
                     ) : (
                         <div></div>
                     )}
+                    <div className="p-2 border-4 rounded-md border-black bg-primary">
+                        <h1 className="text-3xl font-bold">Pick a location</h1>
+                    </div>
                     <div className="flex gap-3">
                         <button
                             onClick={cancelPickLocation}
