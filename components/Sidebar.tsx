@@ -1,19 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 
 interface PropsInterface {
     expand: boolean;
+    pickLocation: () => void;
+    setExpandSidebar: (expand: boolean) => void;
 }
 
 function Sidebar(props: PropsInterface) {
-    const { expand = true } = props;
-    const [showSideBar, setShowSideBar] = useState(expand);
-
-    useEffect(() => {
-        setShowSideBar(expand);
-    }, [expand]);
+    const { expand = true, setExpandSidebar, pickLocation } = props;
 
     const data = [
         {
@@ -83,7 +79,7 @@ function Sidebar(props: PropsInterface) {
     return (
         <div>
             <div className="z-10 top-[26px] left-[26px] absolute flex gap-6 p-3 items-center">
-                <button onClick={() => setShowSideBar(!showSideBar)}>
+                <button onClick={() => setExpandSidebar(!expand)}>
                     <Icon
                         icon="material-symbols:view-sidebar-outline"
                         className="w-8 h-8"
@@ -98,23 +94,23 @@ function Sidebar(props: PropsInterface) {
             </div>
             <nav
                 className={`z-0 bg-white w-[320px] h-[calc(100vh-24px)] rounded-md border-2 border-black absolute m-3 p-3 flex flex-col gap-2 transition-transform duration-300 ease-in-out ${
-                    showSideBar
-                        ? "translate-x-0"
-                        : "-translate-x-[calc(100%+1rem)]"
+                    expand ? "translate-x-0" : "-translate-x-[calc(100%+1rem)]"
                 }`}
             >
                 {/* ignore this, do not remove */}
                 <div className="bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
 
-                <div className="h-[60px]"></div>
+                <div className="h-[60px] min-h-[60px]"></div>
                 <button className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]">
                     <Icon
                         icon="material-symbols:add-location-outline"
                         className="w-6 h-6"
                     />
-                    <p className="font-medium">Add annotation</p>
+                    <p onClick={pickLocation} className="font-medium">
+                        Add annotation
+                    </p>
                 </button>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 overflow-y-auto">
                     {data.map((set, index) => (
                         <div key={index} className="flex flex-col gap-2">
                             <div className="p-2">
@@ -138,7 +134,9 @@ function Sidebar(props: PropsInterface) {
                         </div>
                     ))}
                 </div>
-                <button className="text-slate-600">View all annotations</button>
+                <button className="text-slate-600 hover:text-primary-dark duration-100">
+                    View all annotations
+                </button>
             </nav>
         </div>
     );
