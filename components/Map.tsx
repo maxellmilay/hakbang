@@ -31,6 +31,8 @@ const MapComponent = (props: PropsInterface) => {
     const [highlightedFeature, setHighlightedFeature] =
         useState<google.maps.Data.Feature | null>(null)
 
+    const [previousColor, setPreviousColor] = useState('#8f9691')
+
     const handleSaveLocation = () => {
         if (mapRef.current) {
             const newCenter = mapRef.current.getCenter()
@@ -64,6 +66,8 @@ const MapComponent = (props: PropsInterface) => {
                 } else if (strokeWeight <= 15 && strokeWeight > 5) {
                     strokeColor = '#00FF00' // Green for mid-range weights
                 }
+
+                feature.setProperty('originalStrokeColor', strokeColor)
 
                 return {
                     strokeColor: strokeColor,
@@ -125,16 +129,19 @@ const MapComponent = (props: PropsInterface) => {
     const handleDragEnd = () => {
         if (isPickingLocation && mapRef.current && dataLayer) {
             const currentCenter = new google.maps.LatLng(center)
+
             if (!currentCenter) return
 
             const centerLatLng = new google.maps.LatLng(
                 currentCenter.lat(),
                 currentCenter.lng()
             )
-            let closestFeature: google.maps.Data.Feature | null = null
+
+            let closestFeature = {} as google.maps.Data.Feature
             let minDistance = Number.MAX_VALUE
 
-            dataLayer.forEach((feature) => {
+            // Explicitly type feature as google.maps.Data.Feature
+            dataLayer.forEach((feature: google.maps.Data.Feature) => {
                 const geometry = feature.getGeometry()
                 if (geometry && geometry.getType() === 'LineString') {
                     const lineString = geometry as google.maps.Data.LineString
@@ -155,6 +162,14 @@ const MapComponent = (props: PropsInterface) => {
             })
 
             if (closestFeature) {
+                // Use type assertion to ensure it's treated as a string
+                const strokeColor =
+                    (closestFeature.getProperty(
+                        'originalStrokeColor'
+                    ) as string) || '#8f9691'
+
+                setPreviousColor(strokeColor)
+
                 // Highlight the closest feature
                 dataLayer.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue for the closest feature
@@ -166,7 +181,7 @@ const MapComponent = (props: PropsInterface) => {
             if (highlightedFeature) {
                 // Reset the style of the previously highlighted feature
                 dataLayer.overrideStyle(highlightedFeature, {
-                    strokeColor: '#8f9691', // Default to grey
+                    strokeColor: previousColor, // Default to grey
                     strokeWeight: 10,
                 })
             }
