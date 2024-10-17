@@ -1,11 +1,11 @@
-import AppLayer from "@/components/AppLayer";
+import AppLayer from '@/components/AppLayer'
 
 function Page() {
     return (
         <>
             <AppLayer />
         </>
-    );
+    )
 }
 
-export default Page;
+export default Page

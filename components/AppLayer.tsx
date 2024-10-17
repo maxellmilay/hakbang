@@ -1,109 +1,118 @@
-"use client";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
-import { Icon } from "@iconify/react";
-import { motion, AnimatePresence } from "framer-motion";
+'use client'
+import { useState, useEffect, Dispatch, SetStateAction } from 'react'
+import { Icon } from '@iconify/react'
+import { motion, AnimatePresence } from 'framer-motion'
 
-import Sidebar from "@/components/Sidebar";
-import AnnotationForm from "@/components/AnnotationForm";
-import SearchBar from "@/components/SearchBar";
-import AnnotationDetails from "./AnnotationDetails";
+import Sidebar from '@/components/Sidebar'
+import AnnotationForm from '@/components/AnnotationForm'
+import SearchBar from '@/components/SearchBar'
+import AnnotationDetails from './AnnotationDetails'
 
 interface PropsInterface {
     isPickingLocation: boolean
     setIsPickingLocation: Dispatch<SetStateAction<boolean>>
-    setPickedCoordinates: Dispatch<SetStateAction<{
-        lat: number;
-        lng: number;
-    }>>
+    setPickedCoordinates: Dispatch<
+        SetStateAction<{
+            lat: number
+            lng: number
+        }>
+    >
     pickedCoordinates: {
-        lat: number;
-        lng: number;
+        lat: number
+        lng: number
     }
     handleSaveLocation: () => void
     center: {
-        lat: number;
-        lng: number;
+        lat: number
+        lng: number
     }
 }
 
 const AppLayer = (props: PropsInterface) => {
-
-    const {center, isPickingLocation, setIsPickingLocation,setPickedCoordinates, pickedCoordinates, handleSaveLocation} = props;
+    const {
+        center,
+        isPickingLocation,
+        setIsPickingLocation,
+        setPickedCoordinates,
+        pickedCoordinates,
+        handleSaveLocation,
+    } = props
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [screenWidth, setScreenWidth] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const [expandSidebar, setExpandSidebar] = useState(!isMobile);
-    const [showAnnotationForm, setShowAnnotationForm] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(0)
+    const [isMobile, setIsMobile] = useState(false)
+    const [expandSidebar, setExpandSidebar] = useState(!isMobile)
+    const [showAnnotationForm, setShowAnnotationForm] = useState(false)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedAnnotationId, setSelectedAnnotationId] = useState<
         number | null
-    >(null);
+    >(null)
 
     const pickLocation = () => {
-        setIsPickingLocation(true);
-        setExpandSidebar(false);
-        setSelectedAnnotationId(null);
-        console.log("here", isPickingLocation);
-    };
+        setIsPickingLocation(true)
+        setExpandSidebar(false)
+        setSelectedAnnotationId(null)
+        console.log('here', isPickingLocation)
+    }
 
     const cancelPickLocation = () => {
-        setIsPickingLocation(false);
+        setIsPickingLocation(false)
         if (!isMobile) {
-            setExpandSidebar(true);
+            setExpandSidebar(true)
         }
-    };
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const saveAnnotation = () => {
-        setShowAnnotationForm(false);
-        setIsPickingLocation(false);
-        setExpandSidebar(true);
-        setSelectedAnnotationId(1);
-    };
+        setShowAnnotationForm(false)
+        setIsPickingLocation(false)
+        setExpandSidebar(true)
+        setSelectedAnnotationId(1)
+    }
 
     const closeAnnotationDetails = () => {
-        setSelectedAnnotationId(null);
+        setSelectedAnnotationId(null)
         if (!isMobile) {
-            setExpandSidebar(true);
+            setExpandSidebar(true)
         }
-    };
+    }
 
     useEffect(() => {
         const handleResize = () => {
-            const width = window.innerWidth;
-            const isCurrentlyMobile = width < 768;
-    
+            const width = window.innerWidth
+            const isCurrentlyMobile = width < 768
+
             // Only update states if there's an actual change in the breakpoint
             if (isCurrentlyMobile !== isMobile) {
-                setIsMobile(isCurrentlyMobile);
-                setExpandSidebar(!isCurrentlyMobile);
+                setIsMobile(isCurrentlyMobile)
+                setExpandSidebar(!isCurrentlyMobile)
             }
-        };
-    
-        handleResize(); // Call it initially to set the correct state
-    
-        window.addEventListener("resize", handleResize);
-    
+        }
+
+        handleResize() // Call it initially to set the correct state
+
+        window.addEventListener('resize', handleResize)
+
         return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, [isMobile]); // Add `isMobile` to the dependency array
-    
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [isMobile]) // Add `isMobile` to the dependency array
 
     useEffect(() => {
         if (selectedAnnotationId) {
-            setExpandSidebar(false);
-            setIsPickingLocation(false);
-            setShowAnnotationForm(false);
-            setPickedCoordinates({lat:10.298684, lng:123.898283});
+            setExpandSidebar(false)
+            setIsPickingLocation(false)
+            setShowAnnotationForm(false)
+            setPickedCoordinates({ lat: 10.298684, lng: 123.898283 })
         }
-    }, [selectedAnnotationId]);
+    }, [selectedAnnotationId])
 
     return (
-        <div className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}>
+        <div
+            className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}
+        >
             <div className="pointer-events-auto">
                 {selectedAnnotationId === null && (
                     <Sidebar
@@ -152,15 +161,15 @@ const AppLayer = (props: PropsInterface) => {
                         </button>
                         <button
                             onClick={() => {
-                                handleSaveLocation();
-                                setShowAnnotationForm(true);
+                                handleSaveLocation()
+                                setShowAnnotationForm(true)
                             }}
                             disabled={!pickedCoordinates}
                             className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
                                 ${
                                     !pickedCoordinates
-                                        ? "opacity-50 cursor-not-allowed hover:-translate-x-0 hover:-translate-y-0 hover:shadow-none"
-                                        : ""
+                                        ? 'opacity-50 cursor-not-allowed hover:-translate-x-0 hover:-translate-y-0 hover:shadow-none'
+                                        : ''
                                 }`}
                         >
                             <Icon
@@ -195,7 +204,7 @@ const AppLayer = (props: PropsInterface) => {
                 )}
             </AnimatePresence>
         </div>
-    );
-};
+    )
+}
 
-export default AppLayer;
+export default AppLayer

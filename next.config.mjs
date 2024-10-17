@@ -3,12 +3,12 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: "https",
-                hostname: "tranches.s3.amazonaws.com",
-                pathname: "/**",
+                protocol: 'https',
+                hostname: 'tranches.s3.amazonaws.com',
+                pathname: '/**',
             },
         ],
     },
-};
+}
 
-export default nextConfig;
+export default nextConfig

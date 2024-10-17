@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { Icon } from "@iconify/react";
+import { Icon } from '@iconify/react'
 
 interface PropsInterface {
-    expand: boolean;
-    pickLocation: () => void;
-    setExpandSidebar: (expand: boolean) => void;
-    setSelectedAnnotationId: (id: number | null) => void;
+    expand: boolean
+    pickLocation: () => void
+    setExpandSidebar: (expand: boolean) => void
+    setSelectedAnnotationId: (id: number | null) => void
     isPickingLocation: boolean
 }
 
@@ -16,22 +16,22 @@ function Sidebar(props: PropsInterface) {
         setExpandSidebar,
         pickLocation,
         setSelectedAnnotationId,
-        isPickingLocation
-    } = props;
+        isPickingLocation,
+    } = props
 
     const data = [
         {
-            date: "Today",
+            date: 'Today',
             annotations: [
                 {
                     id: 1,
                     level: 4,
-                    name: "T Padilla St, Gaisano Saversmart",
+                    name: 'T Padilla St, Gaisano Saversmart',
                 },
                 {
                     id: 2,
                     level: 5,
-                    name: "Lopez Jaena St, Upper Malibu",
+                    name: 'Lopez Jaena St, Upper Malibu',
                 },
                 {
                     id: 3,
@@ -41,64 +41,64 @@ function Sidebar(props: PropsInterface) {
                 {
                     id: 4,
                     level: 3,
-                    name: "T Padilla St, Gaisano Saversmart side bridge",
+                    name: 'T Padilla St, Gaisano Saversmart side bridge',
                 },
             ],
         },
         {
-            date: "October 13, 2024",
+            date: 'October 13, 2024',
             annotations: [
                 {
                     id: 5,
                     level: 1,
-                    name: "T Padilla St corner Lopez Jaena St",
+                    name: 'T Padilla St corner Lopez Jaena St',
                 },
                 {
                     id: 6,
                     level: 3,
-                    name: "Mabolo St, Mabolo Church",
+                    name: 'Mabolo St, Mabolo Church',
                 },
                 {
                     id: 7,
                     level: 2,
-                    name: "Banilad Rd, Gaisano Country Mall",
+                    name: 'Banilad Rd, Gaisano Country Mall',
                 },
                 {
                     id: 8,
                     level: 4,
-                    name: "Mango Ave, Robinsons Cybergate",
+                    name: 'Mango Ave, Robinsons Cybergate',
                 },
                 {
                     id: 9,
                     level: 5,
-                    name: "Colon St, Metro Colon",
+                    name: 'Colon St, Metro Colon',
                 },
                 {
                     id: 10,
                     level: 3,
-                    name: "Osmeña Blvd, Fuente Osmeña Circle",
+                    name: 'Osmeña Blvd, Fuente Osmeña Circle',
                 },
                 {
                     id: 11,
                     level: 2,
-                    name: "Ayala Center Cebu, The Terraces",
+                    name: 'Ayala Center Cebu, The Terraces',
                 },
                 {
                     id: 12,
                     level: 5,
-                    name: "Colon St, Metro Colon",
+                    name: 'Colon St, Metro Colon',
                 },
                 {
                     id: 13,
                     level: 3,
-                    name: "Osmeña Blvd, Fuente Osmeña Circle",
+                    name: 'Osmeña Blvd, Fuente Osmeña Circle',
                 },
             ],
         },
-    ];
+    ]
 
     const toggleSidebar = () => {
-        if (isPickingLocation){
+        if (isPickingLocation) {
             return
         }
         setExpandSidebar(!expand)
@@ -107,7 +107,10 @@ function Sidebar(props: PropsInterface) {
     return (
         <div>
             <div className="z-20 top-[26px] left-[26px] absolute flex gap-6 p-3 items-center">
-                <button onClick={toggleSidebar} className={`${isPickingLocation && 'pointer-events-none'}`}>
+                <button
+                    onClick={toggleSidebar}
+                    className={`${isPickingLocation && 'pointer-events-none'}`}
+                >
                     <Icon
                         icon="material-symbols:view-sidebar-outline"
                         className="w-8 h-8"
@@ -124,8 +127,8 @@ function Sidebar(props: PropsInterface) {
                 <nav
                     className={`bg-white w-[320px] h-full rounded-md border-2 border-black p-3 flex flex-col gap-2 transition-transform duration-300 ease-in-out ${
                         expand
-                            ? "translate-x-0"
-                            : "-translate-x-[calc(100%+1rem)]"
+                            ? 'translate-x-0'
+                            : '-translate-x-[calc(100%+1rem)]'
                     }`}
                 >
                     {/* ignore this, do not remove */}
@@ -177,7 +180,7 @@ function Sidebar(props: PropsInterface) {
                 </nav>
             </div>
         </div>
-    );
+    )
 }
 
-export default Sidebar;
+export default Sidebar

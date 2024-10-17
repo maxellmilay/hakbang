@@ -1,22 +1,22 @@
-"use client";
+'use client'
 
-import { useState, useEffect, useRef } from "react";
-import { Icon } from "@iconify/react";
-import { Menu } from "@headlessui/react";
+import { useState, useEffect, useRef } from 'react'
+import { Icon } from '@iconify/react'
+import { Menu } from '@headlessui/react'
 
 interface PropsInterface {
-    isMobile: boolean;
+    isMobile: boolean
 }
 
 function SearchBar(props: PropsInterface) {
-    const { isMobile } = props;
-    const [showFullSearchBar, setShowFullSearchBar] = useState(true);
-    const fullSearchBarRef = useRef<HTMLDivElement>(null);
+    const { isMobile } = props
+    const [showFullSearchBar, setShowFullSearchBar] = useState(true)
+    const fullSearchBarRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        setShowFullSearchBar(!isMobile);
-        console.log(isMobile, "ismobile");
-    }, [isMobile]);
+        setShowFullSearchBar(!isMobile)
+        console.log(isMobile, 'ismobile')
+    }, [isMobile])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -25,16 +25,16 @@ function SearchBar(props: PropsInterface) {
                 !fullSearchBarRef.current?.contains(event.target as Node) &&
                 isMobile
             ) {
-                setShowFullSearchBar(false);
+                setShowFullSearchBar(false)
             }
-        };
+        }
 
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside)
 
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isMobile]);
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [isMobile])
 
     if (showFullSearchBar)
         return (
@@ -67,7 +67,7 @@ function SearchBar(props: PropsInterface) {
                                 {({ active }) => (
                                     <button
                                         className={`${
-                                            active ? "bg-slate-100" : ""
+                                            active ? 'bg-slate-100' : ''
                                         } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
                                     >
                                         <Icon
@@ -82,7 +82,7 @@ function SearchBar(props: PropsInterface) {
                                 {({ active }) => (
                                     <button
                                         className={`${
-                                            active ? "bg-red-100" : ""
+                                            active ? 'bg-red-100' : ''
                                         } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
                                     >
                                         <Icon
@@ -97,7 +97,7 @@ function SearchBar(props: PropsInterface) {
                     </Menu.Items>
                 </Menu>
             </div>
-        );
+        )
     else
         return (
             <div className="absolute z-30 top-8 right-3 px-4 py-3 flex items-center justify-end gap-3">
@@ -118,7 +118,7 @@ function SearchBar(props: PropsInterface) {
                                 {({ active }) => (
                                     <button
                                         className={`${
-                                            active ? "bg-slate-100" : ""
+                                            active ? 'bg-slate-100' : ''
                                         } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
                                     >
                                         <Icon
@@ -133,7 +133,7 @@ function SearchBar(props: PropsInterface) {
                                 {({ active }) => (
                                     <button
                                         className={`${
-                                            active ? "bg-red-100" : ""
+                                            active ? 'bg-red-100' : ''
                                         } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
                                     >
                                         <Icon
@@ -148,7 +148,7 @@ function SearchBar(props: PropsInterface) {
                     </Menu.Items>
                 </Menu>
             </div>
-        );
+        )
 }
 
-export default SearchBar;
+export default SearchBar

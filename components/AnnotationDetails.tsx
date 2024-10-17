@@ -1,58 +1,58 @@
-import React from "react";
-import Image from "next/image";
-import { Icon } from "@iconify/react";
+import React from 'react'
+import Image from 'next/image'
+import { Icon } from '@iconify/react'
 
 interface PropsInterface {
-    id: number;
-    closeAnnotationDetails: () => void;
+    id: number
+    closeAnnotationDetails: () => void
 }
 
 function AnnotationDetails(props: PropsInterface) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id, closeAnnotationDetails } = props;
+    const { id, closeAnnotationDetails } = props
     const data = {
-        name: "T Padilla St, Gaisano Saversmart",
-        anotator: "John Doe",
+        name: 'T Padilla St, Gaisano Saversmart',
+        anotator: 'John Doe',
         coordinates: [10.298684, 123.898283],
         sidewalkWidth: 36,
         level: 4,
-        walkability: "Fair",
+        walkability: 'Fair',
         accessibility: [
             {
-                label: "Ramp",
+                label: 'Ramp',
                 checked: true,
             },
             {
-                label: "Tactile paving",
+                label: 'Tactile paving',
                 checked: true,
             },
             {
-                label: "Audible signals",
+                label: 'Audible signals',
                 checked: false,
             },
             {
-                label: "Braille signs",
+                label: 'Braille signs',
                 checked: false,
             },
             {
-                label: "Wide doorways",
+                label: 'Wide doorways',
                 checked: true,
             },
             {
-                label: "Elevators",
+                label: 'Elevators',
                 checked: false,
             },
         ],
-        obstructions: ["Street vendors", "Electric post", "Trees", "Other"],
+        obstructions: ['Street vendors', 'Electric post', 'Trees', 'Other'],
         comments:
-            "The sidewalk is wide enough for two people to walk side by side. The tactile paving is well-maintained and the ramp is accessible. The street vendors are obstructing the sidewalk.",
+            'The sidewalk is wide enough for two people to walk side by side. The tactile paving is well-maintained and the ramp is accessible. The street vendors are obstructing the sidewalk.',
         imagesUrls: [
-            "https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png",
-            "https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png",
-            "https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png",
-            "https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png",
+            'https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png',
+            'https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png',
+            'https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png',
+            'https://tranches.s3.amazonaws.com/assets/image_2024-10-16_212913278.png',
         ],
-    };
+    }
     return (
         <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
             <div className="flex flex-col p-3 gap-2 bg-white border border-black rounded-md shadow-2xl h-full w-full sm:w-[470px]">
@@ -72,7 +72,7 @@ function AnnotationDetails(props: PropsInterface) {
                 <div className="flex flex-col overflow-y-auto custom-scrollbar gap-2 grow">
                     <div className="flex flex-col">
                         <p className="text-slate-400 px-3">
-                            Annotated by:{" "}
+                            Annotated by:{' '}
                             <span className="font-semibold">
                                 {data.anotator}
                             </span>
@@ -101,14 +101,14 @@ function AnnotationDetails(props: PropsInterface) {
                                 <Icon
                                     icon={
                                         accessibility.checked
-                                            ? "material-symbols:check-circle-outline"
-                                            : "mdi:close-circle-outline"
+                                            ? 'material-symbols:check-circle-outline'
+                                            : 'mdi:close-circle-outline'
                                     }
                                     className={`w-6 h-6
                                     ${
                                         accessibility.checked
-                                            ? "text-green-500"
-                                            : "text-red-500"
+                                            ? 'text-green-500'
+                                            : 'text-red-500'
                                     }`}
                                 />
                                 <p>{accessibility.label}</p>
@@ -140,7 +140,7 @@ function AnnotationDetails(props: PropsInterface) {
                                 fill
                                 sizes="150px"
                                 style={{
-                                    objectFit: "cover",
+                                    objectFit: 'cover',
                                 }}
                                 className="rounded-md"
                             />
@@ -149,7 +149,7 @@ function AnnotationDetails(props: PropsInterface) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default AnnotationDetails;
+export default AnnotationDetails
