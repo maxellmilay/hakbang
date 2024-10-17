@@ -26,6 +26,7 @@ interface PropsInterface {
         lat: number
         lng: number
     }
+    resetFeatureStyles: () => void
 }
 
 const AppLayer = (props: PropsInterface) => {
@@ -36,6 +37,7 @@ const AppLayer = (props: PropsInterface) => {
         setPickedCoordinates,
         pickedCoordinates,
         handleSaveLocation,
+        resetFeatureStyles,
     } = props
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -58,6 +60,7 @@ const AppLayer = (props: PropsInterface) => {
     }
 
     const cancelPickLocation = () => {
+        resetFeatureStyles()
         setIsPickingLocation(false)
         if (!isMobile) {
             setExpandSidebar(true)
@@ -161,6 +164,7 @@ const AppLayer = (props: PropsInterface) => {
                         </button>
                         <button
                             onClick={() => {
+                                resetFeatureStyles()
                                 handleSaveLocation()
                                 setShowAnnotationForm(true)
                             }}

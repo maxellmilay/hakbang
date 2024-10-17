@@ -68,11 +68,13 @@ const MapComponent = (props: PropsInterface) => {
                 }
 
                 feature.setProperty('originalStrokeColor', strokeColor)
+                feature.setProperty('originalZIndex', 1)
 
                 return {
                     strokeColor: strokeColor,
                     strokeWeight: 10,
                     strokeOpacity: 1.0,
+                    zIndex: 1,
                 }
             })
 
@@ -126,6 +128,17 @@ const MapComponent = (props: PropsInterface) => {
         }
     }, [isMapLoaded, geojsonData, isPickingLocation])
 
+    const resetFeatureStyles = () => {
+        // Reset the style of the previously highlighted feature
+        if (dataLayer && highlightedFeature) {
+            dataLayer.overrideStyle(highlightedFeature, {
+                strokeColor: previousColor, // Default to grey
+                strokeWeight: 10,
+                zIndex: 1,
+            })
+        }
+    }
+
     const handleDragEnd = () => {
         if (isPickingLocation && mapRef.current && dataLayer) {
             const currentCenter = new google.maps.LatLng(center)
@@ -166,28 +179,31 @@ const MapComponent = (props: PropsInterface) => {
             })
 
             if (closestFeature) {
-                // Use type assertion to ensure it's treated as a string
+                // Remove any previously applied style for the feature
+                dataLayer.revertStyle(closestFeature)
+
+                // Get the current stroke color from the feature's properties
                 const strokeColor =
                     (closestFeature.getProperty(
                         'originalStrokeColor'
                     ) as string) || '#8f9691'
 
+                // Store the original stroke color to revert back later
                 setPreviousColor(strokeColor)
 
-                // Highlight the closest feature
+                // Override the style of the closest feature to make it blue and ensure it's on top with a higher zIndex
                 dataLayer.overrideStyle(closestFeature, {
-                    strokeColor: '#0000FF', // Blue for the closest feature
-                    strokeWeight: 15,
+                    strokeColor: '#0000FF', // Blue color for the highlighted feature
+                    strokeWeight: 25,
+                    zIndex: 1000, // Ensure it appears on top
                 })
+
+                // Update the highlighted feature state
                 setHighlightedFeature(closestFeature)
             }
 
             if (highlightedFeature) {
-                // Reset the style of the previously highlighted feature
-                dataLayer.overrideStyle(highlightedFeature, {
-                    strokeColor: previousColor, // Default to grey
-                    strokeWeight: 10,
-                })
+                resetFeatureStyles()
             }
         }
     }
@@ -201,6 +217,7 @@ const MapComponent = (props: PropsInterface) => {
                 handleSaveLocation={handleSaveLocation}
                 pickedCoordinates={pickedCoordinates}
                 setPickedCoordinates={setPickedCoordinates}
+                resetFeatureStyles={resetFeatureStyles}
             />
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
