@@ -140,24 +140,28 @@ const MapComponent = (props: PropsInterface) => {
             let closestFeature = {} as google.maps.Data.Feature
             let minDistance = Number.MAX_VALUE
 
-            // Explicitly type feature as google.maps.Data.Feature
             dataLayer.forEach((feature: google.maps.Data.Feature) => {
                 const geometry = feature.getGeometry()
                 if (geometry && geometry.getType() === 'LineString') {
                     const lineString = geometry as google.maps.Data.LineString
                     const coordinates = lineString.getArray()
 
-                    coordinates.forEach((latLng) => {
-                        const distance =
-                            google.maps.geometry.spherical.computeDistanceBetween(
-                                centerLatLng,
-                                latLng
-                            )
-                        if (distance < minDistance) {
-                            minDistance = distance
-                            closestFeature = feature
-                        }
-                    })
+                    const point1 = coordinates[0]
+                    const point2 = coordinates[1]
+
+                    const linestringLat = (point1.lat() + point2.lat()) / 2
+                    const linestringLng = (point1.lng() + point2.lng()) / 2
+
+                    const distance =
+                        google.maps.geometry.spherical.computeDistanceBetween(
+                            centerLatLng,
+                            new google.maps.LatLng(linestringLat, linestringLng)
+                        )
+
+                    if (distance < minDistance) {
+                        minDistance = distance
+                        closestFeature = feature
+                    }
                 }
             })
 
