@@ -4,11 +4,9 @@ import { MapProvider } from '@/providers/map-provider'
 
 const Home = () => {
     return (
-        <>
-            <MapProvider>
-                <MapComponent geojsonData={colonGeoJSONData} />
-            </MapProvider>
-        </>
+        <MapProvider>
+            <MapComponent geojsonData={colonGeoJSONData} />
+        </MapProvider>
     )
 }
 

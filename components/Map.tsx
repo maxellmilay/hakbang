@@ -27,6 +27,10 @@ const MapComponent = (props: PropsInterface) => {
 
     const [pickedCoordinates, setPickedCoordinates] = useState(defaultMapCenter)
 
+    const [dataLayer, setDataLayer] = useState<google.maps.Data | null>(null)
+    const [highlightedFeature, setHighlightedFeature] =
+        useState<google.maps.Data.Feature | null>(null)
+
     const handleSaveLocation = () => {
         if (mapRef.current) {
             const newCenter = mapRef.current.getCenter()
@@ -44,11 +48,12 @@ const MapComponent = (props: PropsInterface) => {
             const map = mapRef.current
 
             // Create a Data Layer
-            const dataLayer = new google.maps.Data({ map })
-            dataLayer.addGeoJson(geojsonData)
+            const newDataLayer = new google.maps.Data({ map })
+            newDataLayer.addGeoJson(geojsonData)
+            setDataLayer(newDataLayer)
 
             // Style the GeoJSON lines based on their 'weight' property
-            dataLayer.setStyle((feature) => {
+            newDataLayer.setStyle((feature) => {
                 const weight = feature.getProperty('weight')
 
                 const strokeWeight = typeof weight === 'number' ? weight : 0
@@ -67,7 +72,7 @@ const MapComponent = (props: PropsInterface) => {
                 }
             })
 
-            dataLayer.addListener(
+            newDataLayer.addListener(
                 'click',
                 (event: google.maps.Data.MouseEvent) => {
                     const feature = event.feature
@@ -108,14 +113,65 @@ const MapComponent = (props: PropsInterface) => {
 
             // Optionally, fit the map to the bounds of the GeoJSON
             const bounds = new google.maps.LatLngBounds()
-            dataLayer.forEach((feature) => {
+            newDataLayer.forEach((feature) => {
                 feature.getGeometry()?.forEachLatLng((latLng) => {
                     bounds.extend(latLng)
                 })
             })
             map.fitBounds(bounds)
         }
-    }, [isMapLoaded, geojsonData])
+    }, [isMapLoaded, geojsonData, isPickingLocation])
+
+    const handleDragEnd = () => {
+        if (isPickingLocation && mapRef.current && dataLayer) {
+            const currentCenter = new google.maps.LatLng(center)
+            if (!currentCenter) return
+
+            const centerLatLng = new google.maps.LatLng(
+                currentCenter.lat(),
+                currentCenter.lng()
+            )
+            let closestFeature: google.maps.Data.Feature | null = null
+            let minDistance = Number.MAX_VALUE
+
+            dataLayer.forEach((feature) => {
+                const geometry = feature.getGeometry()
+                if (geometry && geometry.getType() === 'LineString') {
+                    const lineString = geometry as google.maps.Data.LineString
+                    const coordinates = lineString.getArray()
+
+                    coordinates.forEach((latLng) => {
+                        const distance =
+                            google.maps.geometry.spherical.computeDistanceBetween(
+                                centerLatLng,
+                                latLng
+                            )
+                        if (distance < minDistance) {
+                            minDistance = distance
+                            closestFeature = feature
+                        }
+                    })
+                }
+            })
+
+            if (closestFeature) {
+                // Highlight the closest feature
+                dataLayer.overrideStyle(closestFeature, {
+                    strokeColor: '#0000FF', // Blue for the closest feature
+                    strokeWeight: 15,
+                })
+                setHighlightedFeature(closestFeature)
+            }
+
+            if (highlightedFeature) {
+                // Reset the style of the previously highlighted feature
+                dataLayer.overrideStyle(highlightedFeature, {
+                    strokeColor: '#8f9691', // Default to grey
+                    strokeWeight: 10,
+                })
+            }
+        }
+    }
 
     return (
         <div className="w-full">
@@ -151,6 +207,7 @@ const MapComponent = (props: PropsInterface) => {
                           }
                         : () => {}
                 }
+                onDragEnd={handleDragEnd}
             >
                 {isPickingLocation && <Marker position={center} />}
             </GoogleMap>

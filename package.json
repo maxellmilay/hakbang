@@ -8,7 +8,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "geojson": "node scripts/split-linestring.js"
+        "geojson": "node scripts/split-linestring.js",
+        "distance": "node scripts/test-distance.js"
     },
     "dependencies": {
         "@emotion/react": "^11.13.3",
