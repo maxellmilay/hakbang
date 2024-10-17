@@ -9,13 +9,13 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 interface PropsInterface {
-    pickedCoordinates: Array<number>;
     setShowAnnotationForm: (show: boolean) => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    saveAnnotation: (data: any) => void;
-    setPickedCoordinates: React.Dispatch<
-        React.SetStateAction<[number, number] | null>
-    >;
+    saveAnnotation: () => void;
+    pickedCoordinates: {
+        lat: number;
+        lng: number;
+    }
 }
 
 function AnnotationForm(props: PropsInterface) {
@@ -23,8 +23,8 @@ function AnnotationForm(props: PropsInterface) {
         pickedCoordinates,
         setShowAnnotationForm,
         saveAnnotation,
-        setPickedCoordinates,
     } = props;
+
     const walkabiltyChoices = [
         "Excellent",
         "Very Good",
@@ -68,18 +68,15 @@ function AnnotationForm(props: PropsInterface) {
         setImages((prevImages) => prevImages.filter((_, i) => i !== index));
     };
 
-    const save = () => {
-        const data = "hello world";
-        saveAnnotation(data);
-    };
-
     return (
         <div className="absolute right-0 top-0 z-[100] w-lvw h-lvh bg-black/[.7] flex items-center justify-center">
             <div className="flex flex-col bg-white rounded-md shadow-lg w-[520px] h-[700px]">
                 <div className="flex items-start justify-between px-6 py-4">
                     <h1 className="font-semibold text-2xl">New annotation</h1>
                     <button
-                        onClick={() => setShowAnnotationForm(false)}
+                        onClick={() => {
+                            setShowAnnotationForm(false)
+                        }}
                         className="bg-primary rounded-md border-2 border-black
                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                     >
@@ -91,8 +88,8 @@ function AnnotationForm(props: PropsInterface) {
                 </div>
                 <div className="flex flex-col px-6 py-2 gap-3 overflow-y-auto">
                     <p className="text-slate-600 text-sm">
-                        Coordinates: {pickedCoordinates[0]},{" "}
-                        {pickedCoordinates[1]}
+                        Coordinates: {pickedCoordinates.lat},{" "}
+                        {pickedCoordinates.lng}
                     </p>
                     <TextField
                         label="Street Name"
@@ -215,7 +212,6 @@ function AnnotationForm(props: PropsInterface) {
                 <div className="w-full flex justify-end gap-2 px-6 py-4">
                     <button
                         onClick={() => {
-                            setPickedCoordinates(null);
                             setShowAnnotationForm(false);
                         }}
                         className="flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-white
@@ -228,7 +224,7 @@ function AnnotationForm(props: PropsInterface) {
                         Reposition
                     </button>
                     <button
-                        onClick={save}
+                        onClick={() => saveAnnotation()}
                         className="flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
                                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                     >

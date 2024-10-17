@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,17 +8,35 @@ import AnnotationForm from "@/components/AnnotationForm";
 import SearchBar from "@/components/SearchBar";
 import AnnotationDetails from "./AnnotationDetails";
 
-const AppLayer = () => {
+interface PropsInterface {
+    isPickingLocation: boolean
+    setIsPickingLocation: Dispatch<SetStateAction<boolean>>
+    setPickedCoordinates: Dispatch<SetStateAction<{
+        lat: number;
+        lng: number;
+    }>>
+    pickedCoordinates: {
+        lat: number;
+        lng: number;
+    }
+    handleSaveLocation: () => void
+    center: {
+        lat: number;
+        lng: number;
+    }
+}
+
+const AppLayer = (props: PropsInterface) => {
+
+    const {center, isPickingLocation, setIsPickingLocation,setPickedCoordinates, pickedCoordinates, handleSaveLocation} = props;
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [screenWidth, setScreenWidth] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const [expandSidebar, setExpandSidebar] = useState(!isMobile);
-    const [isPickingLocation, setIsPickingLocation] = useState(false);
     const [showAnnotationForm, setShowAnnotationForm] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [pickedCoordinates, setPickedCoordinates] = useState<
-        [number, number] | null
-    >([10.298684, 123.898283]);
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedAnnotationId, setSelectedAnnotationId] = useState<
         number | null
@@ -39,8 +57,7 @@ const AppLayer = () => {
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const saveAnnotation = (data: any) => {
-        console.log(data);
+    const saveAnnotation = () => {
         setShowAnnotationForm(false);
         setIsPickingLocation(false);
         setExpandSidebar(true);
@@ -57,26 +74,31 @@ const AppLayer = () => {
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
-            setScreenWidth(width);
-            setIsMobile(width < 768);
-            setExpandSidebar(width >= 768);
+            const isCurrentlyMobile = width < 768;
+    
+            // Only update states if there's an actual change in the breakpoint
+            if (isCurrentlyMobile !== isMobile) {
+                setIsMobile(isCurrentlyMobile);
+                setExpandSidebar(!isCurrentlyMobile);
+            }
         };
-
-        handleResize();
-
+    
+        handleResize(); // Call it initially to set the correct state
+    
         window.addEventListener("resize", handleResize);
-
+    
         return () => {
             window.removeEventListener("resize", handleResize);
         };
-    }, []);
+    }, [isMobile]); // Add `isMobile` to the dependency array
+    
 
     useEffect(() => {
         if (selectedAnnotationId) {
             setExpandSidebar(false);
             setIsPickingLocation(false);
             setShowAnnotationForm(false);
-            setPickedCoordinates(null);
+            setPickedCoordinates({lat:10.298684, lng:123.898283});
         }
     }, [selectedAnnotationId]);
 
@@ -112,7 +134,7 @@ const AppLayer = () => {
                 <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
                     {pickedCoordinates ? (
                         <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
-                            {pickedCoordinates[0]}, {pickedCoordinates[1]}
+                            {center.lat}, {center.lng}
                         </div>
                     ) : (
                         <div className="p-2 border-4 rounded-md border-black bg-primary">
@@ -129,7 +151,10 @@ const AppLayer = () => {
                             Cancel
                         </button>
                         <button
-                            onClick={() => setShowAnnotationForm(true)}
+                            onClick={() => {
+                                handleSaveLocation();
+                                setShowAnnotationForm(true);
+                            }}
                             disabled={!pickedCoordinates}
                             className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
                                 ${
@@ -151,7 +176,6 @@ const AppLayer = () => {
                     pickedCoordinates={pickedCoordinates}
                     setShowAnnotationForm={setShowAnnotationForm}
                     saveAnnotation={saveAnnotation}
-                    setPickedCoordinates={setPickedCoordinates}
                 />
             )}
             <AnimatePresence>

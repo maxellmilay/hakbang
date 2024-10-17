@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { defaultMapCenter, defaultMapZoom, defaultMapOptions, defaultMapContainerStyle } from '@/constants/map-properties';
+import { defaultMapCenter, defaultMapZoom, defaultMapContainerStyle, defaultMapOptions } from '@/constants/map-properties';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import { FeatureCollection } from 'geojson';
+import AppLayer from './AppLayer';
 
 interface PropsInterface {
   geojsonData: FeatureCollection;
@@ -12,33 +13,24 @@ interface PropsInterface {
 const MapComponent = (props: PropsInterface) => {
   const { geojsonData } = props;
 
+  const [isPickingLocation, setIsPickingLocation] = useState(false);
+
   const mapRef = useRef<google.maps.Map | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-  const [selectedPosition, setSelectedPosition] = useState({
-    lat: 37.7749, // default latitude (San Francisco)
-    lng: -122.4194, // default longitude
-  });
+  const [center, setCenter] = useState(defaultMapCenter);
 
-  const onMapClick = (e: google.maps.MapMouseEvent) => {
-    if (e.latLng) {
-      console.log('CLICK', {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-      })
-      setSelectedPosition({
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-      });
-    }
-  };
+  const [pickedCoordinates, setPickedCoordinates] = useState({lat:10.298684, lng:123.898283});
 
-  const onMarkerDragEnd = (e: google.maps.MapMouseEvent) => {
-    if (e.latLng) {
-      setSelectedPosition({
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-      });
+  const handleSaveLocation = () => {
+    if (mapRef.current) {
+      const newCenter = mapRef.current.getCenter();
+      if (newCenter) {
+        const lat = newCenter.lat();
+        const lng = newCenter.lng();
+        setPickedCoordinates({ lat, lng });
+        console.log('LAT', lat, 'LANG', lng)
+      }
     }
   };
 
@@ -96,9 +88,6 @@ const MapComponent = (props: PropsInterface) => {
             console.log('No geometry found for this feature.');
         }
     });
-    
-    
-    
 
       // Optionally, fit the map to the bounds of the GeoJSON
       const bounds = new google.maps.LatLngBounds();
@@ -113,6 +102,7 @@ const MapComponent = (props: PropsInterface) => {
 
   return (
     <div className="w-full">
+      <AppLayer center={center} setIsPickingLocation={setIsPickingLocation} isPickingLocation={isPickingLocation} handleSaveLocation={handleSaveLocation} pickedCoordinates={pickedCoordinates} setPickedCoordinates={setPickedCoordinates}/>
       <GoogleMap
         mapContainerStyle={defaultMapContainerStyle}
         center={defaultMapCenter}
@@ -122,13 +112,22 @@ const MapComponent = (props: PropsInterface) => {
           mapRef.current = map;
           setIsMapLoaded(true);
         }}
-        onClick={onMapClick}
+        onCenterChanged={isPickingLocation ? () => {
+          if (mapRef.current) {
+            const newCenter = mapRef.current.getCenter();
+            if (newCenter) {
+              setCenter({
+                lat: newCenter.lat(),
+                lng: newCenter.lng(),
+              });
+            }
+          }
+        } : () => {}}
       >
+      {isPickingLocation && 
         <Marker
-          position={selectedPosition}
-          draggable={true}
-          onDragEnd={onMarkerDragEnd}
-        />
+          position={center}
+        />}
       </GoogleMap>
     </div>
   );

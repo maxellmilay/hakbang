@@ -15,19 +15,15 @@ export const boundaries = {
 export const defaultMapOptions = {
     streetViewControl: false,
     fullscreenControl: false,  // This will remove the fullscreen control
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      position: window.google.maps.ControlPosition.TOP_RIGHT,
-      style: window.google.maps.MapTypeControlStyle.DEFAULT,
-    },
+    mapTypeControl: false,
+    // mapTypeControlOptions: {
+    //   position: window.google.maps.ControlPosition.TOP_RIGHT,
+    //   style: window.google.maps.MapTypeControlStyle.DEFAULT,
+    // },
     zoomControl: true,
     tilt: 0,
     gestureHandling: 'greedy',
     mapTypeId: 'satellite',
-    // restriction: {
-    //     latLngBounds: boundaries,  // Apply the bounds restriction
-    //     strictBounds: true,   // Set to true to prevent moving the map outside the bounds
-    // },
 };
 
 export const defaultMapContainerStyle = {
