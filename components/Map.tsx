@@ -211,6 +211,7 @@ const MapComponent = (props: PropsInterface) => {
             }
 
             if (highlightedFeature) {
+                if (highlightedFeature === closestFeature) return
                 resetFeatureStyles()
             }
         }
