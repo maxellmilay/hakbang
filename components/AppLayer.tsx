@@ -29,6 +29,8 @@ interface PropsInterface {
     }
     resetFeatureStyles: () => void
     pickedLineSegment: MapLineSegment
+    selectedAnnotationId: number | null
+    setSelectedAnnotationId: Dispatch<SetStateAction<number | null>>
 }
 
 const AppLayer = (props: PropsInterface) => {
@@ -41,19 +43,13 @@ const AppLayer = (props: PropsInterface) => {
         handleSaveLocation,
         resetFeatureStyles,
         pickedLineSegment,
+        setSelectedAnnotationId,
+        selectedAnnotationId,
     } = props
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [screenWidth, setScreenWidth] = useState(0)
     const [isMobile, setIsMobile] = useState(false)
     const [expandSidebar, setExpandSidebar] = useState(!isMobile)
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [selectedAnnotationId, setSelectedAnnotationId] = useState<
-        number | null
-    >(null)
 
     const pickLocation = () => {
         setIsPickingLocation(true)
@@ -70,7 +66,6 @@ const AppLayer = (props: PropsInterface) => {
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const saveAnnotation = () => {
         setShowAnnotationForm(false)
         setIsPickingLocation(false)

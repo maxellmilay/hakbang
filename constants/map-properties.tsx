@@ -5,13 +5,6 @@ export const defaultMapCenter = {
 
 export const defaultMapZoom = 18
 
-export const boundaries = {
-    north: 10.299793, // Northernmost latitude
-    south: 10.294115, // Southernmost latitude
-    east: 123.892943, // Easternmost longitude
-    west: 123.898639, // Westernmost longitude
-}
-
 export const defaultMapOptions = {
     streetViewControl: false,
     fullscreenControl: false,

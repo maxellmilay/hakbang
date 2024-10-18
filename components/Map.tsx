@@ -39,6 +39,10 @@ const MapComponent = (props: PropsInterface) => {
 
     const [previousColor, setPreviousColor] = useState('#8f9691')
 
+    const [selectedAnnotationId, setSelectedAnnotationId] = useState<
+        number | null
+    >(null)
+
     const handleSaveLocation = () => {
         if (mapRef.current) {
             const newCenter = mapRef.current.getCenter()
@@ -103,6 +107,7 @@ const MapComponent = (props: PropsInterface) => {
                                     lng: latLng.lng(),
                                 }))
                             console.log('LineString coordinates:', coordinates)
+                            setSelectedAnnotationId(1)
                         } else if (geometry.getType() === 'Point') {
                             // Cast geometry to Point
                             const point = geometry as google.maps.Data.Point
@@ -228,6 +233,8 @@ const MapComponent = (props: PropsInterface) => {
                 setPickedCoordinates={setPickedCoordinates}
                 resetFeatureStyles={resetFeatureStyles}
                 pickedLineSegment={pickedLineSegment}
+                setSelectedAnnotationId={setSelectedAnnotationId}
+                selectedAnnotationId={selectedAnnotationId}
             />
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
