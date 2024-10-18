@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { MapLineSegment } from '@/interface/map'
+import StaticMap from './StaticMap'
 
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
@@ -99,6 +100,7 @@ function AnnotationForm(props: PropsInterface) {
                         Ends at{' '}
                         {`(${pickedLineSegment.end.lat},${pickedLineSegment.end.lng})`}
                     </p>
+                    <StaticMap lineSegment={pickedLineSegment} />
                     <TextField
                         label="Street Name"
                         variant="outlined"

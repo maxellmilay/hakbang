@@ -1,82 +1,31 @@
-import React, { useRef } from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api'
+import React from 'react'
+import { MapLineSegment } from '@/interface/map'
 
 const containerStyle = {
-    width: '400px',
-    height: '300px',
+    width: '500',
+    height: '300',
 }
 
-const center = {
-    lat: 37.7749,
-    lng: -122.4194,
+interface PropsInterface {
+    lineSegment: MapLineSegment
 }
 
-const options = {
-    disableDefaultUI: true,
-    gestureHandling: 'none',
-    zoomControl: false,
-}
+function StaticMap(props: PropsInterface) {
+    const { lineSegment } = props
 
-const geojson = {
-    type: 'FeatureCollection',
-    features: [
-        {
-            type: 'Feature',
-            geometry: {
-                type: 'LineString',
-                coordinates: [
-                    [-122.4194, 37.7749],
-                    [-122.4145, 37.7755],
-                    [-122.4094, 37.7776],
-                ],
-            },
-            properties: {},
-        },
-    ],
-}
+    const start = lineSegment.start
+    const end = lineSegment.end
 
-function MapWithLineString() {
-    const mapRef = useRef<google.maps.Map | null>(null)
+    const centerLat = (start.lat + end.lat) / 2
+    const centerLng = (start.lng + end.lng) / 2
 
-    // This function adds the LineString from the GeoJSON
-    const addGeoJsonLineString = (map: google.maps.Map) => {
-        if (!map) return
-
-        // Convert GeoJSON LineString to Google Maps LatLng coordinates
-        const coordinates = geojson.features[0].geometry.coordinates.map(
-            (coord) => ({
-                lat: coord[1], // Latitude is the second element in GeoJSON coordinates
-                lng: coord[0], // Longitude is the first element in GeoJSON coordinates
-            })
-        )
-
-        // Create a polyline from the coordinates
-        const lineString = new window.google.maps.Polyline({
-            path: coordinates,
-            geodesic: true,
-            strokeColor: '#FF0000',
-            strokeOpacity: 1.0,
-            strokeWeight: 2,
-        })
-
-        // Set the polyline on the map
-        lineString.setMap(map)
-    }
+    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${centerLat},${centerLng}&zoom=20&size=${containerStyle.width}x${containerStyle.height}&maptype=satellite&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
 
     return (
-        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={12}
-                options={options}
-                onLoad={(map) => {
-                    mapRef.current = map
-                    addGeoJsonLineString(map)
-                }}
-            />
-        </LoadScript>
+        <div>
+            <img src={mapUrl} alt="Static Map" />
+        </div>
     )
 }
 
-export default MapWithLineString
+export default StaticMap
