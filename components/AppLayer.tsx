@@ -7,6 +7,7 @@ import Sidebar from '@/components/Sidebar'
 import AnnotationForm from '@/components/AnnotationForm'
 import SearchBar from '@/components/SearchBar'
 import AnnotationDetails from './AnnotationDetails'
+import { MapLineSegment } from '@/interface/map'
 
 interface PropsInterface {
     isPickingLocation: boolean
@@ -27,6 +28,7 @@ interface PropsInterface {
         lng: number
     }
     resetFeatureStyles: () => void
+    pickedLineSegment: MapLineSegment
 }
 
 const AppLayer = (props: PropsInterface) => {
@@ -38,6 +40,7 @@ const AppLayer = (props: PropsInterface) => {
         pickedCoordinates,
         handleSaveLocation,
         resetFeatureStyles,
+        pickedLineSegment,
     } = props
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -189,6 +192,7 @@ const AppLayer = (props: PropsInterface) => {
                     pickedCoordinates={pickedCoordinates}
                     setShowAnnotationForm={setShowAnnotationForm}
                     saveAnnotation={saveAnnotation}
+                    pickedLineSegment={pickedLineSegment}
                 />
             )}
             <AnimatePresence>

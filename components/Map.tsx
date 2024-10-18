@@ -10,6 +10,8 @@ import {
 import { GoogleMap, Marker } from '@react-google-maps/api'
 import { FeatureCollection } from 'geojson'
 import AppLayer from './AppLayer'
+import { MapLineSegment } from '@/interface/map'
+import { extractFeatureCoordinates } from '@/utils/geojson-feature'
 
 interface PropsInterface {
     geojsonData: FeatureCollection
@@ -26,8 +28,12 @@ const MapComponent = (props: PropsInterface) => {
     const [center, setCenter] = useState(defaultMapCenter)
 
     const [pickedCoordinates, setPickedCoordinates] = useState(defaultMapCenter)
+    const [pickedLineSegment, setPickedLineSegment] = useState(
+        {} as MapLineSegment
+    )
 
     const [dataLayer, setDataLayer] = useState<google.maps.Data | null>(null)
+
     const [highlightedFeature, setHighlightedFeature] =
         useState<google.maps.Data.Feature | null>(null)
 
@@ -198,6 +204,8 @@ const MapComponent = (props: PropsInterface) => {
                     zIndex: 1000, // Ensure it appears on top
                 })
 
+                setPickedLineSegment(extractFeatureCoordinates(closestFeature))
+
                 // Update the highlighted feature state
                 setHighlightedFeature(closestFeature)
             }
@@ -218,6 +226,7 @@ const MapComponent = (props: PropsInterface) => {
                 pickedCoordinates={pickedCoordinates}
                 setPickedCoordinates={setPickedCoordinates}
                 resetFeatureStyles={resetFeatureStyles}
+                pickedLineSegment={pickedLineSegment}
             />
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}

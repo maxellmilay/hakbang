@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField'
 import Divider from '@mui/material/Divider'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import { MapLineSegment } from '@/interface/map'
 
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
@@ -16,10 +17,16 @@ interface PropsInterface {
         lat: number
         lng: number
     }
+    pickedLineSegment: MapLineSegment
 }
 
 function AnnotationForm(props: PropsInterface) {
-    const { pickedCoordinates, setShowAnnotationForm, saveAnnotation } = props
+    const {
+        pickedCoordinates,
+        setShowAnnotationForm,
+        saveAnnotation,
+        pickedLineSegment,
+    } = props
 
     const walkabiltyChoices = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor']
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0)
@@ -78,8 +85,19 @@ function AnnotationForm(props: PropsInterface) {
                 </div>
                 <div className="flex flex-col px-6 py-2 gap-3 overflow-y-auto">
                     <p className="text-slate-600 text-sm">
-                        Coordinates: {pickedCoordinates.lat},{' '}
+                        <b>Coordinates:</b> {pickedCoordinates.lat},{' '}
                         {pickedCoordinates.lng}
+                    </p>
+                    <p className="text-slate-600 text-sm font-bold">
+                        Line Segment
+                    </p>
+                    <p className="text-slate-600 text-xs">
+                        Starts at{' '}
+                        {`(${pickedLineSegment.start.lat},${pickedLineSegment.start.lng})`}
+                    </p>
+                    <p className="text-slate-600 text-xs">
+                        Ends at{' '}
+                        {`(${pickedLineSegment.end.lat},${pickedLineSegment.end.lng})`}
                     </p>
                     <TextField
                         label="Street Name"
