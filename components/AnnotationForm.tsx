@@ -85,21 +85,23 @@ function AnnotationForm(props: PropsInterface) {
                     </button>
                 </div>
                 <div className="flex flex-col px-6 py-2 gap-3 overflow-y-auto">
-                    <p className="text-slate-600 text-sm">
-                        <b>Coordinates:</b> {pickedCoordinates.lat},{' '}
-                        {pickedCoordinates.lng}
-                    </p>
-                    <p className="text-slate-600 text-sm font-bold">
-                        Line Segment
-                    </p>
-                    <p className="text-slate-600 text-xs">
-                        Starts at{' '}
-                        {`(${pickedLineSegment.start.lat},${pickedLineSegment.start.lng})`}
-                    </p>
-                    <p className="text-slate-600 text-xs">
-                        Ends at{' '}
-                        {`(${pickedLineSegment.end.lat},${pickedLineSegment.end.lng})`}
-                    </p>
+                    <div className="flex flex-col gap-2 p-3 bg-gray-100 rounded-md w-full">
+                        <p className="text-slate-600 text-sm">
+                            <b>Coordinates:</b> {pickedCoordinates.lat},{' '}
+                            {pickedCoordinates.lng}
+                        </p>
+                        <p className="text-slate-600 text-sm font-bold">
+                            Line Segment
+                        </p>
+                        <p className="text-slate-600 text-xs ps-2">
+                            <span className="font-bold">Starts at </span>
+                            {`(${pickedLineSegment.start.lat},${pickedLineSegment.start.lng})`}
+                        </p>
+                        <p className="text-slate-600 text-xs ps-2">
+                            <span className="font-bold">Ends at </span>
+                            {`(${pickedLineSegment.end.lat},${pickedLineSegment.end.lng})`}
+                        </p>
+                    </div>
                     <StaticMap lineSegment={pickedLineSegment} />
                     <TextField
                         label="Street Name"
