@@ -156,7 +156,6 @@ const MapComponent = (props: PropsInterface) => {
     }, [isMapLoaded, geojsonData, isPickingLocation])
 
     const resetFeatureStyles = () => {
-        // Reset the style of the previously highlighted feature
         if (dataLayer && highlightedFeature) {
             dataLayer.overrideStyle(highlightedFeature, {
                 strokeColor: previousColor, // Default to grey
