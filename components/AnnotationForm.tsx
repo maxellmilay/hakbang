@@ -103,17 +103,17 @@ function AnnotationForm(props: PropsInterface) {
                         </p>
                     </div>
                     <StaticMap lineSegment={pickedLineSegment} />
+                    <Divider />
                     <TextField
                         label="Street Name"
                         variant="outlined"
                         size="small"
                     />
-                    <TextField
+                    {/* <TextField
                         label="Annotated by"
                         variant="outlined"
                         size="small"
-                    />
-                    <Divider />
+                    /> */}
                     <TextField
                         label="Sidewalk width"
                         variant="outlined"
