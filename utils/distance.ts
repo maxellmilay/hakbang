@@ -1,5 +1,5 @@
 import { MapCoordinate, MapLineSegment } from '@/interface/map'
-import { colonGeoJSONData } from '@/data/colon'
+import colonGeoJSONData from '@/data/geojson/colon.json'
 
 const colonLineSegments = colonGeoJSONData.features
     .map((feature) => {

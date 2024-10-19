@@ -8,13 +8,13 @@ import {
     defaultMapOptions,
 } from '@/constants/map-properties'
 import { GoogleMap, Marker } from '@react-google-maps/api'
-import { FeatureCollection } from 'geojson'
 import AppLayer from './AppLayer'
 import { MapLineSegment } from '@/interface/map'
 import { extractFeatureCoordinates } from '@/utils/geojson-feature'
+import { fetchMockAccessibilityScores } from '@/tests/mock-api/mock-map-api'
 
 interface PropsInterface {
-    geojsonData: FeatureCollection
+    geojsonData: Record<string, unknown>
 }
 
 const MapComponent = (props: PropsInterface) => {
@@ -64,17 +64,33 @@ const MapComponent = (props: PropsInterface) => {
             newDataLayer.addGeoJson(geojsonData)
             setDataLayer(newDataLayer)
 
+            const accessibilityScores = fetchMockAccessibilityScores()
+
             // Style the GeoJSON lines based on their 'weight' property
             newDataLayer.setStyle((feature) => {
-                const weight = feature.getProperty('weight')
+                const coordinates = extractFeatureCoordinates(feature)
 
-                const strokeWeight = typeof weight === 'number' ? weight : 0
+                const weightData = accessibilityScores.find((scoreData) => {
+                    const isMatch =
+                        coordinates.start.lat == scoreData.start.lat &&
+                        coordinates.start.lng == scoreData.start.lng &&
+                        coordinates.end.lat == scoreData.end.lat &&
+                        coordinates.end.lng == scoreData.end.lng
+
+                    if (isMatch) {
+                        return scoreData
+                    }
+                })
+
+                const weight = weightData?.score
+
                 let strokeColor = '#8f9691' // Default to grey
-
-                if (strokeWeight > 15) {
-                    strokeColor = '#FF0000' // Change to red for heavier weights
-                } else if (strokeWeight <= 15 && strokeWeight > 5) {
-                    strokeColor = '#00FF00' // Green for mid-range weights
+                if (weight) {
+                    if (weight > 15) {
+                        strokeColor = '#FF0000' // Change to red for heavier weights
+                    } else if (weight <= 15 && weight > 5) {
+                        strokeColor = '#00FF00' // Green for mid-range weights
+                    }
                 }
 
                 feature.setProperty('originalStrokeColor', strokeColor)

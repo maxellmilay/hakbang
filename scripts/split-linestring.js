@@ -144,10 +144,6 @@ const coordinates = [
     ...blockF,
 ]
 
-const getRandomWeight = () => {
-    return Math.floor(Math.random() * (20 - 5 + 1)) + 5
-}
-
 const splitLineStringIntoEqualPartsByLength = (coordinates, segmentLength) => {
     const newFeatures = []
 
@@ -176,7 +172,7 @@ const splitLineStringIntoEqualPartsByLength = (coordinates, segmentLength) => {
             const segment = {
                 type: 'Feature',
                 properties: {
-                    weight: getRandomWeight(),
+                    weight: null,
                 },
                 geometry: {
                     type: 'LineString',

@@ -1,3 +1,5 @@
+import { MapLineSegment } from '@/interface/map'
+
 export const extractFeatureCoordinates = (
     feature: google.maps.Data.Feature
 ) => {
@@ -9,7 +11,7 @@ export const extractFeatureCoordinates = (
         const point1 = coordinates[0]
         const point2 = coordinates[1]
 
-        return {
+        const segmentCoordinates: MapLineSegment = {
             start: {
                 lat: point1.lat(),
                 lng: point1.lng(),
@@ -19,8 +21,10 @@ export const extractFeatureCoordinates = (
                 lng: point2.lng(),
             },
         }
+
+        return segmentCoordinates
     } else {
-        return {
+        const emptySegment: MapLineSegment = {
             start: {
                 lat: 0,
                 lng: 0,
@@ -30,5 +34,7 @@ export const extractFeatureCoordinates = (
                 lng: 0,
             },
         }
+
+        return emptySegment
     }
 }
