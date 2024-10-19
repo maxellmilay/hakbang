@@ -132,7 +132,7 @@ const blockF = [
     },
 ]
 
-export const coordinates = [
+export const coordinateMarkers = [
     ...blockA,
     ...blockB,
     ...blockC,

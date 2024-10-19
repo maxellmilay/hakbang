@@ -27,7 +27,8 @@
         "**/*.tsx",
         ".next/types/**/*.ts",
         "scripts/*.ts",
-        "scripts/split-linestring.ts"
+        "scripts/split-linestring.ts",
+        "data/coordinate-markers.js"
     ],
     "exclude": ["node_modules"]
 }
