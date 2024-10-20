@@ -122,39 +122,41 @@ function AnnotationDetails(props: PropsInterface) {
                                         }
                                     </b>
                                 </p>
-                                <p className="text-slate-400">
+                                <p className="text-slate-600">
                                     Annotated by:{' '}
                                     <span className="font-semibold">
                                         {annotationDetails.annotator.full_name}
                                     </span>
                                 </p>
-                                <p className="text-slate-400">
-                                    Start Coordinates: <br /> (
-                                    {
-                                        annotationDetails.location
-                                            .start_coordinates.latitude
-                                    }
-                                    ,{' '}
-                                    {
-                                        annotationDetails.location
-                                            .start_coordinates.longitude
-                                    }{' '}
-                                    )
-                                </p>
-                                <p className="text-slate-400">
-                                    End Coordinates: <br />(
-                                    {
-                                        annotationDetails.location
-                                            .end_coordinates.latitude
-                                    }
-                                    ,{' '}
-                                    {
-                                        annotationDetails.location
-                                            .end_coordinates.longitude
-                                    }{' '}
-                                    )
-                                </p>
-                                <p className="text-slate-400">
+                                <div className="flex gap-3">
+                                    <p className="text-slate-600 text-sm">
+                                        Start Coordinates: <br /> (
+                                        {
+                                            annotationDetails.location
+                                                .start_coordinates.latitude
+                                        }
+                                        ,{' '}
+                                        {
+                                            annotationDetails.location
+                                                .start_coordinates.longitude
+                                        }{' '}
+                                        )
+                                    </p>
+                                    <p className="text-slate-600 text-sm">
+                                        End Coordinates: <br />(
+                                        {
+                                            annotationDetails.location
+                                                .end_coordinates.latitude
+                                        }
+                                        ,{' '}
+                                        {
+                                            annotationDetails.location
+                                                .end_coordinates.longitude
+                                        }{' '}
+                                        )
+                                    </p>
+                                </div>
+                                <p className="text-slate-600">
                                     Width:{' '}
                                     {
                                         annotationDetails.form_data
