@@ -38,8 +38,6 @@ const MapComponent = (props: PropsInterface) => {
     const [highlightedFeature, setHighlightedFeature] =
         useState<google.maps.Data.Feature | null>(null)
 
-    const [previousColor, setPreviousColor] = useState('#8f9691')
-
     const [selectedLineSegment, setSelectedLineSegment] =
         useState<MapLineSegment | null>(null)
 
@@ -85,6 +83,7 @@ const MapComponent = (props: PropsInterface) => {
                 const weight = weightData?.score
 
                 let strokeColor = '#8f9691' // Default to grey
+
                 if (weight) {
                     if (weight > 15) {
                         strokeColor = '#FF0000' // Change to red for heavier weights
@@ -162,8 +161,15 @@ const MapComponent = (props: PropsInterface) => {
 
     const resetFeatureStyles = () => {
         if (dataLayer && highlightedFeature) {
+            const originalStrokeColor = highlightedFeature.getProperty(
+                'originalStrokeColor'
+            )
+            const strokeColor =
+                typeof originalStrokeColor === 'string'
+                    ? originalStrokeColor
+                    : '#8f9691'
             dataLayer.overrideStyle(highlightedFeature, {
-                strokeColor: previousColor, // Default to grey
+                strokeColor: strokeColor,
                 strokeWeight: 10,
                 zIndex: 1,
             })
@@ -282,19 +288,6 @@ const MapComponent = (props: PropsInterface) => {
             })
 
             if (closestFeature) {
-                // Remove any previously applied style for the feature
-                dataLayer.revertStyle(closestFeature)
-
-                // Get the current stroke color from the feature's properties
-                const strokeColor =
-                    (closestFeature.getProperty(
-                        'originalStrokeColor'
-                    ) as string) || '#8f9691'
-
-                // Store the original stroke color to revert back later
-                setPreviousColor(strokeColor)
-
-                // Override the style of the closest feature to make it blue and ensure it's on top with a higher zIndex
                 dataLayer.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,

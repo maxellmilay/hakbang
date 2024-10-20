@@ -1,5 +1,5 @@
 import { MapComponent } from '@/components/Map'
-import colonGeoJSONData from '@/data/geojson/colon.json'
+import colonGeoJSONData from '@/data/geojson/mandaue.json'
 import { MapProvider } from '@/providers/map-provider'
 
 const Home = () => {

@@ -1,34 +1,26 @@
 import axios from 'axios'
 
-interface AddressComponent {
-    long_name: string
-    short_name: string
-    types: string[]
-}
-
-export const getNearestStreet = async (lat: number, lng: number) => {
-    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
+export const getNearestRoad = async (lat: number, lng: number) => {
+    const roadsUrl = `https://roads.googleapis.com/v1/nearestRoads?points=${lat},${lng}&key=${process.env.GOOGLE_MAP_API_KEY}`
     try {
-        const response = await axios.get(geocodeUrl)
-        if (response.data.results.length > 0) {
-            const addressComponents =
-                response.data.results[0].address_components
-
-            // Filter for the street name (which has the 'route' type)
-            const streetComponent = addressComponents.find(
-                (component: AddressComponent) =>
-                    component.types.includes('route')
-            )
-
-            if (streetComponent) {
-                console.log(streetComponent.long_name) // This will be the street name
-            } else {
-                console.log('Street name not found', streetComponent.short_name)
-            }
+        const response = await axios.get(roadsUrl)
+        if (
+            response.data.snappedPoints &&
+            response.data.snappedPoints.length > 0
+        ) {
+            const placeId = response.data.snappedPoints[0].placeId
+            // Use the Place ID to get road name via the Places API
+            const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${process.env.GOOGLE_MAP_API_KEY}`
+            const placeResponse = await axios.get(placeDetailsUrl)
+            const roadName = placeResponse.data.result.name
+            console.log('Nearest road found:', roadName)
+            return roadName
         } else {
-            console.log('No address found')
+            console.log('No road found')
+            return 'N/A'
         }
     } catch (error) {
-        console.error('Error fetching the nearest street:', error)
+        console.error('Error fetching the nearest road:', error)
+        return 'N/A'
     }
 }

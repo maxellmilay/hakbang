@@ -1,4 +1,4 @@
-import colonGeoJSONData from '../data/geojson/colon.json' assert { type: 'json' }
+import colonGeoJSONData from '../data/geojson/mandaue.json' assert { type: 'json' }
 
 // Helper function to calculate the squared distance between two points
 const distanceSquared = (point1, point2) => {

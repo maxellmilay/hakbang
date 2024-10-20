@@ -1,6 +1,6 @@
 import { lineString, length, along } from '@turf/turf'
 import fs from 'fs'
-import { coordinateMarkers } from '../data/coordinate-markers.js'
+import { coordinateMarkers } from '../data/markers/mandaue-markers.js'
 import axios from 'axios'
 import dotenv from 'dotenv'
 
@@ -16,30 +16,27 @@ const getLineSegmentCenter = (lineSegment) => {
     return { lat: centerLat, lng: centerLng }
 }
 
-const getNearestStreet = async (lat, lng) => {
-    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_MAP_API_KEY}`
+const getNearestRoad = async (lat, lng) => {
+    const roadsUrl = `https://roads.googleapis.com/v1/nearestRoads?points=${lat},${lng}&key=${process.env.GOOGLE_MAP_API_KEY}`
     try {
-        const response = await axios.get(geocodeUrl)
-        if (response.data.results.length > 0) {
-            const addressComponents =
-                response.data.results[0].address_components
-            const streetComponent = addressComponents.find((component) =>
-                component.types.includes('route')
-            )
-
-            if (streetComponent) {
-                console.log(streetComponent.long_name)
-                return streetComponent.long_name
-            } else {
-                console.log('Street name not found')
-                return 'N/A'
-            }
+        const response = await axios.get(roadsUrl)
+        if (
+            response.data.snappedPoints &&
+            response.data.snappedPoints.length > 0
+        ) {
+            const placeId = response.data.snappedPoints[0].placeId
+            // Use the Place ID to get road name via the Places API
+            const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${process.env.GOOGLE_MAP_API_KEY}`
+            const placeResponse = await axios.get(placeDetailsUrl)
+            const roadName = placeResponse.data.result.name
+            console.log('Nearest road found:', roadName)
+            return roadName
         } else {
-            console.log('No address found')
+            console.log('No road found')
             return 'N/A'
         }
     } catch (error) {
-        console.error('Error fetching the nearest street:', error)
+        console.error('Error fetching the nearest road:', error)
         return 'N/A'
     }
 }
@@ -82,7 +79,7 @@ const splitLineStringIntoEqualPartsByLength = async (
             }
 
             const { lat, lng } = getLineSegmentCenter(lineSegment)
-            const nearestStreet = await getNearestStreet(lat, lng)
+            const nearestStreet = await getNearestRoad(lat, lng)
 
             const segment = {
                 type: 'Feature',
@@ -121,9 +118,9 @@ const splitGeoJSON = await splitLineStringIntoEqualPartsByLength(
 
 // Write the result to a JSON file after all async operations are completed
 fs.writeFileSync(
-    'data/geojson/colon.json',
+    'data/geojson/mandaue.json',
     JSON.stringify(splitGeoJSON, null, 2),
     'utf8'
 )
 
-console.log('GeoJSON has been written to colon.json')
+console.log('GeoJSON has been written to mandaue.json')

@@ -1,4 +1,4 @@
-import colonGeoJSONData from '@/data/geojson/colon.json'
+import colonGeoJSONData from '@/data/geojson/mandaue.json'
 import { MapCoordinate } from '@/interface/map'
 
 interface AccessibilityScoreData {
