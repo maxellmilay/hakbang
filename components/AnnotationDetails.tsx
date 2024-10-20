@@ -142,7 +142,7 @@ function AnnotationDetails(props: PropsInterface) {
                                         {annotationDetails.annotator.full_name}
                                     </span>
                                 </p>
-                                <div className="flex gap-3">
+                                <div className="flex gap-5">
                                     <p className="text-slate-600 text-sm">
                                         Start Coordinates: <br /> (
                                         {
