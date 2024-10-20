@@ -1,10 +1,11 @@
 'use client'
 
 import { Icon } from '@iconify/react'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { MapLineSegment } from '@/interface/map'
 
 import useAuthStore from '@/store/auth'
+import useAnnotationStore from '@/store/annotation'
 
 interface PropsInterface {
     expand: boolean
@@ -27,7 +28,8 @@ interface AnnotationItem {
 }
 
 function Sidebar(props: PropsInterface) {
-    const { user } = useAuthStore()
+    const { user, getUser } = useAuthStore()
+    const { sidebarAnnotations, getSidebarAnnotations } = useAnnotationStore()
     const {
         expand = true,
         setExpandSidebar,
@@ -36,105 +38,63 @@ function Sidebar(props: PropsInterface) {
         isPickingLocation,
     } = props
 
-    const data = [
-        {
-            date: 'Today',
-            annotations: [
-                {
-                    id: 1,
-                    level: 4,
-                    name: 'T Padilla St, Gaisano Saversmart',
-                },
-                {
-                    id: 2,
-                    level: 5,
-                    name: 'Lopez Jaena St, Upper Malibu',
-                },
-                {
-                    id: 3,
-                    level: 2,
-                    name: "Hernan Cortes St, Jullie's Bakeshop & Restaurant",
-                },
-                {
-                    id: 4,
-                    level: 3,
-                    name: 'T Padilla St, Gaisano Saversmart side bridge',
-                },
-            ],
-        },
-        {
-            date: 'October 13, 2024',
-            annotations: [
-                {
-                    id: 5,
-                    level: 1,
-                    name: 'T Padilla St corner Lopez Jaena St',
-                },
-                {
-                    id: 6,
-                    level: 3,
-                    name: 'Mabolo St, Mabolo Church',
-                },
-                {
-                    id: 7,
-                    level: 2,
-                    name: 'Banilad Rd, Gaisano Country Mall',
-                },
-                {
-                    id: 8,
-                    level: 4,
-                    name: 'Mango Ave, Robinsons Cybergate',
-                },
-                {
-                    id: 9,
-                    level: 5,
-                    name: 'Colon St, Metro Colon',
-                },
-                {
-                    id: 10,
-                    level: 3,
-                    name: 'Osmeña Blvd, Fuente Osmeña Circle',
-                },
-                {
-                    id: 11,
-                    level: 2,
-                    name: 'Ayala Center Cebu, The Terraces',
-                },
-                {
-                    id: 12,
-                    level: 5,
-                    name: 'Colon St, Metro Colon',
-                },
-                {
-                    id: 13,
-                    level: 3,
-                    name: 'Osmeña Blvd, Fuente Osmeña Circle',
-                },
-            ],
-        },
-    ]
+    const getColor = (level: number) => {
+        if (level >= 0 && level < 20) {
+            return 5
+        } else if (level >= 20 && level < 40) {
+            return 4
+        } else if (level >= 40 && level < 60) {
+            return 3
+        } else if (level >= 60 && level < 80) {
+            return 2
+        } else {
+            return 1
+        }
+    }
 
-    const updatedData: AnnotationItem[] = data.map((datum) => {
-        const newAnnotations = datum.annotations.map((annotation) => {
-            return {
-                ...annotation,
+    const data: AnnotationItem[] = Object.entries(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        sidebarAnnotations.reduce((acc: any, annotation: any) => {
+            const date = new Date(annotation.updated_on)
+            const today = new Date()
+
+            let dateKey
+            if (date.toDateString() === today.toDateString()) {
+                dateKey = 'Today'
+            } else {
+                dateKey = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                })
+            }
+
+            if (!acc[dateKey]) {
+                acc[dateKey] = []
+            }
+
+            acc[dateKey].push({
+                id: annotation.id,
+                level: getColor(annotation.location.accessibility_score),
+                name: annotation.name,
                 lineSegment: {
                     start: {
-                        lat: 10.29582358188033,
-                        lng: 123.89718006100031,
+                        lat: annotation.location.start_coordinates.latitude,
+                        lng: annotation.location.start_coordinates.longitude,
                     },
                     end: {
-                        lat: 10.295850026000245,
-                        lng: 123.89724312547405,
+                        lat: annotation.location.end_coordinates.latitude,
+                        lng: annotation.location.end_coordinates.longitude,
                     },
                 },
-            }
-        })
-        return {
-            ...datum,
-            annotations: newAnnotations,
-        }
-    })
+            })
+
+            return acc
+        }, {})
+    ).map(([date, annotations]) => ({
+        date,
+        annotations: annotations as Annotation[],
+    }))
 
     const toggleSidebar = () => {
         if (isPickingLocation) {
@@ -146,6 +106,18 @@ function Sidebar(props: PropsInterface) {
     const inspectAnnotation = (annotation: Annotation) => {
         setSelectedLineSegment(annotation.lineSegment)
     }
+
+    useEffect(() => {
+        async function fetchData() {
+            if (!user) {
+                await getUser()
+            }
+            if (user) {
+                getSidebarAnnotations()
+            }
+        }
+        fetchData()
+    }, [])
 
     return (
         <div>
@@ -195,7 +167,7 @@ function Sidebar(props: PropsInterface) {
                             <p className="font-medium">Add annotation</p>
                         </button>
                         <div className="flex flex-col gap-6 overflow-y-auto custom-scrollbar">
-                            {updatedData.map((set, index) => (
+                            {data.map((set, index) => (
                                 <div
                                     key={index}
                                     className="flex flex-col gap-2"
@@ -228,9 +200,11 @@ function Sidebar(props: PropsInterface) {
                                 </div>
                             ))}
                         </div>
-                        <button className="text-slate-600 hover:text-primary-dark duration-100">
-                            View all annotations
-                        </button>
+                        {data.length >= 20 && (
+                            <button className="text-slate-600 hover:text-primary-dark duration-100">
+                                View all annotations
+                            </button>
+                        )}
                     </nav>
                 </div>
             )}

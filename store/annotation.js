@@ -1,19 +1,24 @@
 import { create } from 'zustand'
+import api from '@/utils/axios'
 import useAuthStore from './auth'
 
 const useAnnotationStore = create((set) => ({
     sidebarAnnotations: [],
     getSidebarAnnotations: async () => {
-        const filters = { annotator_id: useAuthStore.getState().user.id }
+        const userID = useAuthStore.getState().user?.id
+        if (!userID) {
+            console.error('User ID not found')
+            return
+        }
+        const filters = { annotator_id: userID }
         try {
             const response = await api.get('side-panel-annotations/', {
                 params: filters,
             })
-            set({ sidebarAnnotations: response.data })
+            set({ sidebarAnnotations: response.data.objects })
         } catch (error) {
-            throw error.response.data
+            throw error
         }
-        set({ sidebarAnnotations: annotations })
     },
 
     checkAnnotationNameAvailability: async (name) => {
