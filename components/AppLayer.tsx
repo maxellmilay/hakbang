@@ -133,9 +133,9 @@ const AppLayer = (props: PropsInterface) => {
                     />
                 )}
             </div>
-            {selectedLineSegment === null && isMobile && (
-                <SearchBar isMobile={isMobile} />
-            )}
+            {/* {selectedLineSegment === null && isMobile && (
+            )} */}
+            <SearchBar isMobile={isMobile} />
             {!isPickingLocation ? (
                 <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto">
                     <button

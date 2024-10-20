@@ -4,11 +4,15 @@ import { useState, useEffect, useRef } from 'react'
 import { Icon } from '@iconify/react'
 import { Menu } from '@headlessui/react'
 
+import useAuthStore from '@/store/auth'
+
 interface PropsInterface {
     isMobile: boolean
 }
 
 function SearchBar(props: PropsInterface) {
+    const { user, logout } = useAuthStore()
+
     const { isMobile } = props
     const [showFullSearchBar, setShowFullSearchBar] = useState(true)
     const fullSearchBarRef = useRef<HTMLDivElement>(null)
@@ -40,7 +44,7 @@ function SearchBar(props: PropsInterface) {
         return (
             <div
                 ref={fullSearchBarRef}
-                className="absolute bg-white z-30 top-8 left-3 right-3 sm:left-auto sm:w-[400px] md:w-[450px] lg:w-[500px] px-4 flex items-center gap-3 rounded-3xl border border-black shadow-lg"
+                className="pointer-events-auto absolute bg-white z-30 top-8 left-3 right-3 sm:left-auto sm:w-[400px] md:w-[450px] lg:w-[500px] px-4 flex items-center gap-3 rounded-3xl border border-black shadow-lg"
             >
                 <input
                     type="text"
@@ -53,100 +57,106 @@ function SearchBar(props: PropsInterface) {
                         className="w-5 h-5 text-slate-400"
                     />
                 </button>
-                <Menu as="div" className="relative inline-block text-left">
-                    <Menu.Button className="flex items-center">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
-                            alt="profile picture"
-                            className="w-6 h-6 rounded-full"
-                        />
-                    </Menu.Button>
-                    <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div className="px-1 py-1">
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-slate-100' : ''
-                                        } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
-                                    >
-                                        <Icon
-                                            icon="material-symbols:format-list-bulleted-rounded"
-                                            className="w-4 h-4"
-                                        />
-                                        View all annotations
-                                    </button>
-                                )}
-                            </Menu.Item>
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-red-100' : ''
-                                        } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
-                                    >
-                                        <Icon
-                                            icon="material-symbols:power-settings-new"
-                                            className="w-4 h-4"
-                                        />
-                                        Log out
-                                    </button>
-                                )}
-                            </Menu.Item>
-                        </div>
-                    </Menu.Items>
-                </Menu>
+                {user && (
+                    <Menu as="div" className="relative inline-block text-left">
+                        <Menu.Button className="flex items-center">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
+                                alt="profile picture"
+                                className="w-6 h-6 rounded-full"
+                            />
+                        </Menu.Button>
+                        <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div className="px-1 py-1">
+                                <Menu.Item>
+                                    {({ active }) => (
+                                        <button
+                                            className={`${
+                                                active ? 'bg-slate-100' : ''
+                                            } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
+                                        >
+                                            <Icon
+                                                icon="material-symbols:format-list-bulleted-rounded"
+                                                className="w-4 h-4"
+                                            />
+                                            View all annotations
+                                        </button>
+                                    )}
+                                </Menu.Item>
+                                <Menu.Item>
+                                    {({ active }) => (
+                                        <button
+                                            onClick={logout}
+                                            className={`${
+                                                active ? 'bg-red-100' : ''
+                                            } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
+                                        >
+                                            <Icon
+                                                icon="material-symbols:power-settings-new"
+                                                className="w-4 h-4"
+                                            />
+                                            Log out
+                                        </button>
+                                    )}
+                                </Menu.Item>
+                            </div>
+                        </Menu.Items>
+                    </Menu>
+                )}
             </div>
         )
     else
         return (
-            <div className="absolute z-30 top-8 right-3 px-4 py-3 flex items-center justify-end gap-3">
+            <div className="pointer-events-auto absolute z-30 top-8 right-3 px-4 py-3 flex items-center justify-end gap-3">
                 <button onClick={() => setShowFullSearchBar(true)}>
                     <Icon icon="material-symbols:search" className="w-6 h-6" />
                 </button>
-                <Menu as="div" className="relative inline-block text-left">
-                    <Menu.Button className="flex items-center">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
-                            alt="profile picture"
-                            className="w-6 h-6 rounded-full"
-                        />
-                    </Menu.Button>
-                    <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div className="px-1 py-1">
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-slate-100' : ''
-                                        } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
-                                    >
-                                        <Icon
-                                            icon="material-symbols:format-list-bulleted-rounded"
-                                            className="w-4 h-4"
-                                        />
-                                        View all annotations
-                                    </button>
-                                )}
-                            </Menu.Item>
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-red-100' : ''
-                                        } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
-                                    >
-                                        <Icon
-                                            icon="material-symbols:power-settings-new"
-                                            className="w-4 h-4"
-                                        />
-                                        Log out
-                                    </button>
-                                )}
-                            </Menu.Item>
-                        </div>
-                    </Menu.Items>
-                </Menu>
+                {user && (
+                    <Menu as="div" className="relative inline-block text-left">
+                        <Menu.Button className="flex items-center">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
+                                alt="profile picture"
+                                className="w-6 h-6 rounded-full"
+                            />
+                        </Menu.Button>
+                        <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div className="px-1 py-1">
+                                <Menu.Item>
+                                    {({ active }) => (
+                                        <button
+                                            className={`${
+                                                active ? 'bg-slate-100' : ''
+                                            } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
+                                        >
+                                            <Icon
+                                                icon="material-symbols:format-list-bulleted-rounded"
+                                                className="w-4 h-4"
+                                            />
+                                            View all annotations
+                                        </button>
+                                    )}
+                                </Menu.Item>
+                                <Menu.Item>
+                                    {({ active }) => (
+                                        <button
+                                            onClick={logout}
+                                            className={`${
+                                                active ? 'bg-red-100' : ''
+                                            } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-100`}
+                                        >
+                                            <Icon
+                                                icon="material-symbols:power-settings-new"
+                                                className="w-4 h-4"
+                                            />
+                                            Log out
+                                        </button>
+                                    )}
+                                </Menu.Item>
+                            </div>
+                        </Menu.Items>
+                    </Menu>
+                )}
             </div>
         )
 }
