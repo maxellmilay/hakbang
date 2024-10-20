@@ -1,13 +1,25 @@
 'use client'
 
 import { Icon } from '@iconify/react'
+import { Dispatch, SetStateAction } from 'react'
+import { MapLineSegment } from '@/interface/map'
 
 interface PropsInterface {
     expand: boolean
     pickLocation: () => void
     setExpandSidebar: (expand: boolean) => void
-    setSelectedAnnotationId: (id: number | null) => void
+    setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     isPickingLocation: boolean
+}
+
+interface AnnotationItem {
+    date: string
+    annotations: {
+        id: number
+        level: number
+        name: string
+        lineSegment: MapLineSegment
+    }[]
 }
 
 function Sidebar(props: PropsInterface) {
@@ -15,7 +27,7 @@ function Sidebar(props: PropsInterface) {
         expand = true,
         setExpandSidebar,
         pickLocation,
-        setSelectedAnnotationId,
+        setSelectedLineSegment,
         isPickingLocation,
     } = props
 
@@ -97,6 +109,28 @@ function Sidebar(props: PropsInterface) {
         },
     ]
 
+    const updatedData: AnnotationItem[] = data.map((datum) => {
+        const newAnnotations = datum.annotations.map((annotation) => {
+            return {
+                ...annotation,
+                lineSegment: {
+                    start: {
+                        lat: 10.29582358188033,
+                        lng: 123.89718006100031,
+                    },
+                    end: {
+                        lat: 10.295850026000245,
+                        lng: 123.89724312547405,
+                    },
+                },
+            }
+        })
+        return {
+            ...datum,
+            annotations: newAnnotations,
+        }
+    })
+
     const toggleSidebar = () => {
         if (isPickingLocation) {
             return
@@ -146,7 +180,7 @@ function Sidebar(props: PropsInterface) {
                         <p className="font-medium">Add annotation</p>
                     </button>
                     <div className="flex flex-col gap-6 overflow-y-auto custom-scrollbar">
-                        {data.map((set, index) => (
+                        {updatedData.map((set, index) => (
                             <div key={index} className="flex flex-col gap-2">
                                 <div className="p-2">
                                     <p className="font-medium text-slate-600">
@@ -156,8 +190,8 @@ function Sidebar(props: PropsInterface) {
                                 {set.annotations.map((annotation, index) => (
                                     <button
                                         onClick={() =>
-                                            setSelectedAnnotationId(
-                                                annotation.id
+                                            setSelectedLineSegment(
+                                                annotation.lineSegment
                                             )
                                         }
                                         key={index}

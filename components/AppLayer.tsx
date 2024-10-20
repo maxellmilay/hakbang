@@ -29,8 +29,8 @@ interface PropsInterface {
     }
     resetFeatureStyles: () => void
     pickedLineSegment: MapLineSegment
-    selectedAnnotationId: number | null
-    setSelectedAnnotationId: Dispatch<SetStateAction<number | null>>
+    selectedLineSegment: MapLineSegment | null
+    setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
 }
 
 const AppLayer = (props: PropsInterface) => {
@@ -43,8 +43,8 @@ const AppLayer = (props: PropsInterface) => {
         handleSaveLocation,
         resetFeatureStyles,
         pickedLineSegment,
-        setSelectedAnnotationId,
-        selectedAnnotationId,
+        selectedLineSegment,
+        setSelectedLineSegment,
     } = props
 
     const [isMobile, setIsMobile] = useState(false)
@@ -54,7 +54,7 @@ const AppLayer = (props: PropsInterface) => {
     const pickLocation = () => {
         setIsPickingLocation(true)
         setExpandSidebar(false)
-        setSelectedAnnotationId(null)
+        setSelectedLineSegment(null)
         console.log('here', isPickingLocation)
     }
 
@@ -66,15 +66,15 @@ const AppLayer = (props: PropsInterface) => {
         }
     }
 
-    const saveAnnotation = () => {
+    const saveAnnotation = (lineSegment: MapLineSegment) => {
         setShowAnnotationForm(false)
         setIsPickingLocation(false)
         setExpandSidebar(true)
-        setSelectedAnnotationId(1)
+        setSelectedLineSegment(lineSegment)
     }
 
     const closeAnnotationDetails = () => {
-        setSelectedAnnotationId(null)
+        setSelectedLineSegment(null)
         if (!isMobile) {
             setExpandSidebar(true)
         }
@@ -102,30 +102,30 @@ const AppLayer = (props: PropsInterface) => {
     }, [isMobile]) // Add `isMobile` to the dependency array
 
     useEffect(() => {
-        if (selectedAnnotationId) {
+        if (selectedLineSegment) {
             setExpandSidebar(false)
             setIsPickingLocation(false)
             setShowAnnotationForm(false)
             setPickedCoordinates({ lat: 10.298684, lng: 123.898283 })
         }
-    }, [selectedAnnotationId])
+    }, [selectedLineSegment])
 
     return (
         <div
             className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}
         >
             <div className="pointer-events-auto">
-                {selectedAnnotationId === null && (
+                {selectedLineSegment === null && (
                     <Sidebar
                         expand={expandSidebar}
                         setExpandSidebar={setExpandSidebar}
                         pickLocation={pickLocation}
-                        setSelectedAnnotationId={setSelectedAnnotationId}
+                        setSelectedLineSegment={setSelectedLineSegment}
                         isPickingLocation={isPickingLocation}
                     />
                 )}
             </div>
-            {selectedAnnotationId === null && isMobile && (
+            {selectedLineSegment === null && isMobile && (
                 <SearchBar isMobile={isMobile} />
             )}
             {!isPickingLocation ? (
@@ -191,16 +191,16 @@ const AppLayer = (props: PropsInterface) => {
                 />
             )}
             <AnimatePresence>
-                {selectedAnnotationId && (
+                {selectedLineSegment && (
                     <motion.div
-                        key={selectedAnnotationId}
+                        key={JSON.stringify(selectedLineSegment)}
                         initial={{ opacity: 0, x: -100 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.3 }}
                     >
                         <AnnotationDetails
-                            id={selectedAnnotationId}
+                            selectedLineSegment={selectedLineSegment}
                             closeAnnotationDetails={closeAnnotationDetails}
                         />
                     </motion.div>

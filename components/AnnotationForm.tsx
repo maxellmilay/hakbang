@@ -13,7 +13,7 @@ import StaticMap from './StaticMap'
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    saveAnnotation: () => void
+    saveAnnotation: (lineSegment: MapLineSegment) => void
     pickedCoordinates: {
         lat: number
         lng: number
@@ -236,7 +236,7 @@ function AnnotationForm(props: PropsInterface) {
                         Reposition
                     </button>
                     <button
-                        onClick={() => saveAnnotation()}
+                        onClick={() => saveAnnotation(pickedLineSegment)}
                         className="flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
                                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                     >

@@ -20,6 +20,8 @@
         "@react-google-maps/api": "^2.20.3",
         "@turf/turf": "^7.1.0",
         "@types/googlemaps": "^3.43.3",
+        "axios": "^1.7.7",
+        "dotenv": "^16.4.5",
         "framer-motion": "^11.11.9",
         "next": "14.2.15",
         "react": "^18",

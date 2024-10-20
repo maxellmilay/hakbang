@@ -1,4 +1,4 @@
-import { MapLineSegment } from '@/interface/map'
+import { JSONFeature, MapLineSegment } from '@/interface/map'
 
 export const extractFeatureCoordinates = (
     feature: google.maps.Data.Feature
@@ -37,4 +37,21 @@ export const extractFeatureCoordinates = (
 
         return emptySegment
     }
+}
+
+export const extractJSONFeatureCoordinates = (feature: JSONFeature) => {
+    const coordinateList = feature.geometry.coordinates
+
+    const lineSegmentCoordinates: MapLineSegment = {
+        start: {
+            lat: coordinateList[0][1],
+            lng: coordinateList[0][0],
+        },
+        end: {
+            lat: coordinateList[1][1],
+            lng: coordinateList[1][0],
+        },
+    }
+
+    return lineSegmentCoordinates
 }

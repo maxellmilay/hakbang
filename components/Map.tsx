@@ -10,8 +10,9 @@ import {
 import { GoogleMap, Marker } from '@react-google-maps/api'
 import AppLayer from './AppLayer'
 import { MapLineSegment } from '@/interface/map'
-import { extractFeatureCoordinates } from '@/utils/geojson-feature'
+import { extractFeatureCoordinates } from '@/utils/geojson'
 import { fetchMockAccessibilityScores } from '@/tests/mock-api/mock-map-api'
+import { getLineSegmentCenter } from '@/utils/distance'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -39,9 +40,8 @@ const MapComponent = (props: PropsInterface) => {
 
     const [previousColor, setPreviousColor] = useState('#8f9691')
 
-    const [selectedAnnotationId, setSelectedAnnotationId] = useState<
-        number | null
-    >(null)
+    const [selectedLineSegment, setSelectedLineSegment] =
+        useState<MapLineSegment | null>(null)
 
     const handleSaveLocation = () => {
         if (mapRef.current) {
@@ -122,8 +122,13 @@ const MapComponent = (props: PropsInterface) => {
                                     lat: latLng.lat(),
                                     lng: latLng.lng(),
                                 }))
-                            console.log('LineString coordinates:', coordinates)
-                            setSelectedAnnotationId(1)
+
+                            const lineSegment: MapLineSegment = {
+                                start: coordinates[0],
+                                end: coordinates[1],
+                            }
+
+                            setSelectedLineSegment(lineSegment)
                         } else if (geometry.getType() === 'Point') {
                             // Cast geometry to Point
                             const point = geometry as google.maps.Data.Point
@@ -183,13 +188,20 @@ const MapComponent = (props: PropsInterface) => {
                 const geometry = feature.getGeometry()
                 if (geometry && geometry.getType() === 'LineString') {
                     const lineString = geometry as google.maps.Data.LineString
-                    const coordinates = lineString.getArray()
+                    const coordinates = lineString
+                        .getArray()
+                        .map((latLng: google.maps.LatLng) => ({
+                            lat: latLng.lat(),
+                            lng: latLng.lng(),
+                        }))
 
-                    const point1 = coordinates[0]
-                    const point2 = coordinates[1]
+                    const lineSegment = {
+                        start: coordinates[0],
+                        end: coordinates[1],
+                    }
 
-                    const linestringLat = (point1.lat() + point2.lat()) / 2
-                    const linestringLng = (point1.lng() + point2.lng()) / 2
+                    const { lat: linestringLat, lng: linestringLng } =
+                        getLineSegmentCenter(lineSegment)
 
                     const distance =
                         google.maps.geometry.spherical.computeDistanceBetween(
@@ -248,8 +260,8 @@ const MapComponent = (props: PropsInterface) => {
                 setPickedCoordinates={setPickedCoordinates}
                 resetFeatureStyles={resetFeatureStyles}
                 pickedLineSegment={pickedLineSegment}
-                setSelectedAnnotationId={setSelectedAnnotationId}
-                selectedAnnotationId={selectedAnnotationId}
+                selectedLineSegment={selectedLineSegment}
+                setSelectedLineSegment={setSelectedLineSegment}
             />
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
