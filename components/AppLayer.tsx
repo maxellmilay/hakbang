@@ -54,6 +54,9 @@ const AppLayer = (props: PropsInterface) => {
     const [isMobile, setIsMobile] = useState(false)
     const [expandSidebar, setExpandSidebar] = useState(!isMobile)
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
+    const [selectedAnnotationId, setSelectedAnnotationId] = useState<
+        number | null
+    >(null)
 
     const pickLocation = () => {
         setIsPickingLocation(true)
@@ -129,6 +132,7 @@ const AppLayer = (props: PropsInterface) => {
                         setExpandSidebar={setExpandSidebar}
                         pickLocation={pickLocation}
                         setSelectedLineSegment={setSelectedLineSegment}
+                        setSelectedAnnotationId={setSelectedAnnotationId}
                         isPickingLocation={isPickingLocation}
                     />
                 )}
@@ -204,7 +208,7 @@ const AppLayer = (props: PropsInterface) => {
                 />
             )}
             <AnimatePresence>
-                {selectedLineSegment && (
+                {selectedAnnotationId && (
                     <motion.div
                         key={JSON.stringify(selectedLineSegment)}
                         initial={{ opacity: 0, x: -100 }}
@@ -213,7 +217,8 @@ const AppLayer = (props: PropsInterface) => {
                         transition={{ duration: 0.3 }}
                     >
                         <AnnotationDetails
-                            selectedLineSegment={selectedLineSegment}
+                            setSelectedAnnotationId={setSelectedAnnotationId}
+                            selectedAnnotationId={selectedAnnotationId}
                             setSelectedLineSegment={setSelectedLineSegment}
                             closeAnnotationDetails={closeAnnotationDetails}
                         />

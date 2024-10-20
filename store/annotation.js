@@ -112,7 +112,7 @@ const useAnnotationStore = create((set) => ({
         }
     },
 
-    getAnnotation: async (id) => {
+    getAnnotationDetails: async (id) => {
         try {
             const response = await api.get(`annotations/${id}/`)
             return response.data

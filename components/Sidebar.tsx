@@ -13,6 +13,7 @@ interface PropsInterface {
     setExpandSidebar: (expand: boolean) => void
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     isPickingLocation: boolean
+    setSelectedAnnotationId: Dispatch<SetStateAction<number | null>>
 }
 
 interface Annotation {
@@ -36,6 +37,7 @@ function Sidebar(props: PropsInterface) {
         pickLocation,
         setSelectedLineSegment,
         isPickingLocation,
+        setSelectedAnnotationId,
     } = props
 
     const getColor = (level: number) => {
@@ -104,6 +106,7 @@ function Sidebar(props: PropsInterface) {
     }
 
     const inspectAnnotation = (annotation: Annotation) => {
+        setSelectedAnnotationId(annotation.id)
         setSelectedLineSegment(annotation.lineSegment)
     }
 
