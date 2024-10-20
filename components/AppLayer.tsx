@@ -9,6 +9,8 @@ import SearchBar from '@/components/SearchBar'
 import AnnotationDetails from './AnnotationDetails'
 import { MapLineSegment } from '@/interface/map'
 
+import useAuthStore from '@/store/auth'
+
 interface PropsInterface {
     isPickingLocation: boolean
     setIsPickingLocation: Dispatch<SetStateAction<boolean>>
@@ -34,6 +36,8 @@ interface PropsInterface {
 }
 
 const AppLayer = (props: PropsInterface) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { user, getUser } = useAuthStore()
     const {
         center,
         isPickingLocation,
@@ -109,6 +113,10 @@ const AppLayer = (props: PropsInterface) => {
             setPickedCoordinates({ lat: 10.298684, lng: 123.898283 })
         }
     }, [selectedLineSegment])
+
+    useEffect(() => {
+        getUser()
+    }, [])
 
     return (
         <div
