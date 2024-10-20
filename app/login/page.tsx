@@ -21,7 +21,7 @@ function Page() {
     }
 
     const checkFailedLogin = () => {
-        const maxAttempt = 10000 // this is temporary
+        const maxAttempt = 100 // this is temporary
         const count = localStorage.getItem('failedLoginCount')
         if (count === null) {
             clearFailedLogin()
