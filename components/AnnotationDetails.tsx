@@ -10,19 +10,15 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     closeAnnotationDetails: () => void
-    selectedAnnotationId: number
-    setSelectedAnnotationId: Dispatch<SetStateAction<number | null>>
-    useLineSegmentId: boolean
+    selectedLineSegment: MapLineSegment | null
 }
 
 function AnnotationDetails(props: PropsInterface) {
-    const { getAnnotationDetails, getAnnotations } = useAnnotationStore()
+    const { getAnnotations } = useAnnotationStore()
     const {
-        selectedAnnotationId,
         closeAnnotationDetails,
         setSelectedLineSegment,
-        setSelectedAnnotationId,
-        useLineSegmentId,
+        selectedLineSegment,
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
@@ -32,7 +28,6 @@ function AnnotationDetails(props: PropsInterface) {
     const close = () => {
         closeAnnotationDetails()
         setSelectedLineSegment(null)
-        setSelectedAnnotationId(null)
     }
 
     const getColor = (level: number) => {
@@ -64,35 +59,54 @@ function AnnotationDetails(props: PropsInterface) {
     }
 
     useEffect(() => {
-        if (selectedAnnotationId) {
-            setIsLoading(true)
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            if (!useLineSegmentId) {
-                getAnnotationDetails(selectedAnnotationId).then((res: any) => {
-                    console.log(res)
-                    setSelectedLineSegmentAnnotation(res)
-                    setIsLoading(false)
-                })
-            } else {
-                const filters = {
-                    location_id: setSelectedLineSegment.id,
-                }
-
-                getAnnotations(filters).then((res: any) => {
-                    setSelectedLineSegmentAnnotation(res.objects[0])
-                    setIsLoading(false)
-                })
-            }
+        const id = selectedLineSegment?.id
+        if (!id) {
+            setIsLoading(false)
+            return
         }
+        const filters = {
+            location_id: id,
+        }
+
+        getAnnotations(filters)
+            .then((res: any) => {
+                if (res.total_count !== 0) {
+                    setSelectedLineSegmentAnnotation(res.objects[0])
+                }
+            })
+            .catch((err: any) => {
+                console.error(err)
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }, [])
 
     return (
         <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
             <div className="flex flex-col p-3 gap-2 bg-white border border-black rounded-md shadow-2xl h-full w-full sm:w-[470px]">
-                {isLoading || !annotationDetails ? (
+                {isLoading ? (
                     <div className="flex justify-center items-center h-full">
                         <h1>Loading...</h1>
                     </div>
+                ) : !annotationDetails ? (
+                    <>
+                        <div className="flex justify-end items-start p-2">
+                            <button
+                                onClick={close}
+                                className="bg-primary rounded-md border-2 border-black
+                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
+                            >
+                                <Icon
+                                    icon="material-symbols:close-rounded"
+                                    className="w-5 h-5"
+                                />
+                            </button>
+                        </div>
+                        <div className="flex justify-center items-center h-full">
+                            <h1>404 Not found</h1>
+                        </div>
+                    </>
                 ) : (
                     <>
                         <div className="flex justify-between items-start p-2">
