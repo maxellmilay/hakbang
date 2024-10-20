@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { Icon } from '@iconify/react'
 import { Menu } from '@headlessui/react'
 
@@ -44,7 +45,7 @@ function SearchBar(props: PropsInterface) {
         return (
             <div
                 ref={fullSearchBarRef}
-                className="pointer-events-auto absolute bg-white z-30 top-8 left-3 right-3 sm:left-auto sm:w-[400px] md:w-[450px] lg:w-[500px] px-4 flex items-center gap-3 rounded-3xl border border-black shadow-lg"
+                className="pointer-events-auto absolute bg-white z-30 top-8 left-3 right-3 sm:left-auto sm:w-[400px] md:w-[450px] lg:w-[500px] px-2 flex items-center gap-3 rounded-3xl border border-black shadow-lg"
             >
                 <input
                     type="text"
@@ -57,9 +58,9 @@ function SearchBar(props: PropsInterface) {
                         className="w-5 h-5 text-slate-400"
                     />
                 </button>
-                {user && (
+                {user ? (
                     <Menu as="div" className="relative inline-block text-left">
-                        <Menu.Button className="flex items-center">
+                        <Menu.Button className="flex items-center mr-2">
                             <img
                                 src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
                                 alt="profile picture"
@@ -102,18 +103,25 @@ function SearchBar(props: PropsInterface) {
                             </div>
                         </Menu.Items>
                     </Menu>
+                ) : (
+                    <Link
+                        href="/login"
+                        className="flex items-center bg-primary rounded-3xl border border-black h-full px-3 py-1"
+                    >
+                        Log in
+                    </Link>
                 )}
             </div>
         )
     else
         return (
-            <div className="pointer-events-auto absolute z-30 top-8 right-3 px-4 py-3 flex items-center justify-end gap-3">
+            <div className="pointer-events-auto absolute z-30 top-8 right-3 px-2 py-3 flex items-center justify-end gap-3">
                 <button onClick={() => setShowFullSearchBar(true)}>
                     <Icon icon="material-symbols:search" className="w-6 h-6" />
                 </button>
-                {user && (
+                {user ? (
                     <Menu as="div" className="relative inline-block text-left">
-                        <Menu.Button className="flex items-center">
+                        <Menu.Button className="flex items-center mr-2">
                             <img
                                 src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
                                 alt="profile picture"
@@ -156,6 +164,13 @@ function SearchBar(props: PropsInterface) {
                             </div>
                         </Menu.Items>
                     </Menu>
+                ) : (
+                    <Link
+                        href="/login"
+                        className="flex items-center bg-primary rounded-3xl border border-black h-full px-3 py-1"
+                    >
+                        Log in
+                    </Link>
                 )}
             </div>
         )

@@ -136,60 +136,65 @@ const AppLayer = (props: PropsInterface) => {
             {/* {selectedLineSegment === null && isMobile && (
             )} */}
             <SearchBar isMobile={isMobile} />
-            {!isPickingLocation ? (
-                <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto">
-                    <button
-                        onClick={pickLocation}
-                        className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
-                    >
-                        <Icon
-                            icon="material-symbols:add-location-outline"
-                            className="w-6 h-6"
-                        />
-                    </button>
-                </div>
-            ) : (
-                <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
-                    {pickedCoordinates ? (
-                        <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
-                            {center.lat}, {center.lng}
+            {user && (
+                <>
+                    {!isPickingLocation ? (
+                        <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto">
+                            <button
+                                onClick={pickLocation}
+                                className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
+                            >
+                                <Icon
+                                    icon="material-symbols:add-location-outline"
+                                    className="w-6 h-6"
+                                />
+                            </button>
                         </div>
                     ) : (
-                        <div className="p-2 border-4 rounded-md border-black bg-primary">
-                            <h1 className="sm:text-3xl text-xl font-bold">
-                                Pick a location
-                            </h1>
+                        <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
+                            {pickedCoordinates ? (
+                                <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
+                                    {center.lat}, {center.lng}
+                                </div>
+                            ) : (
+                                <div className="p-2 border-4 rounded-md border-black bg-primary">
+                                    <h1 className="sm:text-3xl text-xl font-bold">
+                                        Pick a location
+                                    </h1>
+                                </div>
+                            )}
+                            <div className="flex gap-3 mr-12">
+                                <button
+                                    onClick={cancelPickLocation}
+                                    className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        resetFeatureStyles()
+                                        handleSaveLocation()
+                                        setShowAnnotationForm(true)
+                                    }}
+                                    disabled={!pickedCoordinates}
+                                    className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
+                                    ${
+                                        !pickedCoordinates
+                                            ? 'opacity-50 cursor-not-allowed hover:-translate-x-0 hover:-translate-y-0 hover:shadow-none'
+                                            : ''
+                                    }`}
+                                >
+                                    <Icon
+                                        icon="material-symbols:check"
+                                        className="w-6 h-6"
+                                    />
+                                </button>
+                            </div>
                         </div>
                     )}
-                    <div className="flex gap-3 mr-12">
-                        <button
-                            onClick={cancelPickLocation}
-                            className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            onClick={() => {
-                                resetFeatureStyles()
-                                handleSaveLocation()
-                                setShowAnnotationForm(true)
-                            }}
-                            disabled={!pickedCoordinates}
-                            className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
-                                ${
-                                    !pickedCoordinates
-                                        ? 'opacity-50 cursor-not-allowed hover:-translate-x-0 hover:-translate-y-0 hover:shadow-none'
-                                        : ''
-                                }`}
-                        >
-                            <Icon
-                                icon="material-symbols:check"
-                                className="w-6 h-6"
-                            />
-                        </button>
-                    </div>
-                </div>
+                </>
             )}
+
             {showAnnotationForm && pickedCoordinates && (
                 <AnnotationForm
                     pickedCoordinates={pickedCoordinates}
