@@ -36,6 +36,7 @@ interface PropsInterface {
 }
 
 const AppLayer = (props: PropsInterface) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { user, getUser } = useAuthStore()
     const {
         center,

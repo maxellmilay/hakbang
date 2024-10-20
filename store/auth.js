@@ -67,6 +67,17 @@ const useAuthStore = create((set) => ({
         const user = await getUserProfile()
         set({ user: user })
     },
+    checkUsernameAvailability: async (username) => {
+        const filters = { username: username }
+        try {
+            const response = await api.get('username-and-email-checker/', {
+                params: filters,
+            })
+            return response.data.total_count === 0
+        } catch (error) {
+            throw error.response.data
+        }
+    },
 }))
 
 export default useAuthStore
