@@ -170,6 +170,66 @@ const MapComponent = (props: PropsInterface) => {
         }
     }
 
+    useEffect(() => {
+        if (selectedLineSegment && dataLayer) {
+            dataLayer.forEach((feature: google.maps.Data.Feature) => {
+                const geometry = feature.getGeometry()
+                if (geometry && geometry.getType() === 'LineString') {
+                    const lineString = geometry as google.maps.Data.LineString
+                    const coordinates = lineString
+                        .getArray()
+                        .map((latLng: google.maps.LatLng) => ({
+                            lat: latLng.lat(),
+                            lng: latLng.lng(),
+                        }))
+
+                    const lineSegment = {
+                        start: coordinates[0],
+                        end: coordinates[1],
+                    }
+
+                    const isMatch =
+                        lineSegment.start.lat ==
+                            selectedLineSegment.start.lat &&
+                        lineSegment.start.lng ==
+                            selectedLineSegment.start.lng &&
+                        lineSegment.end.lat == selectedLineSegment.end.lat &&
+                        lineSegment.end.lng == selectedLineSegment.end.lng
+
+                    if (isMatch) {
+                        // Get the current stroke color from the feature's properties
+                        const strokeColor =
+                            (feature.getProperty(
+                                'originalStrokeColor'
+                            ) as string) || '#8f9691'
+
+                        // Store the original stroke color to revert back later
+                        setPreviousColor(strokeColor)
+
+                        // Override the style of the closest feature to make it blue and ensure it's on top with a higher zIndex
+                        dataLayer.overrideStyle(feature, {
+                            strokeColor: '#0000FF', // Blue color for the highlighted feature
+                            strokeWeight: 25,
+                            zIndex: 1000, // Ensure it appears on top
+                        })
+
+                        setPickedLineSegment(extractFeatureCoordinates(feature))
+
+                        // Update the highlighted feature state
+                        setHighlightedFeature(feature)
+                    }
+
+                    if (highlightedFeature) {
+                        if (highlightedFeature === feature) return
+                        resetFeatureStyles()
+                    }
+                }
+            })
+        } else {
+            resetFeatureStyles()
+        }
+    }, [selectedLineSegment])
+
     const handleDragEnd = () => {
         if (isPickingLocation && mapRef.current && dataLayer) {
             const currentCenter = new google.maps.LatLng(center)

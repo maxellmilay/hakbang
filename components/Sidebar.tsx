@@ -12,14 +12,16 @@ interface PropsInterface {
     isPickingLocation: boolean
 }
 
+interface Annotation {
+    id: number
+    level: number
+    name: string
+    lineSegment: MapLineSegment
+}
+
 interface AnnotationItem {
     date: string
-    annotations: {
-        id: number
-        level: number
-        name: string
-        lineSegment: MapLineSegment
-    }[]
+    annotations: Annotation[]
 }
 
 function Sidebar(props: PropsInterface) {
@@ -138,6 +140,10 @@ function Sidebar(props: PropsInterface) {
         setExpandSidebar(!expand)
     }
 
+    const inspectAnnotation = (annotation: Annotation) => {
+        setSelectedLineSegment(annotation.lineSegment)
+    }
+
     return (
         <div>
             <div className="z-20 top-[26px] left-[26px] absolute flex gap-6 p-3 items-center">
@@ -190,9 +196,7 @@ function Sidebar(props: PropsInterface) {
                                 {set.annotations.map((annotation, index) => (
                                     <button
                                         onClick={() =>
-                                            setSelectedLineSegment(
-                                                annotation.lineSegment
-                                            )
+                                            inspectAnnotation(annotation)
                                         }
                                         key={index}
                                         className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary"
