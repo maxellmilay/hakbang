@@ -221,6 +221,7 @@ const AppLayer = (props: PropsInterface) => {
                             selectedAnnotationId={selectedAnnotationId}
                             setSelectedLineSegment={setSelectedLineSegment}
                             closeAnnotationDetails={closeAnnotationDetails}
+                            useLineSegmentId={false}
                         />
                     </motion.div>
                 )}

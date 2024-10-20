@@ -12,15 +12,17 @@ interface PropsInterface {
     closeAnnotationDetails: () => void
     selectedAnnotationId: number
     setSelectedAnnotationId: Dispatch<SetStateAction<number | null>>
+    useLineSegmentId: boolean
 }
 
 function AnnotationDetails(props: PropsInterface) {
-    const { getAnnotationDetails } = useAnnotationStore()
+    const { getAnnotationDetails, getAnnotations } = useAnnotationStore()
     const {
         selectedAnnotationId,
         closeAnnotationDetails,
         setSelectedLineSegment,
         setSelectedAnnotationId,
+        useLineSegmentId,
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
@@ -65,11 +67,22 @@ function AnnotationDetails(props: PropsInterface) {
         if (selectedAnnotationId) {
             setIsLoading(true)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            getAnnotationDetails(selectedAnnotationId).then((res: any) => {
-                console.log(res)
-                setSelectedLineSegmentAnnotation(res)
-                setIsLoading(false)
-            })
+            if (!useLineSegmentId) {
+                getAnnotationDetails(selectedAnnotationId).then((res: any) => {
+                    console.log(res)
+                    setSelectedLineSegmentAnnotation(res)
+                    setIsLoading(false)
+                })
+            } else {
+                const filters = {
+                    location_id: setSelectedLineSegment.id,
+                }
+
+                getAnnotations(filters).then((res: any) => {
+                    setSelectedLineSegmentAnnotation(res.objects[0])
+                    setIsLoading(false)
+                })
+            }
         }
     }, [])
 

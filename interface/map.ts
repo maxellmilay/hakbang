@@ -4,8 +4,14 @@ export interface MapCoordinate {
 }
 
 export interface MapLineSegment {
-    start: MapCoordinate
-    end: MapCoordinate
+    id: number
+    start_coordinates: MapCoordinate
+    end_coordinates: MapCoordinate
+    accessibility_score: number
+    adjacent_street: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any
+    removed?: boolean
 }
 
 export interface JSONFeature {
