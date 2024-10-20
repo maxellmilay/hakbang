@@ -158,7 +158,7 @@ const MapComponent = (props: PropsInterface) => {
             })
             map.fitBounds(bounds)
         }
-    }, [isMapLoaded, geojsonData, isPickingLocation])
+    }, [isMapLoaded, geojsonData])
 
     const resetFeatureStyles = () => {
         if (dataLayer && highlightedFeature) {
@@ -169,6 +169,71 @@ const MapComponent = (props: PropsInterface) => {
             })
         }
     }
+
+    useEffect(() => {
+        if (selectedLineSegment && dataLayer) {
+            let matchedFeature: google.maps.Data.Feature | null = null
+
+            // Collect all features into an array
+            const features: google.maps.Data.Feature[] = []
+            dataLayer.forEach((feature: google.maps.Data.Feature) => {
+                features.push(feature)
+            })
+
+            // Use a for-of loop for better type inference
+            for (const feature of features) {
+                const geometry = feature.getGeometry()
+                if (geometry && geometry.getType() === 'LineString') {
+                    const lineString = geometry as google.maps.Data.LineString
+                    const coordinates = lineString
+                        .getArray()
+                        .map((latLng: google.maps.LatLng) => ({
+                            lat: latLng.lat(),
+                            lng: latLng.lng(),
+                        }))
+
+                    const lineSegment = {
+                        start: coordinates[0],
+                        end: coordinates[1],
+                    }
+
+                    const isMatch =
+                        lineSegment.start.lat ===
+                            selectedLineSegment.start.lat &&
+                        lineSegment.start.lng ===
+                            selectedLineSegment.start.lng &&
+                        lineSegment.end.lat === selectedLineSegment.end.lat &&
+                        lineSegment.end.lng === selectedLineSegment.end.lng
+
+                    if (isMatch) {
+                        matchedFeature = feature
+                        break // Exit the loop since we've found our match
+                    }
+                }
+            }
+
+            // Reset previous highlight if necessary
+            if (highlightedFeature && highlightedFeature !== matchedFeature) {
+                resetFeatureStyles()
+            }
+
+            if (matchedFeature) {
+                // Highlight the matched feature
+                dataLayer.overrideStyle(matchedFeature, {
+                    strokeColor: '#0000FF', // Blue color for the highlighted feature
+                    strokeWeight: 25,
+                    zIndex: 1000, // Ensure it appears on top
+                })
+
+                setPickedLineSegment(extractFeatureCoordinates(matchedFeature))
+
+                // Update the highlighted feature state
+                setHighlightedFeature(matchedFeature)
+            }
+        } else {
+            resetFeatureStyles()
+        }
+    }, [selectedLineSegment])
 
     const handleDragEnd = () => {
         if (isPickingLocation && mapRef.current && dataLayer) {
@@ -249,6 +314,11 @@ const MapComponent = (props: PropsInterface) => {
         }
     }
 
+    const handleMapClick = () => {
+        resetFeatureStyles()
+        setSelectedLineSegment(null)
+    }
+
     return (
         <div className="w-full">
             <AppLayer
@@ -288,6 +358,7 @@ const MapComponent = (props: PropsInterface) => {
                         : () => {}
                 }
                 onDragEnd={handleDragEnd}
+                onClick={handleMapClick}
             >
                 {isPickingLocation && <Marker position={center} />}
             </GoogleMap>

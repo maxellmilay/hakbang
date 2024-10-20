@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { MapLineSegment } from '@/interface/map'
@@ -6,15 +6,25 @@ import { fetchAnnotationDetails } from '@/tests/mock-api/mock-annotation-api'
 
 interface PropsInterface {
     selectedLineSegment: MapLineSegment
+    setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     closeAnnotationDetails: () => void
 }
 
 function AnnotationDetails(props: PropsInterface) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { selectedLineSegment, closeAnnotationDetails } = props
+    const {
+        selectedLineSegment,
+        closeAnnotationDetails,
+        setSelectedLineSegment,
+    } = props
 
     const selectedLineSegmentAnnotation =
         fetchAnnotationDetails(selectedLineSegment)
+
+    const close = () => {
+        closeAnnotationDetails()
+        setSelectedLineSegment(null)
+    }
 
     return (
         <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
@@ -24,7 +34,7 @@ function AnnotationDetails(props: PropsInterface) {
                         {selectedLineSegmentAnnotation.name}
                     </h1>
                     <button
-                        onClick={closeAnnotationDetails}
+                        onClick={close}
                         className="bg-primary rounded-md border-2 border-black
                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                     >
