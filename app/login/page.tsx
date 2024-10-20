@@ -65,7 +65,7 @@ function Page() {
                 </div>
                 <div className="flex flex-col gap-3 py-2">
                     <TextField
-                        label="Email or Username"
+                        label="Username"
                         variant="outlined"
                         size="small"
                     />
@@ -77,7 +77,7 @@ function Page() {
                     />
                     {incorrect && !isLoading && (
                         <p className="text-red-500 text-sm">
-                            Incorrect email or password
+                            Incorrect username or password
                         </p>
                     )}
                     {hasMaxAttempt && (

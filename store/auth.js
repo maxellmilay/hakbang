@@ -1,24 +1,24 @@
 import { create } from 'zustand'
+import { login, logout, register, getUserProfile } from '../utils/auth'
 
 const useAuthStore = create((set) => ({
     user: null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    login: async (credentials, password) => {
-        // login logic
-        set({ user: { name: 'John Doe' } })
+    login: async (username, password) => {
+        const credentials = { username, password }
+        const user = await login(credentials)
+        set({ user: user })
     },
     logout: async () => {
-        // logout logic
         set({ user: null })
+        await logout()
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     register: async (data) => {
-        // register logic
-        set({ user: { name: 'John Doe' } })
+        const user = await register(data)
+        set({ user: user })
     },
     getUser: async () => {
-        // get user logic
-        set({ user: { name: 'John Doe' } })
+        const user = await getUserProfile()
+        set({ user: user })
     },
 }))
 
