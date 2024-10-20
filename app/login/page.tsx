@@ -2,18 +2,29 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import TextField from '@mui/material/TextField'
+import useAuthStore from '@/store/auth'
 
 function Page() {
+    const { user, login, logout } = useAuthStore()
+    const router = useRouter()
+
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const [incorrect, setIncorrect] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [hasMaxAttempt, setHasMaxAttempt] = useState(false)
+
+    const clearFailedLogin = () => {
+        localStorage.setItem('failedLoginCount', '0')
+    }
 
     const checkFailedLogin = () => {
         const maxAttempt = 10 // this is temporary
         const count = localStorage.getItem('failedLoginCount')
         if (count === null) {
-            localStorage.setItem('failedLoginCount', '0')
+            clearFailedLogin()
             return true
         }
         if (parseInt(count) >= maxAttempt) {
@@ -34,16 +45,29 @@ function Page() {
         )
     }
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!checkFailedLogin()) {
+            console.error('Max attempt reached')
             setHasMaxAttempt(true)
             return
         }
+        if (username.trim() === '' || password.trim() === '') {
+            console.error('Username or password is empty')
+            setIncorrect(true)
+            return
+        }
         setIsLoading(true)
-        setTimeout(() => {
+        try {
+            await login(username, password)
+            clearFailedLogin()
+            router.push('/')
+        } catch (error) {
+            console.log('hereee')
+            console.error(error)
+            incrementFailedLogin()
             setIncorrect(true)
             setIsLoading(false)
-        }, 1000)
+        }
     }
 
     return (
@@ -68,12 +92,14 @@ function Page() {
                         label="Username"
                         variant="outlined"
                         size="small"
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <TextField
                         label="Password"
                         variant="outlined"
                         size="small"
                         type="password"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     {incorrect && !isLoading && (
                         <p className="text-red-500 text-sm">

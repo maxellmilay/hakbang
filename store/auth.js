@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { login, logout, register, getUserProfile } from '../utils/auth'
+import { login, logout, register, getUserProfile } from '@/utils/auth'
 
 const useAuthStore = create((set) => ({
     user: null,
