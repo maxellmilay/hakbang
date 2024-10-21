@@ -47,7 +47,7 @@ function AnnotationForm(props: PropsInterface) {
         { checked: false, label: 'Accessible parking' },
     ])
 
-    const uploadImage = async (file, fileName) => {
+    const uploadImage = async (file: Blob, fileName: string) => {
         if (!file) {
             console.error('No file selected')
             return
@@ -131,7 +131,7 @@ function AnnotationForm(props: PropsInterface) {
         try {
             const uploadedUrls = await uploadImages()
             console.log('All uploaded URLs:', uploadedUrls)
-            saveAnnotation(pickedLineSegment, uploadedUrls)
+            saveAnnotation(pickedLineSegment)
         } catch (error) {
             console.error('Error in save function:', error)
         } finally {
