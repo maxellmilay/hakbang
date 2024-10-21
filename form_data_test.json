@@ -1,0 +1,43 @@
+{
+    "sidewalk_width": 32,
+    "accessibility": [
+        {
+            "label": "ramp",
+            "checked": false
+        },
+        {
+            "label": "tactile_paving",
+            "checked": false
+        },
+        {
+            "label": "curb_cut",
+            "checked": false
+        },
+        {
+            "label": "wide_crosswalk",
+            "checked": false
+        },
+        {
+            "label": "audible_signals",
+            "checked": false
+        },
+        {
+            "label": "braille_signage",
+            "checked": false
+        },
+        {
+            "label": "accessible_parking",
+            "checked": false
+        }
+    ],
+    "obstructions": [
+        "construction",
+        "vehicle",
+        "pedestrian",
+        "signage",
+        "vegetation",
+        "furniture",
+        "other"
+    ],
+    "comments": "This is a test comment."
+}

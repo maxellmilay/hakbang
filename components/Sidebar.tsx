@@ -41,13 +41,14 @@ function Sidebar(props: PropsInterface) {
     } = props
 
     const getColor = (level: number) => {
-        if (level >= 0 && level < 20) {
+        console.log(level)
+        if (level >= 0 && level < 0.2) {
             return 5
-        } else if (level >= 20 && level < 40) {
+        } else if (level >= 0.2 && level < 0.4) {
             return 4
-        } else if (level >= 40 && level < 60) {
+        } else if (level >= 0.4 && level < 0.6) {
             return 3
-        } else if (level >= 60 && level < 80) {
+        } else if (level >= 0.6 && level < 0.8) {
             return 2
         } else {
             return 1
@@ -77,7 +78,9 @@ function Sidebar(props: PropsInterface) {
 
             acc[dateKey].push({
                 id: annotation.id,
-                level: getColor(annotation.location.accessibility_score),
+                level: getColor(
+                    parseFloat(annotation.location.accessibility_score)
+                ),
                 name: annotation.name,
                 lineSegment: {
                     id: annotation.location.id,
