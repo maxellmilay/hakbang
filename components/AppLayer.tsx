@@ -91,6 +91,11 @@ const AppLayer = (props: PropsInterface) => {
         setSelectedLineSegment(null)
     }
 
+    const disableConfirmButton =
+        !pickedCoordinates ||
+        !pickedLineSegment ||
+        Object.keys(pickedLineSegment).length === 0
+
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth
@@ -179,14 +184,10 @@ const AppLayer = (props: PropsInterface) => {
                                 </button>
                                 <button
                                     onClick={confirmLocation}
-                                    disabled={
-                                        !pickedCoordinates ||
-                                        !selectedLineSegment
-                                    }
+                                    disabled={disableConfirmButton}
                                     className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
                                     ${
-                                        !pickedCoordinates ||
-                                        !selectedLineSegment
+                                        disableConfirmButton
                                             ? 'opacity-50 cursor-not-allowed hover:-translate-x-0 hover:-translate-y-0 hover:shadow-none'
                                             : ''
                                     }`}
