@@ -31,7 +31,7 @@ interface PropsInterface {
     }
     resetFeatureStyles: () => void
     pickedLineSegment: MapLineSegment
-    setPickedLineSegment: Dispatch<SetStateAction<MapLineSegment>>
+    setPickedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     selectedLineSegment: MapLineSegment | null
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
 }
