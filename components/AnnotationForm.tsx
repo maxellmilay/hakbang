@@ -33,7 +33,6 @@ function AnnotationForm(props: PropsInterface) {
         createFile,
         createAnnotation,
         createAnnotationImage,
-        updateLocation,
         getLocations,
         checkAnnotationNameAvailability,
     } = useAnnotationStore()
@@ -234,13 +233,6 @@ function AnnotationForm(props: PropsInterface) {
                     }
                 })
             )
-
-            const locationData = {
-                ...pickedLineSegment, // temp (missing id)
-                accessibility_score: choosenWalkabilityIndex * 0.2,
-            }
-
-            await updateLocation(locationData)
 
             saveAnnotation(pickedLineSegment)
         } catch (error) {
