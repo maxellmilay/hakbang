@@ -124,12 +124,12 @@ function Page() {
                         {isLoading ? 'Loading...' : 'Login'}
                     </button>
                 </form>
-                <p className="text-center">
+                {/* <p className="text-center">
                     Don&apos;t have an account?{' '}
                     <span className="text-primary-dark cursor-pointer">
                         Sign up
                     </span>
-                </p>
+                </p> */}
             </div>
         </div>
     )
