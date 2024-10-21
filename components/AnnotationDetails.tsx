@@ -184,8 +184,8 @@ function AnnotationDetails(props: PropsInterface) {
                                         {annotationDetails.annotator.full_name}
                                     </span>
                                 </p>
-                                <div className="flex gap-5">
-                                    <p className="text-slate-600 text-sm">
+                                <div className="flex gap-5 bg-gray-100 p-2 rounded-md">
+                                    <p className="text-slate-600 text-xs sm:text-sm">
                                         Start Coordinates: <br /> (
                                         {
                                             annotationDetails.location
@@ -198,7 +198,7 @@ function AnnotationDetails(props: PropsInterface) {
                                         }{' '}
                                         )
                                     </p>
-                                    <p className="text-slate-600 text-sm">
+                                    <p className="text-slate-600 text-xs sm:text-sm">
                                         End Coordinates: <br />(
                                         {
                                             annotationDetails.location
