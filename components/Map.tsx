@@ -283,6 +283,18 @@ const MapComponent = (props: PropsInterface) => {
                     zIndex: 1000, // Ensure it appears on top
                 })
 
+                const lineSegment = extractFeatureCoordinates(matchedFeature)
+
+                const lineSegmentCenter = getLineSegmentCenter(lineSegment)
+
+                if (mapRef.current) {
+                    console.log('Panning to:', lineSegmentCenter) // Log for debugging
+                    mapRef.current.setCenter({
+                        lat: lineSegmentCenter.latitude,
+                        lng: lineSegmentCenter.longitude,
+                    })
+                }
+
                 setPickedLineSegment(extractFeatureCoordinates(matchedFeature))
 
                 // Update the highlighted feature state
