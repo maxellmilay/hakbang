@@ -84,6 +84,13 @@ const AppLayer = (props: PropsInterface) => {
         }
     }
 
+    const confirmLocation = () => {
+        resetFeatureStyles()
+        handleSaveLocation()
+        setShowAnnotationForm(true)
+        setSelectedLineSegment(null)
+    }
+
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth
@@ -171,11 +178,7 @@ const AppLayer = (props: PropsInterface) => {
                                     Cancel
                                 </button>
                                 <button
-                                    onClick={() => {
-                                        resetFeatureStyles()
-                                        handleSaveLocation()
-                                        setShowAnnotationForm(true)
-                                    }}
+                                    onClick={confirmLocation}
                                     disabled={!pickedCoordinates}
                                     className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
                                     ${
@@ -216,6 +219,7 @@ const AppLayer = (props: PropsInterface) => {
                             selectedLineSegment={selectedLineSegment}
                             setSelectedLineSegment={setSelectedLineSegment}
                             closeAnnotationDetails={closeAnnotationDetails}
+                            confirmLocation={confirmLocation}
                         />
                     </motion.div>
                 )}
