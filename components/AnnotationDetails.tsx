@@ -59,13 +59,29 @@ function AnnotationDetails(props: PropsInterface) {
     }
 
     useEffect(() => {
-        const id = selectedLineSegment?.id
-        if (!id) {
+        console.log(selectedLineSegment)
+        const location__start_coordinates__latitude =
+            selectedLineSegment?.start_coordinates.latitude.toString()
+        const location__start_coordinates__longitude =
+            selectedLineSegment?.start_coordinates.longitude.toString()
+        const location__end_coordinates__latitude =
+            selectedLineSegment?.end_coordinates.latitude.toString()
+        const location__end_coordinates__longitude =
+            selectedLineSegment?.end_coordinates.longitude.toString()
+        if (
+            !location__start_coordinates__latitude ||
+            !location__start_coordinates__longitude ||
+            !location__end_coordinates__latitude ||
+            !location__end_coordinates__longitude
+        ) {
             setIsLoading(false)
             return
         }
         const filters = {
-            location_id: id,
+            location__start_coordinates__latitude,
+            location__start_coordinates__longitude,
+            location__end_coordinates__latitude,
+            location__end_coordinates__longitude,
         }
 
         getAnnotations(filters)
