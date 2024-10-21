@@ -92,9 +92,36 @@ const useAnnotationStore = create((set) => ({
         }
     },
 
-    getLocation: async (id) => {
+    getLocationDetails: async (id) => {
         try {
             const response = await api.get(`locations/${id}/`)
+            return response.data
+        } catch (error) {
+            throw error.response.data
+        }
+    },
+
+    updateLocation: async (id, data) => {
+        try {
+            const response = await api.put(`locations/${id}/`, data)
+            return response.data
+        } catch (error) {
+            throw error.response.data
+        }
+    },
+
+    createLocation: async (data) => {
+        try {
+            const response = await api.post('locations/', data)
+            return response.data
+        } catch (error) {
+            throw error.response.data
+        }
+    },
+
+    deleteLocation: async (id) => {
+        try {
+            const response = await api.delete(`locations/${id}/`)
             return response.data
         } catch (error) {
             throw error.response.data
@@ -122,6 +149,15 @@ const useAnnotationStore = create((set) => ({
     },
 
     createAnnotation: async (data) => {
+        /*
+        Required fields:
+        - location_id
+        - annotator_id
+        - form_template_id
+        - coordinates_id
+        - name
+        - form_data (json)
+        */
         try {
             const response = await api.post('annotations/', data)
             return response.data

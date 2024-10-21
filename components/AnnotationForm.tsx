@@ -10,6 +10,11 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { MapLineSegment } from '@/interface/map'
 import StaticMap from './StaticMap'
 
+import useAnnotationStore from '@/store/annotation'
+import useAuthStore from '@/store/auth'
+
+import formDataTest from '@/form_data_test.json'
+
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,6 +28,14 @@ interface PropsInterface {
 
 function AnnotationForm(props: PropsInterface) {
     const {
+        createFile,
+        createAnnotation,
+        createAnnotationImage,
+        updateLocation,
+    } = useAnnotationStore()
+    const { user } = useAuthStore()
+
+    const {
         pickedCoordinates,
         setShowAnnotationForm,
         saveAnnotation,
@@ -33,6 +46,7 @@ function AnnotationForm(props: PropsInterface) {
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0)
     const [images, setImages] = useState<string[]>([])
     const [isSaving, setIsSaving] = useState(false)
+    const [title, setTitle] = useState('')
 
     const [accessibilityFeatures, setAccessibilityFeatures] = useState([
         { checked: false, label: 'Ramp' },
@@ -127,10 +141,55 @@ function AnnotationForm(props: PropsInterface) {
     }
 
     const save = async () => {
+        return
         setIsSaving(true)
         try {
-            const uploadedUrls = await uploadImages()
+            const uploadedUrls = (await uploadImages()) || []
             console.log('All uploaded URLs:', uploadedUrls)
+            const files_id = await Promise.all(
+                uploadedUrls.map(async (url) => {
+                    try {
+                        const res = await createFile({ url })
+                        return res.id
+                    } catch (error) {
+                        console.error('Error in createFile function:', error)
+                    }
+                })
+            )
+
+            const annotationData = {
+                location_id: 1, // temp
+                annotator_id: user.id,
+                form_template_id: 1, // temp
+                coordinates_id: 1, // temp
+                name: title,
+                form_data: formDataTest,
+            }
+
+            const annotation = await createAnnotation(annotationData)
+            await Promise.all(
+                files_id.map(async (file_id) => {
+                    try {
+                        await createAnnotationImage({
+                            annotation_id: annotation.id,
+                            file_id,
+                        })
+                    } catch (error) {
+                        console.error(
+                            'Error in createAnnotationImage function:',
+                            error
+                        )
+                    }
+                })
+            )
+
+            const locationData = {
+                ...pickedLineSegment,
+                accessibility_score: choosenWalkabilityIndex * 0.2,
+            }
+
+            await updateLocation(locationData)
+
             saveAnnotation(pickedLineSegment)
         } catch (error) {
             console.error('Error in save function:', error)
@@ -201,6 +260,7 @@ function AnnotationForm(props: PropsInterface) {
                         label="Annotation title"
                         variant="outlined"
                         size="small"
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                     {/* <TextField
                         label="Annotated by"
