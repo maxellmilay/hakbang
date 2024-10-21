@@ -167,7 +167,7 @@ function AnnotationDetails(props: PropsInterface) {
                             </button>
                         </div>
 
-                        <div className="flex flex-col overflow-y-auto custom-scrollbar gap-2 grow">
+                        <div className="flex flex-col overflow-y-auto overflow-x-hidden custom-scrollbar gap-2 grow">
                             <div className="flex flex-col px-3">
                                 <p>
                                     Nearest Street:{' '}
