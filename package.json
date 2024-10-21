@@ -9,7 +9,9 @@
         "start": "next start",
         "lint": "next lint",
         "geojson": "node scripts/split-linestring.js",
-        "distance": "node scripts/test-distance.js"
+        "distance": "node scripts/test-distance.js",
+        "nearest-places": "node scripts/extract-nearest-places.js",
+        "weather": "node scripts/extract-weather.js"
     },
     "dependencies": {
         "@aws-sdk/client-s3": "^3.675.0",
