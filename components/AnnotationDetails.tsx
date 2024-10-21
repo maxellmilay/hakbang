@@ -22,6 +22,7 @@ function AnnotationDetails(props: PropsInterface) {
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
+    const [noAnnotation, setNoAnnotation] = useState(false)
     const [annotationDetails, setSelectedLineSegmentAnnotation] =
         useState<any>(null)
 
@@ -88,6 +89,9 @@ function AnnotationDetails(props: PropsInterface) {
             .then((res: any) => {
                 if (res.total_count !== 0) {
                     setSelectedLineSegmentAnnotation(res.objects[0])
+                    setNoAnnotation(false)
+                } else {
+                    setNoAnnotation(true)
                 }
             })
             .catch((err: any) => {
@@ -120,7 +124,24 @@ function AnnotationDetails(props: PropsInterface) {
                             </button>
                         </div>
                         <div className="flex justify-center items-center h-full">
-                            <h1>404 Not found</h1>
+                            {!noAnnotation ? (
+                                <h1>404 Not found</h1>
+                            ) : (
+                                <div className="flex flex-col gap-3 items-center">
+                                    <h1 className="text-lg font-bold">
+                                        No annotations found
+                                    </h1>
+                                    <button className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]">
+                                        <Icon
+                                            icon="material-symbols:add-location-outline"
+                                            className="w-6 h-6"
+                                        />
+                                        <p className="font-medium">
+                                            Add annotation
+                                        </p>
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </>
                 ) : (
