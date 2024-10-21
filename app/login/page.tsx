@@ -59,7 +59,7 @@ function Page() {
         }
         setIsLoading(true)
         try {
-            await login(username, password)
+            await login(username.trim().toLowerCase(), password)
             clearFailedLogin()
             router.push('/')
         } catch (error) {
