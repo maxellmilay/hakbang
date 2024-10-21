@@ -1,7 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import debounce from 'lodash.debounce'
+
 import { Icon } from '@iconify/react'
 import TextField from '@mui/material/TextField'
 import Divider from '@mui/material/Divider'
@@ -33,6 +35,7 @@ function AnnotationForm(props: PropsInterface) {
         createAnnotationImage,
         updateLocation,
         getLocations,
+        checkAnnotationNameAvailability,
     } = useAnnotationStore()
     const { user } = useAuthStore()
 
@@ -47,7 +50,31 @@ function AnnotationForm(props: PropsInterface) {
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0)
     const [images, setImages] = useState<string[]>([])
     const [isSaving, setIsSaving] = useState(false)
+
     const [title, setTitle] = useState('')
+    const [isTyping, setIsTyping] = useState(false)
+    const [isTitleAvailable, setIsTitleAvailable] = useState(true)
+
+    const disableSave = !title || !isTitleAvailable || isTyping
+
+    const checkTitleAvailability = debounce(async (title: string) => {
+        if (!title) {
+            setIsTitleAvailable(true)
+            return
+        }
+        const isAvailable = await checkAnnotationNameAvailability(title)
+        console.log(isAvailable, 'here')
+        setIsTitleAvailable(isAvailable)
+    }, 500)
+
+    useEffect(() => {
+        const check = async () => {
+            setIsTyping(true)
+            await checkTitleAvailability(title)
+            setIsTyping(false)
+        }
+        check()
+    }, [title])
 
     const [accessibilityFeatures, setAccessibilityFeatures] = useState([
         { checked: false, label: 'Ramp' },
@@ -287,6 +314,11 @@ function AnnotationForm(props: PropsInterface) {
                         size="small"
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    {!isTitleAvailable && (
+                        <p className="text-red-500 text-sm">
+                            Annotation title is already taken
+                        </p>
+                    )}
                     {/* <TextField
                         label="Annotated by"
                         variant="outlined"
@@ -415,10 +447,10 @@ function AnnotationForm(props: PropsInterface) {
                     </button>
                     <button
                         onClick={save}
-                        disabled={isSaving}
+                        disabled={isSaving || disableSave}
                         className={`flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
                                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]
-                                    ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    ${isSaving || disableSave ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
                         <Icon
                             icon="material-symbols:check"
