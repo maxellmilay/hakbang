@@ -36,9 +36,8 @@ const MapComponent = (props: PropsInterface) => {
     const [center, setCenter] = useState(defaultMapCenter)
 
     const [pickedCoordinates, setPickedCoordinates] = useState(defaultMapCenter)
-    const [pickedLineSegment, setPickedLineSegment] = useState(
-        {} as MapLineSegment
-    )
+    const [pickedLineSegment, setPickedLineSegment] =
+        useState<MapLineSegment | null>(null)
 
     const [dataLayer, setDataLayer] = useState<google.maps.Data | null>(null)
 
