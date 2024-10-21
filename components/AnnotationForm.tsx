@@ -264,7 +264,7 @@ function AnnotationForm(props: PropsInterface) {
 
     return (
         <div className="absolute right-0 top-0 z-[100] w-lvw h-lvh bg-black/[.7] flex items-center justify-center">
-            <div className="flex flex-col bg-white rounded-md shadow-lg w-[520px] h-[700px]">
+            <div className="flex flex-col bg-white rounded-md shadow-lg w-[520px] h-full max-h-[700px]">
                 <div className="flex items-start justify-between px-6 py-4">
                     <h1 className="font-semibold text-2xl">New annotation</h1>
                     <button
