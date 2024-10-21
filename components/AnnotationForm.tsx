@@ -32,6 +32,7 @@ function AnnotationForm(props: PropsInterface) {
         createAnnotation,
         createAnnotationImage,
         updateLocation,
+        getLocations,
     } = useAnnotationStore()
     const { user } = useAuthStore()
 
@@ -140,6 +141,30 @@ function AnnotationForm(props: PropsInterface) {
         return uploadedUrls
     }
 
+    const getLocationId = async () => {
+        try {
+            const filters = {
+                start_coordinates__latitude:
+                    pickedLineSegment.start_coordinates.latitude.toString(),
+                start_coordinates__longitude:
+                    pickedLineSegment.start_coordinates.longitude.toString(),
+                end_coordinates__latitude:
+                    pickedLineSegment.end_coordinates.latitude.toString(),
+                end_coordinates__longitude:
+                    pickedLineSegment.end_coordinates.longitude.toString(),
+            }
+
+            const locations = await getLocations(filters)
+            if (locations.length > 0) {
+                return locations.objects[0].id
+            }
+            return null
+        } catch (error) {
+            console.error('Error in getLocationId function:', error)
+            return null
+        }
+    }
+
     const save = async () => {
         return
         setIsSaving(true)
@@ -158,7 +183,7 @@ function AnnotationForm(props: PropsInterface) {
             )
 
             const annotationData = {
-                location_id: 1, // temp
+                location_id: await getLocationId(),
                 annotator_id: user.id,
                 form_template_id: 1,
                 coordinates_id: 1, // temp
