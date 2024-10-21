@@ -122,9 +122,7 @@ function Sidebar(props: PropsInterface) {
             if (!user) {
                 await getUser()
             }
-            if (user) {
-                await getSidebarAnnotations()
-            }
+            await getSidebarAnnotations()
             setIsLoading(false)
         }
         fetchData()
