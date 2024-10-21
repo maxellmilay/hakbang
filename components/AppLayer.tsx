@@ -30,7 +30,7 @@ interface PropsInterface {
         longitude: number
     }
     resetFeatureStyles: () => void
-    pickedLineSegment: MapLineSegment
+    pickedLineSegment: MapLineSegment | null
     setPickedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     selectedLineSegment: MapLineSegment | null
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
@@ -206,7 +206,7 @@ const AppLayer = (props: PropsInterface) => {
                 </>
             )}
 
-            {showAnnotationForm && pickedCoordinates && (
+            {showAnnotationForm && pickedCoordinates && pickedLineSegment && (
                 <AnnotationForm
                     pickedCoordinates={pickedCoordinates}
                     setShowAnnotationForm={setShowAnnotationForm}
