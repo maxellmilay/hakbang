@@ -160,10 +160,10 @@ function AnnotationForm(props: PropsInterface) {
             const annotationData = {
                 location_id: 1, // temp
                 annotator_id: user.id,
-                form_template_id: 1, // temp
+                form_template_id: 1,
                 coordinates_id: 1, // temp
                 name: title,
-                form_data: formDataTest,
+                form_data: formDataTest, // temp
             }
 
             const annotation = await createAnnotation(annotationData)
@@ -184,7 +184,7 @@ function AnnotationForm(props: PropsInterface) {
             )
 
             const locationData = {
-                ...pickedLineSegment,
+                ...pickedLineSegment, // temp (missing id)
                 accessibility_score: choosenWalkabilityIndex * 0.2,
             }
 
