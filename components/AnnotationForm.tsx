@@ -192,11 +192,11 @@ function AnnotationForm(props: PropsInterface) {
     }
 
     const save = async () => {
-        return
         setIsSaving(true)
         try {
             const uploadedUrls = (await uploadImages()) || []
             console.log('All uploaded URLs:', uploadedUrls)
+            return
             const files_id = await Promise.all(
                 uploadedUrls.map(async (url) => {
                     try {
