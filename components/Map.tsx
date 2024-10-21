@@ -253,13 +253,13 @@ const MapComponent = (props: PropsInterface) => {
                     }
 
                     const isMatch =
-                        lineSegment.start_coordinates.latitude ===
+                        lineSegment.start_coordinates.latitude ==
                             selectedLineSegment.start_coordinates.latitude &&
-                        lineSegment.start_coordinates.longitude ===
+                        lineSegment.start_coordinates.longitude ==
                             selectedLineSegment.start_coordinates.longitude &&
-                        lineSegment.end_coordinates.latitude ===
+                        lineSegment.end_coordinates.latitude ==
                             selectedLineSegment.end_coordinates.latitude &&
-                        lineSegment.end_coordinates.longitude ===
+                        lineSegment.end_coordinates.longitude ==
                             selectedLineSegment.end_coordinates.longitude
 
                     if (isMatch) {
@@ -276,6 +276,7 @@ const MapComponent = (props: PropsInterface) => {
 
             if (matchedFeature) {
                 // Highlight the matched feature
+                console.log('OVERRIDE')
                 dataLayer.overrideStyle(matchedFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
