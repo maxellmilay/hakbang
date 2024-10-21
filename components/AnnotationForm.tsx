@@ -114,11 +114,6 @@ function AnnotationForm(props: PropsInterface) {
                         variant="outlined"
                         size="small"
                     /> */}
-                    <TextField
-                        label="Sidewalk width"
-                        variant="outlined"
-                        size="small"
-                    />
                     <div className="flex flex-col gap-2">
                         <p className="text-slate-600">Walkability</p>
                         <div className="flex gap-1 flex-wrap text-sm">
@@ -144,6 +139,11 @@ function AnnotationForm(props: PropsInterface) {
                             ))}
                         </div>
                     </div>
+                    <TextField
+                        label="Sidewalk width"
+                        variant="outlined"
+                        size="small"
+                    />
                     <div className="flex flex-col gap-2">
                         <p className="text-slate-600">Accessibility features</p>
                         <div className="flex flex-col px-3 text-sm">
