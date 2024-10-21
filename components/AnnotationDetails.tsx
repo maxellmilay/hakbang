@@ -5,6 +5,8 @@ import { Icon } from '@iconify/react'
 import { MapLineSegment } from '@/interface/map'
 
 import useAnnotationStore from '@/store/annotation'
+import useAuthStore from '@/store/auth'
+
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 
 interface PropsInterface {
@@ -16,6 +18,7 @@ interface PropsInterface {
 
 function AnnotationDetails(props: PropsInterface) {
     const { getAnnotations } = useAnnotationStore()
+    const { user } = useAuthStore()
     const {
         closeAnnotationDetails,
         setSelectedLineSegment,
@@ -128,7 +131,7 @@ function AnnotationDetails(props: PropsInterface) {
                         <div className="flex justify-center items-center h-full">
                             {!noAnnotation ? (
                                 <h1>404 Not found</h1>
-                            ) : (
+                            ) : user !== null ? (
                                 <div className="flex flex-col gap-3 items-center">
                                     <h1 className="text-lg font-bold">
                                         No annotations found
@@ -146,6 +149,8 @@ function AnnotationDetails(props: PropsInterface) {
                                         </p>
                                     </button>
                                 </div>
+                            ) : (
+                                <h1>No Annotation</h1>
                             )}
                         </div>
                     </>
