@@ -32,6 +32,7 @@ function AnnotationForm(props: PropsInterface) {
     const walkabiltyChoices = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor']
     const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0)
     const [images, setImages] = useState<string[]>([])
+    const [isSaving, setIsSaving] = useState(false)
 
     const [accessibilityFeatures, setAccessibilityFeatures] = useState([
         { checked: false, label: 'Ramp' },
@@ -45,6 +46,98 @@ function AnnotationForm(props: PropsInterface) {
         { checked: false, label: 'Lowered counters' },
         { checked: false, label: 'Accessible parking' },
     ])
+
+    const uploadImage = async (file, fileName) => {
+        if (!file) {
+            console.error('No file selected')
+            return
+        }
+
+        const requestBody = {
+            fileName: fileName,
+            fileType: file.type,
+        }
+
+        console.log('Request body:', requestBody)
+
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                throw new Error(
+                    errorData.error || `HTTP error! status: ${response.status}`
+                )
+            }
+
+            const { signedUrl, actualFileUrl } = await response.json()
+            console.log('Signed URL:', signedUrl)
+            console.log('Actual File URL:', actualFileUrl)
+
+            // Now use the signed URL to upload the file to S3
+            const uploadResponse = await fetch(signedUrl, {
+                method: 'PUT',
+                body: file,
+                headers: {
+                    'Content-Type': file.type,
+                },
+                mode: 'cors',
+            })
+
+            if (uploadResponse.ok) {
+                console.log('File uploaded successfully')
+                return actualFileUrl // Return the actual file URL instead of the signed URL
+            } else {
+                throw new Error('Failed to upload file to S3')
+            }
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    }
+
+    const uploadImages = async () => {
+        if (images.length === 0) {
+            return
+        }
+        const uploadedUrls = []
+        for (let i = 0; i < images.length; i++) {
+            const imageUrl = images[i]
+            console.log('Processing image:', imageUrl)
+            try {
+                const response = await fetch(imageUrl)
+                const blob = await response.blob()
+                const fileName = `image_${i + 1}_${Date.now()}.${blob.type.split('/')[1]}`
+                console.log('Created blob:', blob, 'with fileName:', fileName)
+                const actualFileUrl = await uploadImage(blob, fileName)
+                if (actualFileUrl) {
+                    uploadedUrls.push(actualFileUrl)
+                    console.log('Uploaded image:', actualFileUrl)
+                }
+            } catch (error) {
+                console.error('Error processing image:', imageUrl, error)
+            }
+        }
+        return uploadedUrls
+    }
+
+    const save = async () => {
+        setIsSaving(true)
+        try {
+            const uploadedUrls = await uploadImages()
+            console.log('All uploaded URLs:', uploadedUrls)
+            saveAnnotation(pickedLineSegment, uploadedUrls)
+        } catch (error) {
+            console.error('Error in save function:', error)
+        } finally {
+            setIsSaving(false)
+        }
+    }
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files
@@ -236,15 +329,17 @@ function AnnotationForm(props: PropsInterface) {
                         Reposition
                     </button>
                     <button
-                        onClick={() => saveAnnotation(pickedLineSegment)}
-                        className="flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
-                                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
+                        onClick={save}
+                        disabled={isSaving}
+                        className={`flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
+                                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]
+                                    ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
                         <Icon
                             icon="material-symbols:check"
                             className="w-4 h-4"
                         />
-                        Save
+                        {isSaving ? 'Saving...' : 'Save'}
                     </button>
                 </div>
             </div>
