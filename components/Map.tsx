@@ -393,6 +393,7 @@ const MapComponent = (props: PropsInterface) => {
                 setPickedCoordinates={setPickedCoordinates}
                 resetFeatureStyles={resetFeatureStyles}
                 pickedLineSegment={pickedLineSegment}
+                setPickedLineSegment={setPickedLineSegment}
                 selectedLineSegment={selectedLineSegment}
                 setSelectedLineSegment={setSelectedLineSegment}
             />

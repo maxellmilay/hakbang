@@ -31,6 +31,7 @@ interface PropsInterface {
     }
     resetFeatureStyles: () => void
     pickedLineSegment: MapLineSegment
+    setPickedLineSegment: Dispatch<SetStateAction<MapLineSegment>>
     selectedLineSegment: MapLineSegment | null
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
 }
@@ -47,6 +48,7 @@ const AppLayer = (props: PropsInterface) => {
         handleSaveLocation,
         resetFeatureStyles,
         pickedLineSegment,
+        setPickedLineSegment,
         selectedLineSegment,
         setSelectedLineSegment,
     } = props
@@ -63,6 +65,7 @@ const AppLayer = (props: PropsInterface) => {
     }
 
     const cancelPickLocation = () => {
+        setPickedLineSegment(null)
         resetFeatureStyles()
         setIsPickingLocation(false)
         if (!isMobile) {
