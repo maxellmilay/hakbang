@@ -11,8 +11,9 @@ import { GoogleMap, Marker } from '@react-google-maps/api'
 import AppLayer from './AppLayer'
 import { MapLineSegment } from '@/interface/map'
 import { extractFeatureCoordinates } from '@/utils/geojson'
-import { fetchMockAccessibilityScores } from '@/tests/mock-api/mock-map-api'
 import { getLineSegmentCenter } from '@/utils/distance'
+import useAnnotationStore from '@/store/annotation'
+import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -20,6 +21,12 @@ interface PropsInterface {
 
 const MapComponent = (props: PropsInterface) => {
     const { geojsonData } = props
+
+    const { getLocations } = useAnnotationStore()
+
+    const [accessibilityScores, setAccessibilityScores] = useState(
+        [] as AccessibilityScoreData[]
+    )
 
     const [isPickingLocation, setIsPickingLocation] = useState(false)
 
@@ -45,10 +52,10 @@ const MapComponent = (props: PropsInterface) => {
         if (mapRef.current) {
             const newCenter = mapRef.current.getCenter()
             if (newCenter) {
-                const lat = newCenter.lat()
-                const lng = newCenter.lng()
-                setPickedCoordinates({ lat, lng })
-                console.log('LAT', lat, 'LANG', lng)
+                const latitude = newCenter.lat()
+                const longitude = newCenter.lng()
+                setPickedCoordinates({ latitude, longitude })
+                console.log('LAT', longitude, 'LANG', longitude)
             }
         }
     }
@@ -62,46 +69,30 @@ const MapComponent = (props: PropsInterface) => {
             newDataLayer.addGeoJson(geojsonData)
             setDataLayer(newDataLayer)
 
-            const accessibilityScores = fetchMockAccessibilityScores()
+            const fetchLocations = async () => {
+                const res = await getLocations()
+                setAccessibilityScores(
+                    res.objects.map((lineSegment: MapLineSegment) => {
+                        const parsedLineSegment: AccessibilityScoreData = {
+                            score: lineSegment.accessibility_score,
+                            start_coordinates: {
+                                latitude:
+                                    lineSegment.start_coordinates.latitude,
+                                longitude:
+                                    lineSegment.start_coordinates.longitude,
+                            },
+                            end_coordinates: {
+                                latitude: lineSegment.end_coordinates.latitude,
+                                longitude:
+                                    lineSegment.end_coordinates.longitude,
+                            },
+                        }
+                        return parsedLineSegment
+                    })
+                )
+            }
 
-            // Style the GeoJSON lines based on their 'weight' property
-            newDataLayer.setStyle((feature) => {
-                const coordinates = extractFeatureCoordinates(feature)
-
-                const weightData = accessibilityScores.find((scoreData) => {
-                    const isMatch =
-                        coordinates.start.lat == scoreData.start.lat &&
-                        coordinates.start.lng == scoreData.start.lng &&
-                        coordinates.end.lat == scoreData.end.lat &&
-                        coordinates.end.lng == scoreData.end.lng
-
-                    if (isMatch) {
-                        return scoreData
-                    }
-                })
-
-                const weight = weightData?.score
-
-                let strokeColor = '#8f9691' // Default to grey
-
-                if (weight) {
-                    if (weight > 15) {
-                        strokeColor = '#FF0000' // Change to red for heavier weights
-                    } else if (weight <= 15 && weight > 5) {
-                        strokeColor = '#00FF00' // Green for mid-range weights
-                    }
-                }
-
-                feature.setProperty('originalStrokeColor', strokeColor)
-                feature.setProperty('originalZIndex', 1)
-
-                return {
-                    strokeColor: strokeColor,
-                    strokeWeight: 10,
-                    strokeOpacity: 1.0,
-                    zIndex: 1,
-                }
-            })
+            fetchLocations()
 
             newDataLayer.addListener(
                 'click',
@@ -118,13 +109,13 @@ const MapComponent = (props: PropsInterface) => {
                             const coordinates = lineString
                                 .getArray()
                                 .map((latLng: google.maps.LatLng) => ({
-                                    lat: latLng.lat(),
-                                    lng: latLng.lng(),
+                                    latitude: latLng.lat(),
+                                    longitude: latLng.lng(),
                                 }))
 
                             const lineSegment: MapLineSegment = {
-                                start: coordinates[0],
-                                end: coordinates[1],
+                                start_coordinates: coordinates[0],
+                                end_coordinates: coordinates[1],
                             }
 
                             setSelectedLineSegment(lineSegment)
@@ -133,8 +124,8 @@ const MapComponent = (props: PropsInterface) => {
                             const point = geometry as google.maps.Data.Point
                             const latLng = point.get()
                             console.log('Point coordinates:', {
-                                lat: latLng.lat(),
-                                lng: latLng.lng(),
+                                latitude: latLng.lat(),
+                                longitude: latLng.lng(),
                             })
                         } else {
                             console.log(
@@ -158,6 +149,64 @@ const MapComponent = (props: PropsInterface) => {
             map.fitBounds(bounds)
         }
     }, [isMapLoaded, geojsonData])
+
+    useEffect(() => {
+        if (dataLayer && accessibilityScores.length > 0) {
+            // Style the GeoJSON lines based on their 'weight' property
+            console.log(accessibilityScores)
+            dataLayer.setStyle((feature) => {
+                const coordinates = extractFeatureCoordinates(feature)
+                let strokeColor = '#8f9691' // Default to grey
+
+                if (accessibilityScores) {
+                    // console.log(accessibilityScores)
+                    const weightData = accessibilityScores.find((scoreData) => {
+                        const isMatch =
+                            coordinates.start_coordinates.longitude ==
+                                scoreData.start_coordinates.longitude &&
+                            coordinates.start_coordinates.latitude ==
+                                scoreData.start_coordinates.latitude &&
+                            coordinates.end_coordinates.longitude ==
+                                scoreData.end_coordinates.longitude &&
+                            coordinates.end_coordinates.latitude ==
+                                scoreData.end_coordinates.latitude
+
+                        if (isMatch) {
+                            console.log('MATCH')
+                            return scoreData
+                        }
+                    })
+
+                    if (weightData) {
+                        const weight = weightData.score
+                        if (weight) {
+                            if (weight > 0.75) {
+                                strokeColor = '#70F915' // Dark Green
+                            } else if (weight > 0.5) {
+                                strokeColor = '#CAF9AB' // Light Green
+                            } else if (weight < 0.25) {
+                                strokeColor = '#F91515' // Dark Red
+                            } else if (weight < 0.5) {
+                                strokeColor = '#FF8282' // Light Red
+                            } else if (weight == 0.5) {
+                                strokeColor = '#FBD08F' // Yellow
+                            }
+                        }
+                    }
+                }
+
+                feature.setProperty('originalStrokeColor', strokeColor)
+                feature.setProperty('originalZIndex', 1)
+
+                return {
+                    strokeColor: strokeColor,
+                    strokeWeight: 10,
+                    strokeOpacity: 1.0,
+                    zIndex: 1,
+                }
+            })
+        }
+    }, [dataLayer, accessibilityScores])
 
     const resetFeatureStyles = () => {
         if (dataLayer && highlightedFeature) {
@@ -194,22 +243,24 @@ const MapComponent = (props: PropsInterface) => {
                     const coordinates = lineString
                         .getArray()
                         .map((latLng: google.maps.LatLng) => ({
-                            lat: latLng.lat(),
-                            lng: latLng.lng(),
+                            latitude: latLng.lat(),
+                            longitude: latLng.lng(),
                         }))
 
                     const lineSegment = {
-                        start: coordinates[0],
-                        end: coordinates[1],
+                        start_coordinates: coordinates[0],
+                        end_coordinates: coordinates[1],
                     }
 
                     const isMatch =
-                        lineSegment.start.lat ===
-                            selectedLineSegment.start.lat &&
-                        lineSegment.start.lng ===
-                            selectedLineSegment.start.lng &&
-                        lineSegment.end.lat === selectedLineSegment.end.lat &&
-                        lineSegment.end.lng === selectedLineSegment.end.lng
+                        lineSegment.start_coordinates.latitude ===
+                            selectedLineSegment.start_coordinates.latitude &&
+                        lineSegment.start_coordinates.longitude ===
+                            selectedLineSegment.start_coordinates.longitude &&
+                        lineSegment.end_coordinates.latitude ===
+                            selectedLineSegment.end_coordinates.latitude &&
+                        lineSegment.end_coordinates.longitude ===
+                            selectedLineSegment.end_coordinates.longitude
 
                     if (isMatch) {
                         matchedFeature = feature
@@ -243,7 +294,11 @@ const MapComponent = (props: PropsInterface) => {
 
     const handleDragEnd = () => {
         if (isPickingLocation && mapRef.current && dataLayer) {
-            const currentCenter = new google.maps.LatLng(center)
+            const formattedCenter = {
+                lat: center.latitude,
+                lng: center.longitude,
+            }
+            const currentCenter = new google.maps.LatLng(formattedCenter)
 
             if (!currentCenter) return
 
@@ -262,17 +317,19 @@ const MapComponent = (props: PropsInterface) => {
                     const coordinates = lineString
                         .getArray()
                         .map((latLng: google.maps.LatLng) => ({
-                            lat: latLng.lat(),
-                            lng: latLng.lng(),
+                            latitude: latLng.lat(),
+                            longitude: latLng.lng(),
                         }))
 
                     const lineSegment = {
-                        start: coordinates[0],
-                        end: coordinates[1],
+                        start_coordinates: coordinates[0],
+                        end_coordinates: coordinates[1],
                     }
 
-                    const { lat: linestringLat, lng: linestringLng } =
-                        getLineSegmentCenter(lineSegment)
+                    const {
+                        latitude: linestringLat,
+                        longitude: linestringLng,
+                    } = getLineSegmentCenter(lineSegment)
 
                     const distance =
                         google.maps.geometry.spherical.computeDistanceBetween(
@@ -328,7 +385,6 @@ const MapComponent = (props: PropsInterface) => {
             />
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
-                center={defaultMapCenter}
                 zoom={defaultMapZoom}
                 options={defaultMapOptions}
                 onLoad={(map) => {
@@ -342,8 +398,8 @@ const MapComponent = (props: PropsInterface) => {
                                   const newCenter = mapRef.current.getCenter()
                                   if (newCenter) {
                                       setCenter({
-                                          lat: newCenter.lat(),
-                                          lng: newCenter.lng(),
+                                          latitude: newCenter.lat(),
+                                          longitude: newCenter.lng(),
                                       })
                                   }
                               }
@@ -353,7 +409,14 @@ const MapComponent = (props: PropsInterface) => {
                 onDragEnd={handleDragEnd}
                 onClick={handleMapClick}
             >
-                {isPickingLocation && <Marker position={center} />}
+                {isPickingLocation && (
+                    <Marker
+                        position={{
+                            lat: center.latitude,
+                            lng: center.longitude,
+                        }}
+                    />
+                )}
             </GoogleMap>
         </div>
     )

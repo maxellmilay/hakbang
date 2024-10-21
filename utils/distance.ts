@@ -1,15 +1,15 @@
 import { MapCoordinate, MapLineSegment } from '@/interface/map'
 
 export const getLineSegmentCenter = (lineSegment: MapLineSegment) => {
-    const start = lineSegment.start
-    const end = lineSegment.end
+    const start = lineSegment.start_coordinates
+    const end = lineSegment.end_coordinates
 
-    const centerLat = (start.lat + end.lat) / 2
-    const centerLng = (start.lng + end.lng) / 2
+    const centerLat = (start.latitude + end.latitude) / 2
+    const centerLng = (start.longitude + end.longitude) / 2
 
     const center: MapCoordinate = {
-        lat: centerLat,
-        lng: centerLng,
+        latitude: centerLat,
+        longitude: centerLng,
     }
 
     return center

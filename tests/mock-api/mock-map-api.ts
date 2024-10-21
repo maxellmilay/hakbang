@@ -1,10 +1,10 @@
 import colonGeoJSONData from '@/data/geojson/mandaue.json'
 import { MapCoordinate } from '@/interface/map'
 
-interface AccessibilityScoreData {
-    score: number
-    start: MapCoordinate
-    end: MapCoordinate
+export interface AccessibilityScoreData {
+    score?: number
+    start_coordinates: MapCoordinate
+    end_coordinates: MapCoordinate
 }
 
 const getRandomWeight = () => {
@@ -16,13 +16,13 @@ export const fetchMockAccessibilityScores = () => {
         (feature) => {
             return {
                 score: getRandomWeight(),
-                start: {
-                    lat: feature.geometry.coordinates[0][1],
-                    lng: feature.geometry.coordinates[0][0],
+                start_coordinates: {
+                    latitude: feature.geometry.coordinates[0][1],
+                    longitude: feature.geometry.coordinates[0][0],
                 },
-                end: {
-                    lat: feature.geometry.coordinates[1][1],
-                    lng: feature.geometry.coordinates[1][0],
+                end_coordinates: {
+                    latitude: feature.geometry.coordinates[1][1],
+                    longitude: feature.geometry.coordinates[1][0],
                 },
             }
         }

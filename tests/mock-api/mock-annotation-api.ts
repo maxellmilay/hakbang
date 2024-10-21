@@ -7,10 +7,14 @@ export const fetchAnnotationDetails = (lineSegment: MapLineSegment) => {
         const lineSegmentCoordinates = extractJSONFeatureCoordinates(feature)
 
         const isMatch =
-            lineSegmentCoordinates.start.lat == lineSegment.start.lat &&
-            lineSegmentCoordinates.start.lng == lineSegment.start.lng &&
-            lineSegmentCoordinates.end.lat == lineSegment.end.lat &&
-            lineSegmentCoordinates.end.lng == lineSegment.end.lng
+            lineSegmentCoordinates.start_coordinates.latitude ==
+                lineSegment.start_coordinates.latitude &&
+            lineSegmentCoordinates.start_coordinates.longitude ==
+                lineSegment.start_coordinates.longitude &&
+            lineSegmentCoordinates.end_coordinates.latitude ==
+                lineSegment.end_coordinates.latitude &&
+            lineSegmentCoordinates.end_coordinates.longitude ==
+                lineSegment.end_coordinates.longitude
 
         if (isMatch) {
             return feature
@@ -74,13 +78,13 @@ export const fetchAnnotationDetails = (lineSegment: MapLineSegment) => {
         nearestStreet: '',
         anotator: '',
         coordinates: {
-            start: {
-                lat: 0,
-                lng: 0,
+            start_coordinates: {
+                latitude: 0,
+                longitude: 0,
             },
-            end: {
-                lat: 0,
-                lng: 0,
+            end_coordinates: {
+                latitude: 0,
+                longitude: 0,
             },
         },
         sidewalkWidth: 0,

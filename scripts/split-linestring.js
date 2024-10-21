@@ -7,13 +7,13 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const getLineSegmentCenter = (lineSegment) => {
-    const start = lineSegment.start
-    const end = lineSegment.end
+    const start = lineSegment.start_coordinates
+    const end = lineSegment.end_coordinates
 
-    const centerLat = (start.lat + end.lat) / 2
-    const centerLng = (start.lng + end.lng) / 2
+    const centerLat = (start.latitude + end.latitude) / 2
+    const centerLng = (start.longitude + end.longitude) / 2
 
-    return { lat: centerLat, lng: centerLng }
+    return { latitude: centerLat, longitude: centerLng }
 }
 
 const getNearestRoad = async (lat, lng) => {
@@ -68,13 +68,13 @@ const splitLineStringIntoEqualPartsByLength = async (
             })
 
             const lineSegment = {
-                start: {
-                    lat: startPoint.geometry.coordinates[1],
-                    lng: startPoint.geometry.coordinates[0],
+                start_coordinates: {
+                    latitude: startPoint.geometry.coordinates[1],
+                    longitude: startPoint.geometry.coordinates[0],
                 },
-                end: {
-                    lat: endPoint.geometry.coordinates[1],
-                    lng: endPoint.geometry.coordinates[0],
+                end_coordinates: {
+                    latitude: endPoint.geometry.coordinates[1],
+                    longitude: endPoint.geometry.coordinates[0],
                 },
             }
 

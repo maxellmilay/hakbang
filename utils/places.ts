@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getNearestRoad = async (lat: number, lng: number) => {
+export const getNearestRoad = async (latitude: number, longitude: number) => {
     const roadsUrl = `https://roads.googleapis.com/v1/nearestRoads?points=${lat},${lng}&key=${process.env.GOOGLE_MAP_API_KEY}`
     try {
         const response = await axios.get(roadsUrl)

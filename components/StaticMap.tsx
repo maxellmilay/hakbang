@@ -13,11 +13,11 @@ interface PropsInterface {
 function StaticMap(props: PropsInterface) {
     const { lineSegment } = props
 
-    const start = lineSegment.start
-    const end = lineSegment.end
+    const start = lineSegment.start_coordinates
+    const end = lineSegment.end_coordinates
 
-    const centerLat = (start.lat + end.lat) / 2
-    const centerLng = (start.lng + end.lng) / 2
+    const centerLat = (start.latitude + end.latitude) / 2
+    const centerLng = (start.longitude + end.longitude) / 2
 
     const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${centerLat},${centerLng}&zoom=20&size=${containerStyle.width}x${containerStyle.height}&maptype=satellite&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
 

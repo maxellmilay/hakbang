@@ -81,13 +81,16 @@ function Sidebar(props: PropsInterface) {
                 name: annotation.name,
                 lineSegment: {
                     id: annotation.location.id,
-                    start: {
-                        lat: annotation.location.start_coordinates.latitude,
-                        lng: annotation.location.start_coordinates.longitude,
+                    start_coordinates: {
+                        latitude:
+                            annotation.location.start_coordinates.latitude,
+                        longitude:
+                            annotation.location.start_coordinates.longitude,
                     },
-                    end: {
-                        lat: annotation.location.end_coordinates.latitude,
-                        lng: annotation.location.end_coordinates.longitude,
+                    end_coordinates: {
+                        latitude: annotation.location.end_coordinates.latitude,
+                        longitude:
+                            annotation.location.end_coordinates.longitude,
                     },
                 },
             })

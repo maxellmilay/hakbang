@@ -15,8 +15,8 @@ interface PropsInterface {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     saveAnnotation: (lineSegment: MapLineSegment) => void
     pickedCoordinates: {
-        lat: number
-        lng: number
+        latitude: number
+        longitude: number
     }
     pickedLineSegment: MapLineSegment
 }
@@ -180,19 +180,19 @@ function AnnotationForm(props: PropsInterface) {
                 <div className="flex flex-col px-6 py-2 gap-3 overflow-y-auto">
                     <div className="flex flex-col gap-2 p-3 bg-gray-100 rounded-md w-full">
                         <p className="text-slate-600 text-sm">
-                            <b>Coordinates:</b> {pickedCoordinates.lat},{' '}
-                            {pickedCoordinates.lng}
+                            <b>Coordinates:</b> {pickedCoordinates.latitude},{' '}
+                            {pickedCoordinates.longitude}
                         </p>
                         <p className="text-slate-600 text-sm font-bold">
                             Line Segment
                         </p>
                         <p className="text-slate-600 text-xs ps-2">
                             <span className="font-bold">Starts at </span>
-                            {`(${pickedLineSegment.start.lat},${pickedLineSegment.start.lng})`}
+                            {`(${pickedLineSegment.start_coordinates.latitude},${pickedLineSegment.start_coordinates.longitude})`}
                         </p>
                         <p className="text-slate-600 text-xs ps-2">
                             <span className="font-bold">Ends at </span>
-                            {`(${pickedLineSegment.end.lat},${pickedLineSegment.end.lng})`}
+                            {`(${pickedLineSegment.end_coordinates.latitude},${pickedLineSegment.end_coordinates.longitude})`}
                         </p>
                     </div>
                     <StaticMap lineSegment={pickedLineSegment} />

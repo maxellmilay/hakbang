@@ -16,18 +16,18 @@ interface PropsInterface {
     setIsPickingLocation: Dispatch<SetStateAction<boolean>>
     setPickedCoordinates: Dispatch<
         SetStateAction<{
-            lat: number
-            lng: number
+            latitude: number
+            longitude: number
         }>
     >
     pickedCoordinates: {
-        lat: number
-        lng: number
+        latitude: number
+        longitude: number
     }
     handleSaveLocation: () => void
     center: {
-        lat: number
-        lng: number
+        latitude: number
+        longitude: number
     }
     resetFeatureStyles: () => void
     pickedLineSegment: MapLineSegment
@@ -110,7 +110,7 @@ const AppLayer = (props: PropsInterface) => {
             setExpandSidebar(false)
             setIsPickingLocation(false)
             setShowAnnotationForm(false)
-            setPickedCoordinates({ lat: 10.298684, lng: 123.898283 })
+            setPickedCoordinates({ latitude: 10.298684, longitude: 123.898283 })
         }
     }, [selectedLineSegment])
 
@@ -154,7 +154,7 @@ const AppLayer = (props: PropsInterface) => {
                         <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
                             {pickedCoordinates ? (
                                 <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
-                                    {center.lat}, {center.lng}
+                                    {center.latitude}, {center.longitude}
                                 </div>
                             ) : (
                                 <div className="p-2 border-4 rounded-md border-black bg-primary">

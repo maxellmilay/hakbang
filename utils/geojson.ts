@@ -12,26 +12,26 @@ export const extractFeatureCoordinates = (
         const point2 = coordinates[1]
 
         const segmentCoordinates: MapLineSegment = {
-            start: {
-                lat: point1.lat(),
-                lng: point1.lng(),
+            start_coordinates: {
+                latitude: point1.lat(),
+                longitude: point1.lng(),
             },
-            end: {
-                lat: point2.lat(),
-                lng: point2.lng(),
+            end_coordinates: {
+                latitude: point2.lat(),
+                longitude: point2.lng(),
             },
         }
 
         return segmentCoordinates
     } else {
         const emptySegment: MapLineSegment = {
-            start: {
-                lat: 0,
-                lng: 0,
+            start_coordinates: {
+                latitude: 0,
+                longitude: 0,
             },
-            end: {
-                lat: 0,
-                lng: 0,
+            end_coordinates: {
+                latitude: 0,
+                longitude: 0,
             },
         }
 
@@ -43,13 +43,13 @@ export const extractJSONFeatureCoordinates = (feature: JSONFeature) => {
     const coordinateList = feature.geometry.coordinates
 
     const lineSegmentCoordinates: MapLineSegment = {
-        start: {
-            lat: coordinateList[0][1],
-            lng: coordinateList[0][0],
+        start_coordinates: {
+            latitude: coordinateList[0][1],
+            longitude: coordinateList[0][0],
         },
-        end: {
-            lat: coordinateList[1][1],
-            lng: coordinateList[1][0],
+        end_coordinates: {
+            latitude: coordinateList[1][1],
+            longitude: coordinateList[1][0],
         },
     }
 

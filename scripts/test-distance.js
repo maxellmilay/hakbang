@@ -2,7 +2,10 @@ import colonGeoJSONData from '../data/geojson/mandaue.json' assert { type: 'json
 
 // Helper function to calculate the squared distance between two points
 const distanceSquared = (point1, point2) => {
-    return (point1.lat - point2.lat) ** 2 + (point1.lng - point2.lng) ** 2
+    return (
+        (point1.latitude - point2.latitude) ** 2 +
+        (point1.longitude - point2.longitude) ** 2
+    )
 }
 
 // Helper function to calculate the minimum distance between a point and a line segment
@@ -11,15 +14,20 @@ function distancePointToSegment(point, segmentStart, segmentEnd) {
     if (l2 === 0) return Math.sqrt(distanceSquared(point, segmentStart)) // segmentStart == segmentEnd
 
     let t =
-        ((point.lat - segmentStart.lat) * (segmentEnd.lat - segmentStart.lat) +
-            (point.lng - segmentStart.lng) *
-                (segmentEnd.lng - segmentStart.lng)) /
+        ((point.latitude - segmentStart.latitude) *
+            (segmentEnd.latitude - segmentStart.latitude) +
+            (point.longitude - segmentStart.longitude) *
+                (segmentEnd.longitude - segmentStart.longitude)) /
         l2
     t = Math.max(0, Math.min(1, t))
 
     const projection = {
-        lat: segmentStart.lat + t * (segmentEnd.lat - segmentStart.lat),
-        lng: segmentStart.lng + t * (segmentEnd.lng - segmentStart.lng),
+        latitude:
+            segmentStart.latitude +
+            t * (segmentEnd.latitude - segmentStart.latitude),
+        longitude:
+            segmentStart.longitude +
+            t * (segmentEnd.longitude - segmentStart.longitude),
     }
     return Math.sqrt(distanceSquared(point, projection))
 }
@@ -32,8 +40,8 @@ function findClosestSegment(point, lineSegments) {
     for (const segment of lineSegments) {
         const distance = distancePointToSegment(
             point,
-            segment.start,
-            segment.end
+            segment.start_coordinates,
+            segment.end_coordinates
         )
         if (distance < minDistance) {
             minDistance = distance
@@ -46,8 +54,8 @@ function findClosestSegment(point, lineSegments) {
 
 // Example usage
 const point = {
-    lat: 10.295680066689476,
-    lng: 123.89646966784828,
+    latitude: 10.295680066689476,
+    longitude: 123.89646966784828,
 }
 
 const colonLineSegments = colonGeoJSONData.features.map((feature) => {
@@ -55,13 +63,13 @@ const colonLineSegments = colonGeoJSONData.features.map((feature) => {
     const end = feature.geometry.coordinates[1]
 
     return {
-        start: {
-            lat: start[1],
-            lng: start[0],
+        start_coordinates: {
+            latitude: start[1],
+            longitude: start[0],
         },
-        end: {
-            lat: end[1],
-            lng: end[0],
+        end_coordinates: {
+            latitude: end[1],
+            longitude: end[0],
         },
     }
 })
