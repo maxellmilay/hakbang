@@ -217,6 +217,7 @@ const AppLayer = (props: PropsInterface) => {
             <AnimatePresence>
                 {selectedLineSegment && (
                     <motion.div
+                        className="absolute z-50 w-full h-full"
                         key={JSON.stringify(selectedLineSegment)}
                         initial={{ opacity: 0, x: -100 }}
                         animate={{ opacity: 1, x: 0 }}
