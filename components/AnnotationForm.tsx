@@ -600,7 +600,7 @@ function AnnotationForm(props: PropsInterface) {
                         </>
                     )}
 
-                    <div className="w-full flex justify-end gap-2 px-6 py-4">
+                    <div className="w-full flex justify-end gap-2 py-4">
                         <button
                             onClick={save}
                             disabled={isSaving || disableSave}
