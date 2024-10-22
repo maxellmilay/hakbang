@@ -79,10 +79,26 @@ function Page() {
     return (
         <div className="w-full h-lvh overflow-none flex justify-center items-center p-2 bg-primary-light">
             <div className="w-full sm:w-[400px] py-4 px-6 border-2 border-black rounded-md flex flex-col gap-3 bg-white">
-                <div className="flex items-center">
+                <div className="flex items-center gap-1">
                     <h1 className="text-2xl font-bold">Lakb.</h1>
-                    <div className="font-bold text-2xl flex w-9 h-9 bg-primary border-2 border-black rounded-md  justify-center items-center">
-                        AI
+                    <div className="relative w-9 h-9">
+                        <div
+                            className="absolute inset-0 bg-black transform scale-[1.15] translate-y-[-0.5px]"
+                            style={{
+                                clipPath:
+                                    'polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%)',
+                            }}
+                        ></div>
+
+                        <div
+                            className="relative w-full h-full bg-primary flex items-center justify-center text-2xl font-bold"
+                            style={{
+                                clipPath:
+                                    'polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%)',
+                            }}
+                        >
+                            AI
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-col gap-1">
