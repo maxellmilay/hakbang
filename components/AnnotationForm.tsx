@@ -98,12 +98,13 @@ function AnnotationForm(props: PropsInterface) {
         !streetName ||
         !date ||
         !sidewalkPresence ||
-        !sidewalkWidth ||
-        !sidewalkCondition ||
-        !rampGradient ||
-        !streetFurniture ||
-        !borderBuffer ||
-        !lightingCondition
+        (sidewalkPresence === 'Yes' &&
+            (!sidewalkWidth ||
+                !sidewalkCondition ||
+                !rampGradient ||
+                !streetFurniture ||
+                !borderBuffer ||
+                !lightingCondition))
 
     const checkTitleAvailability = debounce(async (title: string) => {
         if (!title) {
@@ -598,6 +599,22 @@ function AnnotationForm(props: PropsInterface) {
                             </div>
                         </>
                     )}
+
+                    <div className="w-full flex justify-end gap-2 px-6 py-4">
+                        <button
+                            onClick={save}
+                            disabled={isSaving || disableSave}
+                            className={`flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
+                                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]
+                                    ${isSaving || disableSave ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                            <Icon
+                                icon="material-symbols:check"
+                                className="w-4 h-4"
+                            />
+                            {isSaving ? 'Saving...' : 'Save'}
+                        </button>
+                    </div>
                 </div>
                 <div className="w-full flex justify-end gap-2 px-6 py-4">
                     <button
@@ -612,19 +629,6 @@ function AnnotationForm(props: PropsInterface) {
                             className="w-4 h-4"
                         />
                         Reposition
-                    </button>
-                    <button
-                        onClick={save}
-                        disabled={isSaving || disableSave}
-                        className={`flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
-                                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]
-                                    ${isSaving || disableSave ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        <Icon
-                            icon="material-symbols:check"
-                            className="w-4 h-4"
-                        />
-                        {isSaving ? 'Saving...' : 'Save'}
                     </button>
                 </div>
             </div>
