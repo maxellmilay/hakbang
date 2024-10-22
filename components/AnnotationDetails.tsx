@@ -15,7 +15,7 @@ const formatDateAndTime = (dateTime: string) => {
         day: 'numeric',
         year: 'numeric',
     }
-    return date.toLocaleString('en-US', options)
+    return isNaN(date.getTime()) ? '' : date.toLocaleString('en-US', options)
 }
 
 import useAnnotationStore from '@/store/annotation'
