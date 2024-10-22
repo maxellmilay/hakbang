@@ -5,6 +5,19 @@ import { Icon } from '@iconify/react'
 import { MapLineSegment } from '@/interface/map'
 import Divider from '@mui/material/Divider'
 
+const formatDateAndTime = (dateTime: string) => {
+    const date = new Date(dateTime)
+    const options: Intl.DateTimeFormatOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    }
+    return date.toLocaleString('en-US', options)
+}
+
 import useAnnotationStore from '@/store/annotation'
 import useAuthStore from '@/store/auth'
 
@@ -151,12 +164,22 @@ function AnnotationDetails(props: PropsInterface) {
 
                         <div className="flex flex-col overflow-y-auto overflow-x-hidden custom-scrollbar gap-2 grow">
                             <div className="flex flex-col px-3">
-                                <p className="text-slate-600 text-sm">
-                                    Annotated by:{' '}
-                                    <span className="">
-                                        {annotationDetails.annotator.full_name}
-                                    </span>
-                                </p>
+                                <div className="flex gap-5">
+                                    <p className="text-slate-600 text-sm">
+                                        By:{' '}
+                                        <span className="">
+                                            {
+                                                annotationDetails.annotator
+                                                    .full_name
+                                            }
+                                        </span>
+                                    </p>
+                                    <p className="text-slate-600 text-sm">
+                                        {formatDateAndTime(
+                                            formData?.dateAndTime
+                                        )}
+                                    </p>
+                                </div>
                                 <p className="text-slate-600 text-sm mb-2">
                                     Nearest Street:{' '}
                                     {annotationDetails.location.adjacent_street}
