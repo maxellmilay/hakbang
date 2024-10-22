@@ -103,9 +103,23 @@ function AnnotationDetails(props: PropsInterface) {
         <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
             <div className="flex flex-col p-3 gap-2 bg-white border border-black rounded-md shadow-2xl h-full w-full sm:w-[470px]">
                 {isLoading ? (
-                    <div className="flex justify-center items-center h-full">
-                        <h1>Loading...</h1>
-                    </div>
+                    <>
+                        <div className="flex justify-end items-start p-2">
+                            <button
+                                onClick={close}
+                                className="bg-primary rounded-md border-2 border-black
+                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
+                            >
+                                <Icon
+                                    icon="material-symbols:close-rounded"
+                                    className="w-5 h-5"
+                                />
+                            </button>
+                        </div>
+                        <div className="flex justify-center items-center h-full">
+                            <h1>Loading...</h1>
+                        </div>
+                    </>
                 ) : !annotationDetails ? (
                     <>
                         <div className="flex justify-end items-start p-2">
