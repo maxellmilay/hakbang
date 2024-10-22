@@ -364,6 +364,42 @@ function AnnotationDetails(props: PropsInterface) {
                                             </p>
                                         </div>
                                     </div>
+                                    {annotationDetails.images?.length !== 0 && (
+                                        <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
+                                            {annotationDetails.images?.map(
+                                                (
+                                                    image: {
+                                                        file: {
+                                                            url:
+                                                                | string
+                                                                | StaticImport
+                                                        }
+                                                    },
+                                                    index:
+                                                        | React.Key
+                                                        | null
+                                                        | undefined
+                                                ) => (
+                                                    <div
+                                                        key={index}
+                                                        className="flex-shrink-0 w-[150px] h-[200px] relative"
+                                                    >
+                                                        <Image
+                                                            src={image.file.url}
+                                                            alt={`annotation image ${Number(index) + 1}`}
+                                                            fill
+                                                            sizes="150px"
+                                                            style={{
+                                                                objectFit:
+                                                                    'cover',
+                                                            }}
+                                                            className="rounded-md"
+                                                        />
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                             ) : (
                                 <h3 className="text-lg font-semibold text-center py-3">
@@ -371,34 +407,6 @@ function AnnotationDetails(props: PropsInterface) {
                                 </h3>
                             )}
                         </div>
-                        {annotationDetails.images?.length !== 0 && (
-                            <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
-                                {annotationDetails.images?.map(
-                                    (
-                                        image: {
-                                            file: { url: string | StaticImport }
-                                        },
-                                        index: React.Key | null | undefined
-                                    ) => (
-                                        <div
-                                            key={index}
-                                            className="flex-shrink-0 w-[150px] h-[200px] relative"
-                                        >
-                                            <Image
-                                                src={image.file.url}
-                                                alt={`annotation image ${Number(index) + 1}`}
-                                                fill
-                                                sizes="150px"
-                                                style={{
-                                                    objectFit: 'cover',
-                                                }}
-                                                className="rounded-md"
-                                            />
-                                        </div>
-                                    )
-                                )}
-                            </div>
-                        )}
                     </>
                 )}
             </div>
