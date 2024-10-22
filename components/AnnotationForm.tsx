@@ -13,7 +13,6 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
 import { MapLineSegment } from '@/interface/map'
 import StaticMap from './StaticMap'
 
@@ -58,8 +57,6 @@ function AnnotationForm(props: PropsInterface) {
     const [isTyping, setIsTyping] = useState(false)
     const [isTitleAvailable, setIsTitleAvailable] = useState(true)
 
-    const disableSave = !title || !isTitleAvailable || isTyping
-
     // form states
     const [streetName, setStreetName] = useState<string | null>(null)
     const [date, setDate] = useState<string | null>(null)
@@ -76,6 +73,37 @@ function AnnotationForm(props: PropsInterface) {
     const [lightingCondition, setLightingCondition] = useState<string | null>(
         null
     )
+
+    // remarks from form
+    const [sidewalkWidthRemarks, setSidewalkWidthRemarks] = useState<
+        string | null
+    >(null)
+    const [rampGradientRemarks, setRampGradientRemarks] = useState<
+        string | null
+    >(null)
+    const [streetFurnitureRemarks, setStreetFurnitureRemarks] = useState<
+        string | null
+    >(null)
+    const [borderBufferRemarks, setBorderBufferRemarks] = useState<
+        string | null
+    >(null)
+    const [lightingConditionRemarks, setLightingConditionRemarks] = useState<
+        string | null
+    >(null)
+
+    const disableSave =
+        !title ||
+        !isTitleAvailable ||
+        isTyping ||
+        !streetName ||
+        !date ||
+        !sidewalkPresence ||
+        !sidewalkWidth ||
+        !sidewalkCondition ||
+        !rampGradient ||
+        !streetFurniture ||
+        !borderBuffer ||
+        !lightingCondition
 
     const checkTitleAvailability = debounce(async (title: string) => {
         if (!title) {
@@ -95,19 +123,6 @@ function AnnotationForm(props: PropsInterface) {
         }
         check()
     }, [title])
-
-    const [accessibilityFeatures, setAccessibilityFeatures] = useState([
-        { checked: false, label: 'Ramp' },
-        { checked: false, label: 'Tactile paving' },
-        { checked: false, label: 'Audible signals' },
-        { checked: false, label: 'Braille signs' },
-        { checked: false, label: 'Wide doorways' },
-        { checked: false, label: 'Elevators' },
-        { checked: false, label: 'Accessible toilets' },
-        { checked: false, label: 'Handrails' },
-        { checked: false, label: 'Lowered counters' },
-        { checked: false, label: 'Accessible parking' },
-    ])
 
     const uploadImage = async (file: Blob, fileName: string) => {
         if (!file) {
@@ -395,6 +410,9 @@ function AnnotationForm(props: PropsInterface) {
                             label="Remarks"
                             multiline
                             maxRows={4}
+                            onChange={(e) =>
+                                setSidewalkWidthRemarks(e.target.value)
+                            }
                         />
                     </div>
                     <RadioItem
@@ -430,6 +448,9 @@ function AnnotationForm(props: PropsInterface) {
                             label="Remarks"
                             multiline
                             maxRows={4}
+                            onChange={(e) =>
+                                setRampGradientRemarks(e.target.value)
+                            }
                         />
                     </div>
 
@@ -449,6 +470,9 @@ function AnnotationForm(props: PropsInterface) {
                             label="Remarks"
                             multiline
                             maxRows={4}
+                            onChange={(e) =>
+                                setStreetFurnitureRemarks(e.target.value)
+                            }
                         />
                     </div>
 
@@ -486,6 +510,9 @@ function AnnotationForm(props: PropsInterface) {
                             label="Remarks"
                             multiline
                             maxRows={4}
+                            onChange={(e) =>
+                                setBorderBufferRemarks(e.target.value)
+                            }
                         />
                     </div>
 
@@ -512,6 +539,9 @@ function AnnotationForm(props: PropsInterface) {
                             label="Remarks"
                             multiline
                             maxRows={4}
+                            onChange={(e) =>
+                                setLightingConditionRemarks(e.target.value)
+                            }
                         />
                     </div>
 
