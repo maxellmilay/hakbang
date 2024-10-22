@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import TextField from '@mui/material/TextField'
 import useAuthStore from '@/store/auth'
 
 function Page() {
-    const { user, login, logout } = useAuthStore()
+    const { user, login } = useAuthStore()
     const router = useRouter()
 
     const [username, setUsername] = useState('')
@@ -70,6 +69,12 @@ function Page() {
             setIsLoading(false)
         }
     }
+
+    useEffect(() => {
+        if (user) {
+            router.push('/')
+        }
+    }, [user])
 
     return (
         <div className="w-full h-lvh overflow-none flex justify-center items-center p-2 bg-primary-light">
