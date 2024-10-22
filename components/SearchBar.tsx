@@ -62,7 +62,7 @@ function SearchBar(props: PropsInterface) {
                     <Menu as="div" className="relative inline-block text-left">
                         <Menu.Button className="flex items-center mr-2">
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT22ufwOrP5fI19DwpGlQ2FTV0T0L0FhVtDew&s"
                                 alt="profile picture"
                                 className="w-6 h-6 rounded-full"
                             />
@@ -123,8 +123,7 @@ function SearchBar(props: PropsInterface) {
                     <Menu as="div" className="relative inline-block text-left">
                         <Menu.Button className="flex items-center mr-2">
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/en/c/c2/Ph_seal_cebucity.png"
-                                alt="profile picture"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT22ufwOrP5fI19DwpGlQ2FTV0T0L0FhVtDew&s"
                                 className="w-6 h-6 rounded-full"
                             />
                         </Menu.Button>
