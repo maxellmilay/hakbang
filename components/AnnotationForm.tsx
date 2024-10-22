@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import React, { useEffect, useState } from 'react'
@@ -6,14 +7,19 @@ import debounce from 'lodash.debounce'
 
 import { Icon } from '@iconify/react'
 import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import RadioGroup from '@mui/material/RadioGroup'
+import Radio from '@mui/material/Radio'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import Divider from '@mui/material/Divider'
 import Checkbox from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import { MapLineSegment } from '@/interface/map'
 import StaticMap from './StaticMap'
 
 import useAnnotationStore from '@/store/annotation'
 import useAuthStore from '@/store/auth'
+import RadioItem from './RadioItem'
 
 import formDataTest from '@/form_data_test.json'
 
@@ -45,8 +51,6 @@ function AnnotationForm(props: PropsInterface) {
         pickedLineSegment,
     } = props
 
-    const walkabiltyChoices = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor']
-    const [choosenWalkabilityIndex, setChoosenWalkabilityIndex] = useState(0)
     const [images, setImages] = useState<string[]>([])
     const [isSaving, setIsSaving] = useState(false)
 
@@ -55,6 +59,23 @@ function AnnotationForm(props: PropsInterface) {
     const [isTitleAvailable, setIsTitleAvailable] = useState(true)
 
     const disableSave = !title || !isTitleAvailable || isTyping
+
+    // form states
+    const [streetName, setStreetName] = useState<string | null>(null)
+    const [date, setDate] = useState<string | null>(null)
+    const [sidewalkPresence, setSidewalkPresence] = useState<string | null>(
+        null
+    )
+    const [sidewalkWidth, setSidewalkWidth] = useState<string | null>(null)
+    const [sidewalkCondition, setSidewalkCondition] = useState<string | null>(
+        null
+    )
+    const [rampGradient, setRampGradient] = useState<string | null>(null)
+    const [streetFurniture, setStreetFurniture] = useState<string | null>(null)
+    const [borderBuffer, setBorderBuffer] = useState<string | null>(null)
+    const [lightingCondition, setLightingCondition] = useState<string | null>(
+        null
+    )
 
     const checkTitleAvailability = debounce(async (title: string) => {
         if (!title) {
@@ -280,7 +301,7 @@ function AnnotationForm(props: PropsInterface) {
                         />
                     </button>
                 </div>
-                <div className="flex flex-col px-6 py-2 gap-3 overflow-y-auto">
+                <div className="flex flex-col px-6 py-2 gap-3 overflow-y-auto custom-scrollbar">
                     <div className="flex flex-col gap-2 p-3 bg-gray-100 rounded-md w-full">
                         <p className="text-slate-600 text-sm">
                             <b>Coordinates:</b> {pickedCoordinates.latitude},{' '}
@@ -311,75 +332,189 @@ function AnnotationForm(props: PropsInterface) {
                             Annotation title is already taken
                         </p>
                     )}
-                    {/* <TextField
-                        label="Annotated by"
+                    <TextField
+                        label="Street name/address"
                         variant="outlined"
                         size="small"
-                    /> */}
-                    <div className="flex flex-col gap-2">
-                        <p className="text-slate-600">Walkability</p>
-                        <div className="flex gap-1 flex-wrap text-sm">
-                            {walkabiltyChoices.map((choice, index) => (
-                                <button
-                                    onClick={() =>
-                                        setChoosenWalkabilityIndex(index)
-                                    }
-                                    key={index}
-                                    className={`flex p-2 gap-2 items-center rounded-md border-2 hover:bg-primary-light transition-all duration-200 ease-in-out
-                                        ${
-                                            index === choosenWalkabilityIndex
-                                                ? 'border-primary bg-primary-light'
-                                                : 'border-transparent'
-                                        }`}
-                                >
-                                    <div
-                                        className={`w-4 h-4 rounded-md border-2 border-black
-                                            bg-level-${index + 1}`}
-                                    ></div>
-                                    {choice}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                        onChange={(e) => setStreetName(e.target.value)}
+                    />
                     <TextField
-                        label="Sidewalk width"
+                        label="Date and time annotated"
                         variant="outlined"
                         size="small"
+                        onChange={(e) => setDate(e.target.value)}
                     />
-                    <div className="flex flex-col gap-2">
-                        <p className="text-slate-600">Accessibility features</p>
-                        <div className="flex flex-col px-3 text-sm">
-                            {accessibilityFeatures.map((feature, index) => (
-                                <FormControlLabel
-                                    key={index}
-                                    control={
-                                        <Checkbox
-                                            size="small"
-                                            checked={feature.checked}
-                                            onChange={(e) => {
-                                                const updatedFeatures = [
-                                                    ...accessibilityFeatures,
-                                                ]
-                                                updatedFeatures[index].checked =
-                                                    e.target.checked
-                                                setAccessibilityFeatures(
-                                                    updatedFeatures
-                                                )
-                                            }}
-                                            name={feature.label}
-                                        />
-                                    }
-                                    label={feature.label}
-                                />
-                            ))}
-                        </div>
+                    <FormControl>
+                        <FormLabel id="demo-controlled-radio-buttons-group">
+                            <span className="font-bold">
+                                SIDEWALK PRESENCE:
+                            </span>{' '}
+                            Is there a sidewalk?
+                        </FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            row
+                            // value={'Yes'}
+                            onChange={(e) =>
+                                setSidewalkPresence(e.target.value)
+                            }
+                        >
+                            <FormControlLabel
+                                value="Yes"
+                                control={<Radio />}
+                                label="Yes"
+                            />
+                            <FormControlLabel
+                                value="No"
+                                control={<Radio />}
+                                label="No"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+
+                    <RadioItem
+                        header="SIDEWALK WIDTH:"
+                        label="How wide is the sidewalk?"
+                        options={[
+                            'Narrow (< 1.5m)',
+                            'Midsize (1.5m - 1.8m)',
+                            'Wide (> 1.8m)',
+                            'Other',
+                        ]}
+                        allowOther={true}
+                        setValue={setSidewalkWidth}
+                    />
+
+                    <div className="flex flex-col gap-1 mb-4">
+                        <p className="text-gray-500 font-semibold text-lg">
+                            REMARKS
+                        </p>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Remarks"
+                            multiline
+                            maxRows={4}
+                        />
                     </div>
-                    <TextField
-                        id="outlined-multiline-flexible"
-                        label="Comments"
-                        multiline
-                        maxRows={4}
+                    <RadioItem
+                        header="SIDEWALK CONDITION:"
+                        label="How would you describe the current state of the condition of the sidewalk?"
+                        options={[
+                            'Smooth (No cracks, even surface)',
+                            'Cracked (Small cracks <6mm width)',
+                            'Damaged (Large cracks >= 6mm width, uneven surface)',
+                            'Other',
+                        ]}
+                        allowOther={true}
+                        setValue={setSidewalkCondition}
                     />
+                    <RadioItem
+                        header="RAMP GRADIENT:"
+                        label="In the presence of ramps, how steep is the ramp incline?"
+                        options={[
+                            '<= 5% Gradient (Accessible)',
+                            '> 5% Gradient (Unaccessible)',
+                            'N/A',
+                            'Other',
+                        ]}
+                        allowOther={true}
+                        setValue={setRampGradient}
+                    />
+                    <div className="flex flex-col gap-1 mb-4">
+                        <p className="text-gray-500 font-semibold text-lg">
+                            REMARKS
+                        </p>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Remarks"
+                            multiline
+                            maxRows={4}
+                        />
+                    </div>
+
+                    <RadioItem
+                        header="STREET FURNITURE:"
+                        label="In the presence of street furniture (benches, posts, poles, etc.), Is there at least 0.90m of walking space on the sidewalk?"
+                        options={['Yes', 'No', 'N/A']}
+                        allowOther={false}
+                        setValue={setStreetFurniture}
+                    />
+                    <div className="flex flex-col gap-1 mb-4">
+                        <p className="text-gray-500 font-semibold text-lg">
+                            REMARKS
+                        </p>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Remarks"
+                            multiline
+                            maxRows={4}
+                        />
+                    </div>
+
+                    <FormControl>
+                        <FormLabel id="demo-controlled-radio-buttons-group">
+                            <span className="font-bold">BORDER BUFFER:</span> Is
+                            there a clear division between the sidewalk and the
+                            road itself via elevation or bollards present?
+                        </FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            row
+                            // value={'Yes'}
+                            onChange={(e) => setBorderBuffer(e.target.value)}
+                        >
+                            <FormControlLabel
+                                value="Yes"
+                                control={<Radio />}
+                                label="Yes"
+                            />
+                            <FormControlLabel
+                                value="No"
+                                control={<Radio />}
+                                label="No"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                    <div className="flex flex-col gap-1 mb-4">
+                        <p className="text-gray-500 font-semibold text-lg">
+                            REMARKS
+                        </p>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Remarks"
+                            multiline
+                            maxRows={4}
+                        />
+                    </div>
+
+                    <RadioItem
+                        header="LIGHTING CONDITION:"
+                        label="How well lit is the area?"
+                        options={[
+                            'Excellent',
+                            'Adequate',
+                            'Dim',
+                            'Poor',
+                            'Dark',
+                            'Other',
+                        ]}
+                        allowOther={true}
+                        setValue={setLightingCondition}
+                    />
+                    <div className="flex flex-col gap-1 mb-4">
+                        <p className="text-gray-500 font-semibold text-lg">
+                            REMARKS
+                        </p>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Remarks"
+                            multiline
+                            maxRows={4}
+                        />
+                    </div>
+
                     <p className="text-slate-600">Images</p>
                     <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
                         {images.map((image, index) => (
