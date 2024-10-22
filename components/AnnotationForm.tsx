@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import React, { useEffect, useState } from 'react'
@@ -19,8 +18,6 @@ import StaticMap from './StaticMap'
 import useAnnotationStore from '@/store/annotation'
 import useAuthStore from '@/store/auth'
 import RadioItem from './RadioItem'
-
-import formDataTest from '@/form_data_test.json'
 
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
@@ -58,7 +55,6 @@ function AnnotationForm(props: PropsInterface) {
     const [isTitleAvailable, setIsTitleAvailable] = useState(true)
 
     // form states
-    const [streetName, setStreetName] = useState<string | null>(null)
     const [date, setDate] = useState<string | null>(null)
     const [sidewalkPresence, setSidewalkPresence] = useState<string | null>(
         null
@@ -98,7 +94,6 @@ function AnnotationForm(props: PropsInterface) {
         !title ||
         !isTitleAvailable ||
         isTyping ||
-        !streetName ||
         !date ||
         !sidewalkPresence ||
         (sidewalkPresence === 'Yes' &&
@@ -221,22 +216,71 @@ function AnnotationForm(props: PropsInterface) {
             }
 
             const locations = await getLocations(filters)
-            if (locations.length > 0) {
+            if (locations.total_count > 0) {
                 return locations.objects[0].id
             }
-            return null
+            throw new Error('Location not found')
         } catch (error) {
             console.error('Error in getLocationId function:', error)
-            return null
+            return -1
         }
     }
 
     const save = async () => {
+        if (disableSave) return
         setIsSaving(true)
         try {
+            const location_id = await getLocationId()
+            if (location_id === -1) {
+                throw new Error('Location not found')
+            }
+
+            const formData = {
+                dateAndTime: date,
+                sidewalkPresence: sidewalkPresence === 'Yes' ? true : false,
+            }
+
+            const additionalFormData = {
+                sidewalkWidth: {
+                    value: sidewalkWidth,
+                    remarks: sidewalkWidthRemarks,
+                },
+                sidewalkCondition: {
+                    value: sidewalkCondition,
+                    remarks: sidewalkCondionRemarks,
+                },
+                rampGradient: {
+                    value: rampGradient,
+                    remarks: rampGradientRemarks,
+                },
+                streetFurniture: {
+                    value: streetFurniture,
+                    remarks: streetFurnitureRemarks,
+                },
+                borderBuffer: {
+                    value: borderBuffer,
+                    remarks: borderBufferRemarks,
+                },
+                lightingCondition: {
+                    value: lightingCondition,
+                    remarks: lightingConditionRemarks,
+                },
+            }
+
+            const annotationData = {
+                location_id,
+                annotator_id: user.id,
+                form_template_id: 1,
+                name: title,
+                form_data: formData.sidewalkPresence
+                    ? JSON.stringify({ ...formData, ...additionalFormData })
+                    : JSON.stringify(formData),
+            }
+
+            const annotation = await createAnnotation(annotationData)
+
             const uploadedUrls = (await uploadImages()) || []
             console.log('All uploaded URLs:', uploadedUrls)
-            return
             const files_id = await Promise.all(
                 uploadedUrls.map(async (url) => {
                     try {
@@ -244,20 +288,11 @@ function AnnotationForm(props: PropsInterface) {
                         return res.id
                     } catch (error) {
                         console.error('Error in createFile function:', error)
+                        throw null
                     }
                 })
             )
 
-            const annotationData = {
-                location_id: await getLocationId(),
-                annotator_id: user.id,
-                form_template_id: 1,
-                coordinates_id: 1, // temp
-                name: title,
-                form_data: formDataTest, // temp
-            }
-
-            const annotation = await createAnnotation(annotationData)
             await Promise.all(
                 files_id.map(async (file_id) => {
                     try {
@@ -341,22 +376,16 @@ function AnnotationForm(props: PropsInterface) {
                     <StaticMap lineSegment={pickedLineSegment} />
                     <Divider />
                     <TextField
-                        label="Annotation title"
+                        label="Street name/address"
                         variant="outlined"
                         size="small"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     {!isTitleAvailable && (
                         <p className="text-red-500 text-sm">
-                            Annotation title is already taken
+                            Street name/address is already taken
                         </p>
                     )}
-                    <TextField
-                        label="Street name/address"
-                        variant="outlined"
-                        size="small"
-                        onChange={(e) => setStreetName(e.target.value)}
-                    />
                     {/* <TextField
                         label="Date and time annotated"
                         variant="outlined"
