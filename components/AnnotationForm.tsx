@@ -422,7 +422,7 @@ function AnnotationForm(props: PropsInterface) {
                                 options={[
                                     'Smooth (No cracks, even surface)',
                                     'Cracked (Small cracks <6mm width)',
-                                    'Damaged (Large cracks >= 6mm width, uneven surface)',
+                                    'Damaged (Large cracks ≥ 6mm width, uneven surface)',
                                     'Other',
                                 ]}
                                 allowOther={true}
@@ -432,7 +432,7 @@ function AnnotationForm(props: PropsInterface) {
                                 header="RAMP GRADIENT"
                                 label="In the presence of ramps, how steep is the ramp incline?"
                                 options={[
-                                    '<= 5% Gradient (Accessible)',
+                                    '≤ 5% Gradient (Accessible)',
                                     '> 5% Gradient (Unaccessible)',
                                     'N/A',
                                     'Other',
