@@ -90,6 +90,9 @@ function AnnotationForm(props: PropsInterface) {
     const [lightingConditionRemarks, setLightingConditionRemarks] = useState<
         string | null
     >(null)
+    const [sidewalkCondionRemarks, setSidewalkConditionRemarks] = useState<
+        string | null
+    >(null)
 
     const disableSave =
         !title ||
@@ -428,6 +431,22 @@ function AnnotationForm(props: PropsInterface) {
                                 allowOther={true}
                                 setValue={setSidewalkCondition}
                             />
+                            <div className="flex flex-col gap-1 mb-4">
+                                <p className="text-gray-500 font-semibold text-lg">
+                                    REMARKS
+                                </p>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Remarks"
+                                    multiline
+                                    maxRows={4}
+                                    onChange={(e) =>
+                                        setSidewalkConditionRemarks(
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
                             <RadioItem
                                 header="RAMP GRADIENT"
                                 label="In the presence of ramps, how steep is the ramp incline?"
