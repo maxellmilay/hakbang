@@ -17,7 +17,8 @@ interface PropsInterface {
 }
 
 function AnnotationDetails(props: PropsInterface) {
-    const { getAnnotations } = useAnnotationStore()
+    const { getAnnotations, getAccessibilityColor, getAccessibilityLabel } =
+        useAnnotationStore()
     const { user } = useAuthStore()
     const {
         closeAnnotationDetails,
@@ -34,34 +35,6 @@ function AnnotationDetails(props: PropsInterface) {
     const close = () => {
         closeAnnotationDetails()
         setSelectedLineSegment(null)
-    }
-
-    const getColor = (level: number) => {
-        if (level >= 0 && level < 20) {
-            return 5
-        } else if (level >= 20 && level < 40) {
-            return 4
-        } else if (level >= 40 && level < 60) {
-            return 3
-        } else if (level >= 60 && level < 80) {
-            return 2
-        } else {
-            return 1
-        }
-    }
-
-    const walkability = (level: number) => {
-        if (level >= 0 && level < 20) {
-            return 'Very Poor'
-        } else if (level >= 20 && level < 40) {
-            return 'Poor'
-        } else if (level >= 40 && level < 60) {
-            return 'Fair'
-        } else if (level >= 60 && level < 80) {
-            return 'Good'
-        } else {
-            return 'Very Good'
-        }
     }
 
     useEffect(() => {
@@ -94,6 +67,7 @@ function AnnotationDetails(props: PropsInterface) {
             .then((res: any) => {
                 if (res.total_count !== 0) {
                     setSelectedLineSegmentAnnotation(res.objects[0])
+                    console.log(res.objects[0].form_data)
                     setNoAnnotation(false)
                 } else {
                     setNoAnnotation(true)
@@ -174,20 +148,15 @@ function AnnotationDetails(props: PropsInterface) {
 
                         <div className="flex flex-col overflow-y-auto overflow-x-hidden custom-scrollbar gap-2 grow">
                             <div className="flex flex-col px-3">
-                                <p>
-                                    Nearest Street:{' '}
-                                    <b>
-                                        {
-                                            annotationDetails.location
-                                                .adjacent_street
-                                        }
-                                    </b>
-                                </p>
-                                <p className="text-slate-600">
+                                <p className="text-slate-600 text-sm">
                                     Annotated by:{' '}
-                                    <span className="font-semibold">
+                                    <span className="">
                                         {annotationDetails.annotator.full_name}
                                     </span>
+                                </p>
+                                <p className="text-slate-600 text-sm mb-2">
+                                    Nearest Street:{' '}
+                                    {annotationDetails.location.adjacent_street}
                                 </p>
                                 <div className="flex gap-5 bg-gray-100 p-2 rounded-md">
                                     <p className="text-slate-600 text-xs sm:text-sm">
@@ -221,24 +190,27 @@ function AnnotationDetails(props: PropsInterface) {
                                     Width:{' '}
                                     {
                                         annotationDetails.form_data
-                                            ?.sidewalk_width
-                                    }{' '}
-                                    inches
+                                            ?.sidewalkWidth.value
+                                    }
                                 </p>
                             </div>
                             <div className="flex px-3 gap-3 font-semibold text-lg items-center">
                                 <div
                                     className={`w-6 h-6 rounded-md border-2 border-black
-                            bg-level-${getColor(annotationDetails.location.accessibility_score)}`}
+                            bg-level-${getAccessibilityColor(annotationDetails.location.accessibility_score)}`}
                                 ></div>
-                                {walkability(
+                                {getAccessibilityLabel(
                                     annotationDetails.location
                                         .accessibility_score
                                 )}
                             </div>
                             <div className="flex flex-col gap-1 p-3">
                                 <p className="text-lg font-semibold">
-                                    Accessibility features
+                                    Accessibility features{' '}
+                                    {getAccessibilityColor(
+                                        annotationDetails.location
+                                            .accessibility_score
+                                    )}
                                 </p>
                                 {annotationDetails.form_data?.accessibility?.map(
                                     (

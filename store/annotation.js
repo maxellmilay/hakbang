@@ -4,6 +4,40 @@ import useAuthStore from './auth'
 
 const useAnnotationStore = create((set) => ({
     sidebarAnnotations: [],
+    getAccessibilityColor: (accessibilityScore) => {
+        if (accessibilityScore === null) {
+            return 0
+        }
+        accessibilityScore = parseFloat(accessibilityScore)
+        if (accessibilityScore >= 0 && accessibilityScore < 0.2) {
+            return 5
+        } else if (accessibilityScore >= 0.2 && accessibilityScore < 0.4) {
+            return 4
+        } else if (accessibilityScore >= 0.4 && accessibilityScore < 0.6) {
+            return 3
+        } else if (accessibilityScore >= 0.6 && accessibilityScore < 0.8) {
+            return 2
+        } else {
+            return 1
+        }
+    },
+    getAccessibilityLabel: (accessibilityScore) => {
+        if (accessibilityScore === null) {
+            return 'No Data'
+        }
+        accessibilityScore = parseFloat(accessibilityScore)
+        if (accessibilityScore >= 0 && accessibilityScore < 0.2) {
+            return 'Very Poor'
+        } else if (accessibilityScore >= 0.2 && accessibilityScore < 0.4) {
+            return 'Poor'
+        } else if (accessibilityScore >= 0.4 && accessibilityScore < 0.6) {
+            return 'Average'
+        } else if (accessibilityScore >= 0.6 && accessibilityScore < 0.8) {
+            return 'Good'
+        } else {
+            return 'Very Good'
+        }
+    },
     getSidebarAnnotations: async () => {
         const userID = useAuthStore.getState().user?.id
         if (!userID) {

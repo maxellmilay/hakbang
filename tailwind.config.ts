@@ -17,6 +17,7 @@ const config: Config = {
                     dark: '#AFA71A',
                 },
                 level: {
+                    0: '#D3D3D3',
                     1: '#70F915',
                     2: '#CAF9AB',
                     3: '#FBD08F',

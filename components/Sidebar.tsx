@@ -30,7 +30,8 @@ interface AnnotationItem {
 
 function Sidebar(props: PropsInterface) {
     const { user, getUser } = useAuthStore()
-    const { sidebarAnnotations, getSidebarAnnotations } = useAnnotationStore()
+    const { sidebarAnnotations, getSidebarAnnotations, getAccessibilityColor } =
+        useAnnotationStore()
 
     const [isLoading, setIsLoading] = useState(true)
     const {
@@ -40,21 +41,6 @@ function Sidebar(props: PropsInterface) {
         setSelectedLineSegment,
         isPickingLocation,
     } = props
-
-    const getColor = (level: number) => {
-        console.log(level)
-        if (level >= 0 && level < 0.2) {
-            return 5
-        } else if (level >= 0.2 && level < 0.4) {
-            return 4
-        } else if (level >= 0.4 && level < 0.6) {
-            return 3
-        } else if (level >= 0.6 && level < 0.8) {
-            return 2
-        } else {
-            return 1
-        }
-    }
 
     const data: AnnotationItem[] = Object.entries(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,8 +65,8 @@ function Sidebar(props: PropsInterface) {
 
             acc[dateKey].push({
                 id: annotation.id,
-                level: getColor(
-                    parseFloat(annotation.location.accessibility_score)
+                level: getAccessibilityColor(
+                    annotation.location.accessibility_score
                 ),
                 name: annotation.name,
                 lineSegment: {
@@ -173,7 +159,7 @@ function Sidebar(props: PropsInterface) {
                                     }`}
                                 >
                                     {/* ignore this, do not remove */}
-                                    <div className="bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
+                                    <div className="bg-level-0 bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
 
                                     <div className="h-[60px] min-h-[60px]"></div>
                                     <button
