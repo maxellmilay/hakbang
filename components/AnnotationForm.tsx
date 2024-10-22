@@ -613,51 +613,51 @@ function AnnotationForm(props: PropsInterface) {
                                     }
                                 />
                             </div>
-
-                            <p className="text-slate-600">Images</p>
-                            <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
-                                {images.map((image, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex-shrink-0 w-[150px] h-[200px] relative group"
-                                    >
-                                        <Image
-                                            src={image}
-                                            alt={`annotation image ${index + 1}`}
-                                            fill
-                                            sizes="150px"
-                                            style={{
-                                                objectFit: 'cover',
-                                            }}
-                                            className="rounded-md"
-                                        />
-                                        <button
-                                            onClick={() => removeImage(index)}
-                                            className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                                        >
-                                            <Icon
-                                                icon="material-symbols:close"
-                                                className="w-4 h-4"
-                                            />
-                                        </button>
-                                    </div>
-                                ))}
-                                <label className="flex-shrink-0 w-[150px] h-[200px] border-dashed border-2 border-sky-500 rounded-md relative flex items-center justify-center cursor-pointer">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageUpload}
-                                        className="hidden"
-                                        multiple
-                                    />
-                                    <Icon
-                                        icon="material-symbols:add"
-                                        className="w-6 h-6 text-sky-500"
-                                    />
-                                </label>
-                            </div>
                         </>
                     )}
+
+                    <p className="text-slate-600 font-semibold">IMAGES</p>
+                    <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
+                        {images.map((image, index) => (
+                            <div
+                                key={index}
+                                className="flex-shrink-0 w-[150px] h-[200px] relative group"
+                            >
+                                <Image
+                                    src={image}
+                                    alt={`annotation image ${index + 1}`}
+                                    fill
+                                    sizes="150px"
+                                    style={{
+                                        objectFit: 'cover',
+                                    }}
+                                    className="rounded-md"
+                                />
+                                <button
+                                    onClick={() => removeImage(index)}
+                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                >
+                                    <Icon
+                                        icon="material-symbols:close"
+                                        className="w-4 h-4"
+                                    />
+                                </button>
+                            </div>
+                        ))}
+                        <label className="flex-shrink-0 w-[150px] h-[200px] border-dashed border-2 border-sky-500 rounded-md relative flex items-center justify-center cursor-pointer">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                className="hidden"
+                                multiple
+                            />
+                            <Icon
+                                icon="material-symbols:add"
+                                className="w-6 h-6 text-sky-500"
+                            />
+                        </label>
+                    </div>
 
                     <div className="w-full flex justify-end gap-2 py-4">
                         <button
