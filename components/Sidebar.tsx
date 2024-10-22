@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { MapLineSegment } from '@/interface/map'
 import { motion, AnimatePresence } from 'framer-motion'
+import Skeleton from '@mui/material/Skeleton'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
@@ -174,48 +175,62 @@ function Sidebar(props: PropsInterface) {
                                             Add annotation
                                         </p>
                                     </button>
-                                    {isLoading ? (
-                                        <div className="flex justify-center items-center h-96">
-                                            loading...
-                                        </div>
-                                    ) : (
-                                        <div className="flex flex-col gap-6 overflow-y-auto custom-scrollbar">
-                                            {data.map((set, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="flex flex-col gap-2"
-                                                >
-                                                    <div className="p-2">
-                                                        <p className="font-medium text-slate-600">
-                                                            {set.date}
-                                                        </p>
-                                                    </div>
-                                                    {set.annotations.map(
-                                                        (annotation, index) => (
-                                                            <button
-                                                                onClick={() =>
-                                                                    inspectAnnotation(
-                                                                        annotation
-                                                                    )
-                                                                }
-                                                                key={index}
-                                                                className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary"
-                                                            >
-                                                                <div
-                                                                    className={`rounded-md min-w-6 w-6 h-6 border-2 border-black bg-level-${annotation.level}`}
-                                                                ></div>
-                                                                <p className="truncate max-w-[230px]">
-                                                                    {
-                                                                        annotation.name
+                                    <div className="flex flex-col items-center gap-6 overflow-y-auto custom-scrollbar">
+                                        {!isLoading ? (
+                                            <>
+                                                {data.map((set, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="flex flex-col gap-2 w-full"
+                                                    >
+                                                        <div className="p-2">
+                                                            <p className="font-medium text-slate-600">
+                                                                {set.date}
+                                                            </p>
+                                                        </div>
+                                                        {set.annotations.map(
+                                                            (
+                                                                annotation,
+                                                                index
+                                                            ) => (
+                                                                <button
+                                                                    onClick={() =>
+                                                                        inspectAnnotation(
+                                                                            annotation
+                                                                        )
                                                                     }
-                                                                </p>
-                                                            </button>
-                                                        )
-                                                    )}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
+                                                                    key={index}
+                                                                    className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary"
+                                                                >
+                                                                    <div
+                                                                        className={`rounded-md min-w-6 w-6 h-6 border-2 border-black bg-level-${annotation.level}`}
+                                                                    ></div>
+                                                                    <p className="truncate max-w-[230px]">
+                                                                        {
+                                                                            annotation.name
+                                                                        }
+                                                                    </p>
+                                                                </button>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </>
+                                        ) : (
+                                            <div className="flex flex-col items-center w-full gap-3">
+                                                {[...Array(10)].map(
+                                                    (_, index) => (
+                                                        <Skeleton
+                                                            key={index}
+                                                            variant="rounded"
+                                                            width={280}
+                                                            height={40}
+                                                        />
+                                                    )
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
                                     {data.length >= 20 && (
                                         <button className="text-slate-600 hover:text-primary-dark duration-100">
                                             View all annotations
