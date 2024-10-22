@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.26 52.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+        font-family: Arial-BoldMT, Arial;
+        font-size: 29.11px;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: #fff200;
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <polygon class="cls-2" points="46.26 22.49 46.26 51.94 1 51.94 1 22.49 23.63 1.37 46.26 22.49"/>
+    <text class="cls-1" transform="translate(8.55 41.37)"><tspan x="0" y="0">AI</tspan></text>
+  </g>
+</svg>
