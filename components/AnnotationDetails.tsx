@@ -46,7 +46,7 @@ function AnnotationDetails(props: PropsInterface) {
     const [annotationDetails, setSelectedLineSegmentAnnotation] =
         useState<any>(null)
 
-    const formData = annotationDetails?.form_data
+    const formData = JSON.parse(annotationDetails?.form_data || {})
 
     const close = () => {
         closeAnnotationDetails()
@@ -83,7 +83,6 @@ function AnnotationDetails(props: PropsInterface) {
             .then((res: any) => {
                 if (res.total_count !== 0) {
                     setSelectedLineSegmentAnnotation(res.objects[0])
-                    console.log(res.objects[0].form_data)
                     setNoAnnotation(false)
                 } else {
                     setNoAnnotation(true)
