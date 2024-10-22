@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
         const command = new PutObjectCommand({
             Bucket: bucketName,
-            Key: fileName,
+            Key: `lakbai/${fileName}`,
             ContentType: fileType,
         })
 
@@ -44,8 +44,7 @@ export async function POST(request: NextRequest) {
             signableHeaders: new Set(['host']),
         })
 
-        // Construct the actual file URL
-        const actualFileUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${fileName}`
+        const actualFileUrl = `https://${bucketName}.s3.${region}.amazonaws.com/lakbai/${fileName}`
 
         return NextResponse.json({ signedUrl, actualFileUrl })
     } catch (error) {
