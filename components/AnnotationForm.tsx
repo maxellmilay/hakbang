@@ -357,12 +357,23 @@ function AnnotationForm(props: PropsInterface) {
                         size="small"
                         onChange={(e) => setStreetName(e.target.value)}
                     />
-                    <TextField
+                    {/* <TextField
                         label="Date and time annotated"
                         variant="outlined"
+                        type="datetime-local"
                         size="small"
                         onChange={(e) => setDate(e.target.value)}
-                    />
+                    /> */}
+                    <div className="flex flex-col gap-1">
+                        <p className="text-gray-500 font-semibold text-lg">
+                            Date and time annotated
+                        </p>
+                        <input
+                            type="datetime-local"
+                            className="p-2 border border-gray-300 rounded-md"
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </div>
                     <FormControl>
                         <FormLabel id="demo-controlled-radio-buttons-group">
                             <h3 className="font-bold">SIDEWALK PRESENCE</h3>{' '}
