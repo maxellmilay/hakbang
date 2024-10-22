@@ -165,7 +165,7 @@ function AnnotationDetails(props: PropsInterface) {
                         </div>
 
                         <div className="flex flex-col overflow-y-auto overflow-x-hidden custom-scrollbar gap-2 grow">
-                            <div className="flex flex-col px-3">
+                            <div className="flex flex-col flex-wrap px-3">
                                 <div className="flex gap-5">
                                     <p className="text-slate-600 text-sm">
                                         By:{' '}
@@ -182,10 +182,6 @@ function AnnotationDetails(props: PropsInterface) {
                                         )}
                                     </p>
                                 </div>
-                                <p className="text-slate-600 text-sm mb-2">
-                                    Nearest Street:{' '}
-                                    {annotationDetails.location.adjacent_street}
-                                </p>
                                 <div className="flex gap-5 bg-gray-100 p-2 rounded-md">
                                     <p className="text-slate-600 text-xs sm:text-sm">
                                         Start Coordinates: <br /> (
@@ -214,6 +210,10 @@ function AnnotationDetails(props: PropsInterface) {
                                         )
                                     </p>
                                 </div>
+                                <p className="text-slate-600 text-sm mb-2">
+                                    Nearest Street:{' '}
+                                    {annotationDetails.location.adjacent_street}
+                                </p>
                             </div>
                             <div className="p-3">
                                 <h3 className="text-lg font-semibold">
