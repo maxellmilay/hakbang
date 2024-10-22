@@ -361,10 +361,8 @@ function AnnotationForm(props: PropsInterface) {
                     />
                     <FormControl>
                         <FormLabel id="demo-controlled-radio-buttons-group">
-                            <span className="font-bold">
-                                SIDEWALK PRESENCE:
-                            </span>{' '}
-                            Is there a sidewalk?
+                            <h3 className="font-bold">SIDEWALK PRESENCE</h3>{' '}
+                            <p className="text-sm">Is there a sidewalk?</p>
                         </FormLabel>
                         <RadioGroup
                             aria-labelledby="demo-controlled-radio-buttons-group"
@@ -388,205 +386,218 @@ function AnnotationForm(props: PropsInterface) {
                         </RadioGroup>
                     </FormControl>
 
-                    <RadioItem
-                        header="SIDEWALK WIDTH:"
-                        label="How wide is the sidewalk?"
-                        options={[
-                            'Narrow (< 1.5m)',
-                            'Midsize (1.5m - 1.8m)',
-                            'Wide (> 1.8m)',
-                            'Other',
-                        ]}
-                        allowOther={true}
-                        setValue={setSidewalkWidth}
-                    />
-
-                    <div className="flex flex-col gap-1 mb-4">
-                        <p className="text-gray-500 font-semibold text-lg">
-                            REMARKS
-                        </p>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Remarks"
-                            multiline
-                            maxRows={4}
-                            onChange={(e) =>
-                                setSidewalkWidthRemarks(e.target.value)
-                            }
-                        />
-                    </div>
-                    <RadioItem
-                        header="SIDEWALK CONDITION:"
-                        label="How would you describe the current state of the condition of the sidewalk?"
-                        options={[
-                            'Smooth (No cracks, even surface)',
-                            'Cracked (Small cracks <6mm width)',
-                            'Damaged (Large cracks >= 6mm width, uneven surface)',
-                            'Other',
-                        ]}
-                        allowOther={true}
-                        setValue={setSidewalkCondition}
-                    />
-                    <RadioItem
-                        header="RAMP GRADIENT:"
-                        label="In the presence of ramps, how steep is the ramp incline?"
-                        options={[
-                            '<= 5% Gradient (Accessible)',
-                            '> 5% Gradient (Unaccessible)',
-                            'N/A',
-                            'Other',
-                        ]}
-                        allowOther={true}
-                        setValue={setRampGradient}
-                    />
-                    <div className="flex flex-col gap-1 mb-4">
-                        <p className="text-gray-500 font-semibold text-lg">
-                            REMARKS
-                        </p>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Remarks"
-                            multiline
-                            maxRows={4}
-                            onChange={(e) =>
-                                setRampGradientRemarks(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <RadioItem
-                        header="STREET FURNITURE:"
-                        label="In the presence of street furniture (benches, posts, poles, etc.), Is there at least 0.90m of walking space on the sidewalk?"
-                        options={['Yes', 'No', 'N/A']}
-                        allowOther={false}
-                        setValue={setStreetFurniture}
-                    />
-                    <div className="flex flex-col gap-1 mb-4">
-                        <p className="text-gray-500 font-semibold text-lg">
-                            REMARKS
-                        </p>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Remarks"
-                            multiline
-                            maxRows={4}
-                            onChange={(e) =>
-                                setStreetFurnitureRemarks(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <FormControl>
-                        <FormLabel id="demo-controlled-radio-buttons-group">
-                            <span className="font-bold">BORDER BUFFER:</span> Is
-                            there a clear division between the sidewalk and the
-                            road itself via elevation or bollards present?
-                        </FormLabel>
-                        <RadioGroup
-                            aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="controlled-radio-buttons-group"
-                            row
-                            // value={'Yes'}
-                            onChange={(e) => setBorderBuffer(e.target.value)}
-                        >
-                            <FormControlLabel
-                                value="Yes"
-                                control={<Radio />}
-                                label="Yes"
+                    {sidewalkPresence === 'Yes' && (
+                        <>
+                            <RadioItem
+                                header="SIDEWALK WIDTH"
+                                label="How wide is the sidewalk?"
+                                options={[
+                                    'Narrow (< 1.5m)',
+                                    'Midsize (1.5m - 1.8m)',
+                                    'Wide (> 1.8m)',
+                                    'Other',
+                                ]}
+                                allowOther={true}
+                                setValue={setSidewalkWidth}
                             />
-                            <FormControlLabel
-                                value="No"
-                                control={<Radio />}
-                                label="No"
-                            />
-                        </RadioGroup>
-                    </FormControl>
-                    <div className="flex flex-col gap-1 mb-4">
-                        <p className="text-gray-500 font-semibold text-lg">
-                            REMARKS
-                        </p>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Remarks"
-                            multiline
-                            maxRows={4}
-                            onChange={(e) =>
-                                setBorderBufferRemarks(e.target.value)
-                            }
-                        />
-                    </div>
 
-                    <RadioItem
-                        header="LIGHTING CONDITION:"
-                        label="How well lit is the area?"
-                        options={[
-                            'Excellent',
-                            'Adequate',
-                            'Dim',
-                            'Poor',
-                            'Dark',
-                            'Other',
-                        ]}
-                        allowOther={true}
-                        setValue={setLightingCondition}
-                    />
-                    <div className="flex flex-col gap-1 mb-4">
-                        <p className="text-gray-500 font-semibold text-lg">
-                            REMARKS
-                        </p>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Remarks"
-                            multiline
-                            maxRows={4}
-                            onChange={(e) =>
-                                setLightingConditionRemarks(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <p className="text-slate-600">Images</p>
-                    <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
-                        {images.map((image, index) => (
-                            <div
-                                key={index}
-                                className="flex-shrink-0 w-[150px] h-[200px] relative group"
-                            >
-                                <Image
-                                    src={image}
-                                    alt={`annotation image ${index + 1}`}
-                                    fill
-                                    sizes="150px"
-                                    style={{
-                                        objectFit: 'cover',
-                                    }}
-                                    className="rounded-md"
+                            <div className="flex flex-col gap-1 mb-4">
+                                <p className="text-gray-500 font-semibold text-lg">
+                                    REMARKS
+                                </p>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Remarks"
+                                    multiline
+                                    maxRows={4}
+                                    onChange={(e) =>
+                                        setSidewalkWidthRemarks(e.target.value)
+                                    }
                                 />
-                                <button
-                                    onClick={() => removeImage(index)}
-                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                                >
-                                    <Icon
-                                        icon="material-symbols:close"
-                                        className="w-4 h-4"
-                                    />
-                                </button>
                             </div>
-                        ))}
-                        <label className="flex-shrink-0 w-[150px] h-[200px] border-dashed border-2 border-sky-500 rounded-md relative flex items-center justify-center cursor-pointer">
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageUpload}
-                                className="hidden"
-                                multiple
+                            <RadioItem
+                                header="SIDEWALK CONDITION"
+                                label="How would you describe the current state of the condition of the sidewalk?"
+                                options={[
+                                    'Smooth (No cracks, even surface)',
+                                    'Cracked (Small cracks <6mm width)',
+                                    'Damaged (Large cracks >= 6mm width, uneven surface)',
+                                    'Other',
+                                ]}
+                                allowOther={true}
+                                setValue={setSidewalkCondition}
                             />
-                            <Icon
-                                icon="material-symbols:add"
-                                className="w-6 h-6 text-sky-500"
+                            <RadioItem
+                                header="RAMP GRADIENT"
+                                label="In the presence of ramps, how steep is the ramp incline?"
+                                options={[
+                                    '<= 5% Gradient (Accessible)',
+                                    '> 5% Gradient (Unaccessible)',
+                                    'N/A',
+                                    'Other',
+                                ]}
+                                allowOther={true}
+                                setValue={setRampGradient}
                             />
-                        </label>
-                    </div>
+                            <div className="flex flex-col gap-1 mb-4">
+                                <p className="text-gray-500 font-semibold text-lg">
+                                    REMARKS
+                                </p>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Remarks"
+                                    multiline
+                                    maxRows={4}
+                                    onChange={(e) =>
+                                        setRampGradientRemarks(e.target.value)
+                                    }
+                                />
+                            </div>
+
+                            <RadioItem
+                                header="STREET FURNITURE"
+                                label="In the presence of street furniture (benches, posts, poles, etc.), Is there at least 0.90m of walking space on the sidewalk?"
+                                options={['Yes', 'No', 'N/A']}
+                                allowOther={false}
+                                setValue={setStreetFurniture}
+                            />
+                            <div className="flex flex-col gap-1 mb-4">
+                                <p className="text-gray-500 font-semibold text-lg">
+                                    REMARKS
+                                </p>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Remarks"
+                                    multiline
+                                    maxRows={4}
+                                    onChange={(e) =>
+                                        setStreetFurnitureRemarks(
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+
+                            <FormControl>
+                                <FormLabel id="demo-controlled-radio-buttons-group">
+                                    <h3 className="font-bold">BORDER BUFFER</h3>
+                                    <p className="text-sm">
+                                        Is there a clear division between the
+                                        sidewalk and the road itself via
+                                        elevation or bollards present?
+                                    </p>
+                                </FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-controlled-radio-buttons-group"
+                                    name="controlled-radio-buttons-group"
+                                    row
+                                    // value={'Yes'}
+                                    onChange={(e) =>
+                                        setBorderBuffer(e.target.value)
+                                    }
+                                >
+                                    <FormControlLabel
+                                        value="Yes"
+                                        control={<Radio />}
+                                        label="Yes"
+                                    />
+                                    <FormControlLabel
+                                        value="No"
+                                        control={<Radio />}
+                                        label="No"
+                                    />
+                                </RadioGroup>
+                            </FormControl>
+                            <div className="flex flex-col gap-1 mb-4">
+                                <p className="text-gray-500 font-semibold text-lg">
+                                    REMARKS
+                                </p>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Remarks"
+                                    multiline
+                                    maxRows={4}
+                                    onChange={(e) =>
+                                        setBorderBufferRemarks(e.target.value)
+                                    }
+                                />
+                            </div>
+
+                            <RadioItem
+                                header="LIGHTING CONDITION"
+                                label="How well lit is the area?"
+                                options={[
+                                    'Excellent',
+                                    'Adequate',
+                                    'Dim',
+                                    'Poor',
+                                    'Dark',
+                                    'Other',
+                                ]}
+                                allowOther={true}
+                                setValue={setLightingCondition}
+                            />
+                            <div className="flex flex-col gap-1 mb-4">
+                                <p className="text-gray-500 font-semibold text-lg">
+                                    REMARKS
+                                </p>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Remarks"
+                                    multiline
+                                    maxRows={4}
+                                    onChange={(e) =>
+                                        setLightingConditionRemarks(
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+
+                            <p className="text-slate-600">Images</p>
+                            <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
+                                {images.map((image, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex-shrink-0 w-[150px] h-[200px] relative group"
+                                    >
+                                        <Image
+                                            src={image}
+                                            alt={`annotation image ${index + 1}`}
+                                            fill
+                                            sizes="150px"
+                                            style={{
+                                                objectFit: 'cover',
+                                            }}
+                                            className="rounded-md"
+                                        />
+                                        <button
+                                            onClick={() => removeImage(index)}
+                                            className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                        >
+                                            <Icon
+                                                icon="material-symbols:close"
+                                                className="w-4 h-4"
+                                            />
+                                        </button>
+                                    </div>
+                                ))}
+                                <label className="flex-shrink-0 w-[150px] h-[200px] border-dashed border-2 border-sky-500 rounded-md relative flex items-center justify-center cursor-pointer">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        className="hidden"
+                                        multiple
+                                    />
+                                    <Icon
+                                        icon="material-symbols:add"
+                                        className="w-6 h-6 text-sky-500"
+                                    />
+                                </label>
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className="w-full flex justify-end gap-2 px-6 py-4">
                     <button

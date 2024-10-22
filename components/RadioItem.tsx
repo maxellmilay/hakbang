@@ -31,7 +31,8 @@ function RadioItem(props: PropsInterface) {
         <>
             <FormControl>
                 <FormLabel id="demo-controlled-radio-buttons-group">
-                    <span className="font-bold">{header}</span> {label}
+                    <h3 className="font-bold">{header}</h3>
+                    <p className="text-sm">{label}</p>
                 </FormLabel>
                 <RadioGroup
                     aria-labelledby="demo-controlled-radio-buttons-group"
