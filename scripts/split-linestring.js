@@ -41,14 +41,42 @@ const getNearestRoad = async (lat, lng) => {
     }
 }
 
+const getNearestPlaces = async (lat, lng) => {
+    const apiKey = process.env.GOOGLE_MAP_API_KEY
+    const radius = 1200 // Define the radius in meters
+    const types = 'restaurant|cafe|bank|hospital' // Types of establishments you're interested in
+
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${types}&key=${apiKey}`
+
+    try {
+        const response = await axios.get(url)
+        const placesData = response.data.results
+
+        const countByType = placesData.reduce((acc, place) => {
+            place.types.forEach((type) => {
+                acc[type] = (acc[type] || 0) + 1
+            })
+            return acc
+        }, {})
+
+        return countByType
+    } catch (error) {
+        console.error('Error fetching places data:', error)
+        return {}
+    }
+}
+
 const splitLineStringIntoEqualPartsByLength = async (
     coordinates,
     segmentLength
 ) => {
     const newFeatures = []
 
-    for (const { start, end } of coordinates) {
-        const lineStringFeature = lineString([start, end])
+    for (const { start_coordinates, end_coordinates } of coordinates) {
+        const lineStringFeature = lineString([
+            start_coordinates,
+            end_coordinates,
+        ])
         const totalLength = length(lineStringFeature, { units: 'kilometers' })
 
         let currentDistance = 0
@@ -78,14 +106,21 @@ const splitLineStringIntoEqualPartsByLength = async (
                 },
             }
 
-            const { lat, lng } = getLineSegmentCenter(lineSegment)
-            const nearestStreet = await getNearestRoad(lat, lng)
+            // Corrected destructuring here
+            const { latitude, longitude } = getLineSegmentCenter(lineSegment)
+            const nearestStreet = await getNearestRoad(latitude, longitude)
+
+            const nearPlacesFrequency = await getNearestPlaces(
+                latitude,
+                longitude
+            )
 
             const segment = {
                 type: 'Feature',
                 properties: {
                     weight: null,
                     nearestStreet: nearestStreet,
+                    nearPlacesFrequency: nearPlacesFrequency,
                 },
                 geometry: {
                     type: 'LineString',
