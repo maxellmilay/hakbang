@@ -212,70 +212,132 @@ function AnnotationDetails(props: PropsInterface) {
                                         <h3 className="font-semibold">
                                             SIDEWALK WIDTH
                                         </h3>
-                                        <ul className="list-disc pl-5">
-                                            <li>
+                                        <p className="text-xs text-gray-500">
+                                            How wide is the sidewalk?
+                                        </p>
+                                        <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                            <p className="font-semibold">
                                                 {formData?.sidewalkWidth?.value}
-                                            </li>
-                                        </ul>
+                                            </p>
+                                            <p className="text-sm">
+                                                {
+                                                    formData?.sidewalkWidth
+                                                        ?.remarks
+                                                }
+                                            </p>
+                                        </div>
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">
                                             SIDEWALK CONDITION
                                         </h3>
-                                        <ul className="list-disc pl-5">
-                                            <li>
+                                        <p className="text-xs text-gray-500">
+                                            How would you describe the current
+                                            state of the condition of the
+                                            sidewalk?
+                                        </p>
+                                        <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                            <p className="font-semibold">
                                                 {
                                                     formData?.sidewalkCondition
                                                         ?.value
                                                 }
-                                            </li>
-                                        </ul>
+                                            </p>
+                                            <p className="text-sm">
+                                                {
+                                                    formData?.sidewalkCondition
+                                                        ?.remarks
+                                                }
+                                            </p>
+                                        </div>
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">
                                             RAMP GRADIENT
                                         </h3>
-                                        <ul className="list-disc pl-5">
-                                            <li>
+                                        <p className="text-xs text-gray-500">
+                                            In the presence of ramps, how steep
+                                            is the ramp incline?
+                                        </p>
+                                        <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                            <p className="font-semibold">
                                                 {formData?.rampGradient?.value}
-                                            </li>
-                                        </ul>
+                                            </p>
+                                            <p className="text-sm">
+                                                {
+                                                    formData?.rampGradient
+                                                        ?.remarks
+                                                }
+                                            </p>
+                                        </div>
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">
                                             STREET FURNITURE
                                         </h3>
-                                        <ul className="list-disc pl-5">
-                                            <li>
+                                        <p className="text-xs text-gray-500">
+                                            In the presence of street furniture
+                                            (benches, posts, poles, etc.), Is
+                                            there at least 0.90m of walking
+                                            space on the sidewalk?
+                                        </p>
+                                        <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                            <p className="font-semibold">
                                                 {
                                                     formData?.streetFurniture
                                                         ?.value
                                                 }
-                                            </li>
-                                        </ul>
+                                            </p>
+                                            <p className="text-sm">
+                                                {
+                                                    formData?.streetFurniture
+                                                        ?.remarks
+                                                }
+                                            </p>
+                                        </div>
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">
                                             BORDER BUFFER
                                         </h3>
-                                        <ul className="list-disc pl-5">
-                                            <li>
+                                        <p className="text-xs text-gray-500">
+                                            Is there a clear division between
+                                            the sidewalk and the road itself via
+                                            elevation or bollards present?
+                                        </p>
+                                        <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                            <p className="font-semibold">
                                                 {formData?.borderBuffer?.value}
-                                            </li>
-                                        </ul>
+                                            </p>
+                                            <p className="text-sm">
+                                                {
+                                                    formData?.borderBuffer
+                                                        ?.remarks
+                                                }
+                                            </p>
+                                        </div>
                                     </div>
                                     <div>
                                         <h3 className="font-semibold">
                                             LIGHTING CONDITION
                                         </h3>
-                                        <ul className="list-disc pl-5">
-                                            <li>
+                                        <p className="text-xs text-gray-500">
+                                            How well lit is the area?
+                                        </p>
+                                        <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                            <p className="font-semibold">
                                                 {
                                                     formData?.lightingCondition
                                                         ?.value
                                                 }
-                                            </li>
-                                        </ul>
+                                            </p>
+                                            <p className="text-sm">
+                                                {
+                                                    formData?.lightingCondition
+                                                        ?.remarks
+                                                }
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             ) : (
