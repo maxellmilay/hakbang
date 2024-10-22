@@ -46,7 +46,10 @@ function AnnotationDetails(props: PropsInterface) {
     const [annotationDetails, setSelectedLineSegmentAnnotation] =
         useState<any>(null)
 
-    const formData = JSON.parse(annotationDetails?.form_data || {})
+    const formData =
+        typeof annotationDetails?.form_data === 'string'
+            ? JSON.parse(annotationDetails?.form_data || '{}')
+            : annotationDetails?.form_data || {}
 
     const close = () => {
         closeAnnotationDetails()
