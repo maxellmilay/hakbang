@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { MapLineSegment } from '@/interface/map'
+import Divider from '@mui/material/Divider'
 
 import useAnnotationStore from '@/store/annotation'
 import useAuthStore from '@/store/auth'
@@ -31,6 +32,8 @@ function AnnotationDetails(props: PropsInterface) {
     const [noAnnotation, setNoAnnotation] = useState(false)
     const [annotationDetails, setSelectedLineSegmentAnnotation] =
         useState<any>(null)
+
+    const formData = annotationDetails?.form_data
 
     const close = () => {
         closeAnnotationDetails()
@@ -186,109 +189,100 @@ function AnnotationDetails(props: PropsInterface) {
                                         )
                                     </p>
                                 </div>
-                                <p className="text-slate-600">
-                                    Width:{' '}
-                                    {
-                                        annotationDetails.form_data
-                                            ?.sidewalkWidth.value
-                                    }
-                                </p>
                             </div>
-                            <div className="flex px-3 gap-3 font-semibold text-lg items-center">
-                                <div
-                                    className={`w-6 h-6 rounded-md border-2 border-black
+                            <div className="p-3">
+                                <h3 className="text-lg font-semibold">
+                                    ACCESSIBILITY SCORE
+                                </h3>
+                                <div className="flex px-3 gap-3 font-semibold text-lg items-center">
+                                    <div
+                                        className={`w-6 h-6 rounded-md border-2 border-black
                             bg-level-${getAccessibilityColor(annotationDetails.location.accessibility_score)}`}
-                                ></div>
-                                {getAccessibilityLabel(
-                                    annotationDetails.location
-                                        .accessibility_score
-                                )}
-                            </div>
-                            <div className="flex flex-col gap-1 p-3">
-                                <p className="text-lg font-semibold">
-                                    Accessibility features{' '}
-                                    {getAccessibilityColor(
+                                    ></div>
+                                    {getAccessibilityLabel(
                                         annotationDetails.location
                                             .accessibility_score
                                     )}
-                                </p>
-                                {annotationDetails.form_data?.accessibility?.map(
-                                    (
-                                        accessibility: {
-                                            checked: any
-                                            label:
-                                                | string
-                                                | number
-                                                | bigint
-                                                | boolean
-                                                | React.ReactElement<
-                                                      any,
-                                                      | string
-                                                      | React.JSXElementConstructor<any>
-                                                  >
-                                                | Iterable<React.ReactNode>
-                                                | React.ReactPortal
-                                                | Promise<React.AwaitedReactNode>
-                                                | null
-                                                | undefined
-                                        },
-                                        index: React.Key | null | undefined
-                                    ) => (
-                                        <div
-                                            key={index}
-                                            className="flex items-center gap-2 pl-2"
-                                        >
-                                            <Icon
-                                                icon={
-                                                    accessibility.checked
-                                                        ? 'material-symbols:check-circle-outline'
-                                                        : 'mdi:close-circle-outline'
+                                </div>
+                            </div>
+                            <Divider variant="middle" />
+                            {formData?.sidewalkPresence ? (
+                                <div className="p-3 flex flex-col gap-3 text-slate-700">
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            SIDEWALK WIDTH
+                                        </h3>
+                                        <ul className="list-disc pl-5">
+                                            <li>
+                                                {formData?.sidewalkWidth?.value}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            SIDEWALK CONDITION
+                                        </h3>
+                                        <ul className="list-disc pl-5">
+                                            <li>
+                                                {
+                                                    formData?.sidewalkCondition
+                                                        ?.value
                                                 }
-                                                className={`w-6 h-6
-                                    ${
-                                        accessibility.checked
-                                            ? 'text-green-500'
-                                            : 'text-red-500'
-                                    }`}
-                                            />
-                                            <p>{accessibility.label}</p>
-                                        </div>
-                                    )
-                                )}
-                            </div>
-                            <div className="flex flex-col gap-1 p-3">
-                                <p className="text-lg font-semibold">
-                                    Obstructions
-                                </p>
-                                <ul className="list-disc list-inside pl-2">
-                                    {annotationDetails.form_data?.obstructions?.map(
-                                        (
-                                            obstruction:
-                                                | string
-                                                | number
-                                                | bigint
-                                                | boolean
-                                                | React.ReactElement<
-                                                      any,
-                                                      | string
-                                                      | React.JSXElementConstructor<any>
-                                                  >
-                                                | Iterable<React.ReactNode>
-                                                | React.ReactPortal
-                                                | Promise<React.AwaitedReactNode>
-                                                | null
-                                                | undefined,
-                                            index: React.Key | null | undefined
-                                        ) => <li key={index}>{obstruction}</li>
-                                    )}
-                                </ul>
-                            </div>
-                            <div className="flex flex-col gap-1 p-3">
-                                <p className="text-lg font-semibold">
-                                    Comments
-                                </p>
-                                <p>{annotationDetails.form_data?.comments}</p>
-                            </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            RAMP GRADIENT
+                                        </h3>
+                                        <ul className="list-disc pl-5">
+                                            <li>
+                                                {formData?.rampGradient?.value}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            STREET FURNITURE
+                                        </h3>
+                                        <ul className="list-disc pl-5">
+                                            <li>
+                                                {
+                                                    formData?.streetFurniture
+                                                        ?.value
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            BORDER BUFFER
+                                        </h3>
+                                        <ul className="list-disc pl-5">
+                                            <li>
+                                                {formData?.borderBuffer?.value}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            LIGHTING CONDITION
+                                        </h3>
+                                        <ul className="list-disc pl-5">
+                                            <li>
+                                                {
+                                                    formData?.lightingCondition
+                                                        ?.value
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            ) : (
+                                <h3 className="text-lg font-semibold text-center py-3">
+                                    No sidewalk 🚧
+                                </h3>
+                            )}
                         </div>
                         <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
                             {annotationDetails.images?.map(
