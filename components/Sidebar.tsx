@@ -134,10 +134,12 @@ function Sidebar(props: PropsInterface) {
                     </button>
                 )}
                 <div className="flex items-center gap-1">
-                    <h1 className="text-2xl font-bold">Lakb.</h1>
+                    <h1 className="text-2xl font-bold">Lakb</h1>
                     <div className="relative w-9 h-9">
+                        <div className="z-10 absolute h-[3px] w-[6px] bg-black translate-y-[28px] translate-x-[5px] rotate-[30deg] rounded-sm"></div>
+                        <div className="z-10 absolute h-[3px] w-[6px] bg-black translate-y-[27px] translate-x-[17px] rotate-[-30deg] rounded-sm"></div>
                         <div
-                            className="absolute inset-0 bg-black transform scale-[1.15] "
+                            className="absolute inset-0 bg-black transform scale-[1.15] translate-y-[-1.5px]"
                             style={{
                                 clipPath:
                                     'polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%)',
@@ -145,7 +147,7 @@ function Sidebar(props: PropsInterface) {
                         ></div>
 
                         <div
-                            className="relative w-full h-full bg-primary flex items-center justify-center text-2xl font-bold"
+                            className="relative w-full h-full bg-primary flex items-end justify-center text-2xl font-bold translate-y-[-1.5px] tracking-widest"
                             style={{
                                 clipPath:
                                     'polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%)',
