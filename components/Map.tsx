@@ -15,6 +15,7 @@ import { getLineSegmentCenter } from '@/utils/distance'
 import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 import FullScreenLoader from './FullScreenLoader'
+import { getColorFromValue } from '@/utils/colormap'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -207,7 +208,6 @@ const MapComponent = (props: PropsInterface) => {
                                 scoreData.end_coordinates.latitude
 
                         if (isMatch) {
-                            console.log('MATCH')
                             return scoreData
                         }
                     })
@@ -215,17 +215,7 @@ const MapComponent = (props: PropsInterface) => {
                     if (weightData) {
                         const weight = weightData.score
                         if (weight) {
-                            if (weight > 0.75) {
-                                strokeColor = '#70F915' // Dark Green
-                            } else if (weight > 0.5) {
-                                strokeColor = '#CAF9AB' // Light Green
-                            } else if (weight < 0.25) {
-                                strokeColor = '#F91515' // Dark Red
-                            } else if (weight < 0.5) {
-                                strokeColor = '#FF8282' // Light Red
-                            } else if (weight == 0.5) {
-                                strokeColor = '#FBD08F' // Yellow
-                            }
+                            strokeColor = getColorFromValue(weight)
                         }
                     }
                 }
