@@ -134,7 +134,7 @@ function Sidebar(props: PropsInterface) {
                     </button>
                 )}
                 <div className="flex items-center gap-1">
-                    <h1 className="text-2xl font-bold">Lakb</h1>
+                    <h1 className="text-2xl font-bold">lakb</h1>
                     <div className="relative w-9 h-9">
                         <div
                             className="absolute inset-0 bg-black transform scale-[1.15] translate-y-[-1.5px]"
