@@ -11,6 +11,7 @@ import { MapLineSegment } from '@/interface/map'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
+import useIOSDetection from '@/utils/iosDetector'
 
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 
@@ -42,6 +43,7 @@ interface PropsInterface {
 }
 
 const AppLayer = (props: PropsInterface) => {
+    const isIos = useIOSDetection()
     const { user, getUser } = useAuthStore()
     const { getLocationDetails } = useAnnotationStore()
     const {
@@ -63,6 +65,7 @@ const AppLayer = (props: PropsInterface) => {
     const [isMobile, setIsMobile] = useState(false)
     const [expandSidebar, setExpandSidebar] = useState(!isMobile)
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
+    const [isFetchingUser, setIsFetchingUser] = useState(false)
 
     const pickLocation = () => {
         setIsPickingLocation(true)
@@ -167,7 +170,15 @@ const AppLayer = (props: PropsInterface) => {
     }, [selectedLineSegment])
 
     useEffect(() => {
+        setIsFetchingUser(true)
         getUser()
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .catch((e: any) => {
+                console.error(e)
+            })
+            .finally(() => {
+                setIsFetchingUser(false)
+            })
     }, [])
 
     return (
@@ -187,11 +198,14 @@ const AppLayer = (props: PropsInterface) => {
             </div>
             {/* {selectedLineSegment === null && isMobile && (
             )} */}
-            <SearchBar isMobile={isMobile} />
+            {(!isFetchingUser || user) && <SearchBar isMobile={isMobile} />}
             {user && (
                 <>
                     {!isPickingLocation ? (
-                        <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto">
+                        <div
+                            className={`absolute z-40 right-12 bottom-2 p-4 pointer-events-auto
+                        ${isIos ? 'right-1' : 'right-12'}`}
+                        >
                             <button
                                 onClick={pickLocation}
                                 className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
