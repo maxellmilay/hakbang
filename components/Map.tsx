@@ -395,6 +395,8 @@ const MapComponent = (props: PropsInterface) => {
                 setPickedLineSegment={setPickedLineSegment}
                 selectedLineSegment={selectedLineSegment}
                 setSelectedLineSegment={setSelectedLineSegment}
+                setAccessibilityScores={setAccessibilityScores}
+                accessibilityScores={accessibilityScores}
             />
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}

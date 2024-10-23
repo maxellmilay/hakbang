@@ -22,7 +22,7 @@ import RadioItem from './RadioItem'
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    saveAnnotation: (lineSegment: MapLineSegment) => void
+    saveAnnotation: (lineSegment: MapLineSegment, locationId: number) => void
     pickedCoordinates: {
         latitude: number
         longitude: number
@@ -309,7 +309,7 @@ function AnnotationForm(props: PropsInterface) {
                 })
             )
 
-            saveAnnotation(pickedLineSegment)
+            saveAnnotation(pickedLineSegment, location_id)
         } catch (error) {
             console.error('Error in save function:', error)
         } finally {

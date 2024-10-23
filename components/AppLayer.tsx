@@ -10,6 +10,9 @@ import AnnotationDetails from './AnnotationDetails'
 import { MapLineSegment } from '@/interface/map'
 
 import useAuthStore from '@/store/auth'
+import useAnnotationStore from '@/store/annotation'
+
+import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 
 interface PropsInterface {
     isPickingLocation: boolean
@@ -34,11 +37,13 @@ interface PropsInterface {
     setPickedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     selectedLineSegment: MapLineSegment | null
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
+    setAccessibilityScores: Dispatch<SetStateAction<AccessibilityScoreData[]>>
+    accessibilityScores: AccessibilityScoreData[]
 }
 
 const AppLayer = (props: PropsInterface) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { user, getUser } = useAuthStore()
+    const { getLocationDetails } = useAnnotationStore()
     const {
         center,
         isPickingLocation,
@@ -51,6 +56,8 @@ const AppLayer = (props: PropsInterface) => {
         setPickedLineSegment,
         selectedLineSegment,
         setSelectedLineSegment,
+        setAccessibilityScores,
+        accessibilityScores,
     } = props
 
     const [isMobile, setIsMobile] = useState(false)
@@ -73,7 +80,26 @@ const AppLayer = (props: PropsInterface) => {
         }
     }
 
-    const saveAnnotation = (lineSegment: MapLineSegment) => {
+    const saveAnnotation = async (
+        lineSegment: MapLineSegment,
+        locationId: number
+    ) => {
+        const location = await getLocationDetails(locationId)
+        setAccessibilityScores([
+            ...accessibilityScores,
+            {
+                score: location.accessibility_score,
+                start_coordinates: {
+                    latitude: location.start_coordinates.latitude,
+                    longitude: location.start_coordinates.longitude,
+                },
+                end_coordinates: {
+                    latitude: location.end_coordinates.latitude,
+                    longitude: location.end_coordinates.longitude,
+                },
+            },
+        ])
+
         setShowAnnotationForm(false)
         setIsPickingLocation(false)
         setExpandSidebar(true)
