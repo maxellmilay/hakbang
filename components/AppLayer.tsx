@@ -85,8 +85,19 @@ const AppLayer = (props: PropsInterface) => {
         locationId: number
     ) => {
         const location = await getLocationDetails(locationId)
+        const prev = accessibilityScores.filter(
+            (score) =>
+                score.start_coordinates.latitude !==
+                    location.start_coordinates.latitude &&
+                score.start_coordinates.longitude !==
+                    location.start_coordinates.longitude &&
+                score.end_coordinates.latitude !==
+                    location.end_coordinates.latitude &&
+                score.end_coordinates.longitude !==
+                    location.end_coordinates.longitude
+        )
         setAccessibilityScores([
-            ...accessibilityScores,
+            ...prev,
             {
                 score: location.accessibility_score,
                 start_coordinates: {
