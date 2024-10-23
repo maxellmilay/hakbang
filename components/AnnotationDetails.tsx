@@ -22,6 +22,7 @@ import useAnnotationStore from '@/store/annotation'
 import useAuthStore from '@/store/auth'
 
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import BaseLoader from './BaseLoader'
 
 interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
@@ -42,6 +43,7 @@ function AnnotationDetails(props: PropsInterface) {
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
+    const [hasImageLoaded, setHasImageLoaded] = useState(false)
     const [noAnnotation, setNoAnnotation] = useState(false)
     const [annotationDetails, setSelectedLineSegmentAnnotation] =
         useState<any>(null)
@@ -117,7 +119,7 @@ function AnnotationDetails(props: PropsInterface) {
                             </button>
                         </div>
                         <div className="flex justify-center items-center h-full">
-                            <h1>Loading...</h1>
+                            <BaseLoader />
                         </div>
                     </>
                 ) : !annotationDetails ? (
@@ -409,6 +411,9 @@ function AnnotationDetails(props: PropsInterface) {
                                                     key={index}
                                                     className="flex-shrink-0 w-[150px] h-[200px] relative"
                                                 >
+                                                    {!hasImageLoaded && (
+                                                        <div className="w-full h-full bg-gray-300 rounded-md animate-pulse"></div>
+                                                    )}
                                                     <Image
                                                         src={image.file.url}
                                                         alt={`annotation image ${Number(index) + 1}`}
@@ -417,7 +422,12 @@ function AnnotationDetails(props: PropsInterface) {
                                                         style={{
                                                             objectFit: 'cover',
                                                         }}
-                                                        className="rounded-md"
+                                                        className={`rounded-md ${isLoading ? 'hidden' : 'block'}`}
+                                                        onLoadingComplete={() =>
+                                                            setHasImageLoaded(
+                                                                true
+                                                            )
+                                                        }
                                                     />
                                                 </div>
                                             )
