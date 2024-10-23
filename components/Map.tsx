@@ -14,6 +14,7 @@ import { extractFeatureCoordinates } from '@/utils/geojson'
 import { getLineSegmentCenter } from '@/utils/distance'
 import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
+import FullScreenLoader from './FullScreenLoader'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -23,6 +24,9 @@ const MapComponent = (props: PropsInterface) => {
     const { geojsonData } = props
 
     const { getLocations } = useAnnotationStore()
+
+    const [isAccessibilityDataLoaded, setIsAccessibilityDataLoaded] =
+        useState(false)
 
     const [accessibilityScores, setAccessibilityScores] = useState(
         [] as AccessibilityScoreData[]
@@ -122,6 +126,8 @@ const MapComponent = (props: PropsInterface) => {
             }
 
             fetchLocations()
+
+            setIsAccessibilityDataLoaded(true)
 
             newDataLayer.addListener(
                 'click',
@@ -428,6 +434,7 @@ const MapComponent = (props: PropsInterface) => {
                 setAccessibilityScores={setAccessibilityScores}
                 accessibilityScores={accessibilityScores}
             />
+            {!isAccessibilityDataLoaded && <FullScreenLoader />}
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
                 zoom={defaultMapZoom}
