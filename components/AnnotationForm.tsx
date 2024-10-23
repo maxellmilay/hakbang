@@ -675,21 +675,6 @@ function AnnotationForm(props: PropsInterface) {
                         </button>
                     </div>
                 </div>
-                <div className="w-full flex justify-end gap-2 px-6 py-4">
-                    <button
-                        onClick={() => {
-                            setShowAnnotationForm(false)
-                        }}
-                        className="flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-white
-                    duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
-                    >
-                        <Icon
-                            icon="material-symbols:my-location"
-                            className="w-4 h-4"
-                        />
-                        Reposition
-                    </button>
-                </div>
             </div>
         </div>
     )
