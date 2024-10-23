@@ -69,26 +69,51 @@ const MapComponent = (props: PropsInterface) => {
             setDataLayer(newDataLayer)
 
             const fetchLocations = async () => {
-                const res = await getLocations()
-                setAccessibilityScores(
-                    res.objects.map((lineSegment: MapLineSegment) => {
-                        const parsedLineSegment: AccessibilityScoreData = {
-                            score: lineSegment.accessibility_score,
-                            start_coordinates: {
-                                latitude:
-                                    lineSegment.start_coordinates.latitude,
-                                longitude:
-                                    lineSegment.start_coordinates.longitude,
-                            },
-                            end_coordinates: {
-                                latitude: lineSegment.end_coordinates.latitude,
-                                longitude:
-                                    lineSegment.end_coordinates.longitude,
-                            },
+                let page = 1
+                let accessibilityScores = [] as AccessibilityScoreData[]
+                while (true) {
+                    try {
+                        const res = await getLocations({ page })
+                        accessibilityScores = [
+                            ...accessibilityScores,
+                            ...res.objects.map(
+                                (lineSegment: MapLineSegment) => {
+                                    const parsedLineSegment: AccessibilityScoreData =
+                                        {
+                                            score: lineSegment.accessibility_score,
+                                            start_coordinates: {
+                                                latitude:
+                                                    lineSegment
+                                                        .start_coordinates
+                                                        .latitude,
+                                                longitude:
+                                                    lineSegment
+                                                        .start_coordinates
+                                                        .longitude,
+                                            },
+                                            end_coordinates: {
+                                                latitude:
+                                                    lineSegment.end_coordinates
+                                                        .latitude,
+                                                longitude:
+                                                    lineSegment.end_coordinates
+                                                        .longitude,
+                                            },
+                                        }
+                                    return parsedLineSegment
+                                }
+                            ),
+                        ]
+                        setAccessibilityScores(accessibilityScores)
+                        if (res.current_page === res.num_pages) {
+                            break
                         }
-                        return parsedLineSegment
-                    })
-                )
+                        page++
+                    } catch (e) {
+                        console.error(e)
+                        break
+                    }
+                }
             }
 
             fetchLocations()
