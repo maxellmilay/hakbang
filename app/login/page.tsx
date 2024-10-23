@@ -91,7 +91,7 @@ function Page() {
                         ></div>
 
                         <div
-                            className="relative w-full h-full bg-primary flex items-end justify-center text-2xl font-bold translate-y-[-1.5px] tracking-widest"
+                            className="relative w-full h-full bg-primary flex items-end justify-center text-2xl font-bold translate-y-[-1.5px] tracking-wide"
                             style={{
                                 clipPath:
                                     'polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%)',
