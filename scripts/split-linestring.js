@@ -1,6 +1,6 @@
 import { lineString, length, along } from '@turf/turf'
 import fs from 'fs'
-import { coordinateMarkers } from '../data/markers/mandaue-markers.js'
+import { coordinateMarkers } from '../data/markers/mandaue-markers.js' // Replace with preferred input markers
 import axios from 'axios'
 import dotenv from 'dotenv'
 
@@ -153,9 +153,9 @@ const splitGeoJSON = await splitLineStringIntoEqualPartsByLength(
 
 // Write the result to a JSON file after all async operations are completed
 fs.writeFileSync(
-    'data/geojson/mandaue.json',
+    'data/geojson/new_place.json', // Replace with preferred output file name
     JSON.stringify(splitGeoJSON, null, 2),
     'utf8'
 )
 
-console.log('GeoJSON has been written to mandaue.json')
+console.log('GeoJSON has been written to new_place.json')
