@@ -8,6 +8,7 @@ import Skeleton from '@mui/material/Skeleton'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
+import Image from 'next/image'
 
 interface PropsInterface {
     expand: boolean
@@ -119,13 +120,13 @@ function Sidebar(props: PropsInterface) {
     return (
         <div>
             <div
-                className={`z-20 top-[26px] left-[26px] absolute flex gap-6 px-3 py-2 items-center bg-white rounded-md border-2
-                ${!expand || !user ? 'border-black shadow-lg' : 'border-transparent'}`}
+                className={`z-20 top-[26px] left-[30px] absolute flex gap-3 px-3 py-4 pb-2 items-end rounded-md border-2
+                ${!expand || !user ? 'border-black shadow-lg bg-primary' : 'border-transparent bg-white'}`}
             >
                 {user && (
                     <button
                         onClick={toggleSidebar}
-                        className={`${isPickingLocation && 'pointer-events-none'}`}
+                        className={`${isPickingLocation && 'pointer-events-none'} mb-[7px]`}
                     >
                         <Icon
                             icon="material-symbols:view-sidebar-outline"
@@ -133,35 +134,14 @@ function Sidebar(props: PropsInterface) {
                         />
                     </button>
                 )}
-                <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-bold">lakb</h1>
-                    <div className="relative w-9 h-9 scale-[.9]">
-                        <div
-                            className="absolute inset-0 bg-primary transform scale-[1.3] translate-y-[-1.5px]"
-                            style={{
-                                clipPath:
-                                    'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)',
-                            }}
-                        ></div>
-                        <div
-                            className="absolute inset-0 bg-black transform scale-[1.15] translate-y-[-1.5px]"
-                            style={{
-                                clipPath:
-                                    'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)',
-                            }}
-                        ></div>
 
-                        <div
-                            className="relative w-full h-full bg-primary flex items-end justify-center text-2xl font-bold translate-y-[-1.5px] tracking-wide"
-                            style={{
-                                clipPath:
-                                    'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)',
-                            }}
-                        >
-                            AI
-                        </div>
-                    </div>
-                </div>
+                <Image
+                    src="/logo-text.png"
+                    alt="Lakbai Logo Text"
+                    width={220}
+                    height={190}
+                    priority={true} // Optional: to preload the image
+                />
             </div>
             {user && (
                 <>
@@ -185,7 +165,7 @@ function Sidebar(props: PropsInterface) {
                                     {/* ignore this, do not remove */}
                                     <div className="bg-level-0 bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
 
-                                    <div className="h-[60px] min-h-[60px]"></div>
+                                    <div className="h-[130px] min-h-[130px]"></div>
                                     <button
                                         onClick={pickLocation}
                                         className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"

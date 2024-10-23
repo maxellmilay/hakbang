@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import RouteChangeHandler from '@/components/RouteChangeHandler'
 import { Suspense } from 'react'
+import FullScreenLoader from '@/components/FullScreenLoader'
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -16,8 +17,9 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-    title: 'lakb.AI',
-    description: 'lakb.AI',
+    title: 'Lakbai',
+    description:
+        'Interactive dashboard for a Dynamic Pedestrian Accessibility Index using Fuzzy Logic Systems and Real Time Data for Sustainable and Inclusive Urban Mobility in the Philippines',
 }
 
 export default function RootLayout({
@@ -27,13 +29,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <head>
-                <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-            </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<FullScreenLoader />}>
                     <RouteChangeHandler />
                     {children}
                 </Suspense>
