@@ -66,6 +66,11 @@ const MapComponent = (props: PropsInterface) => {
             // Create a Data Layer
             const newDataLayer = new google.maps.Data({ map })
             newDataLayer.addGeoJson(geojsonData)
+            newDataLayer.setStyle(() => {
+                return {
+                    strokeWeight: 0,
+                }
+            })
             setDataLayer(newDataLayer)
 
             const fetchLocations = async () => {
