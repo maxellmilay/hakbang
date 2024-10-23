@@ -63,6 +63,7 @@ const AppLayer = (props: PropsInterface) => {
     const [isMobile, setIsMobile] = useState(false)
     const [expandSidebar, setExpandSidebar] = useState(!isMobile)
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
+    const [isFetchingUser, setIsFetchingUser] = useState(false)
 
     const pickLocation = () => {
         setIsPickingLocation(true)
@@ -167,7 +168,15 @@ const AppLayer = (props: PropsInterface) => {
     }, [selectedLineSegment])
 
     useEffect(() => {
+        console.log('heree bitch')
+        setIsFetchingUser(true)
         getUser()
+            .catch((e) => {
+                console.error(e)
+            })
+            .finally(() => {
+                setIsFetchingUser(false)
+            })
     }, [])
 
     return (
@@ -187,7 +196,7 @@ const AppLayer = (props: PropsInterface) => {
             </div>
             {/* {selectedLineSegment === null && isMobile && (
             )} */}
-            <SearchBar isMobile={isMobile} />
+            {(!isFetchingUser || user) && <SearchBar isMobile={isMobile} />}
             {user && (
                 <>
                     {!isPickingLocation ? (
