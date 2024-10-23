@@ -168,10 +168,10 @@ const AppLayer = (props: PropsInterface) => {
     }, [selectedLineSegment])
 
     useEffect(() => {
-        console.log('heree bitch')
         setIsFetchingUser(true)
         getUser()
-            .catch((e) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .catch((e: any) => {
                 console.error(e)
             })
             .finally(() => {
