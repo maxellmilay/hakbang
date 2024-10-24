@@ -64,7 +64,7 @@ function AnnotationForm(props: PropsInterface) {
         null
     )
     const [rampGradient, setRampGradient] = useState<string | null>(null)
-    const [streetFurniture, setStreetFurniture] = useState<string | null>(null)
+    const [streetFurniture, setStreetFurniture] = useState<number | null>(0)
     const [borderBuffer, setBorderBuffer] = useState<string | null>(null)
     const [lightingCondition, setLightingCondition] = useState<string | null>(
         null
@@ -446,7 +446,7 @@ function AnnotationForm(props: PropsInterface) {
                             />
 
                             <div className="flex flex-col gap-1 mb-4">
-                                <p className="text-gray-500 font-semibold text-lg">
+                                <p className="text-gray-500 font-semibold">
                                     REMARKS
                                 </p>
                                 <TextField
@@ -472,7 +472,7 @@ function AnnotationForm(props: PropsInterface) {
                                 setValue={setSidewalkCondition}
                             />
                             <div className="flex flex-col gap-1 mb-4">
-                                <p className="text-gray-500 font-semibold text-lg">
+                                <p className="text-gray-500 font-semibold">
                                     REMARKS
                                 </p>
                                 <TextField
@@ -500,7 +500,7 @@ function AnnotationForm(props: PropsInterface) {
                                 setValue={setRampGradient}
                             />
                             <div className="flex flex-col gap-1 mb-4">
-                                <p className="text-gray-500 font-semibold text-lg">
+                                <p className="text-gray-500 font-semibold">
                                     REMARKS
                                 </p>
                                 <TextField
@@ -514,15 +514,32 @@ function AnnotationForm(props: PropsInterface) {
                                 />
                             </div>
 
-                            <RadioItem
-                                header="STREET FURNITURE"
-                                label="In the presence of street furniture (benches, posts, poles, etc.), Is there at least 0.90m of walking space on the sidewalk?"
-                                options={['Yes', 'No', 'N/A']}
-                                allowOther={false}
-                                setValue={setStreetFurniture}
-                            />
+                            <div className="flex flex-col gap-3">
+                                <div>
+                                    <h3 className="text-slate-600 text-lg font-semibold">
+                                        STREET FURNITURE
+                                    </h3>
+                                    <p className="text-sm text-slate-600">
+                                        In the presence of street furniture
+                                        (benches, posts, poles, etc.), Is there
+                                        at least 0.90m of walking space on the
+                                        sidewalk? If so how much ang lewway
+                                    </p>
+                                </div>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Lewway in meters"
+                                    type="number"
+                                    value={streetFurniture}
+                                    onChange={(e) =>
+                                        setStreetFurniture(
+                                            parseInt(e.target.value)
+                                        )
+                                    }
+                                />
+                            </div>
                             <div className="flex flex-col gap-1 mb-4">
-                                <p className="text-gray-500 font-semibold text-lg">
+                                <p className="text-gray-500 font-semibold">
                                     REMARKS
                                 </p>
                                 <TextField
@@ -569,7 +586,7 @@ function AnnotationForm(props: PropsInterface) {
                                 </RadioGroup>
                             </FormControl>
                             <div className="flex flex-col gap-1 mb-4">
-                                <p className="text-gray-500 font-semibold text-lg">
+                                <p className="text-gray-500 font-semibold text">
                                     REMARKS
                                 </p>
                                 <TextField
@@ -591,7 +608,7 @@ function AnnotationForm(props: PropsInterface) {
                                 setValue={setLightingCondition}
                             />
                             <div className="flex flex-col gap-1 mb-4">
-                                <p className="text-gray-500 font-semibold text-lg">
+                                <p className="text-gray-500 font-semibold">
                                     REMARKS
                                 </p>
                                 <TextField
