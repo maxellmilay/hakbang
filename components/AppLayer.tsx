@@ -198,8 +198,11 @@ const AppLayer = (props: PropsInterface) => {
             </div>
             {/* {selectedLineSegment === null && isMobile && (
             )} */}
-            {(!isFetchingUser || user) && <SearchBar isMobile={isMobile} />}
-            {(!isFetchingUser || user) && <FullScreenLoader />}
+            {!isFetchingUser || user ? (
+                <SearchBar isMobile={isMobile} />
+            ) : (
+                <FullScreenLoader />
+            )}
             {user && (
                 <>
                     {!isPickingLocation ? (
