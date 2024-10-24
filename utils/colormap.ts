@@ -35,11 +35,18 @@ const interpolateColor = (
 export const getColorFromValue = (value: number): string => {
     // Define your color breakpoints
     const colors = [
-        { stop: 0, color: '#F91515' }, // Dark Green
-        { stop: 0.25, color: '#FF8282' }, // Light Green
-        { stop: 0.5, color: '#FBD08F' }, // Yellow
-        { stop: 0.75, color: '#CAF9AB' }, // Light Red
-        { stop: 1, color: '#70F915' }, // Dark Red
+        { stop: 0, color: '#8B0000' }, // Dark Red (worst)
+        { stop: 0.0833, color: '#F91515' }, // Bright Red
+        { stop: 0.1667, color: '#FF8282' }, // Light Red
+        { stop: 0.25, color: '#FF8C00' }, // Dark Orange
+        { stop: 0.3333, color: '#FFB347' }, // Medium Orange
+        { stop: 0.4167, color: '#FBD08F' }, // Light Orange
+        { stop: 0.5, color: '#CAF9AB' }, // Very Light Green
+        { stop: 0.5833, color: '#A9F97B' }, // Pale Green
+        { stop: 0.6667, color: '#70F915' }, // Light Green
+        { stop: 0.75, color: '#32CD32' }, // Lime Green
+        { stop: 0.8333, color: '#228B22' }, // Forest Green
+        { stop: 0.9167, color: '#0B6623' }, // Dark Green (best)
     ]
 
     // Find the two nearest color stops

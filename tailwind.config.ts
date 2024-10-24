@@ -17,6 +17,7 @@ const config: Config = {
                     dark: '#AFA71A',
                 },
                 level: {
+                    0: '#D3D3D3',
                     1: '#0B6623', // Dark Green
                     2: '#228B22', // Forest Green
                     3: '#32CD32', // Lime Green
