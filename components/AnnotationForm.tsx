@@ -533,7 +533,7 @@ function AnnotationForm(props: PropsInterface) {
                                     value={streetFurniture}
                                     onChange={(e) =>
                                         setStreetFurniture(
-                                            parseInt(e.target.value)
+                                            parseFloat(e.target.value)
                                         )
                                     }
                                 />
