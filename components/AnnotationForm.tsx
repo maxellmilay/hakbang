@@ -97,10 +97,10 @@ function AnnotationForm(props: PropsInterface) {
         !date ||
         !sidewalkPresence ||
         (sidewalkPresence === 'Yes' &&
-            (!sidewalkWidth ||
-                !sidewalkCondition ||
-                !rampGradient ||
-                !streetFurniture ||
+            (sidewalkWidth === null ||
+                sidewalkCondition === null ||
+                rampGradient === null ||
+                streetFurniture === null ||
                 !borderBuffer ||
                 !lightingCondition))
 
