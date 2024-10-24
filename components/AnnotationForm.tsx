@@ -586,15 +586,8 @@ function AnnotationForm(props: PropsInterface) {
                             <RadioItem
                                 header="LIGHTING CONDITION"
                                 label="How well lit is the area?"
-                                options={[
-                                    'Excellent',
-                                    'Adequate',
-                                    'Dim',
-                                    'Poor',
-                                    'Dark',
-                                    'Other',
-                                ]}
-                                allowOther={true}
+                                options={['Poor', 'Adequate', 'Excellent']}
+                                allowOther={false}
                                 setValue={setLightingCondition}
                             />
                             <div className="flex flex-col gap-1 mb-4">
