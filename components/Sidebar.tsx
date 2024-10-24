@@ -8,7 +8,7 @@ import Skeleton from '@mui/material/Skeleton'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 interface PropsInterface {
     expand: boolean
