@@ -254,7 +254,8 @@ function AnnotationDetails(props: PropsInterface) {
                                             SIDEWALK WIDTH
                                         </h3>
                                         <p className="text-xs text-gray-500">
-                                            How wide is the sidewalk?
+                                            What are the specific measurements
+                                            for the sidewalk width in meters?
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
@@ -273,9 +274,8 @@ function AnnotationDetails(props: PropsInterface) {
                                             SIDEWALK CONDITION
                                         </h3>
                                         <p className="text-xs text-gray-500">
-                                            How would you describe the current
-                                            state of the condition of the
-                                            sidewalk?
+                                            What is the size of the cracks
+                                            observed in milimeters?
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
@@ -297,8 +297,8 @@ function AnnotationDetails(props: PropsInterface) {
                                             RAMP GRADIENT
                                         </h3>
                                         <p className="text-xs text-gray-500">
-                                            In the presence of ramps, how steep
-                                            is the ramp incline?
+                                            What is the estimated gradient of
+                                            the ramp observed?
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
