@@ -192,7 +192,7 @@ function Sidebar(props: PropsInterface) {
                                     }`}
                                 >
                                     {/* ignore this, do not remove */}
-                                    <div className="bg-level-0 bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 hidden"></div>
+                                    <div className="bg-level-0 bg-level-1 bg-level-2 bg-level-3 bg-level-4 bg-level-5 bg-level-6 bg-level-7 bg-level-8 bg-level-9 bg-level-10 bg-level-11 bg-level-12 hidden"></div>
 
                                     {/* <div className="h-[130px] min-h-[130px]"></div> */}
                                     <div className="h-[60px] min-h-[60px]"></div>

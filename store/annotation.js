@@ -9,15 +9,41 @@ const useAnnotationStore = create((set) => ({
             return 0
         }
         accessibilityScore = parseFloat(accessibilityScore)
-        if (accessibilityScore >= 0 && accessibilityScore < 0.2) {
+        if (accessibilityScore >= 0 && accessibilityScore < 0.0833) {
+            return 12
+        } else if (
+            accessibilityScore >= 0.0833 &&
+            accessibilityScore < 0.1667
+        ) {
+            return 11
+        } else if (accessibilityScore >= 0.1667 && accessibilityScore < 0.25) {
+            return 10
+        } else if (accessibilityScore >= 0.25 && accessibilityScore < 0.3333) {
+            return 9
+        } else if (
+            accessibilityScore >= 0.3333 &&
+            accessibilityScore < 0.4167
+        ) {
+            return 8
+        } else if (accessibilityScore >= 0.4167 && accessibilityScore < 0.5) {
+            return 7
+        } else if (accessibilityScore >= 0.5 && accessibilityScore < 0.5833) {
+            return 6
+        } else if (
+            accessibilityScore >= 0.5833 &&
+            accessibilityScore < 0.6667
+        ) {
             return 5
-        } else if (accessibilityScore >= 0.2 && accessibilityScore < 0.4) {
+        } else if (accessibilityScore >= 0.6667 && accessibilityScore < 0.75) {
             return 4
-        } else if (accessibilityScore >= 0.4 && accessibilityScore < 0.6) {
+        } else if (accessibilityScore >= 0.75 && accessibilityScore < 0.8333) {
             return 3
-        } else if (accessibilityScore >= 0.6 && accessibilityScore < 0.8) {
+        } else if (
+            accessibilityScore >= 0.8333 &&
+            accessibilityScore < 0.9167
+        ) {
             return 2
-        } else {
+        } else if (accessibilityScore >= 0.9167 && accessibilityScore <= 1) {
             return 1
         }
     },
@@ -26,16 +52,42 @@ const useAnnotationStore = create((set) => ({
             return 'No Data'
         }
         accessibilityScore = parseFloat(accessibilityScore)
-        if (accessibilityScore >= 0 && accessibilityScore < 0.2) {
+        if (accessibilityScore >= 0 && accessibilityScore < 0.0833) {
+            return 'Extremely Poor'
+        } else if (
+            accessibilityScore >= 0.0833 &&
+            accessibilityScore < 0.1667
+        ) {
             return 'Very Poor'
-        } else if (accessibilityScore >= 0.2 && accessibilityScore < 0.4) {
+        } else if (accessibilityScore >= 0.1667 && accessibilityScore < 0.25) {
             return 'Poor'
-        } else if (accessibilityScore >= 0.4 && accessibilityScore < 0.6) {
+        } else if (accessibilityScore >= 0.25 && accessibilityScore < 0.3333) {
+            return 'Very Below Average'
+        } else if (
+            accessibilityScore >= 0.3333 &&
+            accessibilityScore < 0.4167
+        ) {
+            return 'Below Average'
+        } else if (accessibilityScore >= 0.4167 && accessibilityScore < 0.5) {
+            return 'Slightly Below Average'
+        } else if (accessibilityScore >= 0.5 && accessibilityScore < 0.5833) {
             return 'Average'
-        } else if (accessibilityScore >= 0.6 && accessibilityScore < 0.8) {
+        } else if (
+            accessibilityScore >= 0.5833 &&
+            accessibilityScore < 0.6667
+        ) {
+            return 'Slightly Above Average'
+        } else if (accessibilityScore >= 0.6667 && accessibilityScore < 0.75) {
+            return 'Above Average'
+        } else if (accessibilityScore >= 0.75 && accessibilityScore < 0.8333) {
             return 'Good'
-        } else {
+        } else if (
+            accessibilityScore >= 0.8333 &&
+            accessibilityScore < 0.9167
+        ) {
             return 'Very Good'
+        } else if (accessibilityScore >= 0.9167 && accessibilityScore <= 1) {
+            return 'Exceptional'
         }
     },
     getSidebarAnnotations: async () => {
