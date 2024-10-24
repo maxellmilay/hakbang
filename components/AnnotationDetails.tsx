@@ -320,7 +320,8 @@ function AnnotationDetails(props: PropsInterface) {
                                             In the presence of street furniture
                                             (benches, posts, poles, etc.), Is
                                             there at least 0.90m of walking
-                                            space on the sidewalk?
+                                            space on the sidewalk? If so how
+                                            much ang lewway?
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">

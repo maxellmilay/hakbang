@@ -523,7 +523,7 @@ function AnnotationForm(props: PropsInterface) {
                                         In the presence of street furniture
                                         (benches, posts, poles, etc.), Is there
                                         at least 0.90m of walking space on the
-                                        sidewalk? If so how much ang lewway
+                                        sidewalk? If so how much ang lewway?
                                     </p>
                                 </div>
                                 <TextField
