@@ -11,7 +11,6 @@ import { MapLineSegment } from '@/interface/map'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
-import useIOSDetection from '@/utils/iosDetector'
 
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 
@@ -43,7 +42,6 @@ interface PropsInterface {
 }
 
 const AppLayer = (props: PropsInterface) => {
-    const isIos = useIOSDetection()
     const { user, getUser } = useAuthStore()
     const { getLocationDetails } = useAnnotationStore()
     const {
@@ -202,10 +200,7 @@ const AppLayer = (props: PropsInterface) => {
             {user && (
                 <>
                     {!isPickingLocation ? (
-                        <div
-                            className={`absolute z-40 right-12 bottom-2 p-4 pointer-events-auto
-                        ${isIos ? 'right-1' : 'right-12'}`}
-                        >
+                        <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto right-2">
                             <button
                                 onClick={pickLocation}
                                 className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
