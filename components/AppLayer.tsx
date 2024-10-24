@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Sidebar from '@/components/Sidebar'
 import AnnotationForm from '@/components/AnnotationForm'
 import SearchBar from '@/components/SearchBar'
+import FullScreenLoader from '@/components/FullScreenLoader'
+
 import AnnotationDetails from './AnnotationDetails'
 import { MapLineSegment } from '@/interface/map'
 
@@ -197,6 +199,7 @@ const AppLayer = (props: PropsInterface) => {
             {/* {selectedLineSegment === null && isMobile && (
             )} */}
             {(!isFetchingUser || user) && <SearchBar isMobile={isMobile} />}
+            {(!isFetchingUser || user) && <FullScreenLoader />}
             {user && (
                 <>
                     {!isPickingLocation ? (
