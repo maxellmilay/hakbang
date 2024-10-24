@@ -17,19 +17,19 @@ const config: Config = {
                     dark: '#AFA71A',
                 },
                 level: {
-                    0: '#D3D3D3',
-                    1: '#0B6623', // Dark Green
-                    2: '#228B22', // Forest Green
-                    3: '#32CD32', // Lime Green
-                    4: '#70F915', // Light Green
-                    5: '#A9F97B', // Pale Green
-                    6: '#CAF9AB', // Very Light Green
-                    7: '#FBD08F', // Light Orange
-                    8: '#FFB347', // Medium Orange
-                    9: '#FF8C00', // Dark Orange
-                    10: '#FF8282', // Light Red
-                    11: '#F91515', // Bright Red
-                    12: '#8B0000', // Dark Red
+                    0: '#E0E0E0', // Light Grey
+                    1: '#34C924', // Bright Green
+                    2: '#4CE346', // Brighter Forest Green
+                    3: '#66FF66', // Bright Lime Green
+                    4: '#8DFF5C', // Brighter Light Green
+                    5: '#B8FF89', // Brighter Pale Green
+                    6: '#D8FFBB', // Very Light Green
+                    7: '#FFDB91', // Brighter Light Orange
+                    8: '#FFC658', // Brighter Medium Orange
+                    9: '#FFA500', // Bright Orange
+                    10: '#FF6666', // Brighter Light Red
+                    11: '#FF3333', // Bright Red
+                    12: '#D10000', // Brighter Dark Red
                 },
             },
         },

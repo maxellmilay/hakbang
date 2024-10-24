@@ -35,18 +35,19 @@ const interpolateColor = (
 export const getColorFromValue = (value: number): string => {
     // Define your color breakpoints
     const colors = [
-        { stop: 0, color: '#8B0000' }, // Dark Red (worst)
-        { stop: 0.0833, color: '#F91515' }, // Bright Red
-        { stop: 0.1667, color: '#FF8282' }, // Light Red
-        { stop: 0.25, color: '#FF8C00' }, // Dark Orange
-        { stop: 0.3333, color: '#FFB347' }, // Medium Orange
-        { stop: 0.4167, color: '#FBD08F' }, // Light Orange
-        { stop: 0.5, color: '#CAF9AB' }, // Very Light Green
-        { stop: 0.5833, color: '#A9F97B' }, // Pale Green
-        { stop: 0.6667, color: '#70F915' }, // Light Green
-        { stop: 0.75, color: '#32CD32' }, // Lime Green
-        { stop: 0.8333, color: '#228B22' }, // Forest Green
-        { stop: 0.9167, color: '#0B6623' }, // Dark Green (best)
+        { stop: 0, color: '#D10000' }, // Brighter Dark Red (worst)
+        { stop: 0.0833, color: '#D10000' }, // Brighter Dark Red (worst)
+        { stop: 0.1667, color: '#FF3333' }, // Brighter Bright Red
+        { stop: 0.25, color: '#FF6666' }, // Brighter Light Red
+        { stop: 0.3333, color: '#FFA500' }, // Brighter Dark Orange
+        { stop: 0.4167, color: '#FFC658' }, // Brighter Medium Orange
+        { stop: 0.5, color: '#FFDB91' }, // Brighter Light Orange
+        { stop: 0.5833, color: '#D8FFBB' }, // Brighter Very Light Green
+        { stop: 0.6667, color: '#B8FF89' }, // Brighter Pale Green
+        { stop: 0.75, color: '#8DFF5C' }, // Brighter Light Green
+        { stop: 0.8333, color: '#66FF66' }, // Brighter Lime Green
+        { stop: 0.9167, color: '#4CE346' }, // Brighter Forest Green
+        { stop: 1, color: '#34C924' }, // Brighter Dark Green (best)
     ]
 
     // Find the two nearest color stops
