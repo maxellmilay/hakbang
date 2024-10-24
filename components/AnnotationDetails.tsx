@@ -260,6 +260,7 @@ function AnnotationDetails(props: PropsInterface) {
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
                                                 {formData?.sidewalkWidth?.value}
+                                                m
                                             </p>
                                             <p className="text-sm">
                                                 {
@@ -279,10 +280,14 @@ function AnnotationDetails(props: PropsInterface) {
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
-                                                {
-                                                    formData?.sidewalkCondition
-                                                        ?.value
-                                                }
+                                                {formData?.sidewalkCondition
+                                                    ?.value
+                                                    ? `${
+                                                          formData
+                                                              ?.sidewalkCondition
+                                                              ?.value
+                                                      }mm`
+                                                    : 'N/A'}
                                             </p>
                                             <p className="text-sm">
                                                 {
@@ -302,7 +307,7 @@ function AnnotationDetails(props: PropsInterface) {
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
-                                                {formData?.rampGradient?.value}
+                                                {formData?.rampGradient?.value}%
                                             </p>
                                             <p className="text-sm">
                                                 {
@@ -325,10 +330,14 @@ function AnnotationDetails(props: PropsInterface) {
                                         </p>
                                         <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
                                             <p className="font-semibold">
-                                                {
-                                                    formData?.streetFurniture
-                                                        ?.value
-                                                }
+                                                {formData?.streetFurniture
+                                                    ?.value
+                                                    ? `${
+                                                          formData
+                                                              ?.streetFurniture
+                                                              ?.value
+                                                      }m`
+                                                    : 'N/A'}
                                             </p>
                                             <p className="text-sm">
                                                 {

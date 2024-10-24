@@ -60,10 +60,8 @@ function AnnotationForm(props: PropsInterface) {
         null
     )
     const [sidewalkWidth, setSidewalkWidth] = useState<number | null>(null)
-    const [sidewalkCondition, setSidewalkCondition] = useState<number | null>(
-        null
-    )
-    const [rampGradient, setRampGradient] = useState<number | null>(null)
+    const [sidewalkCondition, setSidewalkCondition] = useState<number | null>(0)
+    const [rampGradient, setRampGradient] = useState<number | null>(0)
     const [streetFurniture, setStreetFurniture] = useState<number | null>(0)
     const [borderBuffer, setBorderBuffer] = useState<string | null>(null)
     const [lightingCondition, setLightingCondition] = useState<string | null>(
@@ -97,10 +95,10 @@ function AnnotationForm(props: PropsInterface) {
         !date ||
         !sidewalkPresence ||
         (sidewalkPresence === 'Yes' &&
-            (sidewalkWidth === null ||
-                sidewalkCondition === null ||
-                rampGradient === null ||
-                streetFurniture === null ||
+            (!sidewalkWidth ||
+                !sidewalkCondition ||
+                !rampGradient ||
+                !streetFurniture ||
                 !borderBuffer ||
                 !lightingCondition))
 
