@@ -59,11 +59,11 @@ function AnnotationForm(props: PropsInterface) {
     const [sidewalkPresence, setSidewalkPresence] = useState<string | null>(
         null
     )
-    const [sidewalkWidth, setSidewalkWidth] = useState<string | null>(null)
-    const [sidewalkCondition, setSidewalkCondition] = useState<string | null>(
+    const [sidewalkWidth, setSidewalkWidth] = useState<number | null>(null)
+    const [sidewalkCondition, setSidewalkCondition] = useState<number | null>(
         null
     )
-    const [rampGradient, setRampGradient] = useState<string | null>(null)
+    const [rampGradient, setRampGradient] = useState<number | null>(null)
     const [streetFurniture, setStreetFurniture] = useState<number | null>(0)
     const [borderBuffer, setBorderBuffer] = useState<string | null>(null)
     const [lightingCondition, setLightingCondition] = useState<string | null>(
@@ -432,18 +432,28 @@ function AnnotationForm(props: PropsInterface) {
 
                     {sidewalkPresence === 'Yes' && (
                         <>
-                            <RadioItem
-                                header="SIDEWALK WIDTH"
-                                label="How wide is the sidewalk?"
-                                options={[
-                                    'Narrow (< 1.5m)',
-                                    'Midsize (1.5m - 1.8m)',
-                                    'Wide (> 1.8m)',
-                                    'Other',
-                                ]}
-                                allowOther={true}
-                                setValue={setSidewalkWidth}
-                            />
+                            <div className="flex flex-col gap-3">
+                                <div>
+                                    <h3 className="text-slate-600 text-lg font-semibold">
+                                        SIDEWALK WIDTH
+                                    </h3>
+                                    <p className="text-sm text-slate-600">
+                                        What are the specific measurements for
+                                        the sidewalk width in meters?
+                                    </p>
+                                </div>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Wdith in meters"
+                                    type="number"
+                                    value={sidewalkWidth}
+                                    onChange={(e) =>
+                                        setSidewalkWidth(
+                                            parseFloat(e.target.value)
+                                        )
+                                    }
+                                />
+                            </div>
 
                             <div className="flex flex-col gap-1 mb-4">
                                 <p className="text-gray-500 font-semibold">
@@ -459,18 +469,29 @@ function AnnotationForm(props: PropsInterface) {
                                     }
                                 />
                             </div>
-                            <RadioItem
-                                header="SIDEWALK CONDITION"
-                                label="How would you describe the current state of the condition of the sidewalk?"
-                                options={[
-                                    'Smooth (No cracks, even surface)',
-                                    'Cracked (Small cracks <6mm width)',
-                                    'Damaged (Large cracks ≥ 6mm width, uneven surface)',
-                                    'Other',
-                                ]}
-                                allowOther={true}
-                                setValue={setSidewalkCondition}
-                            />
+                            <div className="flex flex-col gap-3">
+                                <div>
+                                    <h3 className="text-slate-600 text-lg font-semibold">
+                                        SIDEWALK CONDITION
+                                    </h3>
+                                    <p className="text-sm text-slate-600">
+                                        What is the size of the cracks observed
+                                        in milimeters?
+                                    </p>
+                                </div>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Size in milimeters"
+                                    type="number"
+                                    value={sidewalkCondition}
+                                    onChange={(e) =>
+                                        setSidewalkCondition(
+                                            parseFloat(e.target.value)
+                                        )
+                                    }
+                                />
+                            </div>
+
                             <div className="flex flex-col gap-1 mb-4">
                                 <p className="text-gray-500 font-semibold">
                                     REMARKS
@@ -487,18 +508,29 @@ function AnnotationForm(props: PropsInterface) {
                                     }
                                 />
                             </div>
-                            <RadioItem
-                                header="RAMP GRADIENT"
-                                label="In the presence of ramps, how steep is the ramp incline?"
-                                options={[
-                                    '≤ 5% Gradient (Accessible)',
-                                    '> 5% Gradient (Unaccessible)',
-                                    'N/A',
-                                    'Other',
-                                ]}
-                                allowOther={true}
-                                setValue={setRampGradient}
-                            />
+
+                            <div className="flex flex-col gap-3">
+                                <div>
+                                    <h3 className="text-slate-600 text-lg font-semibold">
+                                        RAMP GRADIENT
+                                    </h3>
+                                    <p className="text-sm text-slate-600">
+                                        What is the estimated gradient of the
+                                        ramp observed?
+                                    </p>
+                                </div>
+                                <TextField
+                                    id="outlined-multiline-flexible"
+                                    label="Gradient in degrees"
+                                    type="number"
+                                    value={rampGradient}
+                                    onChange={(e) =>
+                                        setRampGradient(
+                                            parseFloat(e.target.value)
+                                        )
+                                    }
+                                />
+                            </div>
                             <div className="flex flex-col gap-1 mb-4">
                                 <p className="text-gray-500 font-semibold">
                                     REMARKS
