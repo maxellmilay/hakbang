@@ -5,6 +5,16 @@ const BaseLoader = () => {
     const [showCursor, setShowCursor] = useState(false)
     const [startPolygonAnim, setStartPolygonAnim] = useState(true)
 
+    useEffect(() => {
+        const cursorInterval = setInterval(() => {
+            setShowCursor((prev) => !prev)
+        }, 500)
+
+        setStartPolygonAnim(true)
+
+        return () => clearInterval(cursorInterval)
+    }, [])
+
     return (
         <div className="min-h-screen w-full bg-yellow-500 flex items-center justify-center">
             <div className="inline-flex items-center bg-white border-2 border-black rounded-lg p-6 gap-4">
