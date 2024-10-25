@@ -2,6 +2,7 @@
 import React, { Dispatch, SetStateAction, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import { Menu } from '@headlessui/react'
 import { MapLineSegment } from '@/interface/map'
 import Divider from '@mui/material/Divider'
 
@@ -167,10 +168,58 @@ function AnnotationDetails(props: PropsInterface) {
                     </>
                 ) : (
                     <>
-                        <div className="flex justify-between items-start p-2">
-                            <h1 className="font-semibold text-2xl">
-                                {annotationDetails.name}
-                            </h1>
+                        <div className="flex justify-between items-center p-2">
+                            <div className="w-full flex items-center justify-between">
+                                <h1 className="font-semibold text-2xl">
+                                    {annotationDetails.name}
+                                </h1>
+                                <Menu
+                                    as="div"
+                                    className="relative inline-block text-left"
+                                >
+                                    <Menu.Button className="flex items-center mr-2">
+                                        <Icon icon="mdi:dots-horizontal" />
+                                    </Menu.Button>
+                                    <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="px-1 py-1">
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        className={`${
+                                                            active
+                                                                ? 'bg-slate-100'
+                                                                : ''
+                                                        } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-50`}
+                                                    >
+                                                        <Icon
+                                                            icon="mdi:square-edit-outline"
+                                                            className="w-4 h-4"
+                                                        />
+                                                        Edit
+                                                    </button>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        className={`${
+                                                            active
+                                                                ? 'bg-red-100'
+                                                                : ''
+                                                        } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-50`}
+                                                    >
+                                                        <Icon
+                                                            icon="mdi:trash-can-outline"
+                                                            className="w-4 h-4"
+                                                        />
+                                                        Delete
+                                                    </button>
+                                                )}
+                                            </Menu.Item>
+                                        </div>
+                                    </Menu.Items>
+                                </Menu>
+                            </div>
                             <button
                                 onClick={close}
                                 className="bg-primary rounded-md border-2 border-black
