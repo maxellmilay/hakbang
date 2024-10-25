@@ -442,7 +442,7 @@ function AnnotationForm(props: PropsInterface) {
                                 </div>
                                 <TextField
                                     id="outlined-multiline-flexible"
-                                    label="Wdith in meters"
+                                    label="Width in meters"
                                     type="number"
                                     value={sidewalkWidth}
                                     onChange={(e) =>
