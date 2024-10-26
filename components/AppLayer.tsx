@@ -41,6 +41,7 @@ interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     setAccessibilityScores: Dispatch<SetStateAction<AccessibilityScoreData[]>>
     accessibilityScores: AccessibilityScoreData[]
+    isAccessibilityDataLoaded: boolean
 }
 
 const AppLayer = (props: PropsInterface) => {
@@ -60,6 +61,7 @@ const AppLayer = (props: PropsInterface) => {
         setSelectedLineSegment,
         setAccessibilityScores,
         accessibilityScores,
+        isAccessibilityDataLoaded,
     } = props
 
     const [isMobile, setIsMobile] = useState(false)
@@ -182,110 +184,113 @@ const AppLayer = (props: PropsInterface) => {
     }, [])
 
     return (
-        <div
-            className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}
-        >
-            <div className="pointer-events-auto">
+        isAccessibilityDataLoaded && (
+            <div
+                className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}
+            >
                 {selectedLineSegment === null && (
-                    <Sidebar
-                        expand={expandSidebar}
-                        setExpandSidebar={setExpandSidebar}
-                        pickLocation={pickLocation}
-                        setSelectedLineSegment={setSelectedLineSegment}
-                        isPickingLocation={isPickingLocation}
-                    />
+                    <div className="pointer-events-auto">
+                        <Sidebar
+                            isMobile={isMobile}
+                            expand={expandSidebar}
+                            setExpandSidebar={setExpandSidebar}
+                            pickLocation={pickLocation}
+                            setSelectedLineSegment={setSelectedLineSegment}
+                            isPickingLocation={isPickingLocation}
+                        />
+                    </div>
                 )}
-            </div>
-            {/* {selectedLineSegment === null && isMobile && (
-            )} */}
-            {!isFetchingUser || user ? (
-                <SearchBar isMobile={isMobile} />
-            ) : (
-                <FullScreenLoader />
-            )}
-            {user && (
-                <>
-                    {!isPickingLocation ? (
-                        <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto right-2">
-                            <button
-                                onClick={pickLocation}
-                                className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
-                            >
-                                <Icon
-                                    icon="material-symbols:add-location-outline"
-                                    className="w-6 h-6"
-                                />
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
-                            {pickedCoordinates ? (
-                                <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
-                                    {center.latitude}, {center.longitude}
-                                </div>
-                            ) : (
-                                <div className="p-2 border-4 rounded-md border-black bg-primary">
-                                    <h1 className="sm:text-3xl text-xl font-bold">
-                                        Pick a location
-                                    </h1>
-                                </div>
-                            )}
-                            <div className="flex gap-3 mr-12">
+                {!isFetchingUser || user ? (
+                    <SearchBar isMobile={isMobile} />
+                ) : (
+                    <FullScreenLoader />
+                )}
+                {user && (
+                    <>
+                        {!isPickingLocation ? (
+                            <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto right-2">
                                 <button
-                                    onClick={cancelPickLocation}
-                                    className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
+                                    onClick={pickLocation}
+                                    className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
                                 >
-                                    Cancel
+                                    <Icon
+                                        icon="material-symbols:add-location-outline"
+                                        className="w-6 h-6"
+                                    />
                                 </button>
-                                <button
-                                    onClick={confirmLocation}
-                                    disabled={disableConfirmButton}
-                                    className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
+                            </div>
+                        ) : (
+                            <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
+                                {pickedCoordinates ? (
+                                    <div className="p-3 rounded-3xl bg-white border border-black shadow-lg">
+                                        {center.latitude}, {center.longitude}
+                                    </div>
+                                ) : (
+                                    <div className="p-2 border-4 rounded-md border-black bg-primary">
+                                        <h1 className="sm:text-3xl text-xl font-bold">
+                                            Pick a location
+                                        </h1>
+                                    </div>
+                                )}
+                                <div className="flex gap-3 mr-12">
+                                    <button
+                                        onClick={cancelPickLocation}
+                                        className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        onClick={confirmLocation}
+                                        disabled={disableConfirmButton}
+                                        className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
                                     ${
                                         disableConfirmButton
                                             ? 'opacity-50 cursor-not-allowed hover:-translate-x-0 hover:-translate-y-0 hover:shadow-none'
                                             : ''
                                     }`}
-                                >
-                                    <Icon
-                                        icon="material-symbols:check"
-                                        className="w-6 h-6"
-                                    />
-                                </button>
+                                    >
+                                        <Icon
+                                            icon="material-symbols:check"
+                                            className="w-6 h-6"
+                                        />
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </>
-            )}
-
-            {showAnnotationForm && pickedCoordinates && pickedLineSegment && (
-                <AnnotationForm
-                    pickedCoordinates={pickedCoordinates}
-                    setShowAnnotationForm={setShowAnnotationForm}
-                    saveAnnotation={saveAnnotation}
-                    pickedLineSegment={pickedLineSegment}
-                />
-            )}
-            <AnimatePresence>
-                {selectedLineSegment && (
-                    <motion.div
-                        className="absolute z-50 w-full h-full"
-                        key={JSON.stringify(selectedLineSegment)}
-                        initial={{ opacity: 0, x: -100 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -100 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <AnnotationDetails
-                            selectedLineSegment={selectedLineSegment}
-                            setSelectedLineSegment={setSelectedLineSegment}
-                            closeAnnotationDetails={closeAnnotationDetails}
-                            confirmLocation={confirmLocation}
-                        />
-                    </motion.div>
+                        )}
+                    </>
                 )}
-            </AnimatePresence>
-        </div>
+
+                {showAnnotationForm &&
+                    pickedCoordinates &&
+                    pickedLineSegment && (
+                        <AnnotationForm
+                            pickedCoordinates={pickedCoordinates}
+                            setShowAnnotationForm={setShowAnnotationForm}
+                            saveAnnotation={saveAnnotation}
+                            pickedLineSegment={pickedLineSegment}
+                        />
+                    )}
+                <AnimatePresence>
+                    {isAccessibilityDataLoaded && selectedLineSegment && (
+                        <motion.div
+                            className="absolute z-50 w-full h-full"
+                            key={JSON.stringify(selectedLineSegment)}
+                            initial={{ opacity: 0, x: -100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -100 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <AnnotationDetails
+                                selectedLineSegment={selectedLineSegment}
+                                setSelectedLineSegment={setSelectedLineSegment}
+                                closeAnnotationDetails={closeAnnotationDetails}
+                                confirmLocation={confirmLocation}
+                            />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        )
     )
 }
 

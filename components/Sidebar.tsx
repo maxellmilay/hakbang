@@ -5,12 +5,14 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { MapLineSegment } from '@/interface/map'
 import { motion, AnimatePresence } from 'framer-motion'
 import Skeleton from '@mui/material/Skeleton'
+import Image from 'next/image'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
 // import Image from 'next/image'
 
 interface PropsInterface {
+    isMobile: boolean
     expand: boolean
     pickLocation: () => void
     setExpandSidebar: (expand: boolean) => void
@@ -37,6 +39,7 @@ function Sidebar(props: PropsInterface) {
 
     const [isLoading, setIsLoading] = useState(true)
     const {
+        isMobile,
         expand = true,
         setExpandSidebar,
         pickLocation,
@@ -121,7 +124,7 @@ function Sidebar(props: PropsInterface) {
         <div>
             <div
                 className={`z-20 top-[26px] left-[30px] absolute flex gap-3 px-3 py-3 items-end rounded-md border-2
-                ${!expand || !user ? 'border-black shadow-lg bg-white' : 'border-transparent bg-white'}`}
+                ${!expand || !user ? 'border-black shadow-lg bg-primary' : 'border-transparent bg-white'}`}
             >
                 {user && (
                     <button
@@ -134,15 +137,17 @@ function Sidebar(props: PropsInterface) {
                         />
                     </button>
                 )}
-                {/* 
-                <Image
-                    src="/logo-text.png"
-                    alt="Lakbai Logo Text"
-                    width={220}
-                    height={190}
-                    priority={true} // Optional: to preload the image
-                /> */}
-                <div className="flex items-center gap-2">
+
+                {!isMobile && (
+                    <Image
+                        src="/logo-text.png"
+                        alt="Lakbai Logo Text"
+                        width={100}
+                        height={190}
+                        priority={true} // Optional: to preload the image
+                    />
+                )}
+                {/* <div className="flex items-center gap-2">
                     <h1 className="text-2xl font-bold">lakb</h1>
                     <div className="relative w-9 h-9 scale-[.9]">
                         <div
@@ -170,7 +175,7 @@ function Sidebar(props: PropsInterface) {
                             AI
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             {user && (
                 <>

@@ -423,6 +423,7 @@ const MapComponent = (props: PropsInterface) => {
                 setSelectedLineSegment={setSelectedLineSegment}
                 setAccessibilityScores={setAccessibilityScores}
                 accessibilityScores={accessibilityScores}
+                isAccessibilityDataLoaded={isAccessibilityDataLoaded}
             />
             {!isAccessibilityDataLoaded && <FullScreenLoader />}
             <GoogleMap
