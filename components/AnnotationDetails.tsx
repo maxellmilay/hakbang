@@ -5,6 +5,7 @@ import { Icon } from '@iconify/react'
 import { Menu } from '@headlessui/react'
 import { MapLineSegment } from '@/interface/map'
 import Divider from '@mui/material/Divider'
+import { getColorFromValue } from '@/utils/colormap'
 
 const formatDateAndTime = (dateTime: string) => {
     const date = new Date(dateTime)
@@ -33,8 +34,7 @@ interface PropsInterface {
 }
 
 function AnnotationDetails(props: PropsInterface) {
-    const { getAnnotations, getAccessibilityColor, getAccessibilityLabel } =
-        useAnnotationStore()
+    const { getAnnotations, getAccessibilityLabel } = useAnnotationStore()
     const { user } = useAuthStore()
     const {
         closeAnnotationDetails,
@@ -289,8 +289,13 @@ function AnnotationDetails(props: PropsInterface) {
                                 </h3>
                                 <div className="flex px-3 gap-3 font-semibold text-lg items-center">
                                     <div
-                                        className={`w-6 h-6 rounded-md border-2 border-black
-                            bg-level-${getAccessibilityColor(annotationDetails.location.accessibility_score)}`}
+                                        className={`w-6 h-6 rounded-md border-2 border-black`}
+                                        style={{
+                                            backgroundColor: getColorFromValue(
+                                                annotationDetails.location
+                                                    .accessibility_score
+                                            ),
+                                        }}
                                     ></div>
                                     {getAccessibilityLabel(
                                         annotationDetails.location
