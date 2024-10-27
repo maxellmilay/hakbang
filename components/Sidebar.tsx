@@ -143,8 +143,8 @@ function Sidebar(props: PropsInterface) {
                         src="/logo-text.png"
                         alt="Lakbai Logo Text"
                         width={100}
-                        height={190}
                         priority={true} // Optional: to preload the image
+                        layout="intrinsic" // This ensures the aspect ratio is maintained
                     />
                 )}
                 {/* <div className="flex items-center gap-2">
