@@ -90,6 +90,9 @@ const useAnnotationStore = create((set) => ({
             return 'Exceptional'
         }
     },
+    setSidebarAnnotations: async (newValue) => {
+        set({ sidebarAnnotations: newValue })
+    },
     getSidebarAnnotations: async () => {
         const userID = useAuthStore.getState().user?.id
         if (!userID) {

@@ -85,6 +85,24 @@ const AppLayer = (props: PropsInterface) => {
         }
     }
 
+    const removeAccessibilityScore = (lineSegment: AccessibilityScoreData) => {
+        console.log(lineSegment, 'heree')
+        console.log(accessibilityScores, 'scores')
+        const newList = accessibilityScores.filter((score) => {
+            return (
+                score.start_coordinates.latitude.toString() !==
+                    lineSegment.start_coordinates.latitude.toString() &&
+                score.start_coordinates.longitude.toString() !==
+                    lineSegment.start_coordinates.latitude.toString() &&
+                score.end_coordinates.latitude.toString() !==
+                    lineSegment.end_coordinates.latitude.toString() &&
+                score.end_coordinates.longitude.toString() !==
+                    lineSegment.end_coordinates.latitude.toString()
+            )
+        })
+        setAccessibilityScores(newList)
+    }
+
     const saveAnnotation = async (
         lineSegment: MapLineSegment,
         locationId: number
@@ -285,6 +303,9 @@ const AppLayer = (props: PropsInterface) => {
                                 setSelectedLineSegment={setSelectedLineSegment}
                                 closeAnnotationDetails={closeAnnotationDetails}
                                 confirmLocation={confirmLocation}
+                                removeAccessibilityScore={
+                                    removeAccessibilityScore
+                                }
                             />
                         </motion.div>
                     )}
