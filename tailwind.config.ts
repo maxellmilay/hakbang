@@ -7,6 +7,9 @@ const config: Config = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
+        fontFamily: {
+            'inter': ['Inter 18pt'],
+          },
         extend: {
             colors: {
                 background: 'var(--background)',

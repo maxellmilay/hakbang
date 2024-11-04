@@ -1,206 +1,84 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Image from 'next/image'
 
 const BaseLoader = () => {
-    const [showCursor, setShowCursor] = useState(false)
-    const [startPolygonAnim, setStartPolygonAnim] = useState(true)
-
-    useEffect(() => {
-        const cursorInterval = setInterval(() => {
-            setShowCursor((prev) => !prev)
-        }, 500)
-
-        setStartPolygonAnim(true)
-
-        return () => clearInterval(cursorInterval)
-    }, [])
-
     return (
-        <div className="min-h-screen w-full bg-yellow-500 flex items-center justify-center">
-            <div className="inline-flex items-center bg-white border-2 border-black rounded-lg p-6 gap-4">
-                <h1
-                    className={`text-4xl font-bold animate-typing overflow-hidden whitespace-nowrap ${showCursor ? 'border-r-4 border-black' : ''}`}
-                >
-                    lakb
-                </h1>
-                <div className="relative w-14 h-14">
-                    {/* Black border polygon */}
-                    <div
-                        className={`absolute inset-0 bg-black transform scale-[1.2] ${startPolygonAnim ? 'animate-polygon-build' : 'clip-path-initial'} z-10`}
+        <div className="min-h-screen w-full bg-white flex items-center justify-center">
+            <div
+                className="inline-flex items-center bg-primary border-2 border-black rounded-lg p-6"
+                style={{
+                    animation:
+                        'scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                }}
+            >
+                <div className="flex items-center gap-[0.2rem]">
+                    <span
+                        className="text-5xl font-medium font-inter"
                         style={{
-                            clipPath: startPolygonAnim
-                                ? 'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)'
-                                : 'polygon(50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%)',
-                            transformOrigin: 'center center',
-                        }}
-                    ></div>
-                    {/* Yellow polygon */}
-                    <div
-                        className={`absolute inset-0 bg-primary transform scale-[1.15] ${startPolygonAnim ? 'animate-polygon-build-delay-1' : 'clip-path-initial'} z-0`}
-                        style={{
-                            clipPath: startPolygonAnim
-                                ? 'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)'
-                                : 'polygon(50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%)',
-                            transformOrigin: 'center center',
-                        }}
-                    ></div>
-                    {/* Content polygon with AI text */}
-                    <div
-                        className={`relative w-full h-full bg-primary flex items-end justify-center text-4xl font-bold ${startPolygonAnim ? 'animate-polygon-build-delay-2' : 'clip-path-initial'} pb-1 z-10`}
-                        style={{
-                            clipPath: startPolygonAnim
-                                ? 'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)'
-                                : 'polygon(50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%)',
-                            transformOrigin: 'center center',
+                            animation: 'fadeInUp 0.6s ease-out forwards',
+                            animationDelay: '0.2s',
+                            opacity: 0,
                         }}
                     >
-                        AI
+                        L
+                    </span>
+                    <div className="relative w-[38px] h-[38px]">
+                        <Image
+                            src="/Pedestrian.png"
+                            alt="Pedestrian icon"
+                            fill
+                            priority
+                            className="object-contain"
+                            style={{
+                                animation: 'fadeIn 0.6s ease-out forwards',
+                                animationDelay: '0.4s',
+                                opacity: 0,
+                            }}
+                        />
                     </div>
+                    <span
+                        className="text-5xl font-medium font-inter tracking-[0.2rem]"
+                        style={{
+                            animation: 'fadeInUp 0.6s ease-out forwards',
+                            animationDelay: '0.6s',
+                            opacity: 0,
+                        }}
+                    >
+                        KBAI
+                    </span>
                 </div>
             </div>
             <style jsx>{`
-                @keyframes typing {
-                    from {
-                        width: 0;
-                    }
-                    to {
-                        width: 3.6ch;
-                    }
-                }
-
-                @keyframes polygon-build {
+                @keyframes scaleIn {
                     0% {
-                        clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%);
-                        transform: scale(1);
-                    }
-                    30% {
-                        clip-path: polygon(
-                            50% 100%,
-                            100% 100%,
-                            100% 100%,
-                            0% 100%,
-                            0% 100%
-                        );
-                        transform: scale(1);
-                    }
-                    60% {
-                        clip-path: polygon(
-                            50% 0%,
-                            100% 40%,
-                            100% 100%,
-                            0% 100%,
-                            0% 40%
-                        );
-                        transform: scale(1);
+                        transform: scale(0.8);
+                        opacity: 0;
                     }
                     100% {
-                        clip-path: polygon(
-                            50% 0%,
-                            100% 40%,
-                            100% 100%,
-                            0% 100%,
-                            0% 40%
-                        );
-                        transform: scale(1.25);
+                        transform: scale(1);
+                        opacity: 1;
                     }
                 }
 
-                @keyframes polygon-build-inner {
+                @keyframes fadeInUp {
                     0% {
-                        clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%);
-                        transform: scale(1.15);
-                    }
-                    30% {
-                        clip-path: polygon(
-                            50% 100%,
-                            100% 100%,
-                            100% 100%,
-                            0% 100%,
-                            0% 100%
-                        );
-                        transform: scale(1.15);
-                    }
-                    60% {
-                        clip-path: polygon(
-                            50% 0%,
-                            100% 40%,
-                            100% 100%,
-                            0% 100%,
-                            0% 40%
-                        );
-                        transform: scale(1.15);
+                        transform: translateY(20px);
+                        opacity: 0;
                     }
                     100% {
-                        clip-path: polygon(
-                            50% 0%,
-                            100% 40%,
-                            100% 100%,
-                            0% 100%,
-                            0% 40%
-                        );
-                        transform: scale(1.15);
+                        transform: translateY(0);
+                        opacity: 1;
                     }
                 }
 
-                @keyframes polygon-build-content {
+                @keyframes fadeIn {
                     0% {
-                        clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%);
-                        transform: scale(1.1);
-                    }
-                    30% {
-                        clip-path: polygon(
-                            50% 100%,
-                            100% 100%,
-                            100% 100%,
-                            0% 100%,
-                            0% 100%
-                        );
-                        transform: scale(1.1);
-                    }
-                    60% {
-                        clip-path: polygon(
-                            50% 0%,
-                            100% 40%,
-                            100% 100%,
-                            0% 100%,
-                            0% 40%
-                        );
-                        transform: scale(1.1);
+                        opacity: 0;
                     }
                     100% {
-                        clip-path: polygon(
-                            50% 0%,
-                            100% 40%,
-                            100% 100%,
-                            0% 100%,
-                            0% 40%
-                        );
-                        transform: scale(1.1);
+                        opacity: 1;
                     }
-                }
-
-                .animate-typing {
-                    animation: typing 0.7s steps(4);
-                    width: 3.8ch;
-                }
-
-                .animate-polygon-build {
-                    animation: polygon-build 1.6s cubic-bezier(0.4, 0, 0.2, 1)
-                        forwards;
-                }
-
-                .animate-polygon-build-delay-1 {
-                    animation: polygon-build-inner 1.6s
-                        cubic-bezier(0.4, 0, 0.2, 1) forwards;
-                }
-
-                .animate-polygon-build-delay-2 {
-                    animation: polygon-build-content 1.6s
-                        cubic-bezier(0.4, 0, 0.2, 1) forwards;
-                }
-
-                .clip-path-initial {
-                    clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%);
                 }
             `}</style>
         </div>
