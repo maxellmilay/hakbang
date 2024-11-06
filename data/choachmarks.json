@@ -1,0 +1,540 @@
+{
+    "sidebarAnnotations": [
+        {
+            "id": 196,
+            "updated_on": "2024-11-06 15:07:31",
+            "location": {
+                "accessibility_score": "0.76",
+                "start_coordinates": {
+                    "id": 67,
+                    "latitude": "10.327008431032533",
+                    "longitude": "123.9432507511633",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 68,
+                    "latitude": "10.326984377232334",
+                    "longitude": "123.94331480293114",
+                    "removed": false
+                },
+                "id": 67
+            },
+            "name": "Pj Burgos 10"
+        },
+        {
+            "id": 188,
+            "updated_on": "2024-10-25 08:25:16",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 153,
+                    "latitude": "10.327380290426156",
+                    "longitude": "123.94093302253988",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 154,
+                    "latitude": "10.327330512580263",
+                    "longitude": "123.94091805935794",
+                    "removed": false
+                },
+                "id": 153
+            },
+            "name": "B. Ceniza - 12"
+        },
+        {
+            "id": 186,
+            "updated_on": "2024-10-25 08:24:33",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 150,
+                    "latitude": "10.327574330356475",
+                    "longitude": "123.94099135083994",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 151,
+                    "latitude": "10.327509650380865",
+                    "longitude": "123.94097190806525",
+                    "removed": false
+                },
+                "id": 150
+            },
+            "name": "B. Ceniza - 9"
+        },
+        {
+            "id": 185,
+            "updated_on": "2024-10-25 08:24:14",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 149,
+                    "latitude": "10.32763901033092",
+                    "longitude": "123.94101079362261",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 150,
+                    "latitude": "10.327574330356475",
+                    "longitude": "123.94099135083994",
+                    "removed": false
+                },
+                "id": 149
+            },
+            "name": "B. Ceniza - 8"
+        },
+        {
+            "id": 184,
+            "updated_on": "2024-10-25 08:23:53",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 148,
+                    "latitude": "10.327703690304203",
+                    "longitude": "123.94103023641327",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 149,
+                    "latitude": "10.32763901033092",
+                    "longitude": "123.94101079362261",
+                    "removed": false
+                },
+                "id": 148
+            },
+            "name": "B. Ceniza - 7"
+        },
+        {
+            "id": 183,
+            "updated_on": "2024-10-25 08:23:30",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 146,
+                    "latitude": "10.327833050247271",
+                    "longitude": "123.94106912201866",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 147,
+                    "latitude": "10.327768370276319",
+                    "longitude": "123.94104967921196",
+                    "removed": false
+                },
+                "id": 146
+            },
+            "name": "B. Ceniza - 6"
+        },
+        {
+            "id": 182,
+            "updated_on": "2024-10-25 08:23:13",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 145,
+                    "latitude": "10.327897730217066",
+                    "longitude": "123.94108856483334",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 146,
+                    "latitude": "10.327833050247271",
+                    "longitude": "123.94106912201866",
+                    "removed": false
+                },
+                "id": 145
+            },
+            "name": "B. Ceniza - 5"
+        },
+        {
+            "id": 181,
+            "updated_on": "2024-10-25 08:22:58",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 143,
+                    "latitude": "10.328027090153153",
+                    "longitude": "123.94112745048666",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 144,
+                    "latitude": "10.327962410185691",
+                    "longitude": "123.941108007656",
+                    "removed": false
+                },
+                "id": 143
+            },
+            "name": "B. Ceniza - 3"
+        },
+        {
+            "id": 180,
+            "updated_on": "2024-10-25 08:22:38",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 11,
+                    "latitude": "10.327578460596774",
+                    "longitude": "123.94339829145613",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 12,
+                    "latitude": "10.327552495938649",
+                    "longitude": "123.94346156776909",
+                    "removed": false
+                },
+                "id": 11
+            },
+            "name": "zamora st 6"
+        },
+        {
+            "id": 179,
+            "updated_on": "2024-10-25 08:22:36",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 141,
+                    "latitude": "10.32815645008459",
+                    "longitude": "123.94116633617205",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 142,
+                    "latitude": "10.328091770119455",
+                    "longitude": "123.94114689332535",
+                    "removed": false
+                },
+                "id": 141
+            },
+            "name": "B. Ceniza - 1.5"
+        },
+        {
+            "id": 178,
+            "updated_on": "2024-10-25 08:22:14",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 10,
+                    "latitude": "10.327604425242571",
+                    "longitude": "123.94333501513273",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 11,
+                    "latitude": "10.327578460596774",
+                    "longitude": "123.94339829145613",
+                    "removed": false
+                },
+                "id": 10
+            },
+            "name": "zamora st 5"
+        },
+        {
+            "id": 177,
+            "updated_on": "2024-10-25 08:21:59",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 9,
+                    "latitude": "10.327630389876045",
+                    "longitude": "123.94327173879887",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 10,
+                    "latitude": "10.327604425242571",
+                    "longitude": "123.94333501513273",
+                    "removed": false
+                },
+                "id": 9
+            },
+            "name": "zamora st"
+        },
+        {
+            "id": 176,
+            "updated_on": "2024-10-25 08:21:43",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 8,
+                    "latitude": "10.327656354497194",
+                    "longitude": "123.94320846245455",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 9,
+                    "latitude": "10.327630389876045",
+                    "longitude": "123.94327173879887",
+                    "removed": false
+                },
+                "id": 8
+            },
+            "name": "zamora st 4"
+        },
+        {
+            "id": 175,
+            "updated_on": "2024-10-25 08:21:14",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 7,
+                    "latitude": "10.327682319106016",
+                    "longitude": "123.9431451860998",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 8,
+                    "latitude": "10.327656354497194",
+                    "longitude": "123.94320846245455",
+                    "removed": false
+                },
+                "id": 7
+            },
+            "name": "zamora st 3"
+        },
+        {
+            "id": 174,
+            "updated_on": "2024-10-25 08:20:55",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 6,
+                    "latitude": "10.327708283702513",
+                    "longitude": "123.94308190973459",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 7,
+                    "latitude": "10.327682319106016",
+                    "longitude": "123.9431451860998",
+                    "removed": false
+                },
+                "id": 6
+            },
+            "name": "zamora 2"
+        },
+        {
+            "id": 173,
+            "updated_on": "2024-10-25 08:19:02",
+            "location": {
+                "accessibility_score": "0.72",
+                "start_coordinates": {
+                    "id": 21,
+                    "latitude": "10.327397724003827",
+                    "longitude": "123.943927158441",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 22,
+                    "latitude": "10.32733446094685",
+                    "longitude": "123.94390338186392",
+                    "removed": false
+                },
+                "id": 21
+            },
+            "name": "pj burgos end"
+        },
+        {
+            "id": 172,
+            "updated_on": "2024-10-25 08:17:31",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 5,
+                    "latitude": "10.327734248286687",
+                    "longitude": "123.94301863335893",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 6,
+                    "latitude": "10.327708283702513",
+                    "longitude": "123.94308190973459",
+                    "removed": false
+                },
+                "id": 5
+            },
+            "name": "Zamora St Start"
+        },
+        {
+            "id": 171,
+            "updated_on": "2024-10-25 07:26:50",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 537,
+                    "latitude": "10.329490980076164",
+                    "longitude": "123.94181785390668",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 538,
+                    "latitude": "10.329554886678729",
+                    "longitude": "123.94183978049341",
+                    "removed": false
+                },
+                "id": 535
+            },
+            "name": "Suson - 11"
+        },
+        {
+            "id": 170,
+            "updated_on": "2024-10-25 07:26:32",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 536,
+                    "latitude": "10.329427073472113",
+                    "longitude": "123.94179592732885",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 537,
+                    "latitude": "10.329490980076164",
+                    "longitude": "123.94181785390668",
+                    "removed": false
+                },
+                "id": 534
+            },
+            "name": "Suson - 10"
+        },
+        {
+            "id": 169,
+            "updated_on": "2024-10-25 07:26:08",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 535,
+                    "latitude": "10.329363166866584",
+                    "longitude": "123.94177400075996",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 536,
+                    "latitude": "10.329427073472113",
+                    "longitude": "123.94179592732885",
+                    "removed": false
+                },
+                "id": 533
+            },
+            "name": "Suson - 9"
+        }
+    ],
+    "annotationDetails": {
+        "id": 196,
+        "location": {
+            "id": 67,
+            "start_coordinates": {
+                "id": 67,
+                "latitude": "10.327008431032533",
+                "longitude": "123.9432507511633",
+                "removed": false
+            },
+            "end_coordinates": {
+                "id": 68,
+                "latitude": "10.326984377232334",
+                "longitude": "123.94331480293114",
+                "removed": false
+            },
+            "accessibility_score": "0.76",
+            "adjacent_street": "210-513 P.J.Burgos",
+            "data": {
+                "zone": "City Core Commercial",
+                "hazard": 0,
+                "weight": null,
+                "population": 2980,
+                "nearestStreet": "210-513 P.J.Burgos",
+                "nearPlacesFrequency": {
+                    "food": 20,
+                    "lodging": 1,
+                    "restaurant": 20,
+                    "establishment": 20,
+                    "meal_delivery": 1,
+                    "meal_takeaway": 7,
+                    "point_of_interest": 20
+                }
+            },
+            "results": "{\"crisp_weather_condition\": 1.01069204986282, \"crisp_urban_density\": 0.18361414455388986, \"crisp_sidewalk_capacity\": 1.4050614353882585, \"crisp_safety_risk\": 61.57376082504912, \"raw_accessibility\": 1}",
+            "anchor": "123.94318663887299,10.327099440742616",
+            "removed": false
+        },
+        "created_on": "2024-11-06 15:07:31",
+        "updated_on": "2024-11-06 15:07:31",
+        "form_template": {
+            "id": 1,
+            "created_on": "2024-10-22 10:21:10",
+            "updated_on": "2024-10-22 10:21:10",
+            "name": "Form C",
+            "form_data": {
+                "fields": [
+                    {
+                        "field_name": "Field1",
+                        "field_type": "text"
+                    },
+                    {
+                        "field_name": "Field2",
+                        "field_type": "text"
+                    },
+                    {
+                        "field_name": "Field3",
+                        "field_type": "number"
+                    }
+                ]
+            },
+            "removed": true
+        },
+        "coordinates": {
+            "id": 67,
+            "latitude": "10.327008431032533",
+            "longitude": "123.9432507511633",
+            "removed": false
+        },
+        "images": [
+            {
+                "id": 39,
+                "file": {
+                    "id": 40,
+                    "created_on": "2024-11-06 15:07:43",
+                    "url": "https://tranches.s3.us-east-1.amazonaws.com/lakbai/image_2_1730905660206.png",
+                    "removed": false
+                },
+                "annotation": 196
+            },
+            {
+                "id": 40,
+                "file": {
+                    "id": 41,
+                    "created_on": "2024-11-06 15:07:43",
+                    "url": "https://tranches.s3.us-east-1.amazonaws.com/lakbai/image_1_1730905653385.png",
+                    "removed": false
+                },
+                "annotation": 196
+            },
+            {
+                "id": 41,
+                "file": {
+                    "id": 42,
+                    "created_on": "2024-11-06 15:07:43",
+                    "url": "https://tranches.s3.us-east-1.amazonaws.com/lakbai/image_3_1730905661923.png",
+                    "removed": false
+                },
+                "annotation": 196
+            }
+        ],
+        "annotator": {
+            "id": 1,
+            "username": "admin",
+            "email": "",
+            "first_name": "Mandaue",
+            "last_name": "Annotator",
+            "full_name": "Mandaue Annotator",
+            "is_admin": false,
+            "profile_picture": null,
+            "organization": null
+        },
+        "name": "Pj Burgos 10",
+        "form_data": "{\"dateAndTime\":\"2024-11-06T23:03\",\"sidewalkPresence\":true,\"sidewalkWidth\":{\"value\":1,\"remarks\":null},\"sidewalkCondition\":{\"value\":20,\"remarks\":null},\"rampGradient\":{\"value\":1,\"remarks\":null},\"streetFurniture\":{\"value\":0.9,\"remarks\":null},\"borderBuffer\":{\"value\":\"No\",\"remarks\":null},\"lightingCondition\":{\"value\":\"Adequate\",\"remarks\":null}}",
+        "removed": false
+    }
+}
