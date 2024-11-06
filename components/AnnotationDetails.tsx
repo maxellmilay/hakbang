@@ -7,6 +7,8 @@ import { MapLineSegment } from '@/interface/map'
 import Divider from '@mui/material/Divider'
 import { getColorFromValue } from '@/utils/colormap'
 
+import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
+
 const formatDateAndTime = (dateTime: string) => {
     const date = new Date(dateTime)
     const options: Intl.DateTimeFormatOptions = {
@@ -29,18 +31,26 @@ import BaseLoader from './BaseLoader'
 interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     closeAnnotationDetails: () => void
-    selectedLineSegment: MapLineSegment | null
+    selectedLineSegment: MapLineSegment
     confirmLocation: () => void
+    removeAccessibilityScore: (lineSegment: AccessibilityScoreData) => void
 }
 
 function AnnotationDetails(props: PropsInterface) {
-    const { getAnnotations, getAccessibilityLabel } = useAnnotationStore()
+    const {
+        getAnnotations,
+        getAccessibilityLabel,
+        setSidebarAnnotations,
+        sidebarAnnotations,
+        deleteAnnotation,
+    } = useAnnotationStore()
     const { user } = useAuthStore()
     const {
         closeAnnotationDetails,
         setSelectedLineSegment,
         selectedLineSegment,
         confirmLocation,
+        removeAccessibilityScore,
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
@@ -51,6 +61,7 @@ function AnnotationDetails(props: PropsInterface) {
 
     const [showManualData, setShowManualData] = useState(true)
     const [showLocationData, setShowLocationData] = useState(true)
+    const [isDeleting, setIsDeleting] = useState(false)
 
     const formData =
         typeof annotationDetails?.form_data === 'string'
@@ -60,6 +71,24 @@ function AnnotationDetails(props: PropsInterface) {
     const close = () => {
         closeAnnotationDetails()
         setSelectedLineSegment(null)
+    }
+
+    const deleteSelectedAnnotation = async () => {
+        try {
+            setIsDeleting(true)
+            const newAnnotations = sidebarAnnotations.filter(
+                (annotation: { id: any }) =>
+                    annotation.id !== annotationDetails.id
+            )
+            setSidebarAnnotations(newAnnotations)
+            await deleteAnnotation(annotationDetails.id)
+            removeAccessibilityScore(selectedLineSegment)
+            setSelectedLineSegment(null)
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setIsDeleting(false)
+        }
     }
 
     useEffect(() => {
@@ -202,6 +231,9 @@ function AnnotationDetails(props: PropsInterface) {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <button
+                                                        onClick={
+                                                            deleteSelectedAnnotation
+                                                        }
                                                         className={`${
                                                             active
                                                                 ? 'bg-red-100'
@@ -212,7 +244,9 @@ function AnnotationDetails(props: PropsInterface) {
                                                             icon="mdi:trash-can-outline"
                                                             className="w-4 h-4"
                                                         />
-                                                        Delete
+                                                        {!isDeleting
+                                                            ? 'Delete'
+                                                            : 'Deleting...'}
                                                     </button>
                                                 )}
                                             </Menu.Item>

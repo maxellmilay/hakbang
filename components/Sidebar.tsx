@@ -34,8 +34,14 @@ interface AnnotationItem {
 
 function Sidebar(props: PropsInterface) {
     const { user, getUser } = useAuthStore()
-    const { sidebarAnnotations, getSidebarAnnotations, getAccessibilityColor } =
-        useAnnotationStore()
+    const {
+        sidebarAnnotations,
+        getSidebarAnnotations,
+        getAccessibilityColor,
+        sidebarAnnotationsPage,
+        sidebarAnnotationsMaxPage,
+        fetchMoreSidebarAnnotations,
+    } = useAnnotationStore()
 
     const [isLoading, setIsLoading] = useState(true)
     const {
@@ -270,9 +276,15 @@ function Sidebar(props: PropsInterface) {
                                             </div>
                                         )}
                                     </div>
-                                    {data.length >= 20 && (
-                                        <button className="text-slate-600 hover:text-primary-dark duration-100">
-                                            View all annotations
+                                    {sidebarAnnotationsPage <
+                                        sidebarAnnotationsMaxPage && (
+                                        <button
+                                            onClick={
+                                                fetchMoreSidebarAnnotations
+                                            }
+                                            className="text-slate-600 hover:text-primary-dark duration-100"
+                                        >
+                                            Show more
                                         </button>
                                     )}
                                 </nav>
