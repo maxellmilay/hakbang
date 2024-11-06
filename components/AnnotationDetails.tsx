@@ -43,6 +43,7 @@ function AnnotationDetails(props: PropsInterface) {
         setSidebarAnnotations,
         sidebarAnnotations,
         deleteAnnotation,
+        demoMode,
     } = useAnnotationStore()
     const { user } = useAuthStore()
     const {
@@ -337,7 +338,8 @@ function AnnotationDetails(props: PropsInterface) {
                                     )}
                                 </div>
                                 <a
-                                    className="text-sky-500 underline text-sm mx-3"
+                                    className={`text-sky-500 underline text-sm mx-3 
+                                        ${demoMode ? 'blink' : ''}`}
                                     href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-LcB2SxkW9qIu28qVyUQfnzAJt2wQ2jUdQ&s"
                                     target="_blank"
                                 >
