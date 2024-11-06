@@ -1,0 +1,118 @@
+{
+    "annotationDetails": {
+        "id": 196,
+        "location": {
+            "id": 67,
+            "start_coordinates": {
+                "id": 67,
+                "latitude": "10.327008431032533",
+                "longitude": "123.9432507511633",
+                "removed": false
+            },
+            "end_coordinates": {
+                "id": 68,
+                "latitude": "10.326984377232334",
+                "longitude": "123.94331480293114",
+                "removed": false
+            },
+            "accessibility_score": "0.76",
+            "adjacent_street": "210-513 P.J.Burgos",
+            "data": {
+                "zone": "City Core Commercial",
+                "hazard": 0,
+                "weight": null,
+                "population": 2980,
+                "nearestStreet": "210-513 P.J.Burgos",
+                "nearPlacesFrequency": {
+                    "food": 20,
+                    "lodging": 1,
+                    "restaurant": 20,
+                    "establishment": 20,
+                    "meal_delivery": 1,
+                    "meal_takeaway": 7,
+                    "point_of_interest": 20
+                }
+            },
+            "results": "{\"crisp_weather_condition\": 1.01069204986282, \"crisp_urban_density\": 0.18361414455388986, \"crisp_sidewalk_capacity\": 1.4050614353882585, \"crisp_safety_risk\": 61.57376082504912, \"raw_accessibility\": 1}",
+            "anchor": "123.94318663887299,10.327099440742616",
+            "removed": false
+        },
+        "created_on": "2024-11-06 15:07:31",
+        "updated_on": "2024-11-06 15:07:31",
+        "form_template": {
+            "id": 1,
+            "created_on": "2024-10-22 10:21:10",
+            "updated_on": "2024-10-22 10:21:10",
+            "name": "Form C",
+            "form_data": {
+                "fields": [
+                    {
+                        "field_name": "Field1",
+                        "field_type": "text"
+                    },
+                    {
+                        "field_name": "Field2",
+                        "field_type": "text"
+                    },
+                    {
+                        "field_name": "Field3",
+                        "field_type": "number"
+                    }
+                ]
+            },
+            "removed": true
+        },
+        "coordinates": {
+            "id": 67,
+            "latitude": "10.327008431032533",
+            "longitude": "123.9432507511633",
+            "removed": false
+        },
+        "images": [
+            {
+                "id": 39,
+                "file": {
+                    "id": 40,
+                    "created_on": "2024-11-06 15:07:43",
+                    "url": "https://tranches.s3.us-east-1.amazonaws.com/lakbai/image_2_1730905660206.png",
+                    "removed": false
+                },
+                "annotation": 196
+            },
+            {
+                "id": 40,
+                "file": {
+                    "id": 41,
+                    "created_on": "2024-11-06 15:07:43",
+                    "url": "https://tranches.s3.us-east-1.amazonaws.com/lakbai/image_1_1730905653385.png",
+                    "removed": false
+                },
+                "annotation": 196
+            },
+            {
+                "id": 41,
+                "file": {
+                    "id": 42,
+                    "created_on": "2024-11-06 15:07:43",
+                    "url": "https://tranches.s3.us-east-1.amazonaws.com/lakbai/image_3_1730905661923.png",
+                    "removed": false
+                },
+                "annotation": 196
+            }
+        ],
+        "annotator": {
+            "id": 1,
+            "username": "admin",
+            "email": "",
+            "first_name": "Mandaue",
+            "last_name": "Annotator",
+            "full_name": "Mandaue Annotator",
+            "is_admin": false,
+            "profile_picture": null,
+            "organization": null
+        },
+        "name": "Pj Burgos 10",
+        "form_data": "{\"dateAndTime\":\"2024-11-06T23:03\",\"sidewalkPresence\":true,\"sidewalkWidth\":{\"value\":1,\"remarks\":null},\"sidewalkCondition\":{\"value\":20,\"remarks\":null},\"rampGradient\":{\"value\":1,\"remarks\":null},\"streetFurniture\":{\"value\":0.9,\"remarks\":null},\"borderBuffer\":{\"value\":\"No\",\"remarks\":null},\"lightingCondition\":{\"value\":\"Adequate\",\"remarks\":null}}",
+        "removed": false
+    }
+}

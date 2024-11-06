@@ -187,6 +187,10 @@ const MapComponent = (props: PropsInterface) => {
     }, [isMapLoaded, geojsonData])
 
     useEffect(() => {
+        console.log(JSON.stringify(accessibilityScores, null, 2))
+    }, [accessibilityScores])
+
+    useEffect(() => {
         if (dataLayer && accessibilityScores.length > 0) {
             // Style the GeoJSON lines based on their 'weight' property
             console.log(accessibilityScores)

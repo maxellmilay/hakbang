@@ -1,0 +1,5900 @@
+{
+    "accessibilityScores": [
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328091770119455",
+                "longitude": "123.94114689332535"
+            },
+            "end_coordinates": {
+                "latitude": "10.328027090153153",
+                "longitude": "123.94112745048666"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327897730217066",
+                "longitude": "123.94108856483334"
+            },
+            "end_coordinates": {
+                "latitude": "10.327833050247271",
+                "longitude": "123.94106912201866"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327703690304203",
+                "longitude": "123.94103023641327"
+            },
+            "end_coordinates": {
+                "latitude": "10.32763901033092",
+                "longitude": "123.94101079362261"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327656354497194",
+                "longitude": "123.94320846245455"
+            },
+            "end_coordinates": {
+                "latitude": "10.327630389876045",
+                "longitude": "123.94327173879887"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327833050247271",
+                "longitude": "123.94106912201866"
+            },
+            "end_coordinates": {
+                "latitude": "10.327768370276319",
+                "longitude": "123.94104967921196"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327444970404093",
+                "longitude": "123.94095246529857"
+            },
+            "end_coordinates": {
+                "latitude": "10.327380290426156",
+                "longitude": "123.94093302253988"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.326802868303957",
+                "longitude": "123.94225418650487"
+            },
+            "end_coordinates": {
+                "latitude": "10.3267850649823",
+                "longitude": "123.94229926864283"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327734248286687",
+                "longitude": "123.94301863335893"
+            },
+            "end_coordinates": {
+                "latitude": "10.327708283702513",
+                "longitude": "123.94308190973459"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327708283702513",
+                "longitude": "123.94308190973459"
+            },
+            "end_coordinates": {
+                "latitude": "10.327682319106016",
+                "longitude": "123.9431451860998"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.329043633816744",
+                "longitude": "123.94166436804922"
+            },
+            "end_coordinates": {
+                "latitude": "10.32910754042967",
+                "longitude": "123.94168629457354"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327682319106016",
+                "longitude": "123.9431451860998"
+            },
+            "end_coordinates": {
+                "latitude": "10.327656354497194",
+                "longitude": "123.94320846245455"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328979727202334",
+                "longitude": "123.94164244153382"
+            },
+            "end_coordinates": {
+                "latitude": "10.329043633816744",
+                "longitude": "123.94166436804922"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327630389876045",
+                "longitude": "123.94327173879887"
+            },
+            "end_coordinates": {
+                "latitude": "10.327604425242571",
+                "longitude": "123.94333501513273"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327604425242571",
+                "longitude": "123.94333501513273"
+            },
+            "end_coordinates": {
+                "latitude": "10.327578460596774",
+                "longitude": "123.94339829145613"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327154631765403",
+                "longitude": "123.94136343557184"
+            },
+            "end_coordinates": {
+                "latitude": "10.327129505884864",
+                "longitude": "123.94142706070457"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327768370276319",
+                "longitude": "123.94104967921196"
+            },
+            "end_coordinates": {
+                "latitude": "10.327703690304203",
+                "longitude": "123.94103023641327"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.32763901033092",
+                "longitude": "123.94101079362261"
+            },
+            "end_coordinates": {
+                "latitude": "10.327574330356475",
+                "longitude": "123.94099135083994"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328027090153153",
+                "longitude": "123.94112745048666"
+            },
+            "end_coordinates": {
+                "latitude": "10.327962410185691",
+                "longitude": "123.941108007656"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327574330356475",
+                "longitude": "123.94099135083994"
+            },
+            "end_coordinates": {
+                "latitude": "10.327509650380865",
+                "longitude": "123.94097190806525"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328415169933498",
+                "longitude": "123.94124410763872"
+            },
+            "end_coordinates": {
+                "latitude": "10.328350489973015",
+                "longitude": "123.94122466476004"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.329363166866584",
+                "longitude": "123.94177400075996"
+            },
+            "end_coordinates": {
+                "latitude": "10.329427073472113",
+                "longitude": "123.94179592732885"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328851913969075",
+                "longitude": "123.94159858852974"
+            },
+            "end_coordinates": {
+                "latitude": "10.328915820586445",
+                "longitude": "123.94162051502731"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327682319106016",
+                "longitude": "123.9431451860998"
+            },
+            "end_coordinates": {
+                "latitude": "10.327656354497194",
+                "longitude": "123.94320846245455"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327154631765403",
+                "longitude": "123.94136343557184"
+            },
+            "end_coordinates": {
+                "latitude": "10.327129505884864",
+                "longitude": "123.94142706070457"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327656354497194",
+                "longitude": "123.94320846245455"
+            },
+            "end_coordinates": {
+                "latitude": "10.327630389876045",
+                "longitude": "123.94327173879887"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327768370276319",
+                "longitude": "123.94104967921196"
+            },
+            "end_coordinates": {
+                "latitude": "10.327703690304203",
+                "longitude": "123.94103023641327"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.32910754042967",
+                "longitude": "123.94168629457354"
+            },
+            "end_coordinates": {
+                "latitude": "10.32917144704112",
+                "longitude": "123.9417082211068"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328915820586445",
+                "longitude": "123.94162051502731"
+            },
+            "end_coordinates": {
+                "latitude": "10.328979727202334",
+                "longitude": "123.94164244153382"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327708283702513",
+                "longitude": "123.94308190973459"
+            },
+            "end_coordinates": {
+                "latitude": "10.327682319106016",
+                "longitude": "123.9431451860998"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327833050247271",
+                "longitude": "123.94106912201866"
+            },
+            "end_coordinates": {
+                "latitude": "10.327768370276319",
+                "longitude": "123.94104967921196"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328027090153153",
+                "longitude": "123.94112745048666"
+            },
+            "end_coordinates": {
+                "latitude": "10.327962410185691",
+                "longitude": "123.941108007656"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.32763901033092",
+                "longitude": "123.94101079362261"
+            },
+            "end_coordinates": {
+                "latitude": "10.327574330356475",
+                "longitude": "123.94099135083994"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327574330356475",
+                "longitude": "123.94099135083994"
+            },
+            "end_coordinates": {
+                "latitude": "10.327509650380865",
+                "longitude": "123.94097190806525"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.329043633816744",
+                "longitude": "123.94166436804922"
+            },
+            "end_coordinates": {
+                "latitude": "10.32910754042967",
+                "longitude": "123.94168629457354"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327703690304203",
+                "longitude": "123.94103023641327"
+            },
+            "end_coordinates": {
+                "latitude": "10.32763901033092",
+                "longitude": "123.94101079362261"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.328979727202334",
+                "longitude": "123.94164244153382"
+            },
+            "end_coordinates": {
+                "latitude": "10.329043633816744",
+                "longitude": "123.94166436804922"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327897730217066",
+                "longitude": "123.94108856483334"
+            },
+            "end_coordinates": {
+                "latitude": "10.327833050247271",
+                "longitude": "123.94106912201866"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327380290426156",
+                "longitude": "123.94093302253988"
+            },
+            "end_coordinates": {
+                "latitude": "10.327330512580263",
+                "longitude": "123.94091805935794"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.327630389876045",
+                "longitude": "123.94327173879887"
+            },
+            "end_coordinates": {
+                "latitude": "10.327604425242571",
+                "longitude": "123.94333501513273"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.329554886678729",
+                "longitude": "123.94183978049341"
+            },
+            "end_coordinates": {
+                "latitude": "10.329583959301548",
+                "longitude": "123.94184975541866"
+            }
+        },
+        {
+            "score": "0.00",
+            "start_coordinates": {
+                "latitude": "10.32763901033092",
+                "longitude": "123.94101079362261"
+            },
+            "end_coordinates": {
+                "latitude": "10.327574330356475",
+                "longitude": "123.94099135083994"
+            }
+        },
+        {
+            "score": "0.01",
+            "start_coordinates": {
+                "latitude": "10.327028262932876",
+                "longitude": "123.9432924348245"
+            },
+            "end_coordinates": {
+                "latitude": "10.327052259491408",
+                "longitude": "123.94322836086789"
+            }
+        },
+        {
+            "score": "0.01",
+            "start_coordinates": {
+                "latitude": "10.327052259491408",
+                "longitude": "123.94322836086789"
+            },
+            "end_coordinates": {
+                "latitude": "10.327076256037303",
+                "longitude": "123.94316428690152"
+            }
+        },
+        {
+            "score": "0.01",
+            "start_coordinates": {
+                "latitude": "10.326860286669318",
+                "longitude": "123.94374095224683"
+            },
+            "end_coordinates": {
+                "latitude": "10.326884283316309",
+                "longitude": "123.94367687835869"
+            }
+        },
+        {
+            "score": "0.02",
+            "start_coordinates": {
+                "latitude": "10.327305386786952",
+                "longitude": "123.94098168456186"
+            },
+            "end_coordinates": {
+                "latitude": "10.327280260981178",
+                "longitude": "123.94104530975561"
+            }
+        },
+        {
+            "score": "0.02",
+            "start_coordinates": {
+                "latitude": "10.327708916908401",
+                "longitude": "123.94267868975253"
+            },
+            "end_coordinates": {
+                "latitude": "10.327772292536594",
+                "longitude": "123.94268104655751"
+            }
+        },
+        {
+            "score": "0.06",
+            "start_coordinates": {
+                "latitude": "10.3286738530649",
+                "longitude": "123.94163365519873"
+            },
+            "end_coordinates": {
+                "latitude": "10.328642620345946",
+                "longitude": "123.94169442190247"
+            }
+        },
+        {
+            "score": "0.06",
+            "start_coordinates": {
+                "latitude": "10.328580154873933",
+                "longitude": "123.94181595527373"
+            },
+            "end_coordinates": {
+                "latitude": "10.328548922120877",
+                "longitude": "123.94187672194124"
+            }
+        },
+        {
+            "score": "0.06",
+            "start_coordinates": {
+                "latitude": "10.328486456580658",
+                "longitude": "123.94199825524007"
+            },
+            "end_coordinates": {
+                "latitude": "10.328455223793497",
+                "longitude": "123.94205902187136"
+            }
+        },
+        {
+            "score": "0.07",
+            "start_coordinates": {
+                "latitude": "10.328267826831814",
+                "longitude": "123.9424236214056"
+            },
+            "end_coordinates": {
+                "latitude": "10.328236593965082",
+                "longitude": "123.94248438795239"
+            }
+        },
+        {
+            "score": "0.50",
+            "start_coordinates": {
+                "latitude": "10.327079254086405",
+                "longitude": "123.94155431093955"
+            },
+            "end_coordinates": {
+                "latitude": "10.327054128168486",
+                "longitude": "123.94161793604178"
+            }
+        },
+        {
+            "score": "0.51",
+            "start_coordinates": {
+                "latitude": "10.326908279950661",
+                "longitude": "123.94361280446078"
+            },
+            "end_coordinates": {
+                "latitude": "10.326932276572379",
+                "longitude": "123.94354873055309"
+            }
+        },
+        {
+            "score": "0.53",
+            "start_coordinates": {
+                "latitude": "10.327280260981178",
+                "longitude": "123.94104530975561"
+            },
+            "end_coordinates": {
+                "latitude": "10.327255135162943",
+                "longitude": "123.94110893493918"
+            }
+        },
+        {
+            "score": "0.56",
+            "start_coordinates": {
+                "latitude": "10.328236593965082",
+                "longitude": "123.94248438795239"
+            },
+            "end_coordinates": {
+                "latitude": "10.32820536108698",
+                "longitude": "123.94254515448708"
+            }
+        },
+        {
+            "score": "0.57",
+            "start_coordinates": {
+                "latitude": "10.328829175975198",
+                "longitude": "123.94297934657021"
+            },
+            "end_coordinates": {
+                "latitude": "10.328764959351922",
+                "longitude": "123.9429583767633"
+            }
+        },
+        {
+            "score": "0.57",
+            "start_coordinates": {
+                "latitude": "10.32902182583689",
+                "longitude": "123.94304225604229"
+            },
+            "end_coordinates": {
+                "latitude": "10.328957609217678",
+                "longitude": "123.94302128620969"
+            }
+        },
+        {
+            "score": "0.58",
+            "start_coordinates": {
+                "latitude": "10.326980269777902",
+                "longitude": "123.94342058270834"
+            },
+            "end_coordinates": {
+                "latitude": "10.327004266361707",
+                "longitude": "123.9433565087713"
+            }
+        },
+        {
+            "score": "0.61",
+            "start_coordinates": {
+                "latitude": "10.327056538595052",
+                "longitude": "123.94312264759826"
+            },
+            "end_coordinates": {
+                "latitude": "10.327032484820107",
+                "longitude": "123.94318669938568"
+            }
+        },
+        {
+            "score": "0.61",
+            "start_coordinates": {
+                "latitude": "10.32776400495862",
+                "longitude": "123.94274440139495"
+            },
+            "end_coordinates": {
+                "latitude": "10.327828947828811",
+                "longitude": "123.94276291661315"
+            }
+        },
+        {
+            "score": "0.61",
+            "start_coordinates": {
+                "latitude": "10.32855757842927",
+                "longitude": "123.9420374814192"
+            },
+            "end_coordinates": {
+                "latitude": "10.328588140130037",
+                "longitude": "123.94197636323315"
+            }
+        },
+        {
+            "score": "0.61",
+            "start_coordinates": {
+                "latitude": "10.32776400495862",
+                "longitude": "123.94274440139495"
+            },
+            "end_coordinates": {
+                "latitude": "10.327828947828811",
+                "longitude": "123.94276291661315"
+            }
+        },
+        {
+            "score": "0.61",
+            "start_coordinates": {
+                "latitude": "10.328343646201908",
+                "longitude": "123.94246530838879"
+            },
+            "end_coordinates": {
+                "latitude": "10.328374207983174",
+                "longitude": "123.94240419028594"
+            }
+        },
+        {
+            "score": "0.62",
+            "start_coordinates": {
+                "latitude": "10.327652860421791",
+                "longitude": "123.94273940250484"
+            },
+            "end_coordinates": {
+                "latitude": "10.327720243517764",
+                "longitude": "123.94274243315894"
+            }
+        },
+        {
+            "score": "0.62",
+            "start_coordinates": {
+                "latitude": "10.326842520759584",
+                "longitude": "123.94233518031078"
+            },
+            "end_coordinates": {
+                "latitude": "10.3268999765329",
+                "longitude": "123.94237109199186"
+            }
+        },
+        {
+            "score": "0.62",
+            "start_coordinates": {
+                "latitude": "10.327501212904654",
+                "longitude": "123.94277930542245"
+            },
+            "end_coordinates": {
+                "latitude": "10.327563985923168",
+                "longitude": "123.94275422276561"
+            }
+        },
+        {
+            "score": "0.62",
+            "start_coordinates": {
+                "latitude": "10.327438439884201",
+                "longitude": "123.94280438806929"
+            },
+            "end_coordinates": {
+                "latitude": "10.327501212904654",
+                "longitude": "123.94277930542245"
+            }
+        },
+        {
+            "score": "0.62",
+            "start_coordinates": {
+                "latitude": "10.32758105906539",
+                "longitude": "123.94274740072812"
+            },
+            "end_coordinates": {
+                "latitude": "10.327648106681455",
+                "longitude": "123.94273993204197"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328435331511205",
+                "longitude": "123.94228195404457"
+            },
+            "end_coordinates": {
+                "latitude": "10.328465893257974",
+                "longitude": "123.94222083590603"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328221398961858",
+                "longitude": "123.94270978068145"
+            },
+            "end_coordinates": {
+                "latitude": "10.32825196078912",
+                "longitude": "123.94264866262611"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328496454993237",
+                "longitude": "123.94215971775564"
+            },
+            "end_coordinates": {
+                "latitude": "10.328527016717006",
+                "longitude": "123.94209859959336"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.327389260841208",
+                "longitude": "123.94282338384966"
+            },
+            "end_coordinates": {
+                "latitude": "10.327438439884201",
+                "longitude": "123.94280438806929"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328374207983174",
+                "longitude": "123.94240419028594"
+            },
+            "end_coordinates": {
+                "latitude": "10.32840476975294",
+                "longitude": "123.9423430721712"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328771510093151",
+                "longitude": "123.94160965386736"
+            },
+            "end_coordinates": {
+                "latitude": "10.328788007350221",
+                "longitude": "123.94157666204109"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328588140130037",
+                "longitude": "123.94197636323315"
+            },
+            "end_coordinates": {
+                "latitude": "10.328618701819307",
+                "longitude": "123.94191524503525"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328527016717006",
+                "longitude": "123.94209859959336"
+            },
+            "end_coordinates": {
+                "latitude": "10.32855757842927",
+                "longitude": "123.9420374814192"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328313084409144",
+                "longitude": "123.94252642647977"
+            },
+            "end_coordinates": {
+                "latitude": "10.328343646201908",
+                "longitude": "123.94246530838879"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328710386818114",
+                "longitude": "123.94173189037015"
+            },
+            "end_coordinates": {
+                "latitude": "10.32874094846138",
+                "longitude": "123.9416707721247"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328649263497077",
+                "longitude": "123.94185412682543"
+            },
+            "end_coordinates": {
+                "latitude": "10.328679825163345",
+                "longitude": "123.94179300860372"
+            }
+        },
+        {
+            "score": "0.64",
+            "start_coordinates": {
+                "latitude": "10.328190837123097",
+                "longitude": "123.9427708987249"
+            },
+            "end_coordinates": {
+                "latitude": "10.328221398961858",
+                "longitude": "123.94270978068145"
+            }
+        },
+        {
+            "score": "0.65",
+            "start_coordinates": {
+                "latitude": "10.32837965958386",
+                "longitude": "123.94283255810186"
+            },
+            "end_coordinates": {
+                "latitude": "10.32831544295111",
+                "longitude": "123.94281158835493"
+            }
+        },
+        {
+            "score": "0.66",
+            "start_coordinates": {
+                "latitude": "10.328764959351922",
+                "longitude": "123.9429583767633"
+            },
+            "end_coordinates": {
+                "latitude": "10.328700742727296",
+                "longitude": "123.94293740696499"
+            }
+        },
+        {
+            "score": "0.67",
+            "start_coordinates": {
+                "latitude": "10.326932276572379",
+                "longitude": "123.94354873055309"
+            },
+            "end_coordinates": {
+                "latitude": "10.32695627318146",
+                "longitude": "123.9434846566356"
+            }
+        },
+        {
+            "score": "0.68",
+            "start_coordinates": {
+                "latitude": "10.328893392597111",
+                "longitude": "123.94300031638566"
+            },
+            "end_coordinates": {
+                "latitude": "10.328829175975198",
+                "longitude": "123.94297934657021"
+            }
+        },
+        {
+            "score": "0.69",
+            "start_coordinates": {
+                "latitude": "10.326928498391977",
+                "longitude": "123.94193606140043"
+            },
+            "end_coordinates": {
+                "latitude": "10.326903372399297",
+                "longitude": "123.94199968644165"
+            }
+        },
+        {
+            "score": "0.69",
+            "start_coordinates": {
+                "latitude": "10.3269603234195",
+                "longitude": "123.94337885468913"
+            },
+            "end_coordinates": {
+                "latitude": "10.326936269594045",
+                "longitude": "123.94344290643737"
+            }
+        },
+        {
+            "score": "0.70",
+            "start_coordinates": {
+                "latitude": "10.328572309473984",
+                "longitude": "123.94289546739404"
+            },
+            "end_coordinates": {
+                "latitude": "10.328508092845295",
+                "longitude": "123.9428744976214"
+            }
+        },
+        {
+            "score": "0.70",
+            "start_coordinates": {
+                "latitude": "10.32831544295111",
+                "longitude": "123.94281158835493"
+            },
+            "end_coordinates": {
+                "latitude": "10.32825122631701",
+                "longitude": "123.94279061861658"
+            }
+        },
+        {
+            "score": "0.70",
+            "start_coordinates": {
+                "latitude": "10.328700742727296",
+                "longitude": "123.94293740696499"
+            },
+            "end_coordinates": {
+                "latitude": "10.328636526101317",
+                "longitude": "123.94291643717524"
+            }
+        },
+        {
+            "score": "0.71",
+            "start_coordinates": {
+                "latitude": "10.328282522604884",
+                "longitude": "123.94258754455886"
+            },
+            "end_coordinates": {
+                "latitude": "10.328313084409144",
+                "longitude": "123.94252642647977"
+            }
+        },
+        {
+            "score": "0.71",
+            "start_coordinates": {
+                "latitude": "10.328443876215253",
+                "longitude": "123.94285352785735"
+            },
+            "end_coordinates": {
+                "latitude": "10.32837965958386",
+                "longitude": "123.94283255810186"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.328508092845295",
+                "longitude": "123.9428744976214"
+            },
+            "end_coordinates": {
+                "latitude": "10.328443876215253",
+                "longitude": "123.94285352785735"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.32860508088321",
+                "longitude": "123.94131998897053"
+            },
+            "end_coordinates": {
+                "latitude": "10.328668571794077",
+                "longitude": "123.94134312961737"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.32842399099497",
+                "longitude": "123.94211978849059"
+            },
+            "end_coordinates": {
+                "latitude": "10.328392758185073",
+                "longitude": "123.94218055509772"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.327397724003827",
+                "longitude": "123.943927158441"
+            },
+            "end_coordinates": {
+                "latitude": "10.32733446094685",
+                "longitude": "123.94390338186392"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.32840476975294",
+                "longitude": "123.9423430721712"
+            },
+            "end_coordinates": {
+                "latitude": "10.328435331511205",
+                "longitude": "123.94228195404457"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.32874094846138",
+                "longitude": "123.9416707721247"
+            },
+            "end_coordinates": {
+                "latitude": "10.328771510093151",
+                "longitude": "123.94160965386736"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.327004266361707",
+                "longitude": "123.9433565087713"
+            },
+            "end_coordinates": {
+                "latitude": "10.327028262932876",
+                "longitude": "123.9432924348245"
+            }
+        },
+        {
+            "score": "0.72",
+            "start_coordinates": {
+                "latitude": "10.32825122631701",
+                "longitude": "123.94279061861658"
+            },
+            "end_coordinates": {
+                "latitude": "10.328190837123097",
+                "longitude": "123.9427708987249"
+            }
+        },
+        {
+            "score": "0.73",
+            "start_coordinates": {
+                "latitude": "10.328174128197512",
+                "longitude": "123.9426059210097"
+            },
+            "end_coordinates": {
+                "latitude": "10.328142895296676",
+                "longitude": "123.94266668752029"
+            }
+        },
+        {
+            "score": "0.73",
+            "start_coordinates": {
+                "latitude": "10.328142895296676",
+                "longitude": "123.94266668752029"
+            },
+            "end_coordinates": {
+                "latitude": "10.328111662384472",
+                "longitude": "123.94272745401875"
+            }
+        },
+        {
+            "score": "0.74",
+            "start_coordinates": {
+                "latitude": "10.328618701819307",
+                "longitude": "123.94191524503525"
+            },
+            "end_coordinates": {
+                "latitude": "10.328649263497077",
+                "longitude": "123.94185412682543"
+            }
+        },
+        {
+            "score": "0.74",
+            "start_coordinates": {
+                "latitude": "10.327029002238104",
+                "longitude": "123.94168156113385"
+            },
+            "end_coordinates": {
+                "latitude": "10.327003876295265",
+                "longitude": "123.94174518621575"
+            }
+        },
+        {
+            "score": "0.74",
+            "start_coordinates": {
+                "latitude": "10.328465893257974",
+                "longitude": "123.94222083590603"
+            },
+            "end_coordinates": {
+                "latitude": "10.328496454993237",
+                "longitude": "123.94215971775564"
+            }
+        },
+        {
+            "score": "0.74",
+            "start_coordinates": {
+                "latitude": "10.32825196078912",
+                "longitude": "123.94264866262611"
+            },
+            "end_coordinates": {
+                "latitude": "10.328282522604884",
+                "longitude": "123.94258754455886"
+            }
+        },
+        {
+            "score": "0.75",
+            "start_coordinates": {
+                "latitude": "10.328636526101317",
+                "longitude": "123.94291643717524"
+            },
+            "end_coordinates": {
+                "latitude": "10.328572309473984",
+                "longitude": "123.94289546739404"
+            }
+        },
+        {
+            "score": "0.75",
+            "start_coordinates": {
+                "latitude": "10.326933121946091",
+                "longitude": "123.9437654019197"
+            },
+            "end_coordinates": {
+                "latitude": "10.326869075121868",
+                "longitude": "123.94374390239342"
+            }
+        },
+        {
+            "score": "0.75",
+            "start_coordinates": {
+                "latitude": "10.327189309228741",
+                "longitude": "123.94385140011237"
+            },
+            "end_coordinates": {
+                "latitude": "10.327125262410211",
+                "longitude": "123.94382990055107"
+            }
+        },
+        {
+            "score": "0.75",
+            "start_coordinates": {
+                "latitude": "10.326884283316309",
+                "longitude": "123.94367687835869"
+            },
+            "end_coordinates": {
+                "latitude": "10.326908279950661",
+                "longitude": "123.94361280446078"
+            }
+        },
+        {
+            "score": "0.76",
+            "start_coordinates": {
+                "latitude": "10.327008431032533",
+                "longitude": "123.9432507511633"
+            },
+            "end_coordinates": {
+                "latitude": "10.326984377232334",
+                "longitude": "123.94331480293114"
+            }
+        },
+        {
+            "score": "0.76",
+            "start_coordinates": {
+                "latitude": "10.328957609217678",
+                "longitude": "123.94302128620969"
+            },
+            "end_coordinates": {
+                "latitude": "10.328893392597111",
+                "longitude": "123.94300031638566"
+            }
+        },
+        {
+            "score": "0.76",
+            "start_coordinates": {
+                "latitude": "10.327061215590263",
+                "longitude": "123.94380840099849"
+            },
+            "end_coordinates": {
+                "latitude": "10.326997168768887",
+                "longitude": "123.94378690145471"
+            }
+        },
+        {
+            "score": "0.77",
+            "start_coordinates": {
+                "latitude": "10.326827994346484",
+                "longitude": "123.94219056150433"
+            },
+            "end_coordinates": {
+                "latitude": "10.326802868303957",
+                "longitude": "123.94225418650487"
+            }
+        },
+        {
+            "score": "0.77",
+            "start_coordinates": {
+                "latitude": "10.32711998905508",
+                "longitude": "123.9426842888352"
+            },
+            "end_coordinates": {
+                "latitude": "10.327174717459833",
+                "longitude": "123.94272436099666"
+            }
+        },
+        {
+            "score": "0.77",
+            "start_coordinates": {
+                "latitude": "10.3275713385513",
+                "longitude": "123.94268834167666"
+            },
+            "end_coordinates": {
+                "latitude": "10.32763782856926",
+                "longitude": "123.94267682151076"
+            }
+        },
+        {
+            "score": "0.77",
+            "start_coordinates": {
+                "latitude": "10.327174717459833",
+                "longitude": "123.94272436099666"
+            },
+            "end_coordinates": {
+                "latitude": "10.327214086705554",
+                "longitude": "123.94275318718613"
+            }
+        },
+        {
+            "score": "0.77",
+            "start_coordinates": {
+                "latitude": "10.326979639963639",
+                "longitude": "123.94245408728676"
+            },
+            "end_coordinates": {
+                "latitude": "10.327016724159881",
+                "longitude": "123.94251135442612"
+            }
+        },
+        {
+            "score": "0.78",
+            "start_coordinates": {
+                "latitude": "10.326997168768887",
+                "longitude": "123.94378690145471"
+            },
+            "end_coordinates": {
+                "latitude": "10.326933121946091",
+                "longitude": "123.9437654019197"
+            }
+        },
+        {
+            "score": "0.81",
+            "start_coordinates": {
+                "latitude": "10.327125262410211",
+                "longitude": "123.94382990055107"
+            },
+            "end_coordinates": {
+                "latitude": "10.327061215590263",
+                "longitude": "123.94380840099849"
+            }
+        },
+        {
+            "score": "0.82",
+            "start_coordinates": {
+                "latitude": "10.32695627318146",
+                "longitude": "123.9434846566356"
+            },
+            "end_coordinates": {
+                "latitude": "10.326980269777902",
+                "longitude": "123.94342058270834"
+            }
+        },
+        {
+            "score": "0.83",
+            "start_coordinates": {
+                "latitude": "10.327641512975742",
+                "longitude": "123.9426761831445"
+            },
+            "end_coordinates": {
+                "latitude": "10.327708916908401",
+                "longitude": "123.94267868975253"
+            }
+        },
+        {
+            "score": "0.84",
+            "start_coordinates": {
+                "latitude": "10.328736318468703",
+                "longitude": "123.94151212175504"
+            },
+            "end_coordinates": {
+                "latitude": "10.328705085772487",
+                "longitude": "123.94157288848292"
+            }
+        },
+        {
+            "score": "0.84",
+            "start_coordinates": {
+                "latitude": "10.327433381973583",
+                "longitude": "123.94273616523786"
+            },
+            "end_coordinates": {
+                "latitude": "10.327497220603952",
+                "longitude": "123.94271403515943"
+            }
+        },
+        {
+            "score": "0.84",
+            "start_coordinates": {
+                "latitude": "10.32879878382704",
+                "longitude": "123.94139058826303"
+            },
+            "end_coordinates": {
+                "latitude": "10.328767551153554",
+                "longitude": "123.94145135501509"
+            }
+        },
+        {
+            "score": "0.84",
+            "start_coordinates": {
+                "latitude": "10.327214086705554",
+                "longitude": "123.94275318718613"
+            },
+            "end_coordinates": {
+                "latitude": "10.327280422153756",
+                "longitude": "123.94276559389579"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32631775756376",
+                "longitude": "123.94344886342961"
+            },
+            "end_coordinates": {
+                "latitude": "10.326340981774718",
+                "longitude": "123.94338449624085"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326570512104741",
+                "longitude": "123.94522799983223"
+            },
+            "end_coordinates": {
+                "latitude": "10.32654145970077",
+                "longitude": "123.94528987347226"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327253356045842",
+                "longitude": "123.94387289968243"
+            },
+            "end_coordinates": {
+                "latitude": "10.327189309228741",
+                "longitude": "123.94385140011237"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32851768935645",
+                "longitude": "123.94193748859668"
+            },
+            "end_coordinates": {
+                "latitude": "10.328486456580658",
+                "longitude": "123.94199825524007"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327786338054091",
+                "longitude": "123.94310564732558"
+            },
+            "end_coordinates": {
+                "latitude": "10.327814477889493",
+                "longitude": "123.9430433391986"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32708729410214",
+                "longitude": "123.94265024494418"
+            },
+            "end_coordinates": {
+                "latitude": "10.32711998905508",
+                "longitude": "123.9426842888352"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326827635615906",
+                "longitude": "123.94373218197137"
+            },
+            "end_coordinates": {
+                "latitude": "10.326765098687392",
+                "longitude": "123.94370649727917"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326888161905242",
+                "longitude": "123.94357100990439"
+            },
+            "end_coordinates": {
+                "latitude": "10.326864108041901",
+                "longitude": "123.94363506162321"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327035348965707",
+                "longitude": "123.94423802003632"
+            },
+            "end_coordinates": {
+                "latitude": "10.327006296750277",
+                "longitude": "123.94429989385932"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326984377232334",
+                "longitude": "123.94331480293114"
+            },
+            "end_coordinates": {
+                "latitude": "10.3269603234195",
+                "longitude": "123.94337885468913"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327176807280347",
+                "longitude": "123.94280238851418"
+            },
+            "end_coordinates": {
+                "latitude": "10.327152753568546",
+                "longitude": "123.94286644035061"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327180609866094",
+                "longitude": "123.94392865074984"
+            },
+            "end_coordinates": {
+                "latitude": "10.327151557709588",
+                "longitude": "123.94399052463001"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.3267850649823",
+                "longitude": "123.94229926864283"
+            },
+            "end_coordinates": {
+                "latitude": "10.326842520759584",
+                "longitude": "123.94233518031078"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326469118879878",
+                "longitude": "123.94304151594766"
+            },
+            "end_coordinates": {
+                "latitude": "10.326496166790786",
+                "longitude": "123.94297871044111"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327273385142242",
+                "longitude": "123.94282809504587"
+            },
+            "end_coordinates": {
+                "latitude": "10.327303689288046",
+                "longitude": "123.94283438140673"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32720729831147",
+                "longitude": "123.94281438584785"
+            },
+            "end_coordinates": {
+                "latitude": "10.327273385142242",
+                "longitude": "123.94282809504587"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32691842158288",
+                "longitude": "123.94383585933562"
+            },
+            "end_coordinates": {
+                "latitude": "10.326982120013204",
+                "longitude": "123.94385840291919"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327076256037303",
+                "longitude": "123.94316428690152"
+            },
+            "end_coordinates": {
+                "latitude": "10.327100252570562",
+                "longitude": "123.94310021292536"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32733446094685",
+                "longitude": "123.94390338186392"
+            },
+            "end_coordinates": {
+                "latitude": "10.327271197888132",
+                "longitude": "123.9438796052964"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327970296113602",
+                "longitude": "123.94271233419452"
+            },
+            "end_coordinates": {
+                "latitude": "10.327949160125076",
+                "longitude": "123.9427061438675"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327501517223915",
+                "longitude": "123.94361769260195"
+            },
+            "end_coordinates": {
+                "latitude": "10.32749235169986",
+                "longitude": "123.94364723257297"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327552495938649",
+                "longitude": "123.94346156776909"
+            },
+            "end_coordinates": {
+                "latitude": "10.327542091888013",
+                "longitude": "123.94348692260589"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328392758185073",
+                "longitude": "123.94218055509772"
+            },
+            "end_coordinates": {
+                "latitude": "10.328361525363812",
+                "longitude": "123.9422413216928"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326878246394152",
+                "longitude": "123.94206331147271"
+            },
+            "end_coordinates": {
+                "latitude": "10.32685312037655",
+                "longitude": "123.9421269364936"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327128699844117",
+                "longitude": "123.94293049217721"
+            },
+            "end_coordinates": {
+                "latitude": "10.327104646107058",
+                "longitude": "123.94299454399405"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328668571794077",
+                "longitude": "123.94134312961737"
+            },
+            "end_coordinates": {
+                "latitude": "10.328732062703299",
+                "longitude": "123.94136627027352"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328375792211652",
+                "longitude": "123.94155076980078"
+            },
+            "end_coordinates": {
+                "latitude": "10.32839949387375",
+                "longitude": "123.94148658226071"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328209880221843",
+                "longitude": "123.94200008231044"
+            },
+            "end_coordinates": {
+                "latitude": "10.328233581972723",
+                "longitude": "123.94193589483812"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328548922120877",
+                "longitude": "123.94187672194124"
+            },
+            "end_coordinates": {
+                "latitude": "10.32851768935645",
+                "longitude": "123.94193748859668"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328043967610554",
+                "longitude": "123.94244939434586"
+            },
+            "end_coordinates": {
+                "latitude": "10.328067669450219",
+                "longitude": "123.94238520694127"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327898897323992",
+                "longitude": "123.94285641475065"
+            },
+            "end_coordinates": {
+                "latitude": "10.327911186170235",
+                "longitude": "123.94282920433164"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327814477889493",
+                "longitude": "123.9430433391986"
+            },
+            "end_coordinates": {
+                "latitude": "10.327842617712944",
+                "longitude": "123.94298103106043"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327608038284247",
+                "longitude": "123.9435076472718"
+            },
+            "end_coordinates": {
+                "latitude": "10.327617498790715",
+                "longitude": "123.94347949585345"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32854158997069",
+                "longitude": "123.94129684833308"
+            },
+            "end_coordinates": {
+                "latitude": "10.32860508088321",
+                "longitude": "123.94131998897053"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32839949387375",
+                "longitude": "123.94148658226071"
+            },
+            "end_coordinates": {
+                "latitude": "10.328423195523163",
+                "longitude": "123.94142239471094"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327564432061997",
+                "longitude": "123.94363740522029"
+            },
+            "end_coordinates": {
+                "latitude": "10.3275862351796",
+                "longitude": "123.94357252625056"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327621250329969",
+                "longitude": "123.94402751977412"
+            },
+            "end_coordinates": {
+                "latitude": "10.327596503654119",
+                "longitude": "123.9440164326086"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328257283710922",
+                "longitude": "123.94187170735607"
+            },
+            "end_coordinates": {
+                "latitude": "10.328280985436434",
+                "longitude": "123.94180751986437"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327806409193538",
+                "longitude": "123.94411047590482"
+            },
+            "end_coordinates": {
+                "latitude": "10.327744689574699",
+                "longitude": "123.94408282385038"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328115007252407",
+                "longitude": "123.9442487363397"
+            },
+            "end_coordinates": {
+                "latitude": "10.328053287645343",
+                "longitude": "123.944221084231"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327972862015471",
+                "longitude": "123.94264195650162"
+            },
+            "end_coordinates": {
+                "latitude": "10.327996563893182",
+                "longitude": "123.94257776912605"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328606974778008",
+                "longitude": "123.94398999598722"
+            },
+            "end_coordinates": {
+                "latitude": "10.328578309898239",
+                "longitude": "123.94405205649527"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.329008281849752",
+                "longitude": "123.9431211476859"
+            },
+            "end_coordinates": {
+                "latitude": "10.328979617135989",
+                "longitude": "123.94318320835241"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326894776710773",
+                "longitude": "123.94568783860467"
+            },
+            "end_coordinates": {
+                "latitude": "10.326949974225382",
+                "longitude": "123.9457272403345"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327104379991864",
+                "longitude": "123.94149068582715"
+            },
+            "end_coordinates": {
+                "latitude": "10.327079254086405",
+                "longitude": "123.94155431093955"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326604358313007",
+                "longitude": "123.94272748830679"
+            },
+            "end_coordinates": {
+                "latitude": "10.326631406163209",
+                "longitude": "123.94266468274618"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326364205972924",
+                "longitude": "123.9433201290426"
+            },
+            "end_coordinates": {
+                "latitude": "10.326387430158377",
+                "longitude": "123.94325576183482"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327828947828811",
+                "longitude": "123.94276291661315"
+            },
+            "end_coordinates": {
+                "latitude": "10.327838106500119",
+                "longitude": "123.94276552775179"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327470433261315",
+                "longitude": "123.94371207136352"
+            },
+            "end_coordinates": {
+                "latitude": "10.327448514809822",
+                "longitude": "123.94377691014503"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328434985321545",
+                "longitude": "123.94436235886587"
+            },
+            "end_coordinates": {
+                "latitude": "10.328423605252436",
+                "longitude": "123.94438699704605"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32880762860439",
+                "longitude": "123.94355557211381"
+            },
+            "end_coordinates": {
+                "latitude": "10.32877896380762",
+                "longitude": "123.94361763270109"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327255135162943",
+                "longitude": "123.94110893493918"
+            },
+            "end_coordinates": {
+                "latitude": "10.327230009332249",
+                "longitude": "123.94117256011259"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32886495816235",
+                "longitude": "123.9434314509053"
+            },
+            "end_coordinates": {
+                "latitude": "10.328836293389298",
+                "longitude": "123.94349351151521"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328955187637323",
+                "longitude": "123.94310701896768"
+            },
+            "end_coordinates": {
+                "latitude": "10.329008281849752",
+                "longitude": "123.9431211476859"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328578309898239",
+                "longitude": "123.94405205649527"
+            },
+            "end_coordinates": {
+                "latitude": "10.328549645006616",
+                "longitude": "123.94411411699204"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328328085892052",
+                "longitude": "123.94147617904791"
+            },
+            "end_coordinates": {
+                "latitude": "10.328352123578878",
+                "longitude": "123.94141212075664"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328578309898239",
+                "longitude": "123.94405205649527"
+            },
+            "end_coordinates": {
+                "latitude": "10.328549645006616",
+                "longitude": "123.94411411699204"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328328085892052",
+                "longitude": "123.94147617904791"
+            },
+            "end_coordinates": {
+                "latitude": "10.328352123578878",
+                "longitude": "123.94141212075664"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327838106500119",
+                "longitude": "123.94276552775179"
+            },
+            "end_coordinates": {
+                "latitude": "10.327812141965252",
+                "longitude": "123.94282880416924"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328824687466932",
+                "longitude": "123.9430722920373"
+            },
+            "end_coordinates": {
+                "latitude": "10.328889937552594",
+                "longitude": "123.94308965549888"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327501949108639",
+                "longitude": "123.94612125839406"
+            },
+            "end_coordinates": {
+                "latitude": "10.327557146570681",
+                "longitude": "123.94616066027608"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327520825787918",
+                "longitude": "123.94376716313276"
+            },
+            "end_coordinates": {
+                "latitude": "10.327542628931434",
+                "longitude": "123.94370228418101"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32733635669384",
+                "longitude": "123.94600305283092"
+            },
+            "end_coordinates": {
+                "latitude": "10.327391554170218",
+                "longitude": "123.94604245467147"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327170764236032",
+                "longitude": "123.94588484739232"
+            },
+            "end_coordinates": {
+                "latitude": "10.327225961726745",
+                "longitude": "123.94592424919136"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327470443077326",
+                "longitude": "123.94396761869557"
+            },
+            "end_coordinates": {
+                "latitude": "10.327455416279617",
+                "longitude": "123.943961799934"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328183859505815",
+                "longitude": "123.94186052858983"
+            },
+            "end_coordinates": {
+                "latitude": "10.328207897268436",
+                "longitude": "123.9417964703573"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327271197888132",
+                "longitude": "123.9438796052964"
+            },
+            "end_coordinates": {
+                "latitude": "10.327253356045842",
+                "longitude": "123.94387289968243"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326496166790786",
+                "longitude": "123.94297871044111"
+            },
+            "end_coordinates": {
+                "latitude": "10.326523214689553",
+                "longitude": "123.94291590492372"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326708608818501",
+                "longitude": "123.94376762576542"
+            },
+            "end_coordinates": {
+                "latitude": "10.326770994161027",
+                "longitude": "123.94379368854278"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327786177418053",
+                "longitude": "123.94289208057626"
+            },
+            "end_coordinates": {
+                "latitude": "10.327760212858532",
+                "longitude": "123.94295535697282"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328692969346173",
+                "longitude": "123.9438038143951"
+            },
+            "end_coordinates": {
+                "latitude": "10.328664304501974",
+                "longitude": "123.94386587493709"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32749235169986",
+                "longitude": "123.94364723257297"
+            },
+            "end_coordinates": {
+                "latitude": "10.327470433261315",
+                "longitude": "123.94371207136352"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327448514809822",
+                "longitude": "123.94377691014503"
+            },
+            "end_coordinates": {
+                "latitude": "10.327426596345392",
+                "longitude": "123.9438417489175"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327426596345392",
+                "longitude": "123.9438417489175"
+            },
+            "end_coordinates": {
+                "latitude": "10.327404677868023",
+                "longitude": "123.94390658768093"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327060369240264",
+                "longitude": "123.94580604383576"
+            },
+            "end_coordinates": {
+                "latitude": "10.327115566740536",
+                "longitude": "123.94584544560712"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326769243448338",
+                "longitude": "123.94501191462012"
+            },
+            "end_coordinates": {
+                "latitude": "10.326740273619492",
+                "longitude": "123.9450738282894"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328692969346173",
+                "longitude": "123.9438038143951"
+            },
+            "end_coordinates": {
+                "latitude": "10.328664304501974",
+                "longitude": "123.94386587493709"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327060369240264",
+                "longitude": "123.94580604383576"
+            },
+            "end_coordinates": {
+                "latitude": "10.327115566740536",
+                "longitude": "123.94584544560712"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326769243448338",
+                "longitude": "123.94501191462012"
+            },
+            "end_coordinates": {
+                "latitude": "10.326740273619492",
+                "longitude": "123.9450738282894"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328053287645343",
+                "longitude": "123.944221084231"
+            },
+            "end_coordinates": {
+                "latitude": "10.327991568035921",
+                "longitude": "123.94419343213318"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32838785819748",
+                "longitude": "123.94445066460055"
+            },
+            "end_coordinates": {
+                "latitude": "10.328326242379282",
+                "longitude": "123.94442277434366"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327404677868023",
+                "longitude": "123.94390658768093"
+            },
+            "end_coordinates": {
+                "latitude": "10.327397724003827",
+                "longitude": "123.943927158441"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326673986604547",
+                "longitude": "123.94553023182353"
+            },
+            "end_coordinates": {
+                "latitude": "10.326729184138273",
+                "longitude": "123.94556963349805"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327100252570562",
+                "longitude": "123.94310021292536"
+            },
+            "end_coordinates": {
+                "latitude": "10.327124249091183",
+                "longitude": "123.94303613893942"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327148245599163",
+                "longitude": "123.94297206494373"
+            },
+            "end_coordinates": {
+                "latitude": "10.327172242094509",
+                "longitude": "123.94290799093822"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327172242094509",
+                "longitude": "123.94290799093822"
+            },
+            "end_coordinates": {
+                "latitude": "10.32719623857722",
+                "longitude": "123.94284391692294"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326827183070632",
+                "longitude": "123.94488808724734"
+            },
+            "end_coordinates": {
+                "latitude": "10.326798213265382",
+                "longitude": "123.94495000093944"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328159821730564",
+                "longitude": "123.94192458681252"
+            },
+            "end_coordinates": {
+                "latitude": "10.328183859505815",
+                "longitude": "123.94186052858983"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326618789066046",
+                "longitude": "123.94549083016283"
+            },
+            "end_coordinates": {
+                "latitude": "10.326673986604547",
+                "longitude": "123.94553023182353"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326682333926401",
+                "longitude": "123.94519765559373"
+            },
+            "end_coordinates": {
+                "latitude": "10.326653364062159",
+                "longitude": "123.9452595692288"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326972031919881",
+                "longitude": "123.94457851861576"
+            },
+            "end_coordinates": {
+                "latitude": "10.326943062173632",
+                "longitude": "123.94464043236489"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32744675164182",
+                "longitude": "123.94608185652585"
+            },
+            "end_coordinates": {
+                "latitude": "10.327501949108639",
+                "longitude": "123.94612125839406"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326711303778847",
+                "longitude": "123.94513574194728"
+            },
+            "end_coordinates": {
+                "latitude": "10.326682333926401",
+                "longitude": "123.94519765559373"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327303689288046",
+                "longitude": "123.94283438140673"
+            },
+            "end_coordinates": {
+                "latitude": "10.327370605565559",
+                "longitude": "123.94282578140462"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327261728733438",
+                "longitude": "123.94395938049695"
+            },
+            "end_coordinates": {
+                "latitude": "10.327232759105177",
+                "longitude": "123.94402129436018"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326914092415578",
+                "longitude": "123.94470234610263"
+            },
+            "end_coordinates": {
+                "latitude": "10.326885122645729",
+                "longitude": "123.94476425982893"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326618789066046",
+                "longitude": "123.94549083016283"
+            },
+            "end_coordinates": {
+                "latitude": "10.326673986604547",
+                "longitude": "123.94553023182353"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327152753568546",
+                "longitude": "123.94286644035061"
+            },
+            "end_coordinates": {
+                "latitude": "10.327128699844117",
+                "longitude": "123.94293049217721"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326682333926401",
+                "longitude": "123.94519765559373"
+            },
+            "end_coordinates": {
+                "latitude": "10.326653364062159",
+                "longitude": "123.9452595692288"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326972031919881",
+                "longitude": "123.94457851861576"
+            },
+            "end_coordinates": {
+                "latitude": "10.326943062173632",
+                "longitude": "123.94464043236489"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32744675164182",
+                "longitude": "123.94608185652585"
+            },
+            "end_coordinates": {
+                "latitude": "10.327501949108639",
+                "longitude": "123.94612125839406"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327032484820107",
+                "longitude": "123.94318669938568"
+            },
+            "end_coordinates": {
+                "latitude": "10.327008431032533",
+                "longitude": "123.9432507511633"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326711303778847",
+                "longitude": "123.94513574194728"
+            },
+            "end_coordinates": {
+                "latitude": "10.326682333926401",
+                "longitude": "123.94519765559373"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326912215755957",
+                "longitude": "123.94350695817579"
+            },
+            "end_coordinates": {
+                "latitude": "10.326888161905242",
+                "longitude": "123.94357100990439"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326840054165931",
+                "longitude": "123.94369911333224"
+            },
+            "end_coordinates": {
+                "latitude": "10.326827635615906",
+                "longitude": "123.94373218197137"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326765098687392",
+                "longitude": "123.94370649727917"
+            },
+            "end_coordinates": {
+                "latitude": "10.326702561756843",
+                "longitude": "123.94368081259717"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327261728733438",
+                "longitude": "123.94395938049695"
+            },
+            "end_coordinates": {
+                "latitude": "10.327232759105177",
+                "longitude": "123.94402129436018"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326914092415578",
+                "longitude": "123.94470234610263"
+            },
+            "end_coordinates": {
+                "latitude": "10.326885122645729",
+                "longitude": "123.94476425982893"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326577487889656",
+                "longitude": "123.94362944326386"
+            },
+            "end_coordinates": {
+                "latitude": "10.326514950953015",
+                "longitude": "123.94360375861251"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326514950953015",
+                "longitude": "123.94360375861251"
+            },
+            "end_coordinates": {
+                "latitude": "10.326452414014344",
+                "longitude": "123.94357807397138"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326294533340048",
+                "longitude": "123.94351323060886"
+            },
+            "end_coordinates": {
+                "latitude": "10.32631775756376",
+                "longitude": "123.94344886342961"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326340981774718",
+                "longitude": "123.94338449624085"
+            },
+            "end_coordinates": {
+                "latitude": "10.326364205972924",
+                "longitude": "123.9433201290426"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326387430158377",
+                "longitude": "123.94325576183482"
+            },
+            "end_coordinates": {
+                "latitude": "10.32641065433108",
+                "longitude": "123.94319139461754"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32641065433108",
+                "longitude": "123.94319139461754"
+            },
+            "end_coordinates": {
+                "latitude": "10.326433878491029",
+                "longitude": "123.94312702739076"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326433878491029",
+                "longitude": "123.94312702739076"
+            },
+            "end_coordinates": {
+                "latitude": "10.326442070956833",
+                "longitude": "123.94310432144343"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32711688047415",
+                "longitude": "123.94426894969895"
+            },
+            "end_coordinates": {
+                "latitude": "10.327087910786895",
+                "longitude": "123.94433086350514"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326523214689553",
+                "longitude": "123.94291590492372"
+            },
+            "end_coordinates": {
+                "latitude": "10.326550262576179",
+                "longitude": "123.94285309939556"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326550262576179",
+                "longitude": "123.94285309939556"
+            },
+            "end_coordinates": {
+                "latitude": "10.32657731045066",
+                "longitude": "123.94279029385658"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32657731045066",
+                "longitude": "123.94279029385658"
+            },
+            "end_coordinates": {
+                "latitude": "10.326604358313007",
+                "longitude": "123.94272748830679"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326631406163209",
+                "longitude": "123.94266468274618"
+            },
+            "end_coordinates": {
+                "latitude": "10.326658454001267",
+                "longitude": "123.9426018771748"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326685501827189",
+                "longitude": "123.9425390715926"
+            },
+            "end_coordinates": {
+                "latitude": "10.326712549640966",
+                "longitude": "123.9424762659996"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326712549640966",
+                "longitude": "123.9424762659996"
+            },
+            "end_coordinates": {
+                "latitude": "10.326739597442606",
+                "longitude": "123.94241346039577"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326763702729874",
+                "longitude": "123.94235748734364"
+            },
+            "end_coordinates": {
+                "latitude": "10.326820814048748",
+                "longitude": "123.94239396228826"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32632734013091",
+                "longitude": "123.94352670471977"
+            },
+            "end_coordinates": {
+                "latitude": "10.326294533340048",
+                "longitude": "123.94351323060886"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326958672520444",
+                "longitude": "123.94253590419714"
+            },
+            "end_coordinates": {
+                "latitude": "10.326965337164486",
+                "longitude": "123.94254444581443"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32813578394268",
+                "longitude": "123.94198864502542"
+            },
+            "end_coordinates": {
+                "latitude": "10.328159821730564",
+                "longitude": "123.94192458681252"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326997055335683",
+                "longitude": "123.94260495183532"
+            },
+            "end_coordinates": {
+                "latitude": "10.327028773495613",
+                "longitude": "123.94266545786843"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327028773495613",
+                "longitude": "123.94266545786843"
+            },
+            "end_coordinates": {
+                "latitude": "10.327037138661494",
+                "longitude": "123.94268141538875"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326914092415578",
+                "longitude": "123.94470234610263"
+            },
+            "end_coordinates": {
+                "latitude": "10.326885122645729",
+                "longitude": "123.94476425982893"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32707451477672",
+                "longitude": "123.94272840495076"
+            },
+            "end_coordinates": {
+                "latitude": "10.327129471628608",
+                "longitude": "123.94276815276048"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32711688047415",
+                "longitude": "123.94426894969895"
+            },
+            "end_coordinates": {
+                "latitude": "10.327087910786895",
+                "longitude": "123.94433086350514"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327554652969955",
+                "longitude": "123.94407351720812"
+            },
+            "end_coordinates": {
+                "latitude": "10.327491672706223",
+                "longitude": "123.9440489771909"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328280985436434",
+                "longitude": "123.94180751986437"
+            },
+            "end_coordinates": {
+                "latitude": "10.328304687149265",
+                "longitude": "123.941743332363"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32665105109677",
+                "longitude": "123.94411416379177"
+            },
+            "end_coordinates": {
+                "latitude": "10.326626308068553",
+                "longitude": "123.94417794365432"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327771699907691",
+                "longitude": "123.94417176252341"
+            },
+            "end_coordinates": {
+                "latitude": "10.327710084065542",
+                "longitude": "123.9441438723758"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328106936463413",
+                "longitude": "123.94288129443535"
+            },
+            "end_coordinates": {
+                "latitude": "10.328172186559284",
+                "longitude": "123.94289865781766"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328176726857121",
+                "longitude": "123.94427638845927"
+            },
+            "end_coordinates": {
+                "latitude": "10.328115007252407",
+                "longitude": "123.9442487363397"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327991568035921",
+                "longitude": "123.94419343213318"
+            },
+            "end_coordinates": {
+                "latitude": "10.327929848424146",
+                "longitude": "123.9441657800462"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327929848424146",
+                "longitude": "123.9441657800462"
+            },
+            "end_coordinates": {
+                "latitude": "10.327868128810021",
+                "longitude": "123.94413812797008"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327868128810021",
+                "longitude": "123.94413812797008"
+            },
+            "end_coordinates": {
+                "latitude": "10.327806409193538",
+                "longitude": "123.94411047590482"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327744689574699",
+                "longitude": "123.94408282385038"
+            },
+            "end_coordinates": {
+                "latitude": "10.327682969953512",
+                "longitude": "123.94405517180684"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327682969953512",
+                "longitude": "123.94405517180684"
+            },
+            "end_coordinates": {
+                "latitude": "10.327621250329969",
+                "longitude": "123.94402751977412"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327596503654119",
+                "longitude": "123.9440164326086"
+            },
+            "end_coordinates": {
+                "latitude": "10.32753347336664",
+                "longitude": "123.94399202564719"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32753347336664",
+                "longitude": "123.94399202564719"
+            },
+            "end_coordinates": {
+                "latitude": "10.327470443077326",
+                "longitude": "123.94396761869557"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327455416279617",
+                "longitude": "123.943961799934"
+            },
+            "end_coordinates": {
+                "latitude": "10.327477219462008",
+                "longitude": "123.94389692100926"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327477219462008",
+                "longitude": "123.94389692100926"
+            },
+            "end_coordinates": {
+                "latitude": "10.32749902263144",
+                "longitude": "123.94383204207551"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32749902263144",
+                "longitude": "123.94383204207551"
+            },
+            "end_coordinates": {
+                "latitude": "10.327520825787918",
+                "longitude": "123.94376716313276"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328423605252436",
+                "longitude": "123.94438699704605"
+            },
+            "end_coordinates": {
+                "latitude": "10.328361885657134",
+                "longitude": "123.94435934488307"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.3275862351796",
+                "longitude": "123.94357252625056"
+            },
+            "end_coordinates": {
+                "latitude": "10.327608038284247",
+                "longitude": "123.9435076472718"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327617498790715",
+                "longitude": "123.94347949585345"
+            },
+            "end_coordinates": {
+                "latitude": "10.327645638697822",
+                "longitude": "123.94341718779336"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327645638697822",
+                "longitude": "123.94341718779336"
+            },
+            "end_coordinates": {
+                "latitude": "10.327673778592976",
+                "longitude": "123.94335487972212"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327673778592976",
+                "longitude": "123.94335487972212"
+            },
+            "end_coordinates": {
+                "latitude": "10.327701918476183",
+                "longitude": "123.9432925716397"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327730058347436",
+                "longitude": "123.94323026354616"
+            },
+            "end_coordinates": {
+                "latitude": "10.327758198206741",
+                "longitude": "123.94316795544145"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327842617712944",
+                "longitude": "123.94298103106043"
+            },
+            "end_coordinates": {
+                "latitude": "10.327870757524444",
+                "longitude": "123.9429187229111"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327870757524444",
+                "longitude": "123.9429187229111"
+            },
+            "end_coordinates": {
+                "latitude": "10.327898897323992",
+                "longitude": "123.94285641475065"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327949160125076",
+                "longitude": "123.9427061438675"
+            },
+            "end_coordinates": {
+                "latitude": "10.327972862015471",
+                "longitude": "123.94264195650162"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327996563893182",
+                "longitude": "123.94257776912605"
+            },
+            "end_coordinates": {
+                "latitude": "10.32802026575821",
+                "longitude": "123.9425135817408"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32802026575821",
+                "longitude": "123.9425135817408"
+            },
+            "end_coordinates": {
+                "latitude": "10.328043967610554",
+                "longitude": "123.94244939434586"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328067669450219",
+                "longitude": "123.94238520694127"
+            },
+            "end_coordinates": {
+                "latitude": "10.328091371277196",
+                "longitude": "123.942321019527"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328091371277196",
+                "longitude": "123.942321019527"
+            },
+            "end_coordinates": {
+                "latitude": "10.32811507309149",
+                "longitude": "123.94225683210304"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328138774893105",
+                "longitude": "123.94219264466942"
+            },
+            "end_coordinates": {
+                "latitude": "10.328162476682035",
+                "longitude": "123.9421284572261"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327542628931434",
+                "longitude": "123.94370228418101"
+            },
+            "end_coordinates": {
+                "latitude": "10.327564432061997",
+                "longitude": "123.94363740522029"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328186178458282",
+                "longitude": "123.94206426977311"
+            },
+            "end_coordinates": {
+                "latitude": "10.328209880221843",
+                "longitude": "123.94200008231044"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328233581972723",
+                "longitude": "123.94193589483812"
+            },
+            "end_coordinates": {
+                "latitude": "10.328257283710922",
+                "longitude": "123.94187170735607"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328304687149265",
+                "longitude": "123.941743332363"
+            },
+            "end_coordinates": {
+                "latitude": "10.32832838884941",
+                "longitude": "123.94167914485195"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32832838884941",
+                "longitude": "123.94167914485195"
+            },
+            "end_coordinates": {
+                "latitude": "10.328352090536873",
+                "longitude": "123.94161495733121"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328352090536873",
+                "longitude": "123.94161495733121"
+            },
+            "end_coordinates": {
+                "latitude": "10.328375792211652",
+                "longitude": "123.94155076980078"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328423195523163",
+                "longitude": "123.94142239471094"
+            },
+            "end_coordinates": {
+                "latitude": "10.328446897159893",
+                "longitude": "123.9413582071515"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328446897159893",
+                "longitude": "123.9413582071515"
+            },
+            "end_coordinates": {
+                "latitude": "10.328470598783937",
+                "longitude": "123.94129401958237"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328470598783937",
+                "longitude": "123.94129401958237"
+            },
+            "end_coordinates": {
+                "latitude": "10.328478099056525",
+                "longitude": "123.94127370770494"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328478099056525",
+                "longitude": "123.94127370770494"
+            },
+            "end_coordinates": {
+                "latitude": "10.32854158997069",
+                "longitude": "123.94129684833308"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328162476682035",
+                "longitude": "123.9421284572261"
+            },
+            "end_coordinates": {
+                "latitude": "10.328186178458282",
+                "longitude": "123.94206426977311"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328795553610874",
+                "longitude": "123.94138941093904"
+            },
+            "end_coordinates": {
+                "latitude": "10.32879878382704",
+                "longitude": "123.94139058826303"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328767551153554",
+                "longitude": "123.94145135501509"
+            },
+            "end_coordinates": {
+                "latitude": "10.328736318468703",
+                "longitude": "123.94151212175504"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328732062703299",
+                "longitude": "123.94136627027352"
+            },
+            "end_coordinates": {
+                "latitude": "10.328795553610874",
+                "longitude": "123.94138941093904"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328642620345946",
+                "longitude": "123.94169442190247"
+            },
+            "end_coordinates": {
+                "latitude": "10.328611387615624",
+                "longitude": "123.94175518859413"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327093453361215",
+                "longitude": "123.94411427235602"
+            },
+            "end_coordinates": {
+                "latitude": "10.327064401169354",
+                "longitude": "123.9441761462019"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328455223793497",
+                "longitude": "123.94205902187136"
+            },
+            "end_coordinates": {
+                "latitude": "10.32842399099497",
+                "longitude": "123.94211978849059"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328705085772487",
+                "longitude": "123.94157288848292"
+            },
+            "end_coordinates": {
+                "latitude": "10.3286738530649",
+                "longitude": "123.94163365519873"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328361525363812",
+                "longitude": "123.9422413216928"
+            },
+            "end_coordinates": {
+                "latitude": "10.328330292531179",
+                "longitude": "123.94230208827581"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32829905968718",
+                "longitude": "123.94236285484673"
+            },
+            "end_coordinates": {
+                "latitude": "10.328267826831814",
+                "longitude": "123.9424236214056"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32820536108698",
+                "longitude": "123.94254515448708"
+            },
+            "end_coordinates": {
+                "latitude": "10.328174128197512",
+                "longitude": "123.9426059210097"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328111662384472",
+                "longitude": "123.94272745401875"
+            },
+            "end_coordinates": {
+                "latitude": "10.328099920591892",
+                "longitude": "123.94275029874551"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328099920591892",
+                "longitude": "123.94275029874551"
+            },
+            "end_coordinates": {
+                "latitude": "10.3280351083533",
+                "longitude": "123.94273131646612"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.3280351083533",
+                "longitude": "123.94273131646612"
+            },
+            "end_coordinates": {
+                "latitude": "10.327970296113602",
+                "longitude": "123.94271233419452"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327045818441961",
+                "longitude": "123.94388094651194"
+            },
+            "end_coordinates": {
+                "latitude": "10.327109516869156",
+                "longitude": "123.94390349011378"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327173215294787",
+                "longitude": "123.94392603372474"
+            },
+            "end_coordinates": {
+                "latitude": "10.327180609866094",
+                "longitude": "123.94392865074984"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327151557709588",
+                "longitude": "123.94399052463001"
+            },
+            "end_coordinates": {
+                "latitude": "10.327122505541295",
+                "longitude": "123.94405239849874"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327122505541295",
+                "longitude": "123.94405239849874"
+            },
+            "end_coordinates": {
+                "latitude": "10.327093453361215",
+                "longitude": "123.94411427235602"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327064401169354",
+                "longitude": "123.9441761462019"
+            },
+            "end_coordinates": {
+                "latitude": "10.327035348965707",
+                "longitude": "123.94423802003632"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326977244523059",
+                "longitude": "123.94436176767088"
+            },
+            "end_coordinates": {
+                "latitude": "10.32694819228406",
+                "longitude": "123.94442364147099"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32694819228406",
+                "longitude": "123.94442364147099"
+            },
+            "end_coordinates": {
+                "latitude": "10.32691914003328",
+                "longitude": "123.94448551525971"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32691914003328",
+                "longitude": "123.94448551525971"
+            },
+            "end_coordinates": {
+                "latitude": "10.326890087770712",
+                "longitude": "123.94454738903697"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326861035496362",
+                "longitude": "123.94460926280277"
+            },
+            "end_coordinates": {
+                "latitude": "10.326831983210226",
+                "longitude": "123.94467113655719"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326802930912308",
+                "longitude": "123.94473301030015"
+            },
+            "end_coordinates": {
+                "latitude": "10.326773878602605",
+                "longitude": "123.94479488403167"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326773878602605",
+                "longitude": "123.94479488403167"
+            },
+            "end_coordinates": {
+                "latitude": "10.32674482628112",
+                "longitude": "123.94485675775175"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32671577394785",
+                "longitude": "123.94491863146041"
+            },
+            "end_coordinates": {
+                "latitude": "10.326686721602794",
+                "longitude": "123.94498050515764"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326982120013204",
+                "longitude": "123.94385840291919"
+            },
+            "end_coordinates": {
+                "latitude": "10.327045818441961",
+                "longitude": "123.94388094651194"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326628616877336",
+                "longitude": "123.9451042525178"
+            },
+            "end_coordinates": {
+                "latitude": "10.32659956449693",
+                "longitude": "123.94516612618072"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32654145970077",
+                "longitude": "123.94528987347226"
+            },
+            "end_coordinates": {
+                "latitude": "10.326512407285016",
+                "longitude": "123.94535174710091"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326512407285016",
+                "longitude": "123.94535174710091"
+            },
+            "end_coordinates": {
+                "latitude": "10.326487935267721",
+                "longitude": "123.94540386571641"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326487935267721",
+                "longitude": "123.94540386571641"
+            },
+            "end_coordinates": {
+                "latitude": "10.326434292791507",
+                "longitude": "123.94536230418142"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326434292791507",
+                "longitude": "123.94536230418142"
+            },
+            "end_coordinates": {
+                "latitude": "10.326380650309975",
+                "longitude": "123.94532074266057"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326299263637173",
+                "longitude": "123.94525768532381"
+            },
+            "end_coordinates": {
+                "latitude": "10.3263238201597",
+                "longitude": "123.94519383109682"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.3263238201597",
+                "longitude": "123.94519383109682"
+            },
+            "end_coordinates": {
+                "latitude": "10.326348376669673",
+                "longitude": "123.94512997685989"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326348376669673",
+                "longitude": "123.94512997685989"
+            },
+            "end_coordinates": {
+                "latitude": "10.326372933167095",
+                "longitude": "123.94506612261297"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326372933167095",
+                "longitude": "123.94506612261297"
+            },
+            "end_coordinates": {
+                "latitude": "10.326397489651969",
+                "longitude": "123.9450022683561"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326422046124295",
+                "longitude": "123.94493841408925"
+            },
+            "end_coordinates": {
+                "latitude": "10.326446602584067",
+                "longitude": "123.9448745598124"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326471159031295",
+                "longitude": "123.94481070552561"
+            },
+            "end_coordinates": {
+                "latitude": "10.326495715465967",
+                "longitude": "123.94474685122883"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326495715465967",
+                "longitude": "123.94474685122883"
+            },
+            "end_coordinates": {
+                "latitude": "10.326520271888091",
+                "longitude": "123.94468299692208"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326544828297665",
+                "longitude": "123.94461914260536"
+            },
+            "end_coordinates": {
+                "latitude": "10.32656938469469",
+                "longitude": "123.94455528827865"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326657669245957",
+                "longitude": "123.94504237884344"
+            },
+            "end_coordinates": {
+                "latitude": "10.326628616877336",
+                "longitude": "123.9451042525178"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326643053810464",
+                "longitude": "123.94436372523872"
+            },
+            "end_coordinates": {
+                "latitude": "10.326667610157289",
+                "longitude": "123.94429987087213"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326692166491561",
+                "longitude": "123.9442360164956"
+            },
+            "end_coordinates": {
+                "latitude": "10.326716722813284",
+                "longitude": "123.94417216210904"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326716722813284",
+                "longitude": "123.94417216210904"
+            },
+            "end_coordinates": {
+                "latitude": "10.326741279122459",
+                "longitude": "123.94410830771255"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326741279122459",
+                "longitude": "123.94410830771255"
+            },
+            "end_coordinates": {
+                "latitude": "10.326765835419081",
+                "longitude": "123.94404445330605"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326814947974679",
+                "longitude": "123.94391674446317"
+            },
+            "end_coordinates": {
+                "latitude": "10.326839504233648",
+                "longitude": "123.94385289002678"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326839504233648",
+                "longitude": "123.94385289002678"
+            },
+            "end_coordinates": {
+                "latitude": "10.326854723150985",
+                "longitude": "123.94381331576119"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326271911362278",
+                "longitude": "123.94358518661357"
+            },
+            "end_coordinates": {
+                "latitude": "10.326334296719436",
+                "longitude": "123.94361124931854"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326334296719436",
+                "longitude": "123.94361124931854"
+            },
+            "end_coordinates": {
+                "latitude": "10.326396682074508",
+                "longitude": "123.94363731203383"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326459067427486",
+                "longitude": "123.94366337475948"
+            },
+            "end_coordinates": {
+                "latitude": "10.326521452778378",
+                "longitude": "123.94368943749544"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326583838127174",
+                "longitude": "123.94371550024175"
+            },
+            "end_coordinates": {
+                "latitude": "10.326646223473881",
+                "longitude": "123.94374156299841"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326646223473881",
+                "longitude": "123.94374156299841"
+            },
+            "end_coordinates": {
+                "latitude": "10.326708608818501",
+                "longitude": "123.94376762576542"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326770994161027",
+                "longitude": "123.94379368854278"
+            },
+            "end_coordinates": {
+                "latitude": "10.32677476605004",
+                "longitude": "123.9437952643284"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32677476605004",
+                "longitude": "123.9437952643284"
+            },
+            "end_coordinates": {
+                "latitude": "10.326750023084424",
+                "longitude": "123.94385904424115"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326593941079166",
+                "longitude": "123.944491433942"
+            },
+            "end_coordinates": {
+                "latitude": "10.326618497451092",
+                "longitude": "123.94442757959536"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326700537115636",
+                "longitude": "123.94398660403652"
+            },
+            "end_coordinates": {
+                "latitude": "10.326675794112463",
+                "longitude": "123.94405038391918"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326626308068553",
+                "longitude": "123.94417794365432"
+            },
+            "end_coordinates": {
+                "latitude": "10.326601565027815",
+                "longitude": "123.94424172350682"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326601565027815",
+                "longitude": "123.94424172350682"
+            },
+            "end_coordinates": {
+                "latitude": "10.32657682197456",
+                "longitude": "123.94430550334933"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32657682197456",
+                "longitude": "123.94430550334933"
+            },
+            "end_coordinates": {
+                "latitude": "10.326552078908781",
+                "longitude": "123.94436928318176"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326552078908781",
+                "longitude": "123.94436928318176"
+            },
+            "end_coordinates": {
+                "latitude": "10.326527335830482",
+                "longitude": "123.94443306300417"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326477849636323",
+                "longitude": "123.94456062261887"
+            },
+            "end_coordinates": {
+                "latitude": "10.326453106520463",
+                "longitude": "123.94462440241116"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326453106520463",
+                "longitude": "123.94462440241116"
+            },
+            "end_coordinates": {
+                "latitude": "10.326428363392079",
+                "longitude": "123.9446881821934"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326428363392079",
+                "longitude": "123.9446881821934"
+            },
+            "end_coordinates": {
+                "latitude": "10.326403620251178",
+                "longitude": "123.94475196196565"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326403620251178",
+                "longitude": "123.94475196196565"
+            },
+            "end_coordinates": {
+                "latitude": "10.326378877097754",
+                "longitude": "123.94481574172782"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326354133931813",
+                "longitude": "123.94487952147999"
+            },
+            "end_coordinates": {
+                "latitude": "10.32632939075335",
+                "longitude": "123.94494330122208"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326304647562365",
+                "longitude": "123.94500708095416"
+            },
+            "end_coordinates": {
+                "latitude": "10.326279904358861",
+                "longitude": "123.94507086067618"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326279904358861",
+                "longitude": "123.94507086067618"
+            },
+            "end_coordinates": {
+                "latitude": "10.326255161142834",
+                "longitude": "123.94513464038819"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326231227285161",
+                "longitude": "123.94519633380555"
+            },
+            "end_coordinates": {
+                "latitude": "10.32617594299332",
+                "longitude": "123.94515705806707"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32672528010629",
+                "longitude": "123.94392282414385"
+            },
+            "end_coordinates": {
+                "latitude": "10.326700537115636",
+                "longitude": "123.94398660403652"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.325954805778464",
+                "longitude": "123.94499995525125"
+            },
+            "end_coordinates": {
+                "latitude": "10.32589952146288",
+                "longitude": "123.94496067958181"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32589952146288",
+                "longitude": "123.94496067958181"
+            },
+            "end_coordinates": {
+                "latitude": "10.325844237142547",
+                "longitude": "123.94492140392616"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.325844237142547",
+                "longitude": "123.94492140392616"
+            },
+            "end_coordinates": {
+                "latitude": "10.325788952817469",
+                "longitude": "123.94488212828435"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.325788952817469",
+                "longitude": "123.94488212828435"
+            },
+            "end_coordinates": {
+                "latitude": "10.325777192686093",
+                "longitude": "123.9448737735367"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328264626558681",
+                "longitude": "123.94439488409766"
+            },
+            "end_coordinates": {
+                "latitude": "10.328203010735692",
+                "longitude": "123.94436699386264"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328203010735692",
+                "longitude": "123.94436699386264"
+            },
+            "end_coordinates": {
+                "latitude": "10.328141394910302",
+                "longitude": "123.94433910363851"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328141394910302",
+                "longitude": "123.94433910363851"
+            },
+            "end_coordinates": {
+                "latitude": "10.328079779082518",
+                "longitude": "123.94431121342534"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328018163252343",
+                "longitude": "123.94428332322309"
+            },
+            "end_coordinates": {
+                "latitude": "10.327956547419772",
+                "longitude": "123.94425543303178"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327956547419772",
+                "longitude": "123.94425543303178"
+            },
+            "end_coordinates": {
+                "latitude": "10.327894931584803",
+                "longitude": "123.9442275428514"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327833315747444",
+                "longitude": "123.94419965268195"
+            },
+            "end_coordinates": {
+                "latitude": "10.327771699907691",
+                "longitude": "123.94417176252341"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327710084065542",
+                "longitude": "123.9441438723758"
+            },
+            "end_coordinates": {
+                "latitude": "10.327648468220996",
+                "longitude": "123.94411598223917"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327648468220996",
+                "longitude": "123.94411598223917"
+            },
+            "end_coordinates": {
+                "latitude": "10.32758685237406",
+                "longitude": "123.94408809211345"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32758685237406",
+                "longitude": "123.94408809211345"
+            },
+            "end_coordinates": {
+                "latitude": "10.327554652969955",
+                "longitude": "123.94407351720812"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326065374395387",
+                "longitude": "123.94507850663155"
+            },
+            "end_coordinates": {
+                "latitude": "10.326010090089298",
+                "longitude": "123.94503923093448"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327428692440645",
+                "longitude": "123.94402443718349"
+            },
+            "end_coordinates": {
+                "latitude": "10.327365712173213",
+                "longitude": "123.94399989718589"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327302731903929",
+                "longitude": "123.94397535719814"
+            },
+            "end_coordinates": {
+                "latitude": "10.327261728733438",
+                "longitude": "123.94395938049695"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327232759105177",
+                "longitude": "123.94402129436018"
+            },
+            "end_coordinates": {
+                "latitude": "10.32720378946512",
+                "longitude": "123.94408320821198"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32720378946512",
+                "longitude": "123.94408320821198"
+            },
+            "end_coordinates": {
+                "latitude": "10.327174819813264",
+                "longitude": "123.94414512205239"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327174819813264",
+                "longitude": "123.94414512205239"
+            },
+            "end_coordinates": {
+                "latitude": "10.327145850149607",
+                "longitude": "123.94420703588138"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327087910786895",
+                "longitude": "123.94433086350514"
+            },
+            "end_coordinates": {
+                "latitude": "10.327058941087842",
+                "longitude": "123.94439277729992"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327058941087842",
+                "longitude": "123.94439277729992"
+            },
+            "end_coordinates": {
+                "latitude": "10.327029971376986",
+                "longitude": "123.94445469108327"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327029971376986",
+                "longitude": "123.94445469108327"
+            },
+            "end_coordinates": {
+                "latitude": "10.327001001654335",
+                "longitude": "123.94451660485522"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327001001654335",
+                "longitude": "123.94451660485522"
+            },
+            "end_coordinates": {
+                "latitude": "10.326972031919881",
+                "longitude": "123.94457851861576"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326943062173632",
+                "longitude": "123.94464043236489"
+            },
+            "end_coordinates": {
+                "latitude": "10.326914092415578",
+                "longitude": "123.94470234610263"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326885122645729",
+                "longitude": "123.94476425982893"
+            },
+            "end_coordinates": {
+                "latitude": "10.32685615286408",
+                "longitude": "123.94482617354387"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32685615286408",
+                "longitude": "123.94482617354387"
+            },
+            "end_coordinates": {
+                "latitude": "10.326827183070632",
+                "longitude": "123.94488808724734"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326798213265382",
+                "longitude": "123.94495000093944"
+            },
+            "end_coordinates": {
+                "latitude": "10.326769243448338",
+                "longitude": "123.94501191462012"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327491672706223",
+                "longitude": "123.9440489771909"
+            },
+            "end_coordinates": {
+                "latitude": "10.327428692440645",
+                "longitude": "123.94402443718349"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326653364062159",
+                "longitude": "123.9452595692288"
+            },
+            "end_coordinates": {
+                "latitude": "10.326624394186119",
+                "longitude": "123.94532148285242"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326624394186119",
+                "longitude": "123.94532148285242"
+            },
+            "end_coordinates": {
+                "latitude": "10.326595424298276",
+                "longitude": "123.94538339646465"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326595424298276",
+                "longitude": "123.94538339646465"
+            },
+            "end_coordinates": {
+                "latitude": "10.32656645439864",
+                "longitude": "123.94544531006548"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32656645439864",
+                "longitude": "123.94544531006548"
+            },
+            "end_coordinates": {
+                "latitude": "10.326563591522769",
+                "longitude": "123.94545142851595"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326563591522769",
+                "longitude": "123.94545142851595"
+            },
+            "end_coordinates": {
+                "latitude": "10.326618789066046",
+                "longitude": "123.94549083016283"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326729184138273",
+                "longitude": "123.94556963349805"
+            },
+            "end_coordinates": {
+                "latitude": "10.326784381667215",
+                "longitude": "123.94560903518642"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326784381667215",
+                "longitude": "123.94560903518642"
+            },
+            "end_coordinates": {
+                "latitude": "10.326839579191384",
+                "longitude": "123.94564843688862"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32840019891463",
+                "longitude": "123.94128400414472"
+            },
+            "end_coordinates": {
+                "latitude": "10.328415169933498",
+                "longitude": "123.94124410763872"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326949974225382",
+                "longitude": "123.9457272403345"
+            },
+            "end_coordinates": {
+                "latitude": "10.327005171735214",
+                "longitude": "123.94576664207821"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327005171735214",
+                "longitude": "123.94576664207821"
+            },
+            "end_coordinates": {
+                "latitude": "10.327060369240264",
+                "longitude": "123.94580604383576"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327115566740536",
+                "longitude": "123.94584544560712"
+            },
+            "end_coordinates": {
+                "latitude": "10.327170764236032",
+                "longitude": "123.94588484739232"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327225961726745",
+                "longitude": "123.94592424919136"
+            },
+            "end_coordinates": {
+                "latitude": "10.327281159212681",
+                "longitude": "123.94596365100422"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327281159212681",
+                "longitude": "123.94596365100422"
+            },
+            "end_coordinates": {
+                "latitude": "10.32733635669384",
+                "longitude": "123.94600305283092"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326740273619492",
+                "longitude": "123.9450738282894"
+            },
+            "end_coordinates": {
+                "latitude": "10.326711303778847",
+                "longitude": "123.94513574194728"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327391554170218",
+                "longitude": "123.94604245467147"
+            },
+            "end_coordinates": {
+                "latitude": "10.32744675164182",
+                "longitude": "123.94608185652585"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327557146570681",
+                "longitude": "123.94616066027608"
+            },
+            "end_coordinates": {
+                "latitude": "10.327605360411324",
+                "longitude": "123.94619507701863"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328611387615624",
+                "longitude": "123.94175518859413"
+            },
+            "end_coordinates": {
+                "latitude": "10.328580154873933",
+                "longitude": "123.94181595527373"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326869075121868",
+                "longitude": "123.94374390239342"
+            },
+            "end_coordinates": {
+                "latitude": "10.326860286669318",
+                "longitude": "123.94374095224683"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328330292531179",
+                "longitude": "123.94230208827581"
+            },
+            "end_coordinates": {
+                "latitude": "10.32829905968718",
+                "longitude": "123.94236285484673"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327758198206741",
+                "longitude": "123.94316795544145"
+            },
+            "end_coordinates": {
+                "latitude": "10.327786338054091",
+                "longitude": "123.94310564732558"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326839579191384",
+                "longitude": "123.94564843688862"
+            },
+            "end_coordinates": {
+                "latitude": "10.326894776710773",
+                "longitude": "123.94568783860467"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327542091888013",
+                "longitude": "123.94348692260589"
+            },
+            "end_coordinates": {
+                "latitude": "10.327521804562542",
+                "longitude": "123.94355230760814"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327470433261315",
+                "longitude": "123.94371207136352"
+            },
+            "end_coordinates": {
+                "latitude": "10.327448514809822",
+                "longitude": "123.94377691014503"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327124249091183",
+                "longitude": "123.94303613893942"
+            },
+            "end_coordinates": {
+                "latitude": "10.327148245599163",
+                "longitude": "123.94297206494373"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327720243517764",
+                "longitude": "123.94274243315894"
+            },
+            "end_coordinates": {
+                "latitude": "10.32776400495862",
+                "longitude": "123.94274440139495"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327828947828811",
+                "longitude": "123.94276291661315"
+            },
+            "end_coordinates": {
+                "latitude": "10.327838106500119",
+                "longitude": "123.94276552775179"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327128699844117",
+                "longitude": "123.94293049217721"
+            },
+            "end_coordinates": {
+                "latitude": "10.327104646107058",
+                "longitude": "123.94299454399405"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326702561756843",
+                "longitude": "123.94368081259717"
+            },
+            "end_coordinates": {
+                "latitude": "10.326640024824261",
+                "longitude": "123.9436551279254"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326452414014344",
+                "longitude": "123.94357807397138"
+            },
+            "end_coordinates": {
+                "latitude": "10.326389877073641",
+                "longitude": "123.94355238934048"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326389877073641",
+                "longitude": "123.94355238934048"
+            },
+            "end_coordinates": {
+                "latitude": "10.32632734013091",
+                "longitude": "123.94352670471977"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327271197888132",
+                "longitude": "123.9438796052964"
+            },
+            "end_coordinates": {
+                "latitude": "10.327253356045842",
+                "longitude": "123.94387289968243"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326364205972924",
+                "longitude": "123.9433201290426"
+            },
+            "end_coordinates": {
+                "latitude": "10.326387430158377",
+                "longitude": "123.94325576183482"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326469118879878",
+                "longitude": "123.94304151594766"
+            },
+            "end_coordinates": {
+                "latitude": "10.326496166790786",
+                "longitude": "123.94297871044111"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326739597442606",
+                "longitude": "123.94241346039577"
+            },
+            "end_coordinates": {
+                "latitude": "10.326763702729874",
+                "longitude": "123.94235748734364"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326820814048748",
+                "longitude": "123.94239396228826"
+            },
+            "end_coordinates": {
+                "latitude": "10.32687484758206",
+                "longitude": "123.94242847157659"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326965337164486",
+                "longitude": "123.94254444581443"
+            },
+            "end_coordinates": {
+                "latitude": "10.326997055335683",
+                "longitude": "123.94260495183532"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327967519073793",
+                "longitude": "123.94243705224147"
+            },
+            "end_coordinates": {
+                "latitude": "10.327991556950101",
+                "longitude": "123.94237299409713"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328087708329013",
+                "longitude": "123.94211676142183"
+            },
+            "end_coordinates": {
+                "latitude": "10.328111746142165",
+                "longitude": "123.94205270322853"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328159821730564",
+                "longitude": "123.94192458681252"
+            },
+            "end_coordinates": {
+                "latitude": "10.328183859505815",
+                "longitude": "123.94186052858983"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328183859505815",
+                "longitude": "123.94186052858983"
+            },
+            "end_coordinates": {
+                "latitude": "10.328207897268436",
+                "longitude": "123.9417964703573"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328328085892052",
+                "longitude": "123.94147617904791"
+            },
+            "end_coordinates": {
+                "latitude": "10.328352123578878",
+                "longitude": "123.94141212075664"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326604358313007",
+                "longitude": "123.94272748830679"
+            },
+            "end_coordinates": {
+                "latitude": "10.326631406163209",
+                "longitude": "123.94266468274618"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326878246394152",
+                "longitude": "123.94206331147271"
+            },
+            "end_coordinates": {
+                "latitude": "10.32685312037655",
+                "longitude": "123.9421269364936"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.3267850649823",
+                "longitude": "123.94229926864283"
+            },
+            "end_coordinates": {
+                "latitude": "10.326842520759584",
+                "longitude": "123.94233518031078"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32708729410214",
+                "longitude": "123.94265024494418"
+            },
+            "end_coordinates": {
+                "latitude": "10.32711998905508",
+                "longitude": "123.9426842888352"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327373574189874",
+                "longitude": "123.94276696685357"
+            },
+            "end_coordinates": {
+                "latitude": "10.327433381973583",
+                "longitude": "123.94273616523786"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327497220603952",
+                "longitude": "123.94271403515943"
+            },
+            "end_coordinates": {
+                "latitude": "10.32756105923281",
+                "longitude": "123.94269190507201"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328367936841323",
+                "longitude": "123.94295074800787"
+            },
+            "end_coordinates": {
+                "latitude": "10.328433186933482",
+                "longitude": "123.94296811141903"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328694187292825",
+                "longitude": "123.94303756513571"
+            },
+            "end_coordinates": {
+                "latitude": "10.328759437380345",
+                "longitude": "123.94305492858288"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32872163417851",
+                "longitude": "123.94374175384175"
+            },
+            "end_coordinates": {
+                "latitude": "10.328692969346173",
+                "longitude": "123.9438038143951"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.3284636502606",
+                "longitude": "123.94430029841439"
+            },
+            "end_coordinates": {
+                "latitude": "10.328434985321545",
+                "longitude": "123.94436235886587"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327509650380865",
+                "longitude": "123.94097190806525"
+            },
+            "end_coordinates": {
+                "latitude": "10.327444970404093",
+                "longitude": "123.94095246529857"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328361885657134",
+                "longitude": "123.94435934488307"
+            },
+            "end_coordinates": {
+                "latitude": "10.328300166059485",
+                "longitude": "123.94433169273094"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328106936463413",
+                "longitude": "123.94288129443535"
+            },
+            "end_coordinates": {
+                "latitude": "10.328172186559284",
+                "longitude": "123.94289865781766"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328053287645343",
+                "longitude": "123.944221084231"
+            },
+            "end_coordinates": {
+                "latitude": "10.327991568035921",
+                "longitude": "123.94419343213318"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327470443077326",
+                "longitude": "123.94396761869557"
+            },
+            "end_coordinates": {
+                "latitude": "10.327455416279617",
+                "longitude": "123.943961799934"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327520825787918",
+                "longitude": "123.94376716313276"
+            },
+            "end_coordinates": {
+                "latitude": "10.327542628931434",
+                "longitude": "123.94370228418101"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328578309898239",
+                "longitude": "123.94405205649527"
+            },
+            "end_coordinates": {
+                "latitude": "10.328549645006616",
+                "longitude": "123.94411411699204"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327255135162943",
+                "longitude": "123.94110893493918"
+            },
+            "end_coordinates": {
+                "latitude": "10.327230009332249",
+                "longitude": "123.94117256011259"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327104379991864",
+                "longitude": "123.94149068582715"
+            },
+            "end_coordinates": {
+                "latitude": "10.327079254086405",
+                "longitude": "123.94155431093955"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.329008281849752",
+                "longitude": "123.9431211476859"
+            },
+            "end_coordinates": {
+                "latitude": "10.328979617135989",
+                "longitude": "123.94318320835241"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327972862015471",
+                "longitude": "123.94264195650162"
+            },
+            "end_coordinates": {
+                "latitude": "10.327996563893182",
+                "longitude": "123.94257776912605"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328257283710922",
+                "longitude": "123.94187170735607"
+            },
+            "end_coordinates": {
+                "latitude": "10.328280985436434",
+                "longitude": "123.94180751986437"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32839949387375",
+                "longitude": "123.94148658226071"
+            },
+            "end_coordinates": {
+                "latitude": "10.328423195523163",
+                "longitude": "123.94142239471094"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32854158997069",
+                "longitude": "123.94129684833308"
+            },
+            "end_coordinates": {
+                "latitude": "10.32860508088321",
+                "longitude": "123.94131998897053"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328548922120877",
+                "longitude": "123.94187672194124"
+            },
+            "end_coordinates": {
+                "latitude": "10.32851768935645",
+                "longitude": "123.94193748859668"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328392758185073",
+                "longitude": "123.94218055509772"
+            },
+            "end_coordinates": {
+                "latitude": "10.328361525363812",
+                "longitude": "123.9422413216928"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327970296113602",
+                "longitude": "123.94271233419452"
+            },
+            "end_coordinates": {
+                "latitude": "10.327949160125076",
+                "longitude": "123.9427061438675"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32691842158288",
+                "longitude": "123.94383585933562"
+            },
+            "end_coordinates": {
+                "latitude": "10.326982120013204",
+                "longitude": "123.94385840291919"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327180609866094",
+                "longitude": "123.94392865074984"
+            },
+            "end_coordinates": {
+                "latitude": "10.327151557709588",
+                "longitude": "123.94399052463001"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327035348965707",
+                "longitude": "123.94423802003632"
+            },
+            "end_coordinates": {
+                "latitude": "10.327006296750277",
+                "longitude": "123.94429989385932"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327786338054091",
+                "longitude": "123.94310564732558"
+            },
+            "end_coordinates": {
+                "latitude": "10.327814477889493",
+                "longitude": "123.9430433391986"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326570512104741",
+                "longitude": "123.94522799983223"
+            },
+            "end_coordinates": {
+                "latitude": "10.32654145970077",
+                "longitude": "123.94528987347226"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326397489651969",
+                "longitude": "123.9450022683561"
+            },
+            "end_coordinates": {
+                "latitude": "10.326422046124295",
+                "longitude": "123.94493841408925"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326520271888091",
+                "longitude": "123.94468299692208"
+            },
+            "end_coordinates": {
+                "latitude": "10.326544828297665",
+                "longitude": "123.94461914260536"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326667610157289",
+                "longitude": "123.94429987087213"
+            },
+            "end_coordinates": {
+                "latitude": "10.326692166491561",
+                "longitude": "123.9442360164956"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326790391703156",
+                "longitude": "123.94398059888961"
+            },
+            "end_coordinates": {
+                "latitude": "10.326814947974679",
+                "longitude": "123.94391674446317"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327016724159881",
+                "longitude": "123.94251135442612"
+            },
+            "end_coordinates": {
+                "latitude": "10.327021106747972",
+                "longitude": "123.94251812222424"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32763782856926",
+                "longitude": "123.94267682151076"
+            },
+            "end_coordinates": {
+                "latitude": "10.327641512975742",
+                "longitude": "123.9426761831445"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328041686366616",
+                "longitude": "123.94286393106026"
+            },
+            "end_coordinates": {
+                "latitude": "10.328106936463413",
+                "longitude": "123.94288129443535"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328498437024708",
+                "longitude": "123.9429854748374"
+            },
+            "end_coordinates": {
+                "latitude": "10.328563687115011",
+                "longitude": "123.94300283826296"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326686721602794",
+                "longitude": "123.94498050515764"
+            },
+            "end_coordinates": {
+                "latitude": "10.326657669245957",
+                "longitude": "123.94504237884344"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326380650309975",
+                "longitude": "123.94532074266057"
+            },
+            "end_coordinates": {
+                "latitude": "10.32632700782313",
+                "longitude": "123.94527918115392"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326750023084424",
+                "longitude": "123.94385904424115"
+            },
+            "end_coordinates": {
+                "latitude": "10.32672528010629",
+                "longitude": "123.94392282414385"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326502592739663",
+                "longitude": "123.94449684281652"
+            },
+            "end_coordinates": {
+                "latitude": "10.326477849636323",
+                "longitude": "123.94456062261887"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326378877097754",
+                "longitude": "123.94481574172782"
+            },
+            "end_coordinates": {
+                "latitude": "10.326354133931813",
+                "longitude": "123.94487952147999"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326255161142834",
+                "longitude": "123.94513464038819"
+            },
+            "end_coordinates": {
+                "latitude": "10.326231227285161",
+                "longitude": "123.94519633380555"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32617594299332",
+                "longitude": "123.94515705806707"
+            },
+            "end_coordinates": {
+                "latitude": "10.326120658696727",
+                "longitude": "123.94511778234241"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328079779082518",
+                "longitude": "123.94431121342534"
+            },
+            "end_coordinates": {
+                "latitude": "10.328018163252343",
+                "longitude": "123.94428332322309"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327771699907691",
+                "longitude": "123.94417176252341"
+            },
+            "end_coordinates": {
+                "latitude": "10.327710084065542",
+                "longitude": "123.9441438723758"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327554652969955",
+                "longitude": "123.94407351720812"
+            },
+            "end_coordinates": {
+                "latitude": "10.327491672706223",
+                "longitude": "123.9440489771909"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327261728733438",
+                "longitude": "123.94395938049695"
+            },
+            "end_coordinates": {
+                "latitude": "10.327232759105177",
+                "longitude": "123.94402129436018"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326972031919881",
+                "longitude": "123.94457851861576"
+            },
+            "end_coordinates": {
+                "latitude": "10.326943062173632",
+                "longitude": "123.94464043236489"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326827183070632",
+                "longitude": "123.94488808724734"
+            },
+            "end_coordinates": {
+                "latitude": "10.326798213265382",
+                "longitude": "123.94495000093944"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32838785819748",
+                "longitude": "123.94445066460055"
+            },
+            "end_coordinates": {
+                "latitude": "10.328326242379282",
+                "longitude": "123.94442277434366"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326769243448338",
+                "longitude": "123.94501191462012"
+            },
+            "end_coordinates": {
+                "latitude": "10.326740273619492",
+                "longitude": "123.9450738282894"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326708608818501",
+                "longitude": "123.94376762576542"
+            },
+            "end_coordinates": {
+                "latitude": "10.326770994161027",
+                "longitude": "123.94379368854278"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327170764236032",
+                "longitude": "123.94588484739232"
+            },
+            "end_coordinates": {
+                "latitude": "10.327225961726745",
+                "longitude": "123.94592424919136"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32733635669384",
+                "longitude": "123.94600305283092"
+            },
+            "end_coordinates": {
+                "latitude": "10.327391554170218",
+                "longitude": "123.94604245467147"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327501949108639",
+                "longitude": "123.94612125839406"
+            },
+            "end_coordinates": {
+                "latitude": "10.327557146570681",
+                "longitude": "123.94616066027608"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328824687466932",
+                "longitude": "123.9430722920373"
+            },
+            "end_coordinates": {
+                "latitude": "10.328889937552594",
+                "longitude": "123.94308965549888"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328955187637323",
+                "longitude": "123.94310701896768"
+            },
+            "end_coordinates": {
+                "latitude": "10.329008281849752",
+                "longitude": "123.9431211476859"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32886495816235",
+                "longitude": "123.9434314509053"
+            },
+            "end_coordinates": {
+                "latitude": "10.328836293389298",
+                "longitude": "123.94349351151521"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32880762860439",
+                "longitude": "123.94355557211381"
+            },
+            "end_coordinates": {
+                "latitude": "10.32877896380762",
+                "longitude": "123.94361763270109"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328434985321545",
+                "longitude": "123.94436235886587"
+            },
+            "end_coordinates": {
+                "latitude": "10.328423605252436",
+                "longitude": "123.94438699704605"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326894776710773",
+                "longitude": "123.94568783860467"
+            },
+            "end_coordinates": {
+                "latitude": "10.326949974225382",
+                "longitude": "123.9457272403345"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328606974778008",
+                "longitude": "123.94398999598722"
+            },
+            "end_coordinates": {
+                "latitude": "10.328578309898239",
+                "longitude": "123.94405205649527"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328115007252407",
+                "longitude": "123.9442487363397"
+            },
+            "end_coordinates": {
+                "latitude": "10.328053287645343",
+                "longitude": "123.944221084231"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327806409193538",
+                "longitude": "123.94411047590482"
+            },
+            "end_coordinates": {
+                "latitude": "10.327744689574699",
+                "longitude": "123.94408282385038"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327621250329969",
+                "longitude": "123.94402751977412"
+            },
+            "end_coordinates": {
+                "latitude": "10.327596503654119",
+                "longitude": "123.9440164326086"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327564432061997",
+                "longitude": "123.94363740522029"
+            },
+            "end_coordinates": {
+                "latitude": "10.3275862351796",
+                "longitude": "123.94357252625056"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327608038284247",
+                "longitude": "123.9435076472718"
+            },
+            "end_coordinates": {
+                "latitude": "10.327617498790715",
+                "longitude": "123.94347949585345"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327814477889493",
+                "longitude": "123.9430433391986"
+            },
+            "end_coordinates": {
+                "latitude": "10.327842617712944",
+                "longitude": "123.94298103106043"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327898897323992",
+                "longitude": "123.94285641475065"
+            },
+            "end_coordinates": {
+                "latitude": "10.327911186170235",
+                "longitude": "123.94282920433164"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328043967610554",
+                "longitude": "123.94244939434586"
+            },
+            "end_coordinates": {
+                "latitude": "10.328067669450219",
+                "longitude": "123.94238520694127"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328209880221843",
+                "longitude": "123.94200008231044"
+            },
+            "end_coordinates": {
+                "latitude": "10.328233581972723",
+                "longitude": "123.94193589483812"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328375792211652",
+                "longitude": "123.94155076980078"
+            },
+            "end_coordinates": {
+                "latitude": "10.32839949387375",
+                "longitude": "123.94148658226071"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328668571794077",
+                "longitude": "123.94134312961737"
+            },
+            "end_coordinates": {
+                "latitude": "10.328732062703299",
+                "longitude": "123.94136627027352"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327552495938649",
+                "longitude": "123.94346156776909"
+            },
+            "end_coordinates": {
+                "latitude": "10.327542091888013",
+                "longitude": "123.94348692260589"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327501517223915",
+                "longitude": "123.94361769260195"
+            },
+            "end_coordinates": {
+                "latitude": "10.32749235169986",
+                "longitude": "123.94364723257297"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32733446094685",
+                "longitude": "123.94390338186392"
+            },
+            "end_coordinates": {
+                "latitude": "10.327271197888132",
+                "longitude": "123.9438796052964"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327076256037303",
+                "longitude": "123.94316428690152"
+            },
+            "end_coordinates": {
+                "latitude": "10.327100252570562",
+                "longitude": "123.94310021292536"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32720729831147",
+                "longitude": "123.94281438584785"
+            },
+            "end_coordinates": {
+                "latitude": "10.327273385142242",
+                "longitude": "123.94282809504587"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327273385142242",
+                "longitude": "123.94282809504587"
+            },
+            "end_coordinates": {
+                "latitude": "10.327303689288046",
+                "longitude": "123.94283438140673"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327176807280347",
+                "longitude": "123.94280238851418"
+            },
+            "end_coordinates": {
+                "latitude": "10.327152753568546",
+                "longitude": "123.94286644035061"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326984377232334",
+                "longitude": "123.94331480293114"
+            },
+            "end_coordinates": {
+                "latitude": "10.3269603234195",
+                "longitude": "123.94337885468913"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326888161905242",
+                "longitude": "123.94357100990439"
+            },
+            "end_coordinates": {
+                "latitude": "10.326864108041901",
+                "longitude": "123.94363506162321"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326827635615906",
+                "longitude": "123.94373218197137"
+            },
+            "end_coordinates": {
+                "latitude": "10.326765098687392",
+                "longitude": "123.94370649727917"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32851768935645",
+                "longitude": "123.94193748859668"
+            },
+            "end_coordinates": {
+                "latitude": "10.328486456580658",
+                "longitude": "123.94199825524007"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327253356045842",
+                "longitude": "123.94387289968243"
+            },
+            "end_coordinates": {
+                "latitude": "10.327189309228741",
+                "longitude": "123.94385140011237"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32631775756376",
+                "longitude": "123.94344886342961"
+            },
+            "end_coordinates": {
+                "latitude": "10.326340981774718",
+                "longitude": "123.94338449624085"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326854723150985",
+                "longitude": "123.94381331576119"
+            },
+            "end_coordinates": {
+                "latitude": "10.32691842158288",
+                "longitude": "123.94383585933562"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327109516869156",
+                "longitude": "123.94390349011378"
+            },
+            "end_coordinates": {
+                "latitude": "10.327173215294787",
+                "longitude": "123.94392603372474"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32811507309149",
+                "longitude": "123.94225683210304"
+            },
+            "end_coordinates": {
+                "latitude": "10.328138774893105",
+                "longitude": "123.94219264466942"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326658454001267",
+                "longitude": "123.9426018771748"
+            },
+            "end_coordinates": {
+                "latitude": "10.326685501827189",
+                "longitude": "123.9425390715926"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32691676005569",
+                "longitude": "123.9424821878797"
+            },
+            "end_coordinates": {
+                "latitude": "10.326958672520444",
+                "longitude": "123.94253590419714"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32787136744224",
+                "longitude": "123.94269328472087"
+            },
+            "end_coordinates": {
+                "latitude": "10.327895405369075",
+                "longitude": "123.94262922661574"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.328039632664822",
+                "longitude": "123.94224487777906"
+            },
+            "end_coordinates": {
+                "latitude": "10.328063670503234",
+                "longitude": "123.94218081960534"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32825597275578",
+                "longitude": "123.94166835386292"
+            },
+            "end_coordinates": {
+                "latitude": "10.328280010480501",
+                "longitude": "123.94160429560107"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.327006296750277",
+                "longitude": "123.94429989385932"
+            },
+            "end_coordinates": {
+                "latitude": "10.326977244523059",
+                "longitude": "123.94436176767088"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326890087770712",
+                "longitude": "123.94454738903697"
+            },
+            "end_coordinates": {
+                "latitude": "10.326861035496362",
+                "longitude": "123.94460926280277"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.326831983210226",
+                "longitude": "123.94467113655719"
+            },
+            "end_coordinates": {
+                "latitude": "10.326802930912308",
+                "longitude": "123.94473301030015"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32674482628112",
+                "longitude": "123.94485675775175"
+            },
+            "end_coordinates": {
+                "latitude": "10.32671577394785",
+                "longitude": "123.94491863146041"
+            }
+        },
+        {
+            "score": null,
+            "start_coordinates": {
+                "latitude": "10.32659956449693",
+                "longitude": "123.94516612618072"
+            },
+            "end_coordinates": {
+                "latitude": "10.326570512104741",
+                "longitude": "123.94522799983223"
+            }
+        }
+    ]
+}
