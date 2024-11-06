@@ -656,7 +656,9 @@ function AnnotationForm(props: PropsInterface) {
                         </>
                     )}
 
-                    <p className="text-slate-600 font-semibold">IMAGES</p>
+                    <p className="text-slate-600 font-semibold">
+                        IMAGES (optional)
+                    </p>
                     <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
                         {images.map((image, index) => (
                             <div
@@ -701,7 +703,10 @@ function AnnotationForm(props: PropsInterface) {
 
                     <div className="w-full flex justify-end gap-2 py-4">
                         <button
-                            onClick={save}
+                            onClick={async () => {
+                                await checkTitleAvailability(title)
+                                save()
+                            }}
                             disabled={isSaving || disableSave}
                             className={`flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
                                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]
