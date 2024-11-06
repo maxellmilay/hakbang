@@ -336,6 +336,13 @@ function AnnotationDetails(props: PropsInterface) {
                                             .accessibility_score
                                     )}
                                 </div>
+                                <a
+                                    className="text-sky-500 underline text-sm mx-3"
+                                    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-LcB2SxkW9qIu28qVyUQfnzAJt2wQ2jUdQ&s"
+                                    target="_blank"
+                                >
+                                    How the model works?
+                                </a>
                             </div>
                             <Divider variant="middle" />
                             <div className="flex flex-col gap-3 p-3">
