@@ -68,6 +68,19 @@ const AppLayer = (props: PropsInterface) => {
     const [expandSidebar, setExpandSidebar] = useState(!isMobile)
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
     const [isFetchingUser, setIsFetchingUser] = useState(false)
+    const [hasSeenGuide, setHasSeenGuide] = useState(false)
+
+    useEffect(() => {
+        // Check localStorage on component mount
+        const guideStatus = localStorage.getItem('hasSeenAnnotatorGuide')
+        setHasSeenGuide(!!guideStatus)
+    }, [])
+
+    const handleGuideClick = () => {
+        localStorage.setItem('hasSeenAnnotatorGuide', 'true')
+        setHasSeenGuide(true)
+        // Add your guide opening logic here
+    }
 
     const pickLocation = () => {
         setIsPickingLocation(true)
@@ -227,15 +240,24 @@ const AppLayer = (props: PropsInterface) => {
                     <>
                         {!isPickingLocation ? (
                             <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto right-2">
-                                <button
-                                    onClick={pickLocation}
-                                    className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
-                                >
-                                    <Icon
-                                        icon="material-symbols:add-location-outline"
-                                        className="w-6 h-6"
-                                    />
-                                </button>
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={handleGuideClick}
+                                        className={`font-semibold flex items-center justify-center p-3 bg-white border-2 border-black rounded-full hover:bg-primary transition-all duration-150 ease-in-out 
+                                        ${!hasSeenGuide ? 'blink' : ''}`}
+                                    >
+                                        Annotator Guide
+                                    </button>
+                                    <button
+                                        onClick={pickLocation}
+                                        className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
+                                    >
+                                        <Icon
+                                            icon="material-symbols:add-location-outline"
+                                            className="w-6 h-6"
+                                        />
+                                    </button>
+                                </div>
                             </div>
                         ) : (
                             <div className="flex p-4 gap-3 absolute z-40 bottom-0 w-full justify-between items-center pointer-events-auto">
