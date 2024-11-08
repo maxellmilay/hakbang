@@ -1,8 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import Image from 'next/image'
-
-import useAnnotationStore from '@/store/annotation'
 
 interface DemoModalProps {
     isOpen: boolean
@@ -19,7 +16,6 @@ export default function DemoModal({
     isFinished,
     setFinishedDemo,
 }: DemoModalProps) {
-    const { demoStep } = useAnnotationStore()
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-[999]" onClose={onClose}>
@@ -64,9 +60,9 @@ export default function DemoModal({
                                     {!isFinished && (
                                         <p className="text-sm text-gray-400 mt-1">
                                             Note: During this demo, please only
-                                            use the "Next" button to proceed
-                                            through each step for the best
-                                            experience.
+                                            use the &quot;Next&quot; button to
+                                            proceed through each step for the
+                                            best experience.
                                         </p>
                                     )}
                                 </div>

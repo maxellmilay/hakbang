@@ -50,7 +50,7 @@ interface PropsInterface {
 
 const AppLayer = (props: PropsInterface) => {
     const { user, getUser } = useAuthStore()
-    const { getLocationDetails, demoMode, setDemoMode, demoStep, setDemoStep } =
+    const { getLocationDetails, setDemoMode, demoStep, setDemoStep } =
         useAnnotationStore()
     const {
         center,
