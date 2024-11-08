@@ -75,10 +75,14 @@ const AppLayer = (props: PropsInterface) => {
     const [isFetchingUser, setIsFetchingUser] = useState(false)
     const [hasSeenGuide, setHasSeenGuide] = useState(false)
     const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
+    const [finishedDemo, setFinishedDemo] = useState(false)
+
+    const disableInteraction = demoStep !== 0
 
     const runDemo = () => {
         let currentStep = 1
         setDemoStep(currentStep)
+        setDemoMode(true)
         console.log('demo running')
         const steps = [
             {
@@ -87,10 +91,10 @@ const AppLayer = (props: PropsInterface) => {
                     title: 'Exploring the Map',
                     description:
                         'This is the interactive map displaying sidewalk segments. Each segment is colored based on its accessibility score\
-                        <p>- Green: Highly accessible</p>\
-                        <p>- Yellow: Moderately accessible</p>\
-                        <p>- Red: Low accessibility</p>\
-                        <p>- Gray: Not yet annotated</p>',
+                        <p>- <b>Green</b>: Highly accessible</p>\
+                        <p>- <b>Yellow</b>: Moderately accessible</p>\
+                        <p>- <b>Red</b>: Low accessibility</p>\
+                        <p>- <b>Gray</b>: Not yet annotated</p>',
                     onNextClick: () => {
                         currentStep++
                         setDemoStep(currentStep)
@@ -107,20 +111,242 @@ const AppLayer = (props: PropsInterface) => {
                     title: 'The Sidebar Menu',
                     description:
                         "On the left, you'll find the sidebar containing all your previous annotations. It's your personal log of contributions.",
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        setExpandSidebar(false)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#demo-sidebar-item-1',
+                popover: {
+                    title: 'Revisiting Annotations',
+                    description:
+                        "Click on any annotation in the sidebar to view its details again. It's a quick way to track and edit your past contributions.",
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        setExpandSidebar(false)
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#nothing',
+                popover: {
+                    title: 'Adding a New Annotation',
+                    description:
+                        'Ready to contribute more? You can add a new annotation by:\
+                        <p>1. Clicking on a <b>gray</b> sidewalk segment directly on the map.</p>\
+                        <p>2. Clicking the <b>Location button</b> button at the bottom right.</p>',
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        setExpandSidebar(true)
+                        setTimeout(() => {
+                            driverObj.movePrevious()
+                        }, 100)
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#demo-add-annotation',
+                popover: {
+                    // title: 'Adding a New Annotation',
+                    description: 'Click this button to add new annotation',
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        pickLocation()
+                        setPickedCoordinates({
+                            latitude: 10.295669,
+                            longitude: 123.898039,
+                        })
+                        setPickedLineSegment({
+                            start_coordinates: {
+                                latitude: 10.327617498790715,
+                                longitude: 123.94347949585345,
+                            },
+                            end_coordinates: {
+                                latitude: 10.327645638697822,
+                                longitude: 123.94341718779336,
+                            },
+                        })
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#demo-app-layer',
+                popover: {
+                    title: 'Selecting a Sidewalk',
+                    description:
+                        'Use the location picker to choose a sidewalk segment you want to annotate. You can zoom and pan the map to find the exact location.',
+                    onPrevClick: () => {
+                        setPickedCoordinates({ latitude: 0, longitude: 0 })
+                        setPickedLineSegment(null)
+                        currentStep--
+                        setDemoStep(currentStep)
+                        cancelPickLocation()
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#demo-confirm-location',
+                popover: {
+                    title: 'Confirming Your Choice',
+                    description:
+                        "Once you've selected a sidewalk, click the check to proceed to the annotation form.",
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        setShowAnnotationForm(true)
+                        setTimeout(() => {
+                            driverObj.moveNext()
+                        }, 100)
+                    },
+                },
+            },
+            {
+                element: '#demo-annotation-form',
+                popover: {
+                    title: 'Filling Out the Annotation Form',
+                    description:
+                        "Complete the form with details about the sidewalk: <br/><br/> • <b>Is there a sidewalk?</b> Select <b>'Yes'</b> or <b>'No.'</b><br/> - If <b>'Yes,'</b> additional fields will appear for more details.<br/> - If <b>'No,'</b> you can proceed to submit.<br/><br/> • Provide information on features like curb ramps, surface conditions, and obstructions.",
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        setShowAnnotationForm(false)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#demo-annotation-form',
+                popover: {
+                    title: 'Filling Out the Annotation Form',
+                    // description:
+                    //     "",
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        driverObj.moveNext()
+                    },
+                },
+            },
+            {
+                element: '#demo-annotation-save',
+                popover: {
+                    title: 'Submitting Your Annotation',
+                    description:
+                        'After filling out the form, click <b>Save</b> to submit your annotation.',
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        setShowAnnotationForm(false)
+                        setSelectedLineSegment({
+                            start_coordinates: {
+                                latitude: 10.328018163252343,
+                                longitude: 123.94428332322309,
+                            },
+                            end_coordinates: {
+                                latitude: 10.327956547419772,
+                                longitude: 123.94425543303178,
+                            },
+                        })
+                        setTimeout(() => {
+                            driverObj.moveNext()
+                        }, 100)
+                    },
+                },
+            },
+            {
+                element: '#demo-annotation-details',
+                popover: {
+                    title: 'Reviewing Your Submission',
+                    description:
+                        "Your annotation is now saved! You'll see the sidewalk's updated details, including the new accessibility score. Feel free to explore how the score was calculated by clicking the provided link.",
+                    onPrevClick: () => {
+                        currentStep--
+                        setDemoStep(currentStep)
+                        setShowAnnotationForm(false)
+                        driverObj.movePrevious()
+                    },
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        setSelectedLineSegment(null)
+                        driverObj.moveNext()
+                    },
                 },
             },
         ]
         const driverObj = driver({
             steps,
             popoverClass: 'driverjs-theme',
-            disableActiveInteraction: true,
+            disableActiveInteraction: false,
             nextBtnText: 'Next',
             prevBtnText: 'Back',
             doneBtnText: 'Close',
             onDestroyStarted: () => {
+                console.log(currentStep, 'current step')
                 setDemoStep(0)
+                setDemoMode(false)
+                setFinishedDemo(true)
+                setIsDemoModalOpen(true)
                 driverObj.destroy()
             },
+            allowClose: false,
+            showProgress: true,
+            showButtons: ['next'],
         })
         driverObj.drive()
     }
@@ -307,7 +533,12 @@ const AppLayer = (props: PropsInterface) => {
                                         </button>
                                     )}
                                     <button
-                                        onClick={pickLocation}
+                                        id="demo-add-annotation"
+                                        onClick={() => {
+                                            if (!disableInteraction) {
+                                                pickLocation()
+                                            }
+                                        }}
                                         className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
                                     >
                                         <Icon
@@ -332,13 +563,22 @@ const AppLayer = (props: PropsInterface) => {
                                 )}
                                 <div className="flex gap-3 mr-12">
                                     <button
-                                        onClick={cancelPickLocation}
+                                        onClick={() => {
+                                            if (!disableInteraction) {
+                                                cancelPickLocation()
+                                            }
+                                        }}
                                         className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
                                     >
                                         Cancel
                                     </button>
                                     <button
-                                        onClick={confirmLocation}
+                                        id="demo-confirm-location"
+                                        onClick={() => {
+                                            if (!disableInteraction) {
+                                                confirmLocation()
+                                            }
+                                        }}
                                         disabled={disableConfirmButton}
                                         className={`flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]
                                     ${
@@ -393,6 +633,8 @@ const AppLayer = (props: PropsInterface) => {
 
                 <DemoModal
                     isOpen={isDemoModalOpen}
+                    isFinished={finishedDemo}
+                    setFinishedDemo={setFinishedDemo}
                     onClose={() => setIsDemoModalOpen(false)}
                     onStartDemo={() => {
                         setIsDemoModalOpen(false)

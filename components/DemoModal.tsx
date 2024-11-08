@@ -6,14 +6,18 @@ import useAnnotationStore from '@/store/annotation'
 
 interface DemoModalProps {
     isOpen: boolean
+    isFinished: boolean
     onClose: () => void
     onStartDemo: () => void
+    setFinishedDemo: (newValue: boolean) => void
 }
 
 export default function DemoModal({
     isOpen,
     onClose,
     onStartDemo,
+    isFinished,
+    setFinishedDemo,
 }: DemoModalProps) {
     const { demoStep } = useAnnotationStore()
     return (
@@ -47,13 +51,13 @@ export default function DemoModal({
                                     as="h2"
                                     className="text-3xl font-bold leading-6 text-gray-900 mb-4 text-center"
                                 >
-                                    {demoStep === 0
+                                    {!isFinished
                                         ? 'Welcome to Lakbai!👷'
                                         : "You're All Set! 🎉"}
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-lg text-gray-500">
-                                        {demoStep === 0
+                                        {!isFinished
                                             ? 'Welcome to Lakbai! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.'
                                             : "Congratulations on adding your first annotation! Your contribution helps make sidewalks more accessible for everyone. Continue exploring or add more annotations whenever you're ready."}
                                     </p>
@@ -63,14 +67,17 @@ export default function DemoModal({
                                     <button
                                         type="button"
                                         className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none"
-                                        onClick={onClose}
+                                        onClick={() => {
+                                            onClose()
+                                            setFinishedDemo(false)
+                                        }}
                                     >
                                         Close
                                     </button>
-                                    {demoStep === 0 && (
+                                    {!isFinished && (
                                         <button
                                             type="button"
-                                            className="inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-black hover:bg-primary/80 focus:outline-none"
+                                            className="inline-flex justify-center rounded-md border border-transparent bg-[#fde047] px-4 py-2 text-sm font-medium text-black hover:bg-[#fde047]/80 focus:outline-none"
                                             onClick={onStartDemo}
                                         >
                                             Start Demo

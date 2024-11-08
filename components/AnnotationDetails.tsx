@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider'
 import { getColorFromValue } from '@/utils/colormap'
 
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
+import mockAnnotationDetails from '@/data/coachmarks/annotationDetails.json'
 
 const formatDateAndTime = (dateTime: string) => {
     const date = new Date(dateTime)
@@ -93,6 +94,15 @@ function AnnotationDetails(props: PropsInterface) {
     }
 
     useEffect(() => {
+        if (demoMode) {
+            setIsLoading(false)
+            setSelectedLineSegmentAnnotation(
+                mockAnnotationDetails.annotationDetails
+            )
+            setNoAnnotation(false)
+            return
+        }
+
         console.log(selectedLineSegment)
         const location__start_coordinates__latitude =
             selectedLineSegment?.start_coordinates.latitude.toString()
@@ -136,7 +146,10 @@ function AnnotationDetails(props: PropsInterface) {
     }, [])
 
     return (
-        <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
+        <div
+            id="demo-annotation-details"
+            className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto"
+        >
             <div className="flex flex-col p-3 gap-2 bg-white border border-black rounded-md shadow-2xl h-full w-full sm:w-[470px]">
                 {isLoading ? (
                     <>

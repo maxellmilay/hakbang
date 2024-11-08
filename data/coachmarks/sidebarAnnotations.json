@@ -1,8 +1,29 @@
 {
     "sidebarAnnotations": [
         {
-            "id": 196,
-            "updated_on": "2024-11-06 15:07:31",
+            "id": 188,
+            "updated_on": "2024-11-8 08:25:16",
+            "location": {
+                "accessibility_score": "0.00",
+                "start_coordinates": {
+                    "id": 153,
+                    "latitude": "10.327380290426156",
+                    "longitude": "123.94093302253988",
+                    "removed": false
+                },
+                "end_coordinates": {
+                    "id": 154,
+                    "latitude": "10.327330512580263",
+                    "longitude": "123.94091805935794",
+                    "removed": false
+                },
+                "id": 153
+            },
+            "name": "B. Ceniza - 12"
+        },
+        {
+            "id": 1,
+            "updated_on": "2024-10-25 08:24:14",
             "location": {
                 "accessibility_score": "0.76",
                 "start_coordinates": {

@@ -103,6 +103,7 @@ $accent: #f7eb25;
     .driver-popover-navigation-btns {
         justify-content: space-between;
         gap: 3px;
+        flex-grow: 0;
     }
 
     .driver-popover-close-btn {
