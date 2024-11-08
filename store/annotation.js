@@ -7,6 +7,7 @@ const useAnnotationStore = create((set) => ({
     sidebarAnnotationsPage: 0,
     sidebarAnnotationsMaxPage: 0,
     demoMode: false,
+    demoStep: 0,
     setDemoMode: (newValue) => {
         set({ demoMode: newValue })
     },
