@@ -61,6 +61,14 @@ export default function DemoModal({
                                             ? 'Welcome to Lakbai! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.'
                                             : "Congratulations on adding your first annotation! Your contribution helps make sidewalks more accessible for everyone. Continue exploring or add more annotations whenever you're ready."}
                                     </p>
+                                    {!isFinished && (
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Note: During this demo, please only
+                                            use the "Next" button to proceed
+                                            through each step for the best
+                                            experience.
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div className="mt-6 flex justify-end gap-3">
