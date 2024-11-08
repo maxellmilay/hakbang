@@ -7,6 +7,7 @@ import Sidebar from '@/components/Sidebar'
 import AnnotationForm from '@/components/AnnotationForm'
 import SearchBar from '@/components/SearchBar'
 import FullScreenLoader from '@/components/FullScreenLoader'
+import DemoModal from './DemoModal'
 
 import AnnotationDetails from './AnnotationDetails'
 import { MapLineSegment } from '@/interface/map'
@@ -15,6 +16,9 @@ import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
 
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
+
+import { driver } from 'driver.js'
+import 'driver.js/dist/driver.css'
 
 interface PropsInterface {
     isPickingLocation: boolean
@@ -46,7 +50,8 @@ interface PropsInterface {
 
 const AppLayer = (props: PropsInterface) => {
     const { user, getUser } = useAuthStore()
-    const { getLocationDetails } = useAnnotationStore()
+    const { getLocationDetails, demoMode, setDemoMode, demoStep, setDemoStep } =
+        useAnnotationStore()
     const {
         center,
         isPickingLocation,
@@ -69,6 +74,33 @@ const AppLayer = (props: PropsInterface) => {
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
     const [isFetchingUser, setIsFetchingUser] = useState(false)
     const [hasSeenGuide, setHasSeenGuide] = useState(false)
+    const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
+
+    const runDemo = () => {
+        console.log('demo running')
+        const steps = [
+            {
+                element: '#demo-sidebar',
+                popover: {
+                    title: 'Toggle Info Panel',
+                    description: 'This button toggles the info panel',
+                },
+            },
+        ]
+        const driverObj = driver({
+            steps,
+            popoverClass: 'driverjs-theme',
+            disableActiveInteraction: true,
+            nextBtnText: 'Next',
+            prevBtnText: 'Back',
+            doneBtnText: 'Close',
+            onDestroyStarted: () => {
+                setDemoStep(0)
+                driverObj.destroy()
+            },
+        })
+        driverObj.drive()
+    }
 
     useEffect(() => {
         // Check localStorage on component mount
@@ -79,7 +111,7 @@ const AppLayer = (props: PropsInterface) => {
     const handleGuideClick = () => {
         localStorage.setItem('hasSeenAnnotatorGuide', 'true')
         setHasSeenGuide(true)
-        // Add your guide opening logic here
+        setIsDemoModalOpen(true)
     }
 
     const pickLocation = () => {
@@ -241,13 +273,15 @@ const AppLayer = (props: PropsInterface) => {
                         {!isPickingLocation ? (
                             <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto right-2">
                                 <div className="flex gap-3">
-                                    <button
-                                        onClick={handleGuideClick}
-                                        className={`font-semibold flex items-center justify-center p-3 bg-white border-2 border-black rounded-full hover:bg-primary transition-all duration-150 ease-in-out 
+                                    {demoStep === 0 && (
+                                        <button
+                                            onClick={handleGuideClick}
+                                            className={`font-semibold flex items-center justify-center p-3 bg-white border-2 border-black rounded-full hover:bg-primary transition-all duration-150 ease-in-out 
                                         ${!hasSeenGuide ? 'blink' : ''}`}
-                                    >
-                                        Annotator Guide
-                                    </button>
+                                        >
+                                            Annotator Guide
+                                        </button>
+                                    )}
                                     <button
                                         onClick={pickLocation}
                                         className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
@@ -332,6 +366,15 @@ const AppLayer = (props: PropsInterface) => {
                         </motion.div>
                     )}
                 </AnimatePresence>
+
+                <DemoModal
+                    isOpen={isDemoModalOpen}
+                    onClose={() => setIsDemoModalOpen(false)}
+                    onStartDemo={() => {
+                        setIsDemoModalOpen(false)
+                        runDemo()
+                    }}
+                />
             </div>
         )
     )

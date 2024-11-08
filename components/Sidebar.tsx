@@ -197,6 +197,7 @@ function Sidebar(props: PropsInterface) {
                                 transition={{ duration: 0.3 }}
                             >
                                 <nav
+                                    id="demo-sidebar"
                                     className={`bg-white w-[320px] h-full rounded-md border-2 border-black p-3 flex flex-col gap-2 transition-transform duration-300 ease-in-out ${
                                         expand
                                             ? 'translate-x-0'

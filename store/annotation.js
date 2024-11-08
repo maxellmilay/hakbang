@@ -11,6 +11,9 @@ const useAnnotationStore = create((set) => ({
     setDemoMode: (newValue) => {
         set({ demoMode: newValue })
     },
+    setDemoStep: (newValue) => {
+        set({ demoStep: newValue })
+    },
     getAccessibilityColor: (accessibilityScore) => {
         if (accessibilityScore === null) {
             return 0
