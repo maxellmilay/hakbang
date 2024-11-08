@@ -77,13 +77,36 @@ const AppLayer = (props: PropsInterface) => {
     const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
 
     const runDemo = () => {
+        let currentStep = 1
+        setDemoStep(currentStep)
         console.log('demo running')
         const steps = [
             {
+                element: '#demo-app-layer',
+                popover: {
+                    title: 'Exploring the Map',
+                    description:
+                        'This is the interactive map displaying sidewalk segments. Each segment is colored based on its accessibility score\
+                        <p>- Green: Highly accessible</p>\
+                        <p>- Yellow: Moderately accessible</p>\
+                        <p>- Red: Low accessibility</p>\
+                        <p>- Gray: Not yet annotated</p>',
+                    onNextClick: () => {
+                        currentStep++
+                        setDemoStep(currentStep)
+                        setExpandSidebar(true)
+                        setTimeout(() => {
+                            driverObj.moveNext()
+                        }, 100)
+                    },
+                },
+            },
+            {
                 element: '#demo-sidebar',
                 popover: {
-                    title: 'Toggle Info Panel',
-                    description: 'This button toggles the info panel',
+                    title: 'The Sidebar Menu',
+                    description:
+                        "On the left, you'll find the sidebar containing all your previous annotations. It's your personal log of contributions.",
                 },
             },
         ]
@@ -249,6 +272,7 @@ const AppLayer = (props: PropsInterface) => {
     return (
         isAccessibilityDataLoaded && (
             <div
+                id="demo-app-layer"
                 className={`absolute top-0 left-0 right-0 bottom-0 z-[100] ${!showAnnotationForm && 'pointer-events-none'}`}
             >
                 {selectedLineSegment === null && (

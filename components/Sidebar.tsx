@@ -9,6 +9,8 @@ import Image from 'next/image'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
+
+import mockSidebarAnnotations from '@/data/coachmarks/sidebarAnnotations.json'
 // import Image from 'next/image'
 
 interface PropsInterface {
@@ -41,6 +43,7 @@ function Sidebar(props: PropsInterface) {
         sidebarAnnotationsPage,
         sidebarAnnotationsMaxPage,
         fetchMoreSidebarAnnotations,
+        demoStep,
     } = useAnnotationStore()
 
     const [isLoading, setIsLoading] = useState(true)
@@ -53,9 +56,14 @@ function Sidebar(props: PropsInterface) {
         isPickingLocation,
     } = props
 
+    const annotations =
+        demoStep === 0
+            ? sidebarAnnotations
+            : mockSidebarAnnotations.sidebarAnnotations
+
     const data: AnnotationItem[] = Object.entries(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        sidebarAnnotations.reduce((acc: any, annotation: any) => {
+        annotations.reduce((acc: any, annotation: any) => {
             const date = new Date(annotation.updated_on)
             const today = new Date()
 
@@ -187,7 +195,7 @@ function Sidebar(props: PropsInterface) {
             {user && (
                 <>
                     <AnimatePresence>
-                        {expand && (
+                        {expand && demoStep !== 1 && (
                             <motion.div
                                 className="absolute h-lvh p-4 z-10"
                                 key={1}
