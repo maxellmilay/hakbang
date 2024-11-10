@@ -1,24 +1,28 @@
 'use client'
+// React and related
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
-import { Icon } from '@iconify/react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+// Third party libraries
+import { Icon } from '@iconify/react'
+import { driver } from 'driver.js'
+import 'driver.js/dist/driver.css'
+
+// Components
 import Sidebar from '@/components/Sidebar'
 import AnnotationForm from '@/components/AnnotationForm'
 import SearchBar from '@/components/SearchBar'
 import FullScreenLoader from '@/components/FullScreenLoader'
+import AnnotationDetails from './AnnotationDetails'
 import DemoModal from './DemoModal'
 
-import AnnotationDetails from './AnnotationDetails'
+// Types and interfaces
 import { MapLineSegment } from '@/interface/map'
-
-import useAuthStore from '@/store/auth'
-import useAnnotationStore from '@/store/annotation'
-
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 
-import { driver } from 'driver.js'
-import 'driver.js/dist/driver.css'
+// Store
+import useAuthStore from '@/store/auth'
+import useAnnotationStore from '@/store/annotation'
 
 interface PropsInterface {
     isPickingLocation: boolean
@@ -72,6 +76,8 @@ const AppLayer = (props: PropsInterface) => {
     const [isMobile, setIsMobile] = useState(false)
     const [expandSidebar, setExpandSidebar] = useState(!isMobile)
     const [showAnnotationForm, setShowAnnotationForm] = useState(false)
+    const [previousAnnotationData, setPreviousAnnotationData] =
+        useState<any>(null)
     const [isFetchingUser, setIsFetchingUser] = useState(false)
     const [hasSeenGuide, setHasSeenGuide] = useState(false)
     const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
@@ -441,6 +447,11 @@ const AppLayer = (props: PropsInterface) => {
         }
     }
 
+    const editAnnotation = (formData: any) => {
+        setPreviousAnnotationData(formData)
+        setShowAnnotationForm(true)
+    }
+
     const confirmLocation = () => {
         resetFeatureStyles()
         handleSaveLocation()
@@ -602,6 +613,11 @@ const AppLayer = (props: PropsInterface) => {
                     pickedCoordinates &&
                     pickedLineSegment && (
                         <AnnotationForm
+                            previousAnnotationData={previousAnnotationData}
+                            cancelEditing={() => {
+                                setPreviousAnnotationData(null)
+                                setShowAnnotationForm(false)
+                            }}
                             pickedCoordinates={pickedCoordinates}
                             setShowAnnotationForm={setShowAnnotationForm}
                             saveAnnotation={saveAnnotation}
@@ -626,6 +642,7 @@ const AppLayer = (props: PropsInterface) => {
                                 removeAccessibilityScore={
                                     removeAccessibilityScore
                                 }
+                                editAnnotation={editAnnotation}
                             />
                         </motion.div>
                     )}

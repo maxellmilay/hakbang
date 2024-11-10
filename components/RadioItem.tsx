@@ -11,12 +11,13 @@ interface PropsInterface {
     label: string
     options: string[]
     allowOther?: boolean
+    value: string
     setValue: (value: string) => void
 }
 
 function RadioItem(props: PropsInterface) {
-    const { header, label, options, allowOther, setValue } = props
-    const [selectedValue, setSelectedValue] = useState<string>('')
+    const { header, label, options, allowOther, value, setValue } = props
+    const [selectedValue, setSelectedValue] = useState<string>(value)
     const [otherValue, setOtherValue] = useState<string>('')
 
     useEffect(() => {
@@ -38,6 +39,7 @@ function RadioItem(props: PropsInterface) {
                     aria-labelledby="demo-controlled-radio-buttons-group"
                     name="controlled-radio-buttons-group"
                     onChange={(e) => setSelectedValue(e.target.value)}
+                    value={value}
                 >
                     {options.map((option) => (
                         <FormControlLabel
@@ -45,6 +47,7 @@ function RadioItem(props: PropsInterface) {
                             value={option}
                             control={<Radio />}
                             label={option}
+                            checked={value === option}
                         />
                     ))}
                 </RadioGroup>
