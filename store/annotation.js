@@ -4,6 +4,16 @@ import useAuthStore from './auth'
 
 const useAnnotationStore = create((set) => ({
     sidebarAnnotations: [],
+    sidebarAnnotationsPage: 0,
+    sidebarAnnotationsMaxPage: 0,
+    demoMode: false,
+    demoStep: 0,
+    setDemoMode: (newValue) => {
+        set({ demoMode: newValue })
+    },
+    setDemoStep: (newValue) => {
+        set({ demoStep: newValue })
+    },
     getAccessibilityColor: (accessibilityScore) => {
         if (accessibilityScore === null) {
             return 0
@@ -90,6 +100,10 @@ const useAnnotationStore = create((set) => ({
             return 'Exceptional'
         }
     },
+    setSidebarAnnotations: async (newValue) => {
+        set({ sidebarAnnotations: newValue })
+    },
+
     getSidebarAnnotations: async () => {
         const userID = useAuthStore.getState().user?.id
         if (!userID) {
@@ -101,7 +115,44 @@ const useAnnotationStore = create((set) => ({
             const response = await api.get('side-panel-annotations/', {
                 params: filters,
             })
+            set({ sidebarAnnotationsPage: 1 })
+            set({ sidebarAnnotationsMaxPage: response.data.num_pages })
             set({ sidebarAnnotations: response.data.objects })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    fetchMoreSidebarAnnotations: async () => {
+        const {
+            sidebarAnnotationsPage,
+            sidebarAnnotationsMaxPage,
+            sidebarAnnotations,
+        } = useAnnotationStore.getState()
+        if (sidebarAnnotationsPage >= sidebarAnnotationsMaxPage) return
+
+        const userID = useAuthStore.getState().user?.id
+        if (!userID) {
+            console.error('User ID not found')
+            return
+        }
+
+        const filters = {
+            annotator_id: userID,
+            page: sidebarAnnotationsPage + 1,
+        }
+        try {
+            const response = await api.get('side-panel-annotations/', {
+                params: filters,
+            })
+            set({ sidebarAnnotationsPage: sidebarAnnotationsPage + 1 })
+            set({ sidebarAnnotationsMaxPage: response.data.num_pages })
+            set({
+                sidebarAnnotations: [
+                    ...sidebarAnnotations,
+                    ...response.data.objects,
+                ],
+            })
         } catch (error) {
             throw error
         }

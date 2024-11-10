@@ -12,7 +12,7 @@ export const defaultMapOptions = {
     mapTypeControlOptions: {
         mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain'], // Add additional map types
         position: window.google.maps.ControlPosition.TOP_CENTER,
-        style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR, // Control style (optional)
+        style: window.google.maps.MapTypeControlStyle.DROPDOWN_MENU, // Control style (optional)
     },
     zoomControlOptions: {
         position: window.google.maps.ControlPosition.RIGHT_CENTER, // Move zoom control to the bottom-left corner

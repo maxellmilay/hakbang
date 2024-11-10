@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@keyframes glow {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+$accent: #f7eb25;
+
+.blink {
+    box-shadow: 0 0 0 4px rgba($accent, 0.25);
+    animation: blink 1s ease-in-out infinite;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        box-shadow: 0 0 0 4px rgba($accent, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba($accent, 0.45);
+    }
+    100% {
+        box-shadow: 0 0 0 4px rgba($accent, 0.25);
+    }
+}
+
+@keyframes blink {
+    0% {
+        box-shadow: 0 0 0 4px rgba($accent, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba($accent, 0.45);
+    }
+    100% {
+        box-shadow: 0 0 0 4px rgba($accent, 0.25);
+    }
+}
+
+.driver-popover.driverjs-theme {
+    $theme-bg: #fde047;
+    $theme-text: #000;
+    $theme-white: #ffffff;
+
+    background-color: $theme-bg;
+    color: $theme-text;
+
+    .driver-popover-title {
+        font-size: 20px;
+    }
+
+    .driver-popover-title,
+    .driver-popover-description,
+    .driver-popover-progress-text {
+        color: $theme-text;
+    }
+
+    .driver-popover-prev-btn,
+    .driver-popover-next-btn {
+        flex: 1;
+        text-align: center;
+        background-color: $theme-text;
+        color: $theme-white;
+        border: 2px solid $theme-text;
+        text-shadow: none;
+        font-size: 14px;
+        padding: 5px 8px;
+        border-radius: 6px;
+
+        &:hover {
+            background-color: $theme-text;
+            color: $theme-white;
+        }
+    }
+
+    .driver-popover-navigation-btns {
+        justify-content: space-between;
+        gap: 3px;
+        flex-grow: 0;
+    }
+
+    .driver-popover-close-btn {
+        color: #9b9b9b;
+
+        &:hover {
+            color: $theme-text;
+        }
+    }
+
+    .driver-popover-arrow {
+        &-side-left {
+            border-left-color: $theme-bg;
+        }
+
+        &-side-right {
+            border-right-color: $theme-bg;
+        }
+
+        &-side-top {
+            border-top-color: $theme-bg;
+        }
+
+        &-side-bottom {
+            border-bottom-color: $theme-bg;
+        }
+    }
+}

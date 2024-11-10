@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import './globals.css'
+import './globals.scss'
 import RouteChangeHandler from '@/components/RouteChangeHandler'
 import { Suspense } from 'react'
 import FullScreenLoader from '@/components/FullScreenLoader'

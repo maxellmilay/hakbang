@@ -2,8 +2,13 @@
 import React, { Dispatch, SetStateAction, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import { Menu } from '@headlessui/react'
 import { MapLineSegment } from '@/interface/map'
 import Divider from '@mui/material/Divider'
+import { getColorFromValue } from '@/utils/colormap'
+
+import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
+import mockAnnotationDetails from '@/data/coachmarks/annotationDetails.json'
 
 const formatDateAndTime = (dateTime: string) => {
     const date = new Date(dateTime)
@@ -27,19 +32,27 @@ import BaseLoader from './BaseLoader'
 interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     closeAnnotationDetails: () => void
-    selectedLineSegment: MapLineSegment | null
+    selectedLineSegment: MapLineSegment
     confirmLocation: () => void
+    removeAccessibilityScore: (lineSegment: AccessibilityScoreData) => void
 }
 
 function AnnotationDetails(props: PropsInterface) {
-    const { getAnnotations, getAccessibilityColor, getAccessibilityLabel } =
-        useAnnotationStore()
+    const {
+        getAnnotations,
+        getAccessibilityLabel,
+        setSidebarAnnotations,
+        sidebarAnnotations,
+        deleteAnnotation,
+        demoMode,
+    } = useAnnotationStore()
     const { user } = useAuthStore()
     const {
         closeAnnotationDetails,
         setSelectedLineSegment,
         selectedLineSegment,
         confirmLocation,
+        removeAccessibilityScore,
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
@@ -50,6 +63,7 @@ function AnnotationDetails(props: PropsInterface) {
 
     const [showManualData, setShowManualData] = useState(true)
     const [showLocationData, setShowLocationData] = useState(true)
+    const [isDeleting, setIsDeleting] = useState(false)
 
     const formData =
         typeof annotationDetails?.form_data === 'string'
@@ -61,7 +75,34 @@ function AnnotationDetails(props: PropsInterface) {
         setSelectedLineSegment(null)
     }
 
+    const deleteSelectedAnnotation = async () => {
+        try {
+            setIsDeleting(true)
+            const newAnnotations = sidebarAnnotations.filter(
+                (annotation: { id: any }) =>
+                    annotation.id !== annotationDetails.id
+            )
+            setSidebarAnnotations(newAnnotations)
+            await deleteAnnotation(annotationDetails.id)
+            removeAccessibilityScore(selectedLineSegment)
+            setSelectedLineSegment(null)
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setIsDeleting(false)
+        }
+    }
+
     useEffect(() => {
+        if (demoMode) {
+            setIsLoading(false)
+            setSelectedLineSegmentAnnotation(
+                mockAnnotationDetails.annotationDetails
+            )
+            setNoAnnotation(false)
+            return
+        }
+
         console.log(selectedLineSegment)
         const location__start_coordinates__latitude =
             selectedLineSegment?.start_coordinates.latitude.toString()
@@ -105,7 +146,10 @@ function AnnotationDetails(props: PropsInterface) {
     }, [])
 
     return (
-        <div className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto">
+        <div
+            id="demo-annotation-details"
+            className="absolute z-50 left-0 top-0 h-lvh p-4 w-full sm:w-fit pointer-events-auto"
+        >
             <div className="flex flex-col p-3 gap-2 bg-white border border-black rounded-md shadow-2xl h-full w-full sm:w-[470px]">
                 {isLoading ? (
                     <>
@@ -167,10 +211,63 @@ function AnnotationDetails(props: PropsInterface) {
                     </>
                 ) : (
                     <>
-                        <div className="flex justify-between items-start p-2">
-                            <h1 className="font-semibold text-2xl">
-                                {annotationDetails.name}
-                            </h1>
+                        <div className="flex justify-between items-center p-2">
+                            <div className="w-full flex items-center justify-between">
+                                <h1 className="font-semibold text-2xl">
+                                    {annotationDetails.name}
+                                </h1>
+                                <Menu
+                                    as="div"
+                                    className="relative inline-block text-left"
+                                >
+                                    <Menu.Button className="flex items-center mr-2">
+                                        <Icon icon="mdi:dots-horizontal" />
+                                    </Menu.Button>
+                                    <Menu.Items className="absolute right-0 mt-2 w-[190px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="px-1 py-1">
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        className={`${
+                                                            active
+                                                                ? 'bg-slate-100'
+                                                                : ''
+                                                        } group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-50`}
+                                                    >
+                                                        <Icon
+                                                            icon="mdi:square-edit-outline"
+                                                            className="w-4 h-4"
+                                                        />
+                                                        Edit
+                                                    </button>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        onClick={
+                                                            deleteSelectedAnnotation
+                                                        }
+                                                        className={`${
+                                                            active
+                                                                ? 'bg-red-100'
+                                                                : ''
+                                                        } text-red-600 group flex w-full items-center gap-1 rounded-md py-2 px-4 text-sm duration-50`}
+                                                    >
+                                                        <Icon
+                                                            icon="mdi:trash-can-outline"
+                                                            className="w-4 h-4"
+                                                        />
+                                                        {!isDeleting
+                                                            ? 'Delete'
+                                                            : 'Deleting...'}
+                                                    </button>
+                                                )}
+                                            </Menu.Item>
+                                        </div>
+                                    </Menu.Items>
+                                </Menu>
+                            </div>
                             <button
                                 onClick={close}
                                 className="bg-primary rounded-md border-2 border-black
@@ -240,14 +337,27 @@ function AnnotationDetails(props: PropsInterface) {
                                 </h3>
                                 <div className="flex px-3 gap-3 font-semibold text-lg items-center">
                                     <div
-                                        className={`w-6 h-6 rounded-md border-2 border-black
-                            bg-level-${getAccessibilityColor(annotationDetails.location.accessibility_score)}`}
+                                        className={`w-6 h-6 rounded-md border-2 border-black`}
+                                        style={{
+                                            backgroundColor: getColorFromValue(
+                                                annotationDetails.location
+                                                    .accessibility_score
+                                            ),
+                                        }}
                                     ></div>
                                     {getAccessibilityLabel(
                                         annotationDetails.location
                                             .accessibility_score
                                     )}
                                 </div>
+                                <a
+                                    className={`text-sky-500 underline text-sm mx-3 
+                                        ${demoMode ? 'blink' : ''}`}
+                                    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-LcB2SxkW9qIu28qVyUQfnzAJt2wQ2jUdQ&s"
+                                    target="_blank"
+                                >
+                                    How the model works?
+                                </a>
                             </div>
                             <Divider variant="middle" />
                             <div className="flex flex-col gap-3 p-3">

@@ -41,28 +41,35 @@ api.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config
-        if (
-            error.response &&
-            error.response.status === 401 &&
-            !originalRequest._retry
-        ) {
-            originalRequest._retry = true
-            try {
-                const cookies = parseCookies()
-                const refreshToken = cookies.refresh_token
-                if (refreshToken) {
-                    const response = await api.post('token/refresh/', {
-                        refresh: refreshToken,
-                    })
-                    const { access } = response.data
-                    setAuthToken(access)
-                    originalRequest.headers['Authorization'] =
-                        `Bearer ${access}`
-                    return api(originalRequest)
-                }
-            } catch (refreshError) {
+
+        // Check if the error status is 401 (Unauthorized)
+        if (error.response && error.response.status === 401) {
+            // Prevent infinite loop by checking if the request is to token/refresh/
+            if (originalRequest.url.endsWith('token/refresh/')) {
                 setAuthToken(null)
-                return Promise.reject(refreshError)
+                return Promise.reject(error)
+            }
+
+            // Retry the original request only once
+            if (!originalRequest._retry) {
+                originalRequest._retry = true
+                try {
+                    const cookies = parseCookies()
+                    const refreshToken = cookies.refresh_token
+                    if (refreshToken) {
+                        const response = await api.post('token/refresh/', {
+                            refresh: refreshToken,
+                        })
+                        const { access } = response.data
+                        setAuthToken(access)
+                        originalRequest.headers['Authorization'] =
+                            `Bearer ${access}`
+                        return api(originalRequest)
+                    }
+                } catch (refreshError) {
+                    setAuthToken(null)
+                    return Promise.reject(refreshError)
+                }
             }
         }
         return Promise.reject(error)
