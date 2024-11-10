@@ -37,6 +37,7 @@ function AnnotationForm(props: PropsInterface) {
         createAnnotationImage,
         getLocations,
         checkAnnotationNameAvailability,
+        demoStep,
     } = useAnnotationStore()
     const { user } = useAuthStore()
 
@@ -120,6 +121,12 @@ function AnnotationForm(props: PropsInterface) {
         }
         check()
     }, [title])
+
+    useEffect(() => {
+        if (demoStep === 9) {
+            setSidewalkPresence('Yes')
+        }
+    }, [demoStep])
 
     const uploadImage = async (file: Blob, fileName: string) => {
         if (!file) {
@@ -225,7 +232,7 @@ function AnnotationForm(props: PropsInterface) {
     }
 
     const save = async () => {
-        if (disableSave) return
+        if (disableSave || demoStep !== 0) return
         setIsSaving(true)
         try {
             const location_id = await getLocationId()
@@ -337,7 +344,10 @@ function AnnotationForm(props: PropsInterface) {
 
     return (
         <div className="absolute right-0 top-0 z-[100] w-lvw h-lvh bg-black/[.7] flex items-center justify-center">
-            <div className="flex flex-col bg-white rounded-md shadow-lg w-[520px] h-full max-h-[700px]">
+            <div
+                id="demo-annotation-form"
+                className="flex flex-col bg-white rounded-md shadow-lg w-[520px] h-full max-h-[700px]"
+            >
                 <div className="flex items-start justify-between px-6 py-4">
                     <h1 className="font-semibold text-2xl">New annotation</h1>
                     <button
@@ -656,7 +666,9 @@ function AnnotationForm(props: PropsInterface) {
                         </>
                     )}
 
-                    <p className="text-slate-600 font-semibold">IMAGES</p>
+                    <p className="text-slate-600 font-semibold">
+                        IMAGES (optional)
+                    </p>
                     <div className="min-h-[210px] flex gap-2 overflow-x-auto custom-scrollbar overflow-y-hidden pb-4">
                         {images.map((image, index) => (
                             <div
@@ -701,7 +713,11 @@ function AnnotationForm(props: PropsInterface) {
 
                     <div className="w-full flex justify-end gap-2 py-4">
                         <button
-                            onClick={save}
+                            id="demo-annotation-save"
+                            onClick={async () => {
+                                await checkTitleAvailability(title)
+                                save()
+                            }}
                             disabled={isSaving || disableSave}
                             className={`flex gap-1 items-center px-3 py-2 border-2 border-black rounded-md bg-primary
                                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]

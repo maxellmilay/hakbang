@@ -9,6 +9,8 @@ import Image from 'next/image'
 
 import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
+
+import mockSidebarAnnotations from '@/data/coachmarks/sidebarAnnotations.json'
 // import Image from 'next/image'
 
 interface PropsInterface {
@@ -41,6 +43,7 @@ function Sidebar(props: PropsInterface) {
         sidebarAnnotationsPage,
         sidebarAnnotationsMaxPage,
         fetchMoreSidebarAnnotations,
+        demoStep,
     } = useAnnotationStore()
 
     const [isLoading, setIsLoading] = useState(true)
@@ -53,9 +56,16 @@ function Sidebar(props: PropsInterface) {
         isPickingLocation,
     } = props
 
+    const disableInteraction = demoStep !== 0
+
+    const annotations =
+        demoStep === 0
+            ? sidebarAnnotations
+            : mockSidebarAnnotations.sidebarAnnotations
+
     const data: AnnotationItem[] = Object.entries(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        sidebarAnnotations.reduce((acc: any, annotation: any) => {
+        annotations.reduce((acc: any, annotation: any) => {
             const date = new Date(annotation.updated_on)
             const today = new Date()
 
@@ -187,7 +197,7 @@ function Sidebar(props: PropsInterface) {
             {user && (
                 <>
                     <AnimatePresence>
-                        {expand && (
+                        {expand && demoStep !== 1 && (
                             <motion.div
                                 className="absolute h-lvh p-4 z-10"
                                 key={1}
@@ -197,6 +207,7 @@ function Sidebar(props: PropsInterface) {
                                 transition={{ duration: 0.3 }}
                             >
                                 <nav
+                                    id="demo-sidebar"
                                     className={`bg-white w-[320px] h-full rounded-md border-2 border-black p-3 flex flex-col gap-2 transition-transform duration-300 ease-in-out ${
                                         expand
                                             ? 'translate-x-0'
@@ -209,7 +220,11 @@ function Sidebar(props: PropsInterface) {
                                     {/* <div className="h-[130px] min-h-[130px]"></div> */}
                                     <div className="h-[60px] min-h-[60px]"></div>
                                     <button
-                                        onClick={pickLocation}
+                                        onClick={() => {
+                                            if (!disableInteraction) {
+                                                pickLocation()
+                                            }
+                                        }}
                                         className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                                     >
                                         <Icon
@@ -239,11 +254,16 @@ function Sidebar(props: PropsInterface) {
                                                                 index
                                                             ) => (
                                                                 <button
-                                                                    onClick={() =>
-                                                                        inspectAnnotation(
-                                                                            annotation
-                                                                        )
-                                                                    }
+                                                                    id={`demo-sidebar-item-${annotation.id}`}
+                                                                    onClick={() => {
+                                                                        if (
+                                                                            !disableInteraction
+                                                                        ) {
+                                                                            inspectAnnotation(
+                                                                                annotation
+                                                                            )
+                                                                        }
+                                                                    }}
                                                                     key={index}
                                                                     className="rounded-md border border-transparent p-2 flex gap-2 items-center w-full hover:bg-primary-light hover:border hover:border-primary"
                                                                 >

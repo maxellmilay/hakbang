@@ -6,6 +6,14 @@ const useAnnotationStore = create((set) => ({
     sidebarAnnotations: [],
     sidebarAnnotationsPage: 0,
     sidebarAnnotationsMaxPage: 0,
+    demoMode: false,
+    demoStep: 0,
+    setDemoMode: (newValue) => {
+        set({ demoMode: newValue })
+    },
+    setDemoStep: (newValue) => {
+        set({ demoStep: newValue })
+    },
     getAccessibilityColor: (accessibilityScore) => {
         if (accessibilityScore === null) {
             return 0

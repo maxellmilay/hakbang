@@ -23,6 +23,10 @@ function SearchBar(props: PropsInterface) {
         console.log(isMobile, 'ismobile')
     }, [isMobile])
 
+    const handleSearch = () => {
+        alert('Not implemented yet😅')
+    }
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -51,6 +55,11 @@ function SearchBar(props: PropsInterface) {
                     type="text"
                     placeholder="Search for a location"
                     className="p-3 border-0 grow rounded-3xl focus:outline-none"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            handleSearch()
+                        }
+                    }}
                 />
                 <button>
                     <Icon
