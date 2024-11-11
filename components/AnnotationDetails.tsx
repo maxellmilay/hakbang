@@ -35,6 +35,7 @@ interface PropsInterface {
     selectedLineSegment: MapLineSegment
     confirmLocation: () => void
     removeAccessibilityScore: (lineSegment: AccessibilityScoreData) => void
+    editAnnotation: (formData: any) => void
 }
 
 function AnnotationDetails(props: PropsInterface) {
@@ -53,6 +54,7 @@ function AnnotationDetails(props: PropsInterface) {
         selectedLineSegment,
         confirmLocation,
         removeAccessibilityScore,
+        editAnnotation,
     } = props
 
     const [isLoading, setIsLoading] = useState(true)
@@ -73,6 +75,11 @@ function AnnotationDetails(props: PropsInterface) {
     const close = () => {
         closeAnnotationDetails()
         setSelectedLineSegment(null)
+    }
+
+    const edit = () => {
+        editAnnotation(annotationDetails)
+        close()
     }
 
     const deleteSelectedAnnotation = async () => {
@@ -228,6 +235,7 @@ function AnnotationDetails(props: PropsInterface) {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <button
+                                                        onClick={edit}
                                                         className={`${
                                                             active
                                                                 ? 'bg-slate-100'

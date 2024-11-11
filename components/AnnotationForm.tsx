@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import React, { useEffect, useState } from 'react'
@@ -21,19 +22,21 @@ import RadioItem from './RadioItem'
 
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     saveAnnotation: (lineSegment: MapLineSegment, locationId: number) => void
     pickedCoordinates: {
         latitude: number
         longitude: number
     }
     pickedLineSegment: MapLineSegment
+    previousAnnotationData: any
+    cancelEditing: () => void
 }
 
 function AnnotationForm(props: PropsInterface) {
     const {
         createFile,
         createAnnotation,
+        updateAnnotation,
         createAnnotationImage,
         getLocations,
         checkAnnotationNameAvailability,
@@ -43,9 +46,10 @@ function AnnotationForm(props: PropsInterface) {
 
     const {
         pickedCoordinates,
-        setShowAnnotationForm,
         saveAnnotation,
         pickedLineSegment,
+        previousAnnotationData,
+        cancelEditing,
     } = props
 
     const [images, setImages] = useState<string[]>([])
@@ -68,6 +72,8 @@ function AnnotationForm(props: PropsInterface) {
     const [lightingCondition, setLightingCondition] = useState<string | null>(
         null
     )
+
+    const [previousTitle, setPreviousTitle] = useState('')
 
     // remarks from form
     const [sidewalkWidthRemarks, setSidewalkWidthRemarks] = useState<
@@ -114,9 +120,45 @@ function AnnotationForm(props: PropsInterface) {
     }, 500)
 
     useEffect(() => {
+        if (previousAnnotationData) {
+            console.log(previousAnnotationData, 'previous')
+            setTitle(previousAnnotationData.name || '')
+            setPreviousTitle(previousAnnotationData.name || '')
+            const formData =
+                typeof previousAnnotationData?.form_data === 'string'
+                    ? JSON.parse(previousAnnotationData?.form_data || '{}')
+                    : previousAnnotationData?.form_data || {}
+            setSidewalkPresence(formData.sidewalkPresence ? 'Yes' : 'No')
+            setDate(formData.dateAndTime || '')
+            setSidewalkWidth(formData.sidewalkWidth?.value || null)
+            setSidewalkWidthRemarks(formData.sidewalkWidth?.remarks || null)
+            setSidewalkCondition(formData.sidewalkCondition?.value || null)
+            setSidewalkConditionRemarks(
+                formData.sidewalkCondition?.remarks || null
+            )
+            setRampGradient(formData.rampGradient?.value || null)
+            setRampGradientRemarks(formData.rampGradient?.remarks || null)
+            setStreetFurniture(formData.streetFurniture?.value || null)
+            setStreetFurnitureRemarks(formData.streetFurniture?.remarks || null)
+            setBorderBuffer(formData.borderBuffer?.value || null)
+            setBorderBufferRemarks(formData.borderBuffer?.remarks || null)
+            setLightingCondition(formData.lightingCondition?.value || null)
+            setLightingConditionRemarks(
+                formData.lightingCondition?.remarks || null
+            )
+        }
+    }, [previousAnnotationData])
+
+    useEffect(() => {
+        console.log(lightingCondition, 'lighting')
+    }, [lightingCondition])
+
+    useEffect(() => {
         const check = async () => {
             setIsTyping(true)
-            await checkTitleAvailability(title)
+            if (title !== previousTitle) {
+                await checkTitleAvailability(title)
+            }
             setIsTyping(false)
         }
         check()
@@ -282,7 +324,12 @@ function AnnotationForm(props: PropsInterface) {
                     : JSON.stringify(formData),
             }
 
-            const annotation = await createAnnotation(annotationData)
+            const annotation = previousAnnotationData
+                ? await updateAnnotation(
+                      previousAnnotationData.id,
+                      annotationData
+                  )
+                : await createAnnotation(annotationData)
 
             const uploadedUrls = (await uploadImages()) || []
             console.log('All uploaded URLs:', uploadedUrls)
@@ -349,10 +396,14 @@ function AnnotationForm(props: PropsInterface) {
                 className="flex flex-col bg-white rounded-md shadow-lg w-[520px] h-full max-h-[700px]"
             >
                 <div className="flex items-start justify-between px-6 py-4">
-                    <h1 className="font-semibold text-2xl">New annotation</h1>
+                    <h1 className="font-semibold text-2xl">
+                        {previousAnnotationData
+                            ? 'Edit annotation'
+                            : 'New annotation'}
+                    </h1>
                     <button
                         onClick={() => {
-                            setShowAnnotationForm(false)
+                            cancelEditing()
                         }}
                         className="bg-primary rounded-md border-2 border-black
                     duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
@@ -387,6 +438,7 @@ function AnnotationForm(props: PropsInterface) {
                         label="Street name/address"
                         variant="outlined"
                         size="small"
+                        value={title || ''}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     {!isTitleAvailable && (
@@ -408,6 +460,7 @@ function AnnotationForm(props: PropsInterface) {
                         <input
                             type="datetime-local"
                             className="p-2 border border-gray-300 rounded-md"
+                            value={date || ''}
                             onChange={(e) => setDate(e.target.value)}
                         />
                     </div>
@@ -421,6 +474,7 @@ function AnnotationForm(props: PropsInterface) {
                             name="controlled-radio-buttons-group"
                             row
                             // value={'Yes'}
+                            value={sidewalkPresence || ''}
                             onChange={(e) =>
                                 setSidewalkPresence(e.target.value)
                             }
@@ -454,7 +508,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Width in meters"
                                     type="number"
-                                    value={sidewalkWidth}
+                                    value={sidewalkWidth || ''}
                                     onChange={(e) =>
                                         setSidewalkWidth(
                                             parseFloat(e.target.value)
@@ -472,6 +526,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
+                                    value={sidewalkWidthRemarks || ''}
                                     onChange={(e) =>
                                         setSidewalkWidthRemarks(e.target.value)
                                     }
@@ -491,7 +546,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Size in milimeters"
                                     type="number"
-                                    value={sidewalkCondition}
+                                    value={sidewalkCondition || ''}
                                     onChange={(e) =>
                                         setSidewalkCondition(
                                             parseFloat(e.target.value)
@@ -509,6 +564,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
+                                    value={sidewalkCondionRemarks || ''}
                                     onChange={(e) =>
                                         setSidewalkConditionRemarks(
                                             e.target.value
@@ -531,7 +587,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Gradient in degrees"
                                     type="number"
-                                    value={rampGradient}
+                                    value={rampGradient || ''}
                                     onChange={(e) =>
                                         setRampGradient(
                                             parseFloat(e.target.value)
@@ -548,6 +604,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
+                                    value={rampGradientRemarks || ''}
                                     onChange={(e) =>
                                         setRampGradientRemarks(e.target.value)
                                     }
@@ -570,7 +627,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Lewway in meters"
                                     type="number"
-                                    value={streetFurniture}
+                                    value={streetFurniture || ''}
                                     onChange={(e) =>
                                         setStreetFurniture(
                                             parseFloat(e.target.value)
@@ -587,6 +644,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
+                                    value={streetFurnitureRemarks || ''}
                                     onChange={(e) =>
                                         setStreetFurnitureRemarks(
                                             e.target.value
@@ -609,6 +667,7 @@ function AnnotationForm(props: PropsInterface) {
                                     name="controlled-radio-buttons-group"
                                     row
                                     // value={'Yes'}
+                                    value={borderBuffer || ''}
                                     onChange={(e) =>
                                         setBorderBuffer(e.target.value)
                                     }
@@ -634,6 +693,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
+                                    value={borderBufferRemarks || ''}
                                     onChange={(e) =>
                                         setBorderBufferRemarks(e.target.value)
                                     }
@@ -644,6 +704,7 @@ function AnnotationForm(props: PropsInterface) {
                                 header="LIGHTING CONDITION"
                                 label="How well lit is the area?"
                                 options={['Poor', 'Adequate', 'Excellent']}
+                                value={lightingCondition || ''}
                                 allowOther={false}
                                 setValue={setLightingCondition}
                             />
@@ -656,6 +717,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
+                                    value={lightingConditionRemarks || ''}
                                     onChange={(e) =>
                                         setLightingConditionRemarks(
                                             e.target.value
