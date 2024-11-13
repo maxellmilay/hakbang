@@ -16,6 +16,7 @@ import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 import FullScreenLoader from './FullScreenLoader'
 import { getColorFromValue } from '@/utils/colormap'
+import { PulsatingMarker } from './PulsatingMarker'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -25,6 +26,8 @@ const MapComponent = (props: PropsInterface) => {
     const { geojsonData } = props
 
     const { getLocations } = useAnnotationStore()
+
+    const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 })
 
     const [isAccessibilityDataLoaded, setIsAccessibilityDataLoaded] =
         useState(false)
@@ -309,7 +312,7 @@ const MapComponent = (props: PropsInterface) => {
                 dataLayer.overrideStyle(matchedFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
-                    zIndex: 1000, // Ensure it appears on top
+                    zIndex: 100, // Ensure it appears on top
                 })
 
                 const lineSegment = extractFeatureCoordinates(matchedFeature)
@@ -390,7 +393,7 @@ const MapComponent = (props: PropsInterface) => {
                 dataLayer.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
-                    zIndex: 1000, // Ensure it appears on top
+                    zIndex: 100, // Ensure it appears on top
                 })
 
                 setPickedLineSegment(extractFeatureCoordinates(closestFeature))
@@ -405,6 +408,24 @@ const MapComponent = (props: PropsInterface) => {
             }
         }
     }
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            const watcher = navigator.geolocation.watchPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords
+                    setCurrentLocation({ lat: latitude, lng: longitude })
+                },
+                (error) => console.error('Error getting location:', error),
+                { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 }
+            )
+
+            // Cleanup the watcher on component unmount
+            return () => navigator.geolocation.clearWatch(watcher)
+        } else {
+            console.error('Geolocation is not supported by this browser.')
+        }
+    }, [])
 
     const handleMapClick = () => {
         resetFeatureStyles()
@@ -463,6 +484,9 @@ const MapComponent = (props: PropsInterface) => {
                             lng: center.longitude,
                         }}
                     />
+                )}
+                {currentLocation && (
+                    <PulsatingMarker position={currentLocation} />
                 )}
             </GoogleMap>
         </div>

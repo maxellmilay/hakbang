@@ -1,0 +1,45 @@
+.pulse-marker {
+    position: absolute;
+    width: 40px; /* Reduced size for the pulse */
+    height: 40px;
+    background-color: rgba(
+        255,
+        215,
+        0,
+        0.4
+    ); /* Yellow with some transparency */
+    border-radius: 50%;
+    opacity: 1;
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.6); /* Moderate glow */
+    animation: pulse 1.5s ease-out infinite;
+}
+
+.pulse-marker::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; /* Smaller center dot */
+    height: 10px;
+    background-color: #ffd700; /* Solid yellow */
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.9); /* Glow around center dot */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2); /* Reduced pulse size */
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
