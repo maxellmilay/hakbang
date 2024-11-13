@@ -312,7 +312,7 @@ const MapComponent = (props: PropsInterface) => {
                 dataLayer.overrideStyle(matchedFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
-                    zIndex: 100, // Ensure it appears on top
+                    zIndex: 1000, // Ensure it appears on top
                 })
 
                 const lineSegment = extractFeatureCoordinates(matchedFeature)
@@ -393,7 +393,7 @@ const MapComponent = (props: PropsInterface) => {
                 dataLayer.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
-                    zIndex: 100, // Ensure it appears on top
+                    zIndex: 1000, // Ensure it appears on top
                 })
 
                 setPickedLineSegment(extractFeatureCoordinates(closestFeature))
