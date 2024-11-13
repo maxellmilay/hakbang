@@ -360,7 +360,7 @@ function AnnotationForm(props: PropsInterface) {
                     }
                 })
             )
-
+            cancelEditing()
             saveAnnotation(pickedLineSegment, location_id)
         } catch (error) {
             console.error('Error in save function:', error)
