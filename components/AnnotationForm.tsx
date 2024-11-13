@@ -102,12 +102,12 @@ function AnnotationForm(props: PropsInterface) {
         !date ||
         !sidewalkPresence ||
         (sidewalkPresence === 'Yes' &&
-            (!sidewalkWidth ||
-                !sidewalkCondition ||
-                !rampGradient ||
-                !streetFurniture ||
-                !borderBuffer ||
-                !lightingCondition))
+            (sidewalkWidth === null ||
+                sidewalkCondition === null ||
+                rampGradient === null ||
+                streetFurniture === null ||
+                borderBuffer === null ||
+                lightingCondition === null))
 
     const checkTitleAvailability = debounce(async (title: string) => {
         if (!title) {
@@ -526,7 +526,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
-                                    value={sidewalkWidthRemarks || ''}
+                                    value={sidewalkWidthRemarks ?? ''}
                                     onChange={(e) =>
                                         setSidewalkWidthRemarks(e.target.value)
                                     }
@@ -546,7 +546,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Size in milimeters"
                                     type="number"
-                                    value={sidewalkCondition || ''}
+                                    value={sidewalkCondition ?? ''}
                                     onChange={(e) =>
                                         setSidewalkCondition(
                                             parseFloat(e.target.value)
@@ -564,7 +564,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
-                                    value={sidewalkCondionRemarks || ''}
+                                    value={sidewalkCondionRemarks ?? ''}
                                     onChange={(e) =>
                                         setSidewalkConditionRemarks(
                                             e.target.value
@@ -587,7 +587,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Gradient in degrees"
                                     type="number"
-                                    value={rampGradient || ''}
+                                    value={rampGradient ?? ''}
                                     onChange={(e) =>
                                         setRampGradient(
                                             parseFloat(e.target.value)
@@ -604,7 +604,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
-                                    value={rampGradientRemarks || ''}
+                                    value={rampGradientRemarks ?? ''}
                                     onChange={(e) =>
                                         setRampGradientRemarks(e.target.value)
                                     }
@@ -627,7 +627,7 @@ function AnnotationForm(props: PropsInterface) {
                                     id="outlined-multiline-flexible"
                                     label="Lewway in meters"
                                     type="number"
-                                    value={streetFurniture || ''}
+                                    value={streetFurniture ?? ''}
                                     onChange={(e) =>
                                         setStreetFurniture(
                                             parseFloat(e.target.value)
@@ -644,7 +644,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
-                                    value={streetFurnitureRemarks || ''}
+                                    value={streetFurnitureRemarks ?? ''}
                                     onChange={(e) =>
                                         setStreetFurnitureRemarks(
                                             e.target.value
@@ -693,7 +693,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
-                                    value={borderBufferRemarks || ''}
+                                    value={borderBufferRemarks ?? ''}
                                     onChange={(e) =>
                                         setBorderBufferRemarks(e.target.value)
                                     }
@@ -717,7 +717,7 @@ function AnnotationForm(props: PropsInterface) {
                                     label="Remarks"
                                     multiline
                                     maxRows={4}
-                                    value={lightingConditionRemarks || ''}
+                                    value={lightingConditionRemarks ?? ''}
                                     onChange={(e) =>
                                         setLightingConditionRemarks(
                                             e.target.value
