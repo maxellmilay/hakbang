@@ -48,7 +48,6 @@ function Sidebar(props: PropsInterface) {
 
     const [isLoading, setIsLoading] = useState(true)
     const {
-        isMobile,
         expand = true,
         setExpandSidebar,
         pickLocation,
