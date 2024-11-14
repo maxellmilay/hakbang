@@ -36,7 +36,6 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
     (response) => {
-        console.log('Response interceptor:', response.status)
         return response
     },
     async (error) => {

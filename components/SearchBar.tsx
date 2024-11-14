@@ -20,7 +20,6 @@ function SearchBar(props: PropsInterface) {
 
     useEffect(() => {
         setShowFullSearchBar(!isMobile)
-        console.log(isMobile, 'ismobile')
     }, [isMobile])
 
     const handleSearch = () => {

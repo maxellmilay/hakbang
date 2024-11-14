@@ -110,18 +110,16 @@ function AnnotationForm(props: PropsInterface) {
                 lightingCondition === null))
 
     const checkTitleAvailability = debounce(async (title: string) => {
-        if (!title) {
+        if (!title || title == previousTitle) {
             setIsTitleAvailable(true)
             return
         }
         const isAvailable = await checkAnnotationNameAvailability(title)
-        console.log(isAvailable, 'here')
         setIsTitleAvailable(isAvailable)
     }, 500)
 
     useEffect(() => {
         if (previousAnnotationData) {
-            console.log(previousAnnotationData, 'previous')
             setTitle(previousAnnotationData.name || '')
             setPreviousTitle(previousAnnotationData.name || '')
             const formData =
@@ -148,10 +146,6 @@ function AnnotationForm(props: PropsInterface) {
             )
         }
     }, [previousAnnotationData])
-
-    useEffect(() => {
-        console.log(lightingCondition, 'lighting')
-    }, [lightingCondition])
 
     useEffect(() => {
         const check = async () => {
@@ -181,8 +175,6 @@ function AnnotationForm(props: PropsInterface) {
             fileType: file.type,
         }
 
-        console.log('Request body:', requestBody)
-
         try {
             const response = await fetch('/api/upload', {
                 method: 'POST',
@@ -200,8 +192,6 @@ function AnnotationForm(props: PropsInterface) {
             }
 
             const { signedUrl, actualFileUrl } = await response.json()
-            console.log('Signed URL:', signedUrl)
-            console.log('Actual File URL:', actualFileUrl)
 
             // Now use the signed URL to upload the file to S3
             const uploadResponse = await fetch(signedUrl, {
@@ -214,7 +204,6 @@ function AnnotationForm(props: PropsInterface) {
             })
 
             if (uploadResponse.ok) {
-                console.log('File uploaded successfully')
                 return actualFileUrl // Return the actual file URL instead of the signed URL
             } else {
                 throw new Error('Failed to upload file to S3')
@@ -231,16 +220,13 @@ function AnnotationForm(props: PropsInterface) {
         const uploadedUrls = []
         for (let i = 0; i < images.length; i++) {
             const imageUrl = images[i]
-            console.log('Processing image:', imageUrl)
             try {
                 const response = await fetch(imageUrl)
                 const blob = await response.blob()
                 const fileName = `image_${i + 1}_${Date.now()}.${blob.type.split('/')[1]}`
-                console.log('Created blob:', blob, 'with fileName:', fileName)
                 const actualFileUrl = await uploadImage(blob, fileName)
                 if (actualFileUrl) {
                     uploadedUrls.push(actualFileUrl)
-                    console.log('Uploaded image:', actualFileUrl)
                 }
             } catch (error) {
                 console.error('Error processing image:', imageUrl, error)
@@ -332,7 +318,6 @@ function AnnotationForm(props: PropsInterface) {
                 : await createAnnotation(annotationData)
 
             const uploadedUrls = (await uploadImages()) || []
-            console.log('All uploaded URLs:', uploadedUrls)
             const files_id = await Promise.all(
                 uploadedUrls.map(async (url) => {
                     try {
@@ -443,7 +428,7 @@ function AnnotationForm(props: PropsInterface) {
                     />
                     {!isTitleAvailable && (
                         <p className="text-red-500 text-sm">
-                            Street name/address is already taken
+                            Title is already taken
                         </p>
                     )}
                     {/* <TextField

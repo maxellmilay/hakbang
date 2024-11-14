@@ -13,10 +13,9 @@ export const getNearestRoad = async (lat: number, lng: number) => {
             const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
             const placeResponse = await axios.get(placeDetailsUrl)
             const roadName = placeResponse.data.result.name
-            console.log('Nearest road found:', roadName)
             return roadName
         } else {
-            console.log('No road found')
+            console.error('No road found')
             return 'N/A'
         }
     } catch (error) {
