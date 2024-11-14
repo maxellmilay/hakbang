@@ -118,12 +118,13 @@ const MapComponent = (props: PropsInterface) => {
                             ),
                         ]
                         setAccessibilityScores(accessibilityScores)
+                        console.log(res.current_page, res.num_pages)
                         if (res.current === res.num_pages) {
                             break
                         }
                         page++
                     } catch (e) {
-                        console.error(e)
+                        console.error('Error fetching locations:', e)
                         break
                     }
                 }
