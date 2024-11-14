@@ -62,7 +62,6 @@ function Page() {
             clearFailedLogin()
             router.push('/')
         } catch (error) {
-            console.log('hereee')
             console.error(error)
             incrementFailedLogin()
             setIncorrect(true)
