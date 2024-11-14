@@ -139,6 +139,7 @@ function AnnotationDetails(props: PropsInterface) {
             .then((res: any) => {
                 if (res.total_count !== 0) {
                     setSelectedLineSegmentAnnotation(res.objects[0])
+                    console.log(res.objects[0])
                     setNoAnnotation(false)
                 } else {
                     setNoAnnotation(true)

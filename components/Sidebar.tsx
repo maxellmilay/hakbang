@@ -154,16 +154,14 @@ function Sidebar(props: PropsInterface) {
                     </button>
                 )}
 
-                {!isMobile && (
-                    <Image
-                        src="/logo-text.png"
-                        alt="Lakbai Logo Text"
-                        width={100}
-                        height={35}
-                        priority={true} // Optional: to preload the image
-                        layout="intrinsic" // This ensures the aspect ratio is maintained
-                    />
-                )}
+                <Image
+                    src="/logo-text.png"
+                    alt="Lakbai Logo Text"
+                    width={100}
+                    height={35}
+                    priority={true} // Optional: to preload the image
+                    layout="intrinsic" // This ensures the aspect ratio is maintained
+                />
                 {/* <div className="flex items-center gap-2">
                     <h1 className="text-2xl font-bold">lakb</h1>
                     <div className="relative w-9 h-9 scale-[.9]">
