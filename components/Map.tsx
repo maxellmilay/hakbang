@@ -47,7 +47,7 @@ const MapComponent = (props: PropsInterface) => {
     const [pickedLineSegment, setPickedLineSegment] =
         useState<MapLineSegment | null>(null)
 
-    const [dataLayer, setDataLayer] = useState<google.maps.Data | null>(null)
+    const dataLayerRef = useRef<google.maps.Data | null>(null)
 
     const [highlightedFeature, setHighlightedFeature] =
         useState<google.maps.Data.Feature | null>(null)
@@ -78,7 +78,8 @@ const MapComponent = (props: PropsInterface) => {
                     strokeWeight: 0,
                 }
             })
-            setDataLayer(newDataLayer)
+            // setDataLayer(newDataLayer)
+            dataLayerRef.current = newDataLayer
 
             const fetchLocations = async () => {
                 let page = 1
@@ -132,7 +133,7 @@ const MapComponent = (props: PropsInterface) => {
 
             setIsAccessibilityDataLoaded(true)
 
-            newDataLayer.addListener(
+            dataLayerRef.current.addListener(
                 'click',
                 (event: google.maps.Data.MouseEvent) => {
                     const feature = event.feature
@@ -166,7 +167,7 @@ const MapComponent = (props: PropsInterface) => {
 
             // Optionally, fit the map to the bounds of the GeoJSON
             const bounds = new google.maps.LatLngBounds()
-            newDataLayer.forEach((feature) => {
+            dataLayerRef.current.forEach((feature) => {
                 feature.getGeometry()?.forEachLatLng((latLng) => {
                     bounds.extend(latLng)
                 })
@@ -176,9 +177,9 @@ const MapComponent = (props: PropsInterface) => {
     }, [isMapLoaded, geojsonData])
 
     useEffect(() => {
-        if (dataLayer && accessibilityScores.length > 0) {
+        if (dataLayerRef.current && accessibilityScores.length > 0) {
             // Style the GeoJSON lines based on their 'weight' property
-            dataLayer.setStyle((feature) => {
+            dataLayerRef.current.setStyle((feature) => {
                 const coordinates = extractFeatureCoordinates(feature)
                 let strokeColor = '#8f9691' // Default to grey
 
@@ -218,10 +219,10 @@ const MapComponent = (props: PropsInterface) => {
                 }
             })
         }
-    }, [dataLayer, accessibilityScores])
+    }, [dataLayerRef.current, accessibilityScores])
 
     const resetFeatureStyles = () => {
-        if (dataLayer && highlightedFeature) {
+        if (dataLayerRef.current && highlightedFeature) {
             const originalStrokeColor = highlightedFeature.getProperty(
                 'originalStrokeColor'
             )
@@ -229,7 +230,7 @@ const MapComponent = (props: PropsInterface) => {
                 typeof originalStrokeColor === 'string'
                     ? originalStrokeColor
                     : '#8f9691'
-            dataLayer.overrideStyle(highlightedFeature, {
+            dataLayerRef.current.overrideStyle(highlightedFeature, {
                 strokeColor: strokeColor,
                 strokeWeight: 10,
                 zIndex: 1,
@@ -238,14 +239,16 @@ const MapComponent = (props: PropsInterface) => {
     }
 
     useEffect(() => {
-        if (selectedLineSegment && dataLayer) {
+        if (selectedLineSegment && dataLayerRef.current) {
             let matchedFeature: google.maps.Data.Feature | null = null
 
             // Collect all features into an array
             const features: google.maps.Data.Feature[] = []
-            dataLayer.forEach((feature: google.maps.Data.Feature) => {
-                features.push(feature)
-            })
+            dataLayerRef.current.forEach(
+                (feature: google.maps.Data.Feature) => {
+                    features.push(feature)
+                }
+            )
 
             // Use a for-of loop for better type inference
             for (const feature of features) {
@@ -288,7 +291,7 @@ const MapComponent = (props: PropsInterface) => {
 
             if (matchedFeature) {
                 // Highlight the matched feature
-                dataLayer.overrideStyle(matchedFeature, {
+                dataLayerRef.current.overrideStyle(matchedFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
                     zIndex: 1000, // Ensure it appears on top
@@ -316,7 +319,7 @@ const MapComponent = (props: PropsInterface) => {
     }, [selectedLineSegment])
 
     const handleDragEnd = () => {
-        if (isPickingLocation && mapRef.current && dataLayer) {
+        if (isPickingLocation && mapRef.current && dataLayerRef.current) {
             const formattedCenter = {
                 lat: center.latitude,
                 lng: center.longitude,
@@ -334,47 +337,53 @@ const MapComponent = (props: PropsInterface) => {
             let minDistance = Number.MAX_VALUE
             let currentLineSegmentCenter = center
 
-            dataLayer.forEach((feature: google.maps.Data.Feature) => {
-                const geometry = feature.getGeometry()
-                if (geometry && geometry.getType() === 'LineString') {
-                    const lineString = geometry as google.maps.Data.LineString
-                    const coordinates = lineString
-                        .getArray()
-                        .map((latLng: google.maps.LatLng) => ({
-                            latitude: latLng.lat(),
-                            longitude: latLng.lng(),
-                        }))
+            dataLayerRef.current.forEach(
+                (feature: google.maps.Data.Feature) => {
+                    const geometry = feature.getGeometry()
+                    if (geometry && geometry.getType() === 'LineString') {
+                        const lineString =
+                            geometry as google.maps.Data.LineString
+                        const coordinates = lineString
+                            .getArray()
+                            .map((latLng: google.maps.LatLng) => ({
+                                latitude: latLng.lat(),
+                                longitude: latLng.lng(),
+                            }))
 
-                    const lineSegment = {
-                        start_coordinates: coordinates[0],
-                        end_coordinates: coordinates[1],
-                    }
+                        const lineSegment = {
+                            start_coordinates: coordinates[0],
+                            end_coordinates: coordinates[1],
+                        }
 
-                    const {
-                        latitude: linestringLat,
-                        longitude: linestringLng,
-                    } = getLineSegmentCenter(lineSegment)
-
-                    const distance =
-                        google.maps.geometry.spherical.computeDistanceBetween(
-                            centerLatLng,
-                            new google.maps.LatLng(linestringLat, linestringLng)
-                        )
-                    if (distance < minDistance) {
-                        minDistance = distance
-                        closestFeature = feature
-                        currentLineSegmentCenter = {
+                        const {
                             latitude: linestringLat,
                             longitude: linestringLng,
+                        } = getLineSegmentCenter(lineSegment)
+
+                        const distance =
+                            google.maps.geometry.spherical.computeDistanceBetween(
+                                centerLatLng,
+                                new google.maps.LatLng(
+                                    linestringLat,
+                                    linestringLng
+                                )
+                            )
+                        if (distance < minDistance) {
+                            minDistance = distance
+                            closestFeature = feature
+                            currentLineSegmentCenter = {
+                                latitude: linestringLat,
+                                longitude: linestringLng,
+                            }
                         }
                     }
                 }
-            })
+            )
 
             if (closestFeature && minDistance < 30) {
                 setCenter(currentLineSegmentCenter)
 
-                dataLayer.overrideStyle(closestFeature, {
+                dataLayerRef.current.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
                     zIndex: 1000, // Ensure it appears on top
@@ -419,6 +428,15 @@ const MapComponent = (props: PropsInterface) => {
         resetFeatureStyles()
         setSelectedLineSegment(null)
     }
+
+    useEffect(() => {
+        if (mapRef.current) {
+            mapRef.current.addListener('zoom_changed', () => {
+                resetFeatureStyles()
+                setPickedLineSegment(null)
+            })
+        }
+    }, [dataLayerRef.current, highlightedFeature])
 
     return (
         <div className="w-full">
