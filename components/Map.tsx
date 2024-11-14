@@ -118,7 +118,7 @@ const MapComponent = (props: PropsInterface) => {
                             ),
                         ]
                         setAccessibilityScores(accessibilityScores)
-                        if (res.current_page >= res.num_pages) {
+                        if (res.current_page > res.num_pages) {
                             break
                         }
                         page++
