@@ -83,6 +83,7 @@ const AppLayer = (props: PropsInterface) => {
     const [hasSeenGuide, setHasSeenGuide] = useState(false)
     const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
     const [finishedDemo, setFinishedDemo] = useState(false)
+    const [disableConfirmButton, setDisableConfirmButton] = useState(true)
 
     const disableInteraction = demoStep !== 0
 
@@ -90,7 +91,7 @@ const AppLayer = (props: PropsInterface) => {
         let currentStep = 1
         setDemoStep(currentStep)
         setDemoMode(true)
-        console.log('demo running')
+
         const steps = [
             {
                 element: '#demo-app-layer',
@@ -344,7 +345,6 @@ const AppLayer = (props: PropsInterface) => {
             prevBtnText: 'Back',
             doneBtnText: 'Close',
             onDestroyStarted: () => {
-                console.log(currentStep, 'current step')
                 setDemoStep(0)
                 setDemoMode(false)
                 setFinishedDemo(true)
@@ -374,7 +374,6 @@ const AppLayer = (props: PropsInterface) => {
         setIsPickingLocation(true)
         setExpandSidebar(false)
         setSelectedLineSegment(null)
-        console.log('here', isPickingLocation)
     }
 
     const cancelPickLocation = () => {
@@ -387,8 +386,6 @@ const AppLayer = (props: PropsInterface) => {
     }
 
     const removeAccessibilityScore = (lineSegment: AccessibilityScoreData) => {
-        console.log(lineSegment, 'heree')
-        console.log(accessibilityScores, 'scores')
         const newList = accessibilityScores.filter((score) => {
             return (
                 score.start_coordinates.latitude.toString() !==
@@ -460,10 +457,11 @@ const AppLayer = (props: PropsInterface) => {
         setSelectedLineSegment(null)
     }
 
-    const disableConfirmButton =
-        !pickedCoordinates ||
-        !pickedLineSegment ||
-        Object.keys(pickedLineSegment).length === 0
+    useEffect(() => {
+        setDisableConfirmButton(
+            !pickedLineSegment || Object.keys(pickedLineSegment).length === 0
+        )
+    }, [pickedLineSegment])
 
     useEffect(() => {
         const handleResize = () => {

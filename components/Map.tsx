@@ -62,7 +62,6 @@ const MapComponent = (props: PropsInterface) => {
                 const latitude = newCenter.lat()
                 const longitude = newCenter.lng()
                 setPickedCoordinates({ latitude, longitude })
-                console.log('LAT', longitude, 'LANG', longitude)
             }
         }
     }
@@ -158,22 +157,9 @@ const MapComponent = (props: PropsInterface) => {
                             }
 
                             setSelectedLineSegment(lineSegment)
-                        } else if (geometry.getType() === 'Point') {
-                            // Cast geometry to Point
-                            const point = geometry as google.maps.Data.Point
-                            const latLng = point.get()
-                            console.log('Point coordinates:', {
-                                latitude: latLng.lat(),
-                                longitude: latLng.lng(),
-                            })
-                        } else {
-                            console.log(
-                                'Other geometry type:',
-                                geometry.getType()
-                            )
                         }
                     } else {
-                        console.log('No geometry found for this feature.')
+                        console.error('No geometry found for this feature.')
                     }
                 }
             )
@@ -190,19 +176,13 @@ const MapComponent = (props: PropsInterface) => {
     }, [isMapLoaded, geojsonData])
 
     useEffect(() => {
-        console.log(JSON.stringify(accessibilityScores, null, 2))
-    }, [accessibilityScores])
-
-    useEffect(() => {
         if (dataLayer && accessibilityScores.length > 0) {
             // Style the GeoJSON lines based on their 'weight' property
-            console.log(accessibilityScores)
             dataLayer.setStyle((feature) => {
                 const coordinates = extractFeatureCoordinates(feature)
                 let strokeColor = '#8f9691' // Default to grey
 
                 if (accessibilityScores) {
-                    // console.log(accessibilityScores)
                     const weightData = accessibilityScores.find((scoreData) => {
                         const isMatch =
                             coordinates.start_coordinates.longitude ==
@@ -308,7 +288,6 @@ const MapComponent = (props: PropsInterface) => {
 
             if (matchedFeature) {
                 // Highlight the matched feature
-                console.log('OVERRIDE')
                 dataLayer.overrideStyle(matchedFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
@@ -320,7 +299,6 @@ const MapComponent = (props: PropsInterface) => {
                 const lineSegmentCenter = getLineSegmentCenter(lineSegment)
 
                 if (mapRef.current) {
-                    console.log('Panning to:', lineSegmentCenter) // Log for debugging
                     mapRef.current.setCenter({
                         lat: lineSegmentCenter.latitude,
                         lng: lineSegmentCenter.longitude,
@@ -354,6 +332,7 @@ const MapComponent = (props: PropsInterface) => {
 
             let closestFeature = {} as google.maps.Data.Feature
             let minDistance = Number.MAX_VALUE
+            let currentLineSegmentCenter = center
 
             dataLayer.forEach((feature: google.maps.Data.Feature) => {
                 const geometry = feature.getGeometry()
@@ -381,15 +360,20 @@ const MapComponent = (props: PropsInterface) => {
                             centerLatLng,
                             new google.maps.LatLng(linestringLat, linestringLng)
                         )
-
                     if (distance < minDistance) {
                         minDistance = distance
                         closestFeature = feature
+                        currentLineSegmentCenter = {
+                            latitude: linestringLat,
+                            longitude: linestringLng,
+                        }
                     }
                 }
             })
 
-            if (closestFeature) {
+            if (closestFeature && minDistance < 30) {
+                setCenter(currentLineSegmentCenter)
+
                 dataLayer.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
                     strokeWeight: 25,
@@ -405,6 +389,10 @@ const MapComponent = (props: PropsInterface) => {
             if (highlightedFeature) {
                 if (highlightedFeature === closestFeature) return
                 resetFeatureStyles()
+
+                if (minDistance >= 30) {
+                    setPickedLineSegment(null)
+                }
             }
         }
     }
