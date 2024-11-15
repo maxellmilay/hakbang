@@ -16,7 +16,7 @@ import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 import { getColorFromValue } from '@/utils/colormap'
 import { PulsatingMarker } from './PulsatingMarker'
-import BaseLoader from './BaseLoader'
+import FullScreenLoader from './FullScreenLoader'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -472,7 +472,7 @@ const MapComponent = (props: PropsInterface) => {
 
     return (
         <div className="w-full">
-            {!isAccessibilityDataLoaded && <BaseLoader />}
+            {!isAccessibilityDataLoaded && <FullScreenLoader />}
             <AppLayer
                 center={center}
                 setIsPickingLocation={setIsPickingLocation}
