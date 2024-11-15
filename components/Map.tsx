@@ -86,7 +86,10 @@ const MapComponent = (props: PropsInterface) => {
                 let accessibilityScores = [] as AccessibilityScoreData[]
                 while (true) {
                     try {
-                        const res = await getLocations({ page })
+                        const res = await getLocations({
+                            page,
+                            accessibility_score__isnull: false,
+                        })
                         setIsAccessibilityDataLoaded(true)
                         accessibilityScores = [
                             ...accessibilityScores,
