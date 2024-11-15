@@ -11,13 +11,8 @@ const FullScreenLoader = () => {
             setIsStarted(true)
         }, 50)
 
-        const hideTimer = setTimeout(() => {
-            setIsVisible(false)
-        }, 3000)
-
         return () => {
             clearTimeout(startTimer)
-            clearTimeout(hideTimer)
         }
     }, [])
 

@@ -87,6 +87,7 @@ const MapComponent = (props: PropsInterface) => {
                 while (true) {
                     try {
                         const res = await getLocations({ page })
+                        setIsAccessibilityDataLoaded(true)
                         accessibilityScores = [
                             ...accessibilityScores,
                             ...res.objects.map(
@@ -130,8 +131,6 @@ const MapComponent = (props: PropsInterface) => {
             }
 
             fetchLocations()
-
-            setIsAccessibilityDataLoaded(true)
 
             dataLayerRef.current.addListener(
                 'click',
@@ -440,6 +439,7 @@ const MapComponent = (props: PropsInterface) => {
 
     return (
         <div className="w-full">
+            {!isAccessibilityDataLoaded && <FullScreenLoader />}
             <AppLayer
                 center={center}
                 setIsPickingLocation={setIsPickingLocation}
@@ -456,7 +456,6 @@ const MapComponent = (props: PropsInterface) => {
                 accessibilityScores={accessibilityScores}
                 isAccessibilityDataLoaded={isAccessibilityDataLoaded}
             />
-            {!isAccessibilityDataLoaded && <FullScreenLoader />}
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
                 zoom={defaultMapZoom}
