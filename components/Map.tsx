@@ -133,7 +133,36 @@ const MapComponent = (props: PropsInterface) => {
                 }
             }
 
-            fetchLocations()
+            const fetchLocationsAtOnce = async () => {
+                const res = await getLocations({
+                    accessibility_score__isnull: false,
+                })
+
+                let accessibilityScoresList: AccessibilityScoreData[] = []
+
+                accessibilityScoresList = res.objects.map(
+                    (lineSegment: MapLineSegment) => {
+                        const parsedLineSegment: AccessibilityScoreData = {
+                            score: lineSegment.accessibility_score,
+                            start_coordinates: {
+                                latitude:
+                                    lineSegment.start_coordinates.latitude,
+                                longitude:
+                                    lineSegment.start_coordinates.longitude,
+                            },
+                            end_coordinates: {
+                                latitude: lineSegment.end_coordinates.latitude,
+                                longitude:
+                                    lineSegment.end_coordinates.longitude,
+                            },
+                        }
+                        return parsedLineSegment
+                    }
+                )
+                setAccessibilityScores(accessibilityScoresList)
+            }
+
+            fetchLocationsAtOnce()
 
             dataLayerRef.current.addListener(
                 'click',
