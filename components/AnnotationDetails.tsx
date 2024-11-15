@@ -362,7 +362,7 @@ function AnnotationDetails(props: PropsInterface) {
                                 <a
                                     className={`text-sky-500 underline text-sm mx-3 
                                         ${demoMode ? 'blink' : ''}`}
-                                    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-LcB2SxkW9qIu28qVyUQfnzAJt2wQ2jUdQ&s"
+                                    href="https://res.cloudinary.com/dhyoibvtc/image/upload/v1731713214/Mode_explainer_nkvg8q.png"
                                     target="_blank"
                                 >
                                     How the model works?
