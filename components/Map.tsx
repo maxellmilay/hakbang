@@ -14,9 +14,9 @@ import { extractFeatureCoordinates } from '@/utils/geojson'
 import { getLineSegmentCenter } from '@/utils/distance'
 import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
-import FullScreenLoader from './FullScreenLoader'
 import { getColorFromValue } from '@/utils/colormap'
 import { PulsatingMarker } from './PulsatingMarker'
+import BaseLoader from './BaseLoader'
 
 interface PropsInterface {
     geojsonData: Record<string, unknown>
@@ -81,57 +81,57 @@ const MapComponent = (props: PropsInterface) => {
             // setDataLayer(newDataLayer)
             dataLayerRef.current = newDataLayer
 
-            const fetchLocations = async () => {
-                let page = 1
-                let accessibilityScores = [] as AccessibilityScoreData[]
-                while (true) {
-                    try {
-                        const res = await getLocations({
-                            page,
-                            accessibility_score__isnull: false,
-                        })
-                        setIsAccessibilityDataLoaded(true)
-                        accessibilityScores = [
-                            ...accessibilityScores,
-                            ...res.objects.map(
-                                (lineSegment: MapLineSegment) => {
-                                    const parsedLineSegment: AccessibilityScoreData =
-                                        {
-                                            score: lineSegment.accessibility_score,
-                                            start_coordinates: {
-                                                latitude:
-                                                    lineSegment
-                                                        .start_coordinates
-                                                        .latitude,
-                                                longitude:
-                                                    lineSegment
-                                                        .start_coordinates
-                                                        .longitude,
-                                            },
-                                            end_coordinates: {
-                                                latitude:
-                                                    lineSegment.end_coordinates
-                                                        .latitude,
-                                                longitude:
-                                                    lineSegment.end_coordinates
-                                                        .longitude,
-                                            },
-                                        }
-                                    return parsedLineSegment
-                                }
-                            ),
-                        ]
-                        setAccessibilityScores(accessibilityScores)
-                        if (res.current_page === res.num_pages) {
-                            break
-                        }
-                        page++
-                    } catch (e) {
-                        console.error('Error fetching locations:', e)
-                        break
-                    }
-                }
-            }
+            // const fetchLocations = async () => {
+            //     let page = 1
+            //     let accessibilityScores = [] as AccessibilityScoreData[]
+            //     while (true) {
+            //         try {
+            //             const res = await getLocations({
+            //                 page,
+            //                 accessibility_score__isnull: false,
+            //             })
+            //             setIsAccessibilityDataLoaded(true)
+            //             accessibilityScores = [
+            //                 ...accessibilityScores,
+            //                 ...res.objects.map(
+            //                     (lineSegment: MapLineSegment) => {
+            //                         const parsedLineSegment: AccessibilityScoreData =
+            //                             {
+            //                                 score: lineSegment.accessibility_score,
+            //                                 start_coordinates: {
+            //                                     latitude:
+            //                                         lineSegment
+            //                                             .start_coordinates
+            //                                             .latitude,
+            //                                     longitude:
+            //                                         lineSegment
+            //                                             .start_coordinates
+            //                                             .longitude,
+            //                                 },
+            //                                 end_coordinates: {
+            //                                     latitude:
+            //                                         lineSegment.end_coordinates
+            //                                             .latitude,
+            //                                     longitude:
+            //                                         lineSegment.end_coordinates
+            //                                             .longitude,
+            //                                 },
+            //                             }
+            //                         return parsedLineSegment
+            //                     }
+            //                 ),
+            //             ]
+            //             setAccessibilityScores(accessibilityScores)
+            //             if (res.current_page === res.num_pages) {
+            //                 break
+            //             }
+            //             page++
+            //         } catch (e) {
+            //             console.error('Error fetching locations:', e)
+            //             break
+            //         }
+            //     }
+            // }
 
             const fetchLocationsAtOnce = async () => {
                 const res = await getLocations({
@@ -160,6 +160,7 @@ const MapComponent = (props: PropsInterface) => {
                     }
                 )
                 setAccessibilityScores(accessibilityScoresList)
+                setIsAccessibilityDataLoaded(true)
             }
 
             fetchLocationsAtOnce()
@@ -471,7 +472,7 @@ const MapComponent = (props: PropsInterface) => {
 
     return (
         <div className="w-full">
-            {!isAccessibilityDataLoaded && <FullScreenLoader />}
+            {!isAccessibilityDataLoaded && <BaseLoader />}
             <AppLayer
                 center={center}
                 setIsPickingLocation={setIsPickingLocation}
