@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const FullScreenLoader = () => {
-    const [isVisible, setIsVisible] = useState(true)
     const [isStarted, setIsStarted] = useState(false)
 
     useEffect(() => {
@@ -15,8 +14,6 @@ const FullScreenLoader = () => {
             clearTimeout(startTimer)
         }
     }, [])
-
-    if (!isVisible) return null
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
