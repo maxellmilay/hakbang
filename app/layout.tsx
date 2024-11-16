@@ -4,6 +4,7 @@ import './globals.scss'
 import RouteChangeHandler from '@/components/RouteChangeHandler'
 import { Suspense } from 'react'
 import FullScreenLoader from '@/components/FullScreenLoader'
+import { Analytics } from '@vercel/analytics/react'
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -36,6 +37,7 @@ export default function RootLayout({
                     <RouteChangeHandler />
                     {children}
                 </Suspense>
+                <Analytics />
             </body>
         </html>
     )
