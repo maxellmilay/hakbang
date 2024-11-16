@@ -28,6 +28,7 @@ import useAuthStore from '@/store/auth'
 
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import BaseLoader from './BaseLoader'
+import { getWeatherData } from '@/utils/weather'
 
 interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
@@ -62,6 +63,8 @@ function AnnotationDetails(props: PropsInterface) {
     const [noAnnotation, setNoAnnotation] = useState(false)
     const [annotationDetails, setSelectedLineSegmentAnnotation] =
         useState<any>(null)
+
+    const [currentWeatherData, setCurrentWeatherData] = useState<any>(null)
 
     const [showManualData, setShowManualData] = useState(true)
     const [showLocationData, setShowLocationData] = useState(true)
@@ -152,6 +155,31 @@ function AnnotationDetails(props: PropsInterface) {
                 setIsLoading(false)
             })
     }, [])
+
+    const formatHazardIndex = (index: number) => {
+        if (index == 0 || index == 1) {
+            return 'LOW'
+        } else if (index == 2) {
+            return 'MEDIUM'
+        } else if (index == 3) {
+            return 'HIGH'
+        } else {
+            return 'MEDIUM'
+        }
+    }
+
+    const extractWeather = async () => {
+        if (annotationDetails) {
+            const latitude = annotationDetails.coordinates.latitude
+            const longitude = annotationDetails.coordinates.longitude
+            const res = await getWeatherData(latitude, longitude)
+            setCurrentWeatherData(res)
+        }
+    }
+
+    useEffect(() => {
+        extractWeather()
+    }, [annotationDetails])
 
     return (
         <div
@@ -362,7 +390,7 @@ function AnnotationDetails(props: PropsInterface) {
                                 <a
                                     className={`text-sky-500 underline text-sm mx-3 
                                         ${demoMode ? 'blink' : ''}`}
-                                    href="https://res.cloudinary.com/dhyoibvtc/image/upload/v1731713214/Mode_explainer_nkvg8q.png"
+                                    href="https://docs.google.com/document/d/1G7k4jhP2vi6SjNJbKcM86qTpGM3hDpr1Bk_hYG7GvCE/edit?usp=sharing"
                                     target="_blank"
                                 >
                                     How the model works?
@@ -389,9 +417,94 @@ function AnnotationDetails(props: PropsInterface) {
                                         )}
                                     </button>
                                 </div>
-                                {showLocationData && (
+                                {showLocationData && currentWeatherData && (
                                     <>
-                                        <p>todo</p>
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                Hazard
+                                            </h3>
+                                            <p className="text-xs text-gray-500">
+                                                Flood Hazard Level based on
+                                                Project Noah
+                                            </p>
+                                            <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                                <p className="font-semibold">
+                                                    {formatHazardIndex(
+                                                        annotationDetails
+                                                            .location.data
+                                                            .hazard
+                                                    )}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                POPULATION
+                                            </h3>
+                                            <p className="text-xs text-gray-500">
+                                                Population of the Barangay
+                                            </p>
+                                            <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                                <p className="font-semibold">
+                                                    {
+                                                        annotationDetails
+                                                            .location.data
+                                                            .population
+                                                    }
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                ZONE
+                                            </h3>
+                                            <p className="text-xs text-gray-500">
+                                                Area Zone Category by Mandaue
+                                                City
+                                            </p>
+                                            <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                                <p className="font-semibold">
+                                                    {
+                                                        annotationDetails
+                                                            .location.data.zone
+                                                    }
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                Heat Index
+                                            </h3>
+                                            <p className="text-xs text-gray-500">
+                                                Heat Index Category based on
+                                                Humidity and Temperature
+                                            </p>
+                                            <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                                <p className="font-semibold">
+                                                    {
+                                                        currentWeatherData.heatIndex
+                                                    }
+                                                    °C
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                PRECIPITATION
+                                            </h3>
+                                            <p className="text-xs text-gray-500">
+                                                Precipitation of the surrounding
+                                                area
+                                            </p>
+                                            <div className="flex flex-col w-full p-3 my-1 rounded-md bg-gray-100 gap-1">
+                                                <p className="font-semibold">
+                                                    {
+                                                        currentWeatherData.precipitation
+                                                    }{' '}
+                                                    mm/hr
+                                                </p>
+                                            </div>
+                                        </div>
                                     </>
                                 )}
                             </div>
