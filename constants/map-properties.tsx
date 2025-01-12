@@ -5,14 +5,14 @@ export const defaultMapCenter = {
 
 export const defaultMapZoom = 18
 
-export const defaultMapOptions = {
+export const defaultMapOptions = (google: any) => ({
     streetViewControl: false,
     fullscreenControl: false,
     mapTypeControl: true,
     mapTypeControlOptions: {
         mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain'], // Add additional map types
-        position: window.google.maps.ControlPosition.TOP_CENTER,
-        style: window.google.maps.MapTypeControlStyle.DROPDOWN_MENU, // Control style (optional)
+        position: google.maps.ControlPosition.TOP_CENTER,
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU, // Control style (optional)
     },
     zoomControlOptions: {
         position: window.google.maps.ControlPosition.RIGHT_CENTER, // Move zoom control to the bottom-left corner
@@ -22,7 +22,7 @@ export const defaultMapOptions = {
     tiltControl: false, // Optionally ensure tilt functionality is off
     gestureHandling: 'greedy',
     mapTypeId: 'satellite',
-}
+})
 
 export const defaultMapContainerStyle = {
     width: '100vw',

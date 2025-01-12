@@ -492,7 +492,7 @@ const MapComponent = (props: PropsInterface) => {
             <GoogleMap
                 mapContainerStyle={defaultMapContainerStyle}
                 zoom={defaultMapZoom}
-                options={defaultMapOptions}
+                options={defaultMapOptions(google)}
                 onLoad={(map) => {
                     mapRef.current = map
                     setIsMapLoaded(true)
