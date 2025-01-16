@@ -11,6 +11,7 @@ const geistSans = localFont({
     variable: '--font-geist-sans',
     weight: '100 900',
 })
+
 const geistMono = localFont({
     src: './fonts/GeistMonoVF.woff',
     variable: '--font-geist-mono',
@@ -18,7 +19,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-    title: 'Lakbai',
+    title: 'Hakbang',
     description:
         'Interactive dashboard for a Dynamic Pedestrian Accessibility Index using Fuzzy Logic Systems and Real Time Data for Sustainable and Inclusive Urban Mobility in the Philippines',
 }

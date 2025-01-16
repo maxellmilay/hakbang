@@ -8,14 +8,15 @@ const config: Config = {
     ],
     theme: {
         fontFamily: {
-            'inter': ['Inter 18pt'],
-          },
+            inter: ['Inter 18pt'],
+        },
         extend: {
             colors: {
                 background: 'var(--background)',
                 foreground: 'var(--foreground)',
                 primary: {
                     DEFAULT: '#F7EB25',
+                    default: '#F7EB25',
                     light: '#FEFDE9',
                     dark: '#AFA71A',
                 },

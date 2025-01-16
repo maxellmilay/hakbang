@@ -28,32 +28,24 @@ const MapComponent = (props: PropsInterface) => {
     const { getLocations } = useAnnotationStore()
 
     const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 })
-
     const [isAccessibilityDataLoaded, setIsAccessibilityDataLoaded] =
         useState(false)
-
     const [accessibilityScores, setAccessibilityScores] = useState(
         [] as AccessibilityScoreData[]
     )
-
     const [isPickingLocation, setIsPickingLocation] = useState(false)
-
     const mapRef = useRef<google.maps.Map | null>(null)
     const [isMapLoaded, setIsMapLoaded] = useState(false)
-
     const [center, setCenter] = useState(defaultMapCenter)
-
     const [pickedCoordinates, setPickedCoordinates] = useState(defaultMapCenter)
     const [pickedLineSegment, setPickedLineSegment] =
         useState<MapLineSegment | null>(null)
-
-    const dataLayerRef = useRef<google.maps.Data | null>(null)
-
     const [highlightedFeature, setHighlightedFeature] =
         useState<google.maps.Data.Feature | null>(null)
-
     const [selectedLineSegment, setSelectedLineSegment] =
         useState<MapLineSegment | null>(null)
+
+    const dataLayerRef = useRef<google.maps.Data | null>(null)
 
     const handleSaveLocation = () => {
         if (mapRef.current) {
@@ -78,60 +70,7 @@ const MapComponent = (props: PropsInterface) => {
                     strokeWeight: 0,
                 }
             })
-            // setDataLayer(newDataLayer)
             dataLayerRef.current = newDataLayer
-
-            // const fetchLocations = async () => {
-            //     let page = 1
-            //     let accessibilityScores = [] as AccessibilityScoreData[]
-            //     while (true) {
-            //         try {
-            //             const res = await getLocations({
-            //                 page,
-            //                 accessibility_score__isnull: false,
-            //             })
-            //             setIsAccessibilityDataLoaded(true)
-            //             accessibilityScores = [
-            //                 ...accessibilityScores,
-            //                 ...res.objects.map(
-            //                     (lineSegment: MapLineSegment) => {
-            //                         const parsedLineSegment: AccessibilityScoreData =
-            //                             {
-            //                                 score: lineSegment.accessibility_score,
-            //                                 start_coordinates: {
-            //                                     latitude:
-            //                                         lineSegment
-            //                                             .start_coordinates
-            //                                             .latitude,
-            //                                     longitude:
-            //                                         lineSegment
-            //                                             .start_coordinates
-            //                                             .longitude,
-            //                                 },
-            //                                 end_coordinates: {
-            //                                     latitude:
-            //                                         lineSegment.end_coordinates
-            //                                             .latitude,
-            //                                     longitude:
-            //                                         lineSegment.end_coordinates
-            //                                             .longitude,
-            //                                 },
-            //                             }
-            //                         return parsedLineSegment
-            //                     }
-            //                 ),
-            //             ]
-            //             setAccessibilityScores(accessibilityScores)
-            //             if (res.current_page === res.num_pages) {
-            //                 break
-            //             }
-            //             page++
-            //         } catch (e) {
-            //             console.error('Error fetching locations:', e)
-            //             break
-            //         }
-            //     }
-            // }
 
             const fetchLocationsAtOnce = async () => {
                 const res = await getLocations({

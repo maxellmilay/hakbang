@@ -1,6 +1,6 @@
-## 1. Welcome to Lakbai!
+## 1. Welcome to Hakbang!
 
-### Welcome to Lakbai! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.
+### Welcome to Hakbang! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.
 
 _// This will open a modal at the center of the page._
 
@@ -107,4 +107,4 @@ _// A celebratory modal appears to acknowledge the user's achievement._
 
 ---
 
-**Thank you for helping improve accessibility with Lakbai!**
+**Thank you for helping improve accessibility with Hakbang!**

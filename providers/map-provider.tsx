@@ -1,26 +1,26 @@
-//Since the map will be laoded and displayed on client side
 'use client'
 
 import FullScreenLoader from '@/components/FullScreenLoader'
-// Import necessary modules and functions from external libraries and our own project
 import { Libraries, useJsApiLoader } from '@react-google-maps/api'
 import { ReactNode } from 'react'
 
-// Define a list of libraries to load from the Google Maps API
 const libraries = ['places', 'drawing', 'geometry', 'visualization']
 
-// Define a function component called MapProvider that takes a children prop
-export function MapProvider({ children }: { children: ReactNode }) {
-    // Load the Google Maps JavaScript API asynchronously
+interface MapProvider {
+    children: ReactNode
+}
+
+export function MapProvider({ children }: MapProvider) {
     const { isLoaded: scriptLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
         libraries: libraries as Libraries,
     })
 
-    if (loadError) return <p>Encountered error while loading google maps</p>
+    console.log('MAP PROVIDEsR', scriptLoaded, loadError)
+
+    if (loadError) return <p>Encountered error while loading google maps</p> // create error screen
 
     if (!scriptLoaded) return <FullScreenLoader />
 
-    // Return the children prop wrapped by this MapProvider component
     return children
 }

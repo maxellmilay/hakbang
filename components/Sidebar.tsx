@@ -155,7 +155,7 @@ function Sidebar(props: PropsInterface) {
 
                 <Image
                     src="/logo-text.png"
-                    alt="Lakbai Logo Text"
+                    alt="Hakbang Logo Text"
                     width={100}
                     height={35}
                     priority={true} // Optional: to preload the image
