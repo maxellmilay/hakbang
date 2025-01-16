@@ -95,12 +95,14 @@ const CreatePedestrian = () => {
                                     strokeWeight: 0,
                                 }}
                             />
-                            <Polyline
-                                path={markedPedestrianEdges}
-                                options={lineOptions}
-                            />
                         </>
                     ))}
+                    {markedPedestrianEdges.length > 0 && (
+                        <Polyline
+                            path={markedPedestrianEdges}
+                            options={lineOptions}
+                        />
+                    )}
                 </GoogleMap>
             </div>
         </MapProvider>
