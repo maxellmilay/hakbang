@@ -48,24 +48,27 @@ const CreatePedestrian = () => {
 
     return (
         <MapProvider>
-            <div className="w-full">
+            <div className="w-full relative">
                 {!isMarkingPedestrianEdges ? (
                     <Button
-                        className="absolute bottom-10 right-20 z-[1] bg-primary-default"
+                        className="absolute bottom-10 right-20 z-[1] bg-primary"
                         onClick={() => setIsMarkingPedestrianEdges(true)}
                     >
                         CREATE
                     </Button>
                 ) : (
                     <>
+                        <div className="absolute top-0 left-0 w-full z-[1] bg-primary py-5 flex justify-center items-center font-semibold border-b border-black">
+                            Creating Pedestrian
+                        </div>
                         <Button
-                            className="absolute bottom-10 right-44 z-[1] hover:bg-red-400"
+                            className="absolute bottom-10 right-44 z-[1] bg-white hover:bg-red-400"
                             onClick={cancelMarkedPedestrialEdges}
                         >
                             Cancel
                         </Button>
                         <Button
-                            className="absolute bottom-10 right-20 z-[1] bg-primary-default"
+                            className="absolute bottom-10 right-20 z-[1] bg-primary"
                             onClick={saveMarkedPedestrialEdges}
                         >
                             Save
