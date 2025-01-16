@@ -5,7 +5,7 @@ export const defaultMapCenter = {
 
 export const defaultMapZoom = 18
 
-export const defaultMapOptions = (google: any) => ({
+export const defaultMapOptions = (google: typeof globalThis.google) => ({
     streetViewControl: false,
     fullscreenControl: false,
     mapTypeControl: true,

@@ -13,9 +13,9 @@ import { GoogleMap, Marker, Polyline } from '@react-google-maps/api'
 import Button from '@/components/generic/Button'
 
 const lineOptions = {
-    strokeColor: 'blue', // Line color
-    strokeOpacity: 1.0, // Line opacity
-    strokeWeight: 2, // Line thickness
+    strokeColor: 'blue',
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
 }
 
 const CreatePedestrian = () => {
@@ -84,6 +84,19 @@ const CreatePedestrian = () => {
                         lng: defaultMapCenter.longitude,
                     }}
                     onClick={updateMarkedPedestrianEdges}
+                    options={{
+                        styles: [
+                            {
+                                featureType: 'all',
+                                elementType: 'labels',
+                                stylers: [
+                                    {
+                                        visibility: 'no',
+                                    },
+                                ],
+                            },
+                        ],
+                    }}
                 >
                     {markedPedestrianEdges.map((point, index) => (
                         <>
