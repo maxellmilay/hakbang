@@ -100,6 +100,7 @@ const useAnnotationStore = create((set) => ({
             return 'Exceptional'
         }
     },
+
     setSidebarAnnotations: async (newValue) => {
         set({ sidebarAnnotations: newValue })
     },
@@ -217,10 +218,10 @@ const useAnnotationStore = create((set) => ({
         }
     },
 
-    getLocations: async (filters) => {
+    getSidewalks: async (filters) => {
         // to maxell: size per request is 20, you might want to adjust this in the BE
         try {
-            const response = await api.get('locations/', {
+            const response = await api.get('sidewalks/', {
                 params: filters,
             })
             return response.data
@@ -229,36 +230,48 @@ const useAnnotationStore = create((set) => ({
         }
     },
 
-    getLocationDetails: async (id) => {
+    getSimpleSidewalks: async (filters) => {
+        // to maxell: size per request is 20, you might want to adjust this in the BE
         try {
-            const response = await api.get(`locations/${id}/`)
+            const response = await api.get('simple-sidewalks/', {
+                params: filters,
+            })
             return response.data
         } catch (error) {
             throw error.response.data
         }
     },
 
-    updateLocation: async (id, data) => {
+    getSidewalkDetails: async (id) => {
         try {
-            const response = await api.put(`locations/${id}/`, data)
+            const response = await api.get(`sidewalks/${id}/`)
             return response.data
         } catch (error) {
             throw error.response.data
         }
     },
 
-    createLocation: async (data) => {
+    updateSidewalk: async (id, data) => {
         try {
-            const response = await api.post('locations/', data)
+            const response = await api.put(`sidewalks/${id}/`, data)
             return response.data
         } catch (error) {
             throw error.response.data
         }
     },
 
-    deleteLocation: async (id) => {
+    createSidewalk: async (data) => {
         try {
-            const response = await api.delete(`locations/${id}/`)
+            const response = await api.post('sidewalks/', data)
+            return response.data
+        } catch (error) {
+            throw error.response.data
+        }
+    },
+
+    deleteSidewalk: async (id) => {
+        try {
+            const response = await api.delete(`sidewalks/${id}/`)
             return response.data
         } catch (error) {
             throw error.response.data
@@ -288,7 +301,7 @@ const useAnnotationStore = create((set) => ({
     createAnnotation: async (data) => {
         /*
         Required fields:
-        - location_id
+        - sidewalk_id
         - annotator_id
         - form_template_id
         - coordinates_id

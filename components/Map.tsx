@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import {
     defaultMapCenter,
     defaultMapZoom,
@@ -25,15 +25,15 @@ interface PropsInterface {
 const MapComponent = (props: PropsInterface) => {
     const { geojsonData } = props
 
-    const { getLocations } = useAnnotationStore()
+    const { getSidewalks } = useAnnotationStore()
 
-    const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 })
+    const [currentSidewalk, setCurrentSidewalk] = useState({ lat: 0, lng: 0 })
     const [isAccessibilityDataLoaded, setIsAccessibilityDataLoaded] =
         useState(false)
     const [accessibilityScores, setAccessibilityScores] = useState(
         [] as AccessibilityScoreData[]
     )
-    const [isPickingLocation, setIsPickingLocation] = useState(false)
+    const [isPickingSidewalk, setIsPickingSidewalk] = useState(false)
     const mapRef = useRef<google.maps.Map | null>(null)
     const [isMapLoaded, setIsMapLoaded] = useState(false)
     const [center, setCenter] = useState(defaultMapCenter)
@@ -47,7 +47,7 @@ const MapComponent = (props: PropsInterface) => {
 
     const dataLayerRef = useRef<google.maps.Data | null>(null)
 
-    const handleSaveLocation = () => {
+    const handleSaveSidewalk = () => {
         if (mapRef.current) {
             const newCenter = mapRef.current.getCenter()
             if (newCenter) {
@@ -72,10 +72,8 @@ const MapComponent = (props: PropsInterface) => {
             })
             dataLayerRef.current = newDataLayer
 
-            const fetchLocationsAtOnce = async () => {
-                const res = await getLocations({
-                    accessibility_score__isnull: false,
-                })
+            const fetchSidewalksAtOnce = async () => {
+                const res = await getSidewalks()
 
                 let accessibilityScoresList: AccessibilityScoreData[] = []
 
@@ -102,7 +100,7 @@ const MapComponent = (props: PropsInterface) => {
                 setIsAccessibilityDataLoaded(true)
             }
 
-            fetchLocationsAtOnce()
+            fetchSidewalksAtOnce()
 
             dataLayerRef.current.addListener(
                 'click',
@@ -145,7 +143,7 @@ const MapComponent = (props: PropsInterface) => {
             })
             map.fitBounds(bounds)
         }
-    }, [isMapLoaded, geojsonData])
+    }, [isMapLoaded, geojsonData, getSidewalks])
 
     useEffect(() => {
         if (dataLayerRef.current && accessibilityScores.length > 0) {
@@ -190,9 +188,9 @@ const MapComponent = (props: PropsInterface) => {
                 }
             })
         }
-    }, [dataLayerRef.current, accessibilityScores])
+    }, [accessibilityScores])
 
-    const resetFeatureStyles = () => {
+    const resetFeatureStyles = useCallback(() => {
         if (dataLayerRef.current && highlightedFeature) {
             const originalStrokeColor = highlightedFeature.getProperty(
                 'originalStrokeColor'
@@ -207,7 +205,7 @@ const MapComponent = (props: PropsInterface) => {
                 zIndex: 1,
             })
         }
-    }
+    }, [])
 
     useEffect(() => {
         if (selectedLineSegment && dataLayerRef.current) {
@@ -287,10 +285,10 @@ const MapComponent = (props: PropsInterface) => {
         } else {
             resetFeatureStyles()
         }
-    }, [selectedLineSegment])
+    }, [selectedLineSegment, highlightedFeature, resetFeatureStyles])
 
     const handleDragEnd = () => {
-        if (isPickingLocation && mapRef.current && dataLayerRef.current) {
+        if (isPickingSidewalk && mapRef.current && dataLayerRef.current) {
             const formattedCenter = {
                 lat: center.latitude,
                 lng: center.longitude,
@@ -382,9 +380,9 @@ const MapComponent = (props: PropsInterface) => {
             const watcher = navigator.geolocation.watchPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords
-                    setCurrentLocation({ lat: latitude, lng: longitude })
+                    setCurrentSidewalk({ lat: latitude, lng: longitude })
                 },
-                (error) => console.error('Error getting location:', error),
+                (error) => console.error('Error getting sidewalk:', error),
                 { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 }
             )
 
@@ -414,9 +412,9 @@ const MapComponent = (props: PropsInterface) => {
             {!isAccessibilityDataLoaded && <FullScreenLoader />}
             <AppLayer
                 center={center}
-                setIsPickingLocation={setIsPickingLocation}
-                isPickingLocation={isPickingLocation}
-                handleSaveLocation={handleSaveLocation}
+                setIsPickingSidewalk={setIsPickingSidewalk}
+                isPickingSidewalk={isPickingSidewalk}
+                handleSaveSidewalk={handleSaveSidewalk}
                 pickedCoordinates={pickedCoordinates}
                 setPickedCoordinates={setPickedCoordinates}
                 resetFeatureStyles={resetFeatureStyles}
@@ -437,7 +435,7 @@ const MapComponent = (props: PropsInterface) => {
                     setIsMapLoaded(true)
                 }}
                 onCenterChanged={
-                    isPickingLocation
+                    isPickingSidewalk
                         ? () => {
                               if (mapRef.current) {
                                   const newCenter = mapRef.current.getCenter()
@@ -454,7 +452,7 @@ const MapComponent = (props: PropsInterface) => {
                 onDragEnd={handleDragEnd}
                 onClick={handleMapClick}
             >
-                {isPickingLocation && (
+                {isPickingSidewalk && (
                     <Marker
                         position={{
                             lat: center.latitude,
@@ -462,8 +460,8 @@ const MapComponent = (props: PropsInterface) => {
                         }}
                     />
                 )}
-                {currentLocation && (
-                    <PulsatingMarker position={currentLocation} />
+                {currentSidewalk && (
+                    <PulsatingMarker position={currentSidewalk} />
                 )}
             </GoogleMap>
         </div>

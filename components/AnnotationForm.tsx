@@ -22,7 +22,7 @@ import RadioItem from './RadioItem'
 
 interface PropsInterface {
     setShowAnnotationForm: (show: boolean) => void
-    saveAnnotation: (lineSegment: MapLineSegment, locationId: number) => void
+    saveAnnotation: (lineSegment: MapLineSegment, sidewalkId: number) => void
     pickedCoordinates: {
         latitude: number
         longitude: number
@@ -38,7 +38,7 @@ function AnnotationForm(props: PropsInterface) {
         createAnnotation,
         updateAnnotation,
         createAnnotationImage,
-        getLocations,
+        getSidewalks,
         checkAnnotationNameAvailability,
         demoStep,
     } = useAnnotationStore()
@@ -235,7 +235,7 @@ function AnnotationForm(props: PropsInterface) {
         return uploadedUrls
     }
 
-    const getLocationId = async () => {
+    const getSidewalkId = async () => {
         try {
             const filters = {
                 start_coordinates__latitude:
@@ -248,13 +248,13 @@ function AnnotationForm(props: PropsInterface) {
                     pickedLineSegment.end_coordinates.longitude.toString(),
             }
 
-            const locations = await getLocations(filters)
-            if (locations.total_count > 0) {
-                return locations.objects[0].id
+            const sidewalks = await getSidewalks(filters)
+            if (sidewalks.total_count > 0) {
+                return sidewalks.objects[0].id
             }
-            throw new Error('Location not found')
+            throw new Error('Sidewalk not found')
         } catch (error) {
-            console.error('Error in getLocationId function:', error)
+            console.error('Error in getSidewalkId function:', error)
             return -1
         }
     }
@@ -263,9 +263,9 @@ function AnnotationForm(props: PropsInterface) {
         if (disableSave || demoStep !== 0) return
         setIsSaving(true)
         try {
-            const location_id = await getLocationId()
-            if (location_id === -1) {
-                throw new Error('Location not found')
+            const sidewalk_id = await getSidewalkId()
+            if (sidewalk_id === -1) {
+                throw new Error('Sidewalk not found')
             }
 
             const formData = {
@@ -301,7 +301,7 @@ function AnnotationForm(props: PropsInterface) {
             }
 
             const annotationData = {
-                location_id,
+                sidewalk_id,
                 annotator_id: user.id,
                 form_template_id: 1,
                 name: title,
@@ -346,7 +346,7 @@ function AnnotationForm(props: PropsInterface) {
                 })
             )
             cancelEditing()
-            saveAnnotation(pickedLineSegment, location_id)
+            saveAnnotation(pickedLineSegment, sidewalk_id)
         } catch (error) {
             console.error('Error in save function:', error)
         } finally {

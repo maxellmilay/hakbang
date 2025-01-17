@@ -16,10 +16,10 @@ import mockSidebarAnnotations from '@/data/coachmarks/sidebarAnnotations.json'
 interface PropsInterface {
     isMobile: boolean
     expand: boolean
-    pickLocation: () => void
+    pickSidewalk: () => void
     setExpandSidebar: (expand: boolean) => void
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
-    isPickingLocation: boolean
+    isPickingSidewalk: boolean
 }
 
 interface Annotation {
@@ -50,9 +50,9 @@ function Sidebar(props: PropsInterface) {
     const {
         expand = true,
         setExpandSidebar,
-        pickLocation,
+        pickSidewalk,
         setSelectedLineSegment,
-        isPickingLocation,
+        isPickingSidewalk,
     } = props
 
     const disableInteraction = demoStep !== 0
@@ -86,21 +86,21 @@ function Sidebar(props: PropsInterface) {
             acc[dateKey].push({
                 id: annotation.id,
                 level: getAccessibilityColor(
-                    annotation.location.accessibility_score
+                    annotation.sidewalk.accessibility_score
                 ),
                 name: annotation.name,
                 lineSegment: {
-                    id: annotation.location.id,
+                    id: annotation.sidewalk.id,
                     start_coordinates: {
                         latitude:
-                            annotation.location.start_coordinates.latitude,
+                            annotation.sidewalk.start_coordinates.latitude,
                         longitude:
-                            annotation.location.start_coordinates.longitude,
+                            annotation.sidewalk.start_coordinates.longitude,
                     },
                     end_coordinates: {
-                        latitude: annotation.location.end_coordinates.latitude,
+                        latitude: annotation.sidewalk.end_coordinates.latitude,
                         longitude:
-                            annotation.location.end_coordinates.longitude,
+                            annotation.sidewalk.end_coordinates.longitude,
                     },
                 },
             })
@@ -113,7 +113,7 @@ function Sidebar(props: PropsInterface) {
     }))
 
     const toggleSidebar = () => {
-        if (isPickingLocation) {
+        if (isPickingSidewalk) {
             return
         }
         setExpandSidebar(!expand)
@@ -144,7 +144,7 @@ function Sidebar(props: PropsInterface) {
                 {user && (
                     <button
                         onClick={toggleSidebar}
-                        className={`${isPickingLocation && 'pointer-events-none'}`}
+                        className={`${isPickingSidewalk && 'pointer-events-none'}`}
                     >
                         <Icon
                             icon="material-symbols:view-sidebar-outline"
@@ -219,7 +219,7 @@ function Sidebar(props: PropsInterface) {
                                     <button
                                         onClick={() => {
                                             if (!disableInteraction) {
-                                                pickLocation()
+                                                pickSidewalk()
                                             }
                                         }}
                                         className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"

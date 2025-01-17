@@ -34,7 +34,7 @@ interface PropsInterface {
     setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
     closeAnnotationDetails: () => void
     selectedLineSegment: MapLineSegment
-    confirmLocation: () => void
+    confirmSidewalk: () => void
     removeAccessibilityScore: (lineSegment: AccessibilityScoreData) => void
     editAnnotation: (formData: any) => void
 }
@@ -53,7 +53,7 @@ function AnnotationDetails(props: PropsInterface) {
         closeAnnotationDetails,
         setSelectedLineSegment,
         selectedLineSegment,
-        confirmLocation,
+        confirmSidewalk,
         removeAccessibilityScore,
         editAnnotation,
     } = props
@@ -67,7 +67,7 @@ function AnnotationDetails(props: PropsInterface) {
     const [currentWeatherData, setCurrentWeatherData] = useState<any>(null)
 
     const [showManualData, setShowManualData] = useState(true)
-    const [showLocationData, setShowLocationData] = useState(true)
+    const [showSidewalkData, setShowSidewalkData] = useState(true)
     const [isDeleting, setIsDeleting] = useState(false)
 
     const formData =
@@ -113,29 +113,28 @@ function AnnotationDetails(props: PropsInterface) {
             return
         }
 
-        console.log(selectedLineSegment)
-        const location__start_coordinates__latitude =
+        const sidewalk__start_coordinates__latitude =
             selectedLineSegment?.start_coordinates.latitude.toString()
-        const location__start_coordinates__longitude =
+        const sidewalk__start_coordinates__longitude =
             selectedLineSegment?.start_coordinates.longitude.toString()
-        const location__end_coordinates__latitude =
+        const sidewalk__end_coordinates__latitude =
             selectedLineSegment?.end_coordinates.latitude.toString()
-        const location__end_coordinates__longitude =
+        const sidewalk__end_coordinates__longitude =
             selectedLineSegment?.end_coordinates.longitude.toString()
         if (
-            !location__start_coordinates__latitude ||
-            !location__start_coordinates__longitude ||
-            !location__end_coordinates__latitude ||
-            !location__end_coordinates__longitude
+            !sidewalk__start_coordinates__latitude ||
+            !sidewalk__start_coordinates__longitude ||
+            !sidewalk__end_coordinates__latitude ||
+            !sidewalk__end_coordinates__longitude
         ) {
             setIsLoading(false)
             return
         }
         const filters = {
-            location__start_coordinates__latitude,
-            location__start_coordinates__longitude,
-            location__end_coordinates__latitude,
-            location__end_coordinates__longitude,
+            sidewalk__start_coordinates__latitude,
+            sidewalk__start_coordinates__longitude,
+            sidewalk__end_coordinates__latitude,
+            sidewalk__end_coordinates__longitude,
         }
 
         getAnnotations(filters)
@@ -228,7 +227,7 @@ function AnnotationDetails(props: PropsInterface) {
                                         No annotations found
                                     </h1>
                                     <button
-                                        onClick={confirmLocation}
+                                        onClick={confirmSidewalk}
                                         className="flex gap-3 p-3 items-center rounded-md border-2 border-black bg-primary transition-all duration-100 ease-in-out hover:translate-x-1 hover:-translate-y-1 hover:shadow-[-5px_5px_0px_0px_rgba(0,0,0,1)]"
                                     >
                                         <Icon
@@ -321,7 +320,7 @@ function AnnotationDetails(props: PropsInterface) {
                             <div className="flex flex-col px-3">
                                 <p className="text-slate-600 text-sm mb-2">
                                     Nearest Street:{' '}
-                                    {annotationDetails.location.adjacent_street}
+                                    {annotationDetails.sidewalk.adjacent_street}
                                 </p>
                                 <div className="flex gap-1 flex-wrap justify-between mb-2">
                                     <p className="text-slate-600 text-sm">
@@ -343,12 +342,12 @@ function AnnotationDetails(props: PropsInterface) {
                                     <p className="text-slate-600 text-xs sm:text-sm">
                                         Start Coordinates: <br /> (
                                         {
-                                            annotationDetails.location
+                                            annotationDetails.sidewalk
                                                 .start_coordinates.latitude
                                         }
                                         ,{' '}
                                         {
-                                            annotationDetails.location
+                                            annotationDetails.sidewalk
                                                 .start_coordinates.longitude
                                         }{' '}
                                         )
@@ -356,12 +355,12 @@ function AnnotationDetails(props: PropsInterface) {
                                     <p className="text-slate-600 text-xs sm:text-sm">
                                         End Coordinates: <br />(
                                         {
-                                            annotationDetails.location
+                                            annotationDetails.sidewalk
                                                 .end_coordinates.latitude
                                         }
                                         ,{' '}
                                         {
-                                            annotationDetails.location
+                                            annotationDetails.sidewalk
                                                 .end_coordinates.longitude
                                         }{' '}
                                         )
@@ -377,13 +376,13 @@ function AnnotationDetails(props: PropsInterface) {
                                         className={`w-6 h-6 rounded-md border-2 border-black`}
                                         style={{
                                             backgroundColor: getColorFromValue(
-                                                annotationDetails.location
+                                                annotationDetails.sidewalk
                                                     .accessibility_score
                                             ),
                                         }}
                                     ></div>
                                     {getAccessibilityLabel(
-                                        annotationDetails.location
+                                        annotationDetails.sidewalk
                                             .accessibility_score
                                     )}
                                 </div>
@@ -400,24 +399,24 @@ function AnnotationDetails(props: PropsInterface) {
                             <div className="flex flex-col gap-3 p-3">
                                 <div className="flex gap-2 items-center">
                                     <h2 className="font-semibold text-xl text-black">
-                                        Location Data
+                                        Sidewalk Data
                                     </h2>
                                     <button
                                         onClick={() =>
-                                            setShowLocationData(
-                                                !showLocationData
+                                            setShowSidewalkData(
+                                                !showSidewalkData
                                             )
                                         }
                                         className="rounded-full hover:bg-gray-100 p-1"
                                     >
-                                        {showLocationData ? (
+                                        {showSidewalkData ? (
                                             <Icon icon="material-symbols:keyboard-arrow-down" />
                                         ) : (
                                             <Icon icon="material-symbols:keyboard-arrow-up" />
                                         )}
                                     </button>
                                 </div>
-                                {showLocationData && currentWeatherData && (
+                                {showSidewalkData && currentWeatherData && (
                                     <>
                                         <div>
                                             <h3 className="font-semibold">
@@ -431,7 +430,7 @@ function AnnotationDetails(props: PropsInterface) {
                                                 <p className="font-semibold">
                                                     {formatHazardIndex(
                                                         annotationDetails
-                                                            .location.data
+                                                            .sidewalk.data
                                                             .hazard
                                                     )}
                                                 </p>
@@ -448,7 +447,7 @@ function AnnotationDetails(props: PropsInterface) {
                                                 <p className="font-semibold">
                                                     {
                                                         annotationDetails
-                                                            .location.data
+                                                            .sidewalk.data
                                                             .population
                                                     }
                                                 </p>
@@ -466,7 +465,7 @@ function AnnotationDetails(props: PropsInterface) {
                                                 <p className="font-semibold">
                                                     {
                                                         annotationDetails
-                                                            .location.data.zone
+                                                            .sidewalk.data.zone
                                                     }
                                                 </p>
                                             </div>

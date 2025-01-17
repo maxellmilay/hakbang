@@ -26,8 +26,8 @@ import useAuthStore from '@/store/auth'
 import useAnnotationStore from '@/store/annotation'
 
 interface PropsInterface {
-    isPickingLocation: boolean
-    setIsPickingLocation: Dispatch<SetStateAction<boolean>>
+    isPickingSidewalk: boolean
+    setIsPickingSidewalk: Dispatch<SetStateAction<boolean>>
     setPickedCoordinates: Dispatch<
         SetStateAction<{
             latitude: number
@@ -38,7 +38,7 @@ interface PropsInterface {
         latitude: number
         longitude: number
     }
-    handleSaveLocation: () => void
+    handleSaveSidewalk: () => void
     center: {
         latitude: number
         longitude: number
@@ -55,15 +55,15 @@ interface PropsInterface {
 
 const AppLayer = (props: PropsInterface) => {
     const { user, getUser } = useAuthStore()
-    const { getLocationDetails, setDemoMode, demoStep, setDemoStep } =
+    const { getSidewalkDetails, setDemoMode, demoStep, setDemoStep } =
         useAnnotationStore()
     const {
         center,
-        isPickingLocation,
-        setIsPickingLocation,
+        isPickingSidewalk,
+        setIsPickingSidewalk,
         setPickedCoordinates,
         pickedCoordinates,
-        handleSaveLocation,
+        handleSaveSidewalk,
         resetFeatureStyles,
         pickedLineSegment,
         setPickedLineSegment,
@@ -158,7 +158,7 @@ const AppLayer = (props: PropsInterface) => {
                     description:
                         'Ready to contribute more? You can add a new annotation by:\
                         <p>1. Clicking on a <b>gray</b> sidewalk segment directly on the map.</p>\
-                        <p>2. Clicking the <b>Location button</b> button at the bottom right.</p>',
+                        <p>2. Clicking the <b>Sidewalk button</b> button at the bottom right.</p>',
                     onPrevClick: () => {
                         currentStep--
                         setDemoStep(currentStep)
@@ -187,7 +187,7 @@ const AppLayer = (props: PropsInterface) => {
                     onNextClick: () => {
                         currentStep++
                         setDemoStep(currentStep)
-                        pickLocation()
+                        pickSidewalk()
                         setPickedCoordinates({
                             latitude: 10.295669,
                             longitude: 123.898039,
@@ -211,13 +211,13 @@ const AppLayer = (props: PropsInterface) => {
                 popover: {
                     title: 'Selecting a Sidewalk',
                     description:
-                        'Use the location picker to choose a sidewalk segment you want to annotate. You can zoom and pan the map to find the exact location.',
+                        'Use the sidewalk picker to choose a sidewalk segment you want to annotate. You can zoom and pan the map to find the exact location.',
                     onPrevClick: () => {
                         setPickedCoordinates({ latitude: 0, longitude: 0 })
                         setPickedLineSegment(null)
                         currentStep--
                         setDemoStep(currentStep)
-                        cancelPickLocation()
+                        cancelPickSidewalk()
                         driverObj.movePrevious()
                     },
                     onNextClick: () => {
@@ -370,16 +370,16 @@ const AppLayer = (props: PropsInterface) => {
         setIsDemoModalOpen(true)
     }
 
-    const pickLocation = () => {
-        setIsPickingLocation(true)
+    const pickSidewalk = () => {
+        setIsPickingSidewalk(true)
         setExpandSidebar(false)
         setSelectedLineSegment(null)
     }
 
-    const cancelPickLocation = () => {
+    const cancelPickSidewalk = () => {
         setPickedLineSegment(null)
         resetFeatureStyles()
-        setIsPickingLocation(false)
+        setIsPickingSidewalk(false)
         if (!isMobile) {
             setExpandSidebar(true)
         }
@@ -403,37 +403,37 @@ const AppLayer = (props: PropsInterface) => {
 
     const saveAnnotation = async (
         lineSegment: MapLineSegment,
-        locationId: number
+        sidewalkId: number
     ) => {
-        const location = await getLocationDetails(locationId)
+        const sidewalk = await getSidewalkDetails(sidewalkId)
         const prev = accessibilityScores.filter(
             (score) =>
                 score.start_coordinates.latitude !==
-                    location.start_coordinates.latitude &&
+                    sidewalk.start_coordinates.latitude &&
                 score.start_coordinates.longitude !==
-                    location.start_coordinates.longitude &&
+                    sidewalk.start_coordinates.longitude &&
                 score.end_coordinates.latitude !==
-                    location.end_coordinates.latitude &&
+                    sidewalk.end_coordinates.latitude &&
                 score.end_coordinates.longitude !==
-                    location.end_coordinates.longitude
+                    sidewalk.end_coordinates.longitude
         )
         setAccessibilityScores([
             ...prev,
             {
-                score: location.accessibility_score,
+                score: sidewalk.accessibility_score,
                 start_coordinates: {
-                    latitude: location.start_coordinates.latitude,
-                    longitude: location.start_coordinates.longitude,
+                    latitude: sidewalk.start_coordinates.latitude,
+                    longitude: sidewalk.start_coordinates.longitude,
                 },
                 end_coordinates: {
-                    latitude: location.end_coordinates.latitude,
-                    longitude: location.end_coordinates.longitude,
+                    latitude: sidewalk.end_coordinates.latitude,
+                    longitude: sidewalk.end_coordinates.longitude,
                 },
             },
         ])
 
         setShowAnnotationForm(false)
-        setIsPickingLocation(false)
+        setIsPickingSidewalk(false)
         setExpandSidebar(true)
         setSelectedLineSegment(lineSegment)
     }
@@ -450,9 +450,9 @@ const AppLayer = (props: PropsInterface) => {
         setShowAnnotationForm(true)
     }
 
-    const confirmLocation = () => {
+    const confirmSidewalk = () => {
         resetFeatureStyles()
-        handleSaveLocation()
+        handleSaveSidewalk()
         setShowAnnotationForm(true)
         setSelectedLineSegment(null)
     }
@@ -487,7 +487,7 @@ const AppLayer = (props: PropsInterface) => {
     useEffect(() => {
         if (selectedLineSegment) {
             setExpandSidebar(false)
-            setIsPickingLocation(false)
+            setIsPickingSidewalk(false)
             setShowAnnotationForm(false)
             setPickedCoordinates({ latitude: 10.298684, longitude: 123.898283 })
         }
@@ -517,9 +517,9 @@ const AppLayer = (props: PropsInterface) => {
                             isMobile={isMobile}
                             expand={expandSidebar}
                             setExpandSidebar={setExpandSidebar}
-                            pickLocation={pickLocation}
+                            pickSidewalk={pickSidewalk}
                             setSelectedLineSegment={setSelectedLineSegment}
-                            isPickingLocation={isPickingLocation}
+                            isPickingSidewalk={isPickingSidewalk}
                         />
                     </div>
                 )}
@@ -530,7 +530,7 @@ const AppLayer = (props: PropsInterface) => {
                 )}
                 {user && (
                     <>
-                        {!isPickingLocation ? (
+                        {!isPickingSidewalk ? (
                             <div className="absolute z-40 right-12 bottom-2 p-4 pointer-events-auto right-2">
                                 <div className="flex gap-3">
                                     {demoStep === 0 && (
@@ -546,7 +546,7 @@ const AppLayer = (props: PropsInterface) => {
                                         id="demo-add-annotation"
                                         onClick={() => {
                                             if (!disableInteraction) {
-                                                pickLocation()
+                                                pickSidewalk()
                                             }
                                         }}
                                         className="flex items-center justify-center p-3 bg-primary border-2 border-black rounded-full transition-all duration-100 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
@@ -567,7 +567,7 @@ const AppLayer = (props: PropsInterface) => {
                                 ) : (
                                     <div className="p-2 border-4 rounded-md border-black bg-primary">
                                         <h1 className="sm:text-3xl text-xl font-bold">
-                                            Pick a location
+                                            Pick a sidewalk
                                         </h1>
                                     </div>
                                 )}
@@ -575,7 +575,7 @@ const AppLayer = (props: PropsInterface) => {
                                     <button
                                         onClick={() => {
                                             if (!disableInteraction) {
-                                                cancelPickLocation()
+                                                cancelPickSidewalk()
                                             }
                                         }}
                                         className="rounded-3xl p-3 bg-white shadow-lg hover:bg-slate-100 duration-100 ease-in-out"
@@ -586,7 +586,7 @@ const AppLayer = (props: PropsInterface) => {
                                         id="demo-confirm-location"
                                         onClick={() => {
                                             if (!disableInteraction) {
-                                                confirmLocation()
+                                                confirmSidewalk()
                                             }
                                         }}
                                         disabled={disableConfirmButton}
@@ -637,7 +637,7 @@ const AppLayer = (props: PropsInterface) => {
                                 selectedLineSegment={selectedLineSegment}
                                 setSelectedLineSegment={setSelectedLineSegment}
                                 closeAnnotationDetails={closeAnnotationDetails}
-                                confirmLocation={confirmLocation}
+                                confirmSidewalk={confirmSidewalk}
                                 removeAccessibilityScore={
                                     removeAccessibilityScore
                                 }

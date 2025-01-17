@@ -52,7 +52,7 @@ function SearchBar(props: PropsInterface) {
             >
                 <input
                     type="text"
-                    placeholder="Search for a location"
+                    placeholder="Search for a sidewalk"
                     className="p-3 border-0 grow rounded-3xl focus:outline-none"
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {

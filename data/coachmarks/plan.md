@@ -56,9 +56,9 @@ _// Both a gray segment and the "Add New Annotation" button are highlighted._
 
 ## 7. Selecting a Sidewalk
 
-### Use the location picker to choose a sidewalk segment you want to annotate. You can zoom and pan the map to find the exact location.
+### Use the sidewalk picker to choose a sidewalk segment you want to annotate. You can zoom and pan the map to find the exact sidewalk.
 
-_// The location picker is displayed, and the map is interactively shown._
+_// The sidewalk picker is displayed, and the map is interactively shown._
 
 ---
 

@@ -16,7 +16,7 @@ export function MapProvider({ children }: MapProvider) {
         libraries: libraries as Libraries,
     })
 
-    console.log('MAP PROVIDEsR', scriptLoaded, loadError)
+    console.log('map provider', scriptLoaded, loadError)
 
     if (loadError) return <p>Encountered error while loading google maps</p> // create error screen
 
