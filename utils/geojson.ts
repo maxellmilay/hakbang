@@ -64,12 +64,12 @@ export const buildGeoJSON = (sidewalks: Sidewalk[]) => {
                 type: 'LineString',
                 coordinates: [
                     [
-                        parseFloat(sidewalk.startCoordinates.longitude),
-                        parseFloat(sidewalk.startCoordinates.latitude),
+                        parseFloat(sidewalk.start_coordinates.longitude),
+                        parseFloat(sidewalk.start_coordinates.latitude),
                     ],
                     [
-                        parseFloat(sidewalk.endCoordinates.longitude),
-                        parseFloat(sidewalk.startCoordinates.latitude),
+                        parseFloat(sidewalk.end_coordinates.longitude),
+                        parseFloat(sidewalk.end_coordinates.latitude),
                     ],
                 ],
             },

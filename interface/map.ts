@@ -32,15 +32,12 @@ export interface JSONFeatureCollection {
 }
 
 export interface APICoordinate {
-    id: number
     latitude: string
     longitude: string
-    removed: boolean
 }
 
 export interface Sidewalk {
-    id: number
     score: number
-    startCoordinates: APICoordinate
-    endCoordinates: APICoordinate
+    start_coordinates: APICoordinate
+    end_coordinates: APICoordinate
 }

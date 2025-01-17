@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
     defaultMapCenter,
     defaultMapZoom,
@@ -10,7 +10,7 @@ import {
 import { GoogleMap, Marker } from '@react-google-maps/api'
 import AppLayer from './AppLayer'
 import { MapLineSegment } from '@/interface/map'
-import { extractFeatureCoordinates } from '@/utils/geojson'
+import { buildGeoJSON, extractFeatureCoordinates } from '@/utils/geojson'
 import { getLineSegmentCenter } from '@/utils/distance'
 import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
@@ -18,13 +18,7 @@ import { getColorFromValue } from '@/utils/colormap'
 import { PulsatingMarker } from './PulsatingMarker'
 import FullScreenLoader from './FullScreenLoader'
 
-interface PropsInterface {
-    geojsonData: Record<string, unknown>
-}
-
-const MapComponent = (props: PropsInterface) => {
-    const { geojsonData } = props
-
+const MapComponent = () => {
     const { getSidewalks } = useAnnotationStore()
 
     const [currentSidewalk, setCurrentSidewalk] = useState({ lat: 0, lng: 0 })
@@ -34,7 +28,6 @@ const MapComponent = (props: PropsInterface) => {
         [] as AccessibilityScoreData[]
     )
     const [isPickingSidewalk, setIsPickingSidewalk] = useState(false)
-    const mapRef = useRef<google.maps.Map | null>(null)
     const [isMapLoaded, setIsMapLoaded] = useState(false)
     const [center, setCenter] = useState(defaultMapCenter)
     const [pickedCoordinates, setPickedCoordinates] = useState(defaultMapCenter)
@@ -45,6 +38,7 @@ const MapComponent = (props: PropsInterface) => {
     const [selectedLineSegment, setSelectedLineSegment] =
         useState<MapLineSegment | null>(null)
 
+    const mapRef = useRef<google.maps.Map | null>(null)
     const dataLayerRef = useRef<google.maps.Data | null>(null)
 
     const handleSaveSidewalk = () => {
@@ -59,25 +53,13 @@ const MapComponent = (props: PropsInterface) => {
     }
 
     useEffect(() => {
-        if (isMapLoaded && mapRef.current && geojsonData) {
+        if (isMapLoaded && mapRef.current) {
             const map = mapRef.current
-
-            // Create a Data Layer
-            const newDataLayer = new google.maps.Data({ map })
-            newDataLayer.addGeoJson(geojsonData)
-            newDataLayer.setStyle(() => {
-                return {
-                    strokeWeight: 0,
-                }
-            })
-            dataLayerRef.current = newDataLayer
 
             const fetchSidewalksAtOnce = async () => {
                 const res = await getSidewalks()
 
-                let accessibilityScoresList: AccessibilityScoreData[] = []
-
-                accessibilityScoresList = res.objects.map(
+                const accessibilityScoresList = res.objects.map(
                     (lineSegment: MapLineSegment) => {
                         const parsedLineSegment: AccessibilityScoreData = {
                             score: lineSegment.accessibility_score,
@@ -96,54 +78,68 @@ const MapComponent = (props: PropsInterface) => {
                         return parsedLineSegment
                     }
                 )
+
+                const initialGeoJson = buildGeoJSON(accessibilityScoresList)
+
+                // Create a Data Layer
+                const newDataLayer = new google.maps.Data({ map })
+                newDataLayer.addGeoJson(initialGeoJson)
+                newDataLayer.setStyle(() => {
+                    return {
+                        strokeWeight: 0,
+                    }
+                })
+
+                dataLayerRef.current = newDataLayer
+
                 setAccessibilityScores(accessibilityScoresList)
                 setIsAccessibilityDataLoaded(true)
+
+                dataLayerRef.current.addListener(
+                    'click',
+                    (event: google.maps.Data.MouseEvent) => {
+                        const feature = event.feature
+                        const geometry = feature.getGeometry()
+
+                        // Check if geometry exists
+                        if (geometry) {
+                            if (geometry.getType() === 'LineString') {
+                                // Cast geometry to LineString
+                                const lineString =
+                                    geometry as google.maps.Data.LineString
+                                const coordinates = lineString
+                                    .getArray()
+                                    .map((latLng: google.maps.LatLng) => ({
+                                        latitude: latLng.lat(),
+                                        longitude: latLng.lng(),
+                                    }))
+
+                                const lineSegment: MapLineSegment = {
+                                    start_coordinates: coordinates[0],
+                                    end_coordinates: coordinates[1],
+                                }
+
+                                setSelectedLineSegment(lineSegment)
+                            }
+                        } else {
+                            console.error('No geometry found for this feature.')
+                        }
+                    }
+                )
+
+                // Optionally, fit the map to the bounds of the GeoJSON
+                const bounds = new google.maps.LatLngBounds()
+                dataLayerRef.current.forEach((feature) => {
+                    feature.getGeometry()?.forEachLatLng((latLng) => {
+                        bounds.extend(latLng)
+                    })
+                })
+                map.fitBounds(bounds)
             }
 
             fetchSidewalksAtOnce()
-
-            dataLayerRef.current.addListener(
-                'click',
-                (event: google.maps.Data.MouseEvent) => {
-                    const feature = event.feature
-                    const geometry = feature.getGeometry()
-
-                    // Check if geometry exists
-                    if (geometry) {
-                        if (geometry.getType() === 'LineString') {
-                            // Cast geometry to LineString
-                            const lineString =
-                                geometry as google.maps.Data.LineString
-                            const coordinates = lineString
-                                .getArray()
-                                .map((latLng: google.maps.LatLng) => ({
-                                    latitude: latLng.lat(),
-                                    longitude: latLng.lng(),
-                                }))
-
-                            const lineSegment: MapLineSegment = {
-                                start_coordinates: coordinates[0],
-                                end_coordinates: coordinates[1],
-                            }
-
-                            setSelectedLineSegment(lineSegment)
-                        }
-                    } else {
-                        console.error('No geometry found for this feature.')
-                    }
-                }
-            )
-
-            // Optionally, fit the map to the bounds of the GeoJSON
-            const bounds = new google.maps.LatLngBounds()
-            dataLayerRef.current.forEach((feature) => {
-                feature.getGeometry()?.forEachLatLng((latLng) => {
-                    bounds.extend(latLng)
-                })
-            })
-            map.fitBounds(bounds)
         }
-    }, [isMapLoaded, geojsonData, getSidewalks])
+    }, [isMapLoaded, getSidewalks])
 
     useEffect(() => {
         if (dataLayerRef.current && accessibilityScores.length > 0) {
@@ -190,7 +186,7 @@ const MapComponent = (props: PropsInterface) => {
         }
     }, [accessibilityScores])
 
-    const resetFeatureStyles = useCallback(() => {
+    const resetFeatureStyles = () => {
         if (dataLayerRef.current && highlightedFeature) {
             const originalStrokeColor = highlightedFeature.getProperty(
                 'originalStrokeColor'
@@ -205,7 +201,7 @@ const MapComponent = (props: PropsInterface) => {
                 zIndex: 1,
             })
         }
-    }, [])
+    }
 
     useEffect(() => {
         if (selectedLineSegment && dataLayerRef.current) {
@@ -262,7 +258,7 @@ const MapComponent = (props: PropsInterface) => {
                 // Highlight the matched feature
                 dataLayerRef.current.overrideStyle(matchedFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
-                    strokeWeight: 25,
+                    strokeWeight: 15,
                     zIndex: 1000, // Ensure it appears on top
                 })
 
@@ -285,7 +281,7 @@ const MapComponent = (props: PropsInterface) => {
         } else {
             resetFeatureStyles()
         }
-    }, [selectedLineSegment, highlightedFeature, resetFeatureStyles])
+    }, [selectedLineSegment, highlightedFeature])
 
     const handleDragEnd = () => {
         if (isPickingSidewalk && mapRef.current && dataLayerRef.current) {
@@ -354,7 +350,7 @@ const MapComponent = (props: PropsInterface) => {
 
                 dataLayerRef.current.overrideStyle(closestFeature, {
                     strokeColor: '#0000FF', // Blue color for the highlighted feature
-                    strokeWeight: 25,
+                    strokeWeight: 15,
                     zIndex: 1000, // Ensure it appears on top
                 })
 
