@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import {
     defaultMapContainerStyle,
     defaultMapZoom,
@@ -21,8 +21,16 @@ const lineOptions = {
 const CreatePedestrian = () => {
     const [isMarkingPedestrianEdges, setIsMarkingPedestrianEdges] =
         useState(false)
-    const [markedPedestrianEdges, setMarkedPedestrianEdges] = useState(
-        [] as google.maps.LatLngLiteral[]
+    const [markedPedestrianEdges, setMarkedPedestrianEdges] = useState<
+        google.maps.LatLngLiteral[]
+    >([])
+
+    const mapCenter = useMemo(
+        () => ({
+            lat: defaultMapCenter.latitude,
+            lng: defaultMapCenter.longitude,
+        }),
+        []
     )
 
     const updateMarkedPedestrianEdges = (event: google.maps.MapMouseEvent) => {
@@ -36,12 +44,12 @@ const CreatePedestrian = () => {
         ])
     }
 
-    const cancelMarkedPedestrialEdges = () => {
+    const cancelMarkedPedestrianEdges = () => {
         setIsMarkingPedestrianEdges(false)
         setMarkedPedestrianEdges([])
     }
 
-    const saveMarkedPedestrialEdges = () => {
+    const saveMarkedPedestrianEdges = () => {
         setIsMarkingPedestrianEdges(false)
         setMarkedPedestrianEdges([])
     }
@@ -63,13 +71,13 @@ const CreatePedestrian = () => {
                         </div>
                         <Button
                             className="absolute bottom-10 right-44 z-[1] bg-white hover:bg-red-400"
-                            onClick={cancelMarkedPedestrialEdges}
+                            onClick={cancelMarkedPedestrianEdges}
                         >
                             Cancel
                         </Button>
                         <Button
                             className="absolute bottom-10 right-20 z-[1] bg-primary"
-                            onClick={saveMarkedPedestrialEdges}
+                            onClick={saveMarkedPedestrianEdges}
                         >
                             Save
                         </Button>
@@ -79,10 +87,7 @@ const CreatePedestrian = () => {
                 <GoogleMap
                     mapContainerStyle={defaultMapContainerStyle}
                     zoom={defaultMapZoom}
-                    center={{
-                        lat: defaultMapCenter.latitude,
-                        lng: defaultMapCenter.longitude,
-                    }}
+                    center={mapCenter} // Use memoized center value
                     onClick={updateMarkedPedestrianEdges}
                     options={{
                         styles: [
@@ -91,7 +96,9 @@ const CreatePedestrian = () => {
                                 elementType: 'labels',
                                 stylers: [
                                     {
-                                        visibility: 'no',
+                                        visibility: isMarkingPedestrianEdges
+                                            ? 'off'
+                                            : 'on',
                                     },
                                 ],
                             },
@@ -99,19 +106,18 @@ const CreatePedestrian = () => {
                     }}
                 >
                     {markedPedestrianEdges.map((point, index) => (
-                        <>
-                            <Marker
-                                key={index}
-                                position={{ lat: point.lat, lng: point.lng }}
-                                icon={{
-                                    path: google.maps.SymbolPath.CIRCLE,
-                                    scale: 5,
-                                    fillColor: 'red',
-                                    fillOpacity: 1,
-                                    strokeWeight: 0,
-                                }}
-                            />
-                        </>
+                        <Marker
+                            key={index}
+                            position={{ lat: point.lat, lng: point.lng }}
+                            icon={{
+                                path: google.maps.SymbolPath.CIRCLE,
+                                scale: 5,
+                                fillColor: 'red',
+                                fillOpacity: 1,
+                                strokeWeight: 0,
+                            }}
+                            onClick={updateMarkedPedestrianEdges}
+                        />
                     ))}
                     {markedPedestrianEdges.length > 0 && (
                         <Polyline
