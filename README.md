@@ -2,9 +2,9 @@
   <img src="./documentation/banner.png"/>
 </p>
 
-## What is Hakbang?
+## What is Lakbai?
 
-**Hakbang** is a web application that
+**Lakbai** is a web application that
 visualizes our study which addresses the pressing challenges of urban mobility in the Philippines where traffic congestion, inadequate
 infrastructure, and vehicle-centric development create barriers to sustainable mobility. To improve pedestrian
 accessibility, we propose a dynamic, data-driven pedestrian accessibility index using fuzzy logic systems that integrate
