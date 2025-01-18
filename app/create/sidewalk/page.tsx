@@ -11,6 +11,9 @@ import {
 import { MapProvider } from '@/providers/map-provider'
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api'
 import Button from '@/components/generic/Button'
+import useAnnotationStore from '@/store/annotation'
+import { splitLineStringIntoEqualPartsByLength } from '@/utils/sidewalk'
+import { segmentLength } from '@/constants/sidewalk'
 
 const lineOptions = {
     strokeColor: 'blue',
@@ -19,11 +22,15 @@ const lineOptions = {
 }
 
 const CreatePedestrian = () => {
+    const { createSidewalk } = useAnnotationStore()
+
     const [isMarkingPedestrianEdges, setIsMarkingPedestrianEdges] =
         useState(false)
     const [markedPedestrianEdges, setMarkedPedestrianEdges] = useState<
         google.maps.LatLngLiteral[]
     >([])
+
+    const [isCreatingSidewalks, setIsCreatingSidewalks] = useState(false)
 
     const mapCenter = useMemo(
         () => ({
@@ -49,9 +56,32 @@ const CreatePedestrian = () => {
         setMarkedPedestrianEdges([])
     }
 
-    const saveMarkedPedestrianEdges = () => {
+    const saveMarkedPedestrianEdges = async () => {
+        setIsCreatingSidewalks(true)
+        const markerCoordinates = markedPedestrianEdges
+            .map((edge, index) => {
+                if (index === 0) return null
+                return {
+                    start_coordinates: [edge.lng, edge.lat] as [number, number],
+                    end_coordinates: [
+                        markedPedestrianEdges[index - 1].lng,
+                        markedPedestrianEdges[index - 1].lat,
+                    ] as [number, number],
+                }
+            })
+            .filter((edge) => edge !== null)
+
+        const newSidewalks = await splitLineStringIntoEqualPartsByLength(
+            markerCoordinates,
+            segmentLength
+        )
+
+        newSidewalks.forEach((newSidewalk) => createSidewalk(newSidewalk))
+
         setIsMarkingPedestrianEdges(false)
         setMarkedPedestrianEdges([])
+
+        setIsCreatingSidewalks(false)
     }
 
     return (
@@ -67,7 +97,9 @@ const CreatePedestrian = () => {
                 ) : (
                     <>
                         <div className="absolute top-0 left-0 w-full z-[1] bg-primary py-5 flex justify-center items-center font-semibold border-b border-black">
-                            Creating Pedestrian
+                            {isCreatingSidewalks
+                                ? 'Processing...'
+                                : 'Select Pedestrian'}
                         </div>
                         <Button
                             className="absolute bottom-10 right-44 z-[1] bg-white hover:bg-red-400"
