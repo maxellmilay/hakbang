@@ -2,9 +2,9 @@
   <img src="./documentation/banner.png"/>
 </p>
 
-## What is Hakbang?
+## What is Lakbai?
 
-**Hakbang** is a web application that
+**Lakbai** is a web application that
 visualizes our study which addresses the pressing challenges of urban mobility in the Philippines where traffic congestion, inadequate
 infrastructure, and vehicle-centric development create barriers to sustainable mobility. To improve pedestrian
 accessibility, we propose a dynamic, data-driven pedestrian accessibility index using fuzzy logic systems that integrate
@@ -18,3 +18,31 @@ ensures continuous updates to the accessibility index. The system will be deploy
 visualizes dynamic pedestrian accessibility metrics, helping city planners make informed decisions to reduce vehicle
 dependency, enhance walkability, and promote more equitable, sustainable urban environments. This approach ensures
 that urban mobility solutions are not only adaptive but also aligned with the evolving needs of local communities.
+
+## Setup
+
+### 1 - Check Node Version
+
+Make sure that the node version matches the one in `.nvmrc`
+
+```
+node -V
+```
+
+### 2 - Install dependencies
+
+```
+npm install
+```
+
+### 3 - Environment variables
+
+Create a `.env` file in the root of the project directory, and then fill out the ENV variables based on `.env.template`
+
+### 4 - Running frontend app
+
+```
+npm run dev
+```
+
+## You are now good to go, happy hacking!
