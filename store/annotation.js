@@ -3,11 +3,19 @@ import api from '@/utils/axios'
 import useAuthStore from './auth'
 
 const useAnnotationStore = create((set) => ({
+    isAnnotationDetailModalOpen: false,
     sidebarAnnotations: [],
+    selectedSidewalk: null,
+    selectedAnnotationIds: [],
+    selectedAnnotationId: null,
+    selectedAnnotation: null,
     sidebarAnnotationsPage: 0,
     sidebarAnnotationsMaxPage: 0,
     demoMode: false,
     demoStep: 0,
+    setIsAnnotationDetailModalOpen: (newValue) => {
+        set({ isAnnotationDetailModalOpen: newValue })
+    },
     setDemoMode: (newValue) => {
         set({ demoMode: newValue })
     },
@@ -246,6 +254,9 @@ const useAnnotationStore = create((set) => ({
     getSidewalkDetails: async (id) => {
         try {
             const response = await api.get(`sidewalks/${id}/`)
+            set({ selectedSidewalk: response.data })
+
+            console.log('Selected Sidewalk', response.data)
             return response.data
         } catch (error) {
             throw error.response.data
@@ -279,6 +290,29 @@ const useAnnotationStore = create((set) => ({
         }
     },
 
+    getAnnotationIds: async (id) => {
+        try {
+            const response = await api.get(`annotation-ids/${id}/`)
+
+            if (response.data.annotation_ids.length > 0) {
+                set({ selectedAnnotationIds: response.data.annotation_ids })
+                set({ selectedAnnotationId: response.data.annotation_ids[0] })
+            }
+
+            return response.data
+        } catch (error) {
+            throw error.response.data
+        }
+    },
+
+    setSelectedAnnotationId: (id) => {
+        set({ selectedAnnotationId: id })
+    },
+
+    setSelectedSidewalk: (sidewalk) => {
+        set({ selectedSidewalk: sidewalk })
+    },
+
     getAnnotations: async (filters) => {
         try {
             const response = await api.get('annotations/', {
@@ -293,6 +327,7 @@ const useAnnotationStore = create((set) => ({
     getAnnotationDetails: async (id) => {
         try {
             const response = await api.get(`annotations/${id}/`)
+            set({ selectedAnnotation: response.data })
             return response.data
         } catch (error) {
             throw error.response.data

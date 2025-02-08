@@ -1,4 +1,10 @@
 import { JSONFeature, MapLineSegment, Sidewalk } from '@/interface/map'
+import {
+    FeatureCollection,
+    Feature,
+    LineString,
+    GeoJsonProperties,
+} from 'geojson'
 
 export const extractFeatureCoordinates = (
     feature: google.maps.Data.Feature
@@ -57,26 +63,31 @@ export const extractJSONFeatureCoordinates = (feature: JSONFeature) => {
 }
 
 export const buildGeoJSON = (sidewalks: Sidewalk[]) => {
-    const features = sidewalks.map((sidewalk) => {
-        return {
-            type: 'Feature',
-            geometry: {
-                type: 'LineString',
-                coordinates: [
-                    [
-                        parseFloat(sidewalk.start_coordinates.longitude),
-                        parseFloat(sidewalk.start_coordinates.latitude),
+    const features: Feature<LineString, GeoJsonProperties>[] = sidewalks.map(
+        (sidewalk) => {
+            return {
+                type: 'Feature',
+                geometry: {
+                    type: 'LineString',
+                    coordinates: [
+                        [
+                            parseFloat(sidewalk.start_coordinates.longitude),
+                            parseFloat(sidewalk.start_coordinates.latitude),
+                        ],
+                        [
+                            parseFloat(sidewalk.end_coordinates.longitude),
+                            parseFloat(sidewalk.end_coordinates.latitude),
+                        ],
                     ],
-                    [
-                        parseFloat(sidewalk.end_coordinates.longitude),
-                        parseFloat(sidewalk.end_coordinates.latitude),
-                    ],
-                ],
-            },
+                },
+                properties: {
+                    id: sidewalk.id,
+                },
+            }
         }
-    })
+    )
 
-    const geoJson = {
+    const geoJson: FeatureCollection = {
         type: 'FeatureCollection',
         features,
     }

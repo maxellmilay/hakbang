@@ -14,10 +14,8 @@ export default function RouteChangeHandler() {
             getUser()
         }
 
-        handleRouteChange() // Run on initial load
-
-        // This effect will run on every route change
+        handleRouteChange()
     }, [pathname, searchParams, getUser])
 
-    return null // This component doesn't render anything
+    return null
 }

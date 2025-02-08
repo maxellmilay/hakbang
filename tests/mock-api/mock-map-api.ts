@@ -2,6 +2,7 @@ import colonGeoJSONData from '@/data/geojson/mandaue.json'
 import { MapCoordinate } from '@/interface/map'
 
 export interface AccessibilityScoreData {
+    id?: number
     score?: number
     start_coordinates: MapCoordinate
     end_coordinates: MapCoordinate
