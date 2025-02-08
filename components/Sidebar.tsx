@@ -86,7 +86,7 @@ function Sidebar(props: PropsInterface) {
             acc[dateKey].push({
                 id: annotation.id,
                 level: getAccessibilityColor(
-                    annotation.sidewalk.accessibility_score
+                    annotation.sidewalk?.accessibility_score
                 ),
                 name: annotation.name,
                 lineSegment: {

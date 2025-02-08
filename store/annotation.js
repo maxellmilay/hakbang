@@ -116,6 +116,7 @@ const useAnnotationStore = create((set) => ({
             const response = await api.get('side-panel-annotations/', {
                 params: filters,
             })
+            console.log('store', response.data.objects)
             set({ sidebarAnnotationsPage: 1 })
             set({ sidebarAnnotationsMaxPage: response.data.num_pages })
             set({ sidebarAnnotations: response.data.objects })

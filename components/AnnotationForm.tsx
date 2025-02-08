@@ -303,9 +303,9 @@ function AnnotationForm(props: PropsInterface) {
             const annotationData = {
                 sidewalk_id,
                 annotator_id: user.id,
-                form_template_id: 1,
+                template_id: 1,
                 name: title,
-                form_data: formData.sidewalkPresence
+                data: formData.sidewalkPresence
                     ? JSON.stringify({ ...formData, ...additionalFormData })
                     : JSON.stringify(formData),
             }

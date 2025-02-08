@@ -1,8 +1,8 @@
+@use '../styles/marker.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import '../styles/marker.scss';
 
 .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
