@@ -36,7 +36,7 @@ const FullScreenLoader = () => {
                                     opacity: 0,
                                 }}
                             >
-                                H
+                                L
                             </span>
                             <div
                                 className="relative w-[45px] h-[45px] translate-x-1 translate-y-[2px]"
@@ -68,7 +68,7 @@ const FullScreenLoader = () => {
                                     opacity: 0,
                                 }}
                             >
-                                KBANG
+                                KBAI
                             </span>
                         </div>
                     </div>

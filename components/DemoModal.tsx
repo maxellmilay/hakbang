@@ -48,13 +48,13 @@ export default function DemoModal({
                                     className="text-3xl font-bold leading-6 text-gray-900 mb-4 text-center"
                                 >
                                     {!isFinished
-                                        ? 'Welcome to Hakbang!👷'
+                                        ? 'Welcome to Lakbai!👷'
                                         : "You're All Set! 🎉"}
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-lg text-gray-500">
                                         {!isFinished
-                                            ? 'Welcome to Hakbang! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.'
+                                            ? 'Welcome to Lakbai! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.'
                                             : "Congratulations on adding your first annotation! Your contribution helps make sidewalks more accessible for everyone. Continue exploring or add more annotations whenever you're ready."}
                                     </p>
                                     {!isFinished && (

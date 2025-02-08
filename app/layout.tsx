@@ -19,7 +19,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-    title: 'Hakbang',
+    title: 'Lakbai',
     description:
         'Interactive dashboard for a Dynamic Pedestrian Accessibility Index using Fuzzy Logic Systems and Real Time Data for Sustainable and Inclusive Urban Mobility in the Philippines',
 }
