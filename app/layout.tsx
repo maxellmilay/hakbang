@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import './globals.scss'
 import RouteChangeHandler from '@/components/RouteChangeHandler'
-import { Suspense } from 'react'
 import FullScreenLoader from '@/components/FullScreenLoader'
+import { Suspense } from 'react'
 import { Analytics } from '@vercel/analytics/react'
+import './globals.scss'
+import 'leaflet/dist/leaflet.css'
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -19,7 +20,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-    title: 'Hakbang',
+    title: 'Lakbai',
     description:
         'Interactive dashboard for a Dynamic Pedestrian Accessibility Index using Fuzzy Logic Systems and Real Time Data for Sustainable and Inclusive Urban Mobility in the Philippines',
 }

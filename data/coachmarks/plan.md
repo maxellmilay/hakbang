@@ -1,6 +1,6 @@
-## 1. Welcome to Hakbang!
+## 1. Welcome to Lakbai!
 
-### Welcome to Hakbang! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.
+### Welcome to Lakbai! This quick tour will help you navigate the app and start annotating sidewalks to improve accessibility.
 
 _// This will open a modal at the center of the page._
 
@@ -10,10 +10,10 @@ _// This will open a modal at the center of the page._
 
 ### This is the interactive map displaying sidewalk segments. Each segment is colored based on its accessibility score:
 
--   **Green**: Highly accessible
--   **Yellow**: Moderately accessible
--   **Red**: Low accessibility
--   **Gray**: Not yet annotated
+- **Green**: Highly accessible
+- **Yellow**: Moderately accessible
+- **Red**: Low accessibility
+- **Gray**: Not yet annotated
 
 _// The map is highlighted to draw attention to it._
 
@@ -74,10 +74,10 @@ _// The confirm button is highlighted._
 
 ### Complete the form with details about the sidewalk:
 
--   **Is there a sidewalk?** Select **"Yes"** or **"No."**
-    -   If **"Yes,"** additional fields will appear for more details.
-    -   If **"No,"** you can proceed to submit.
--   Provide information on features like curb ramps, surface conditions, and obstructions.
+- **Is there a sidewalk?** Select **"Yes"** or **"No."**
+    - If **"Yes,"** additional fields will appear for more details.
+    - If **"No,"** you can proceed to submit.
+- Provide information on features like curb ramps, surface conditions, and obstructions.
 
 _// The annotation form is highlighted, showing expanded fields when "Yes" is selected._
 
@@ -107,4 +107,4 @@ _// A celebratory modal appears to acknowledge the user's achievement._
 
 ---
 
-**Thank you for helping improve accessibility with Hakbang!**
+**Thank you for helping improve accessibility with Lakbai!**

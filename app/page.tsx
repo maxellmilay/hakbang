@@ -1,15 +1,18 @@
-export const dynamic = 'force-dynamic'
+import AppLayer from '@/components/AppLayer'
+import Map from '@/components/map/Map'
+import SidewalkSegments from '@/components/map/SidewalkSegments'
 
-import { MapComponent } from '@/components/Map'
-import mandaueGeoJSONData from '@/data/geojson/mandaue.json'
-import { MapProvider } from '@/providers/map-provider'
-
-const Home = () => {
+export default function Home() {
     return (
-        <MapProvider>
-            <MapComponent geojsonData={mandaueGeoJSONData} />
-        </MapProvider>
+        <div className="relative w-screen h-screen overflow-hidden">
+            <div className="absolute inset-0 z-0">
+                <Map>
+                    <SidewalkSegments />
+                </Map>
+            </div>
+            <div className="relative z-10">
+                <AppLayer />
+            </div>
+        </div>
     )
 }
-
-export default Home

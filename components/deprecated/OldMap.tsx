@@ -1,24 +1,19 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import {
-    defaultMapCenter,
-    defaultMapZoom,
-    defaultMapContainerStyle,
-    defaultMapOptions,
-} from '@/constants/map-properties'
-import { GoogleMap, Marker } from '@react-google-maps/api'
-import AppLayer from './AppLayer'
+import { useState, useEffect, useRef } from 'react'
+import useAnnotationStore from '@/store/annotation'
+
+import { defaultMapCenter } from '@/constants/map-properties'
+import AppLayer from '@/components/AppLayer'
 import { MapLineSegment } from '@/interface/map'
 import { buildGeoJSON, extractFeatureCoordinates } from '@/utils/geojson'
 import { getLineSegmentCenter } from '@/utils/distance'
-import useAnnotationStore from '@/store/annotation'
 import { AccessibilityScoreData } from '@/tests/mock-api/mock-map-api'
 import { getColorFromValue } from '@/utils/colormap'
-import { PulsatingMarker } from './PulsatingMarker'
-import FullScreenLoader from './FullScreenLoader'
+import FullScreenLoader from '@/components/FullScreenLoader'
+import Map from '@/components/map/Map'
 
-const MapComponent = () => {
+const Home = () => {
     const { getSidewalks } = useAnnotationStore()
 
     const [currentSidewalk, setCurrentSidewalk] = useState({ lat: 0, lng: 0 })
@@ -404,8 +399,8 @@ const MapComponent = () => {
     }, [dataLayerRef.current, highlightedFeature])
 
     return (
-        <div className="w-full">
-            {!isAccessibilityDataLoaded && <FullScreenLoader />}
+        <div className="w-full relative">
+            {/* {!isAccessibilityDataLoaded && <FullScreenLoader />} */}
             <AppLayer
                 center={center}
                 setIsPickingSidewalk={setIsPickingSidewalk}
@@ -422,46 +417,9 @@ const MapComponent = () => {
                 accessibilityScores={accessibilityScores}
                 isAccessibilityDataLoaded={isAccessibilityDataLoaded}
             />
-            <GoogleMap
-                mapContainerStyle={defaultMapContainerStyle}
-                zoom={defaultMapZoom}
-                options={defaultMapOptions(google)}
-                onLoad={(map) => {
-                    mapRef.current = map
-                    setIsMapLoaded(true)
-                }}
-                onCenterChanged={
-                    isPickingSidewalk
-                        ? () => {
-                              if (mapRef.current) {
-                                  const newCenter = mapRef.current.getCenter()
-                                  if (newCenter) {
-                                      setCenter({
-                                          latitude: newCenter.lat(),
-                                          longitude: newCenter.lng(),
-                                      })
-                                  }
-                              }
-                          }
-                        : () => {}
-                }
-                onDragEnd={handleDragEnd}
-                onClick={handleMapClick}
-            >
-                {isPickingSidewalk && (
-                    <Marker
-                        position={{
-                            lat: center.latitude,
-                            lng: center.longitude,
-                        }}
-                    />
-                )}
-                {currentSidewalk && (
-                    <PulsatingMarker position={currentSidewalk} />
-                )}
-            </GoogleMap>
+            <Map></Map>
         </div>
     )
 }
 
-export { MapComponent }
+export default Home

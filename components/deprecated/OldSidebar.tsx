@@ -13,6 +13,27 @@ import useAnnotationStore from '@/store/annotation'
 import mockSidebarAnnotations from '@/data/coachmarks/sidebarAnnotations.json'
 // import Image from 'next/image'
 
+interface PropsInterface {
+    isMobile: boolean
+    expand: boolean
+    pickSidewalk: () => void
+    setExpandSidebar: (expand: boolean) => void
+    setSelectedLineSegment: Dispatch<SetStateAction<MapLineSegment | null>>
+    isPickingSidewalk: boolean
+}
+
+interface Annotation {
+    id: number
+    level: number
+    name: string
+    lineSegment: MapLineSegment
+}
+
+interface AnnotationItem {
+    date: string
+    annotations: Annotation[]
+}
+
 function Sidebar(props: PropsInterface) {
     const { user, getUser } = useAuthStore()
     const {
@@ -140,6 +161,35 @@ function Sidebar(props: PropsInterface) {
                     priority={true} // Optional: to preload the image
                     layout="intrinsic" // This ensures the aspect ratio is maintained
                 />
+                {/* <div className="flex items-center gap-2">
+                    <h1 className="text-2xl font-bold">lakb</h1>
+                    <div className="relative w-9 h-9 scale-[.9]">
+                        <div
+                            className="absolute inset-0 bg-primary transform scale-[1.3] translate-y-[-1.5px]"
+                            style={{
+                                clipPath:
+                                    'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)',
+                            }}
+                        ></div>
+                        <div
+                            className="absolute inset-0 bg-black transform scale-[1.15] translate-y-[-1.5px]"
+                            style={{
+                                clipPath:
+                                    'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)',
+                            }}
+                        ></div>
+
+                        <div
+                            className="relative w-full h-full bg-primary flex items-end justify-center text-2xl font-bold translate-y-[-1.5px] tracking-wide"
+                            style={{
+                                clipPath:
+                                    'polygon(50% 0%, 100% 40%, 100% 100%, 0% 100%, 0% 40%)',
+                            }}
+                        >
+                            AI
+                        </div>
+                    </div>
+                </div> */}
             </div>
             {user && (
                 <>

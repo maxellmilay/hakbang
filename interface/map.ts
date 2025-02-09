@@ -37,6 +37,7 @@ export interface APICoordinate {
 }
 
 export interface Sidewalk {
+    id: number
     score: number
     start_coordinates: APICoordinate
     end_coordinates: APICoordinate
